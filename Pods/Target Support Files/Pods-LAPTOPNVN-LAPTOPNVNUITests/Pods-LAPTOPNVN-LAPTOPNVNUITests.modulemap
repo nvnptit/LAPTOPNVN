@@ -1,0 +1,6 @@
+framework module Pods_LAPTOPNVN_LAPTOPNVNUITests {
+  umbrella header "Pods-LAPTOPNVN-LAPTOPNVNUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
