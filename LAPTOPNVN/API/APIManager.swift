@@ -10,9 +10,9 @@ import Alamofire
 
 enum APIManager {
     case login
-    case getLoaiSanPham
+    case getLoaiSanPhamFull
     case getHangSX
-    case getSanPham
+    case getLoaiSanPhamNew
     case addSanPham
 }
 
@@ -26,11 +26,11 @@ extension APIManager {
         
         switch self {
             case .login: path = "/login"
-            case .getLoaiSanPham:
+            case .getLoaiSanPhamFull:
                 path = "/loai-san-pham"
             case .getHangSX:
                 path = "/hang-sx"
-            case .getSanPham:
+            case .getLoaiSanPhamNew:
                 path = "/loai-san-pham/get-new-lsp"
             case .addSanPham:
                 path = "/add"
@@ -41,7 +41,7 @@ extension APIManager {
     //MARK: - METHOD
     var method: HTTPMethod {
         switch self {
-            case .getLoaiSanPham, .getHangSX, .getSanPham:
+            case .getLoaiSanPhamFull, .getHangSX, .getLoaiSanPhamNew:
                 return .get
             case .login, .addSanPham:
                 return .post

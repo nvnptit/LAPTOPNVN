@@ -91,6 +91,12 @@
 		79475EAA2882B657005911E3 /* SanPham.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79475EA92882B657005911E3 /* SanPham.swift */; };
 		79475EAE2882B7E1005911E3 /* LoaiSanPham.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79475EAD2882B7E1005911E3 /* LoaiSanPham.swift */; };
 		79475EB02882B7EF005911E3 /* HangSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79475EAF2882B7EF005911E3 /* HangSX.swift */; };
+		79ECC22628850C460002E81D /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */; };
+		79ECC22728850C460002E81D /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */; };
+		79ECC22828850C460002E81D /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */; };
+		79ECC22928850C460002E81D /* BannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */; };
+		79ECC22A28850C460002E81D /* BannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */; };
+		79ECC22B28850C460002E81D /* BannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */; };
 		79F33D8028831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F33D7E28831F0600F7BB4C /* HomeHeaderReusableView.swift */; };
 		79F33D8128831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F33D7E28831F0600F7BB4C /* HomeHeaderReusableView.swift */; };
 		79F33D8228831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F33D7E28831F0600F7BB4C /* HomeHeaderReusableView.swift */; };
@@ -185,6 +191,8 @@
 		79475EA92882B657005911E3 /* SanPham.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanPham.swift; sourceTree = "<group>"; };
 		79475EAD2882B7E1005911E3 /* LoaiSanPham.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaiSanPham.swift; sourceTree = "<group>"; };
 		79475EAF2882B7EF005911E3 /* HangSX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangSX.swift; sourceTree = "<group>"; };
+		79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerCollectionViewCell.xib; sourceTree = "<group>"; };
 		79F33D7E28831F0600F7BB4C /* HomeHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderReusableView.swift; sourceTree = "<group>"; };
 		79F33D7F28831F0600F7BB4C /* HomeHeaderReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHeaderReusableView.xib; sourceTree = "<group>"; };
 		79F33D86288324B800F7BB4C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -232,6 +240,7 @@
 		79176F902883927E00CDA10E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				79ECC22328850C350002E81D /* Banner */,
 				79176F9C288392D700CDA10E /* HangSX */,
 				79176F932883929D00CDA10E /* SanPham */,
 			);
@@ -462,6 +471,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		79ECC22328850C350002E81D /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */,
+				79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */,
+			);
+			path = Banner;
+			sourceTree = "<group>";
+		};
 		DDFE274AB4C75A8DD08E14FE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -596,6 +614,7 @@
 			files = (
 				79475E9228824D96005911E3 /* ExplorerViewController.xib in Resources */,
 				79475EA528824DD2005911E3 /* AccountViewController.xib in Resources */,
+				79ECC22928850C460002E81D /* BannerCollectionViewCell.xib in Resources */,
 				79176F99288392D400CDA10E /* SanPhamCollectionViewCell.xib in Resources */,
 				79475E202882438E005911E3 /* LaunchScreen.storyboard in Resources */,
 				79176FA2288392EC00CDA10E /* HangCollectionViewCell.xib in Resources */,
@@ -618,6 +637,7 @@
 				79475E5628824822005911E3 /* LoginViewController.xib in Resources */,
 				79475E8B28824D7E005911E3 /* HomeViewController.xib in Resources */,
 				79475EA628824DD2005911E3 /* AccountViewController.xib in Resources */,
+				79ECC22A28850C460002E81D /* BannerCollectionViewCell.xib in Resources */,
 				79176F9A288392D400CDA10E /* SanPhamCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -633,6 +653,7 @@
 				79475E5728824822005911E3 /* LoginViewController.xib in Resources */,
 				79475E8C28824D7E005911E3 /* HomeViewController.xib in Resources */,
 				79475EA728824DD2005911E3 /* AccountViewController.xib in Resources */,
+				79ECC22B28850C460002E81D /* BannerCollectionViewCell.xib in Resources */,
 				79176F9B288392D400CDA10E /* SanPhamCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -759,6 +780,7 @@
 				79475E6B28824A93005911E3 /* Encodable.swift in Sources */,
 				79475E162882438D005911E3 /* SceneDelegate.swift in Sources */,
 				79F33D8028831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */,
+				79ECC22628850C460002E81D /* BannerCollectionViewCell.swift in Sources */,
 				79475E8F28824D96005911E3 /* ExplorerViewController.swift in Sources */,
 				79475E7328824B26005911E3 /* UserDefaults.swift in Sources */,
 				79F33D9F28832F4C00F7BB4C /* LoginResponse.swift in Sources */,
@@ -804,6 +826,7 @@
 				79F33DA028832F4C00F7BB4C /* LoginResponse.swift in Sources */,
 				79475E9A28824DBD005911E3 /* CartViewController.swift in Sources */,
 				79176F97288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */,
+				79ECC22728850C460002E81D /* BannerCollectionViewCell.swift in Sources */,
 				79475E7028824AE5005911E3 /* UINavigationBar.swift in Sources */,
 				79475E64288249BD005911E3 /* JSONDecoder.swift in Sources */,
 				79475E7428824B26005911E3 /* UserDefaults.swift in Sources */,
@@ -829,6 +852,7 @@
 				79F33D992883254600F7BB4C /* APIResponse.swift in Sources */,
 				79475E8928824D7E005911E3 /* HomeViewController.swift in Sources */,
 				79475E5D28824939005911E3 /* UITextFieldX.swift in Sources */,
+				79ECC22828850C460002E81D /* BannerCollectionViewCell.swift in Sources */,
 				79F33D952883252100F7BB4C /* APIHeader.swift in Sources */,
 				79176F98288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */,
 				79475EA428824DD2005911E3 /* AccountViewController.swift in Sources */,

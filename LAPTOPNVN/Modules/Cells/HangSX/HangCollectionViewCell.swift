@@ -8,7 +8,11 @@
 import UIKit
 
 class HangCollectionViewCell: UICollectionViewCell {
-
+    @IBOutlet weak var view: UIView!
+    
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var logo: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

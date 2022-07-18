@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -46,7 +45,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="D0H-Je-YIb" secondAttribute="bottom" constant="85" id="4cR-Fx-yeG"/>
                             <constraint firstItem="OSK-6z-RjA" firstAttribute="centerX" secondItem="OqM-3k-Yua" secondAttribute="centerX" id="9Bs-TV-Q1K"/>
@@ -74,13 +73,9 @@
                 <outlet property="name" destination="OSK-6z-RjA" id="P4C-D0-Jwz"/>
                 <outlet property="newPrice" destination="P5W-f4-p7i" id="0Ks-io-tEE"/>
                 <outlet property="oldPrice" destination="R52-4X-Yfg" id="mhY-vY-cQW"/>
+                <outlet property="view" destination="OqM-3k-Yua" id="6qQ-Xe-mbB"/>
             </connections>
             <point key="canvasLocation" x="266.66666666666669" y="107.8125"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

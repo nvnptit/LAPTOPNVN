@@ -9,6 +9,8 @@ import Foundation
 import Alamofire
 
 typealias LoaiSanPhams = [LoaiSanPham]
+typealias HangSXs = [HangSX]
+
 struct APIService {
     public static func postLogin(with manager: APIManager, _ params: [String: Any], _ headers: HTTPHeaders?, completion: @escaping(ResponseBase<LoginResponse>?, String?) -> ()) {
         APIController.request(ResponseBase<LoginResponse>.self, manager, params: params, headers: headers) { error, data in
@@ -20,7 +22,17 @@ struct APIService {
         }
     }
     //get -> fetch
-    public static func getLoaiSanPham(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[LoaiSanPham]>?, String?) -> ()) {
+    public static func getLoaiSanPhamFull(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[LoaiSanPham]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[LoaiSanPham]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    //get -> fetch
+    public static func getLoaiSanPhamNew(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[LoaiSanPham]>?, String?) -> ()) {
         APIController.request(ResponseBase<[LoaiSanPham]>.self, manager, params: params, headers: headers) { error, data in
             if let dataLoaiSanPham = data {
                 completion(dataLoaiSanPham, nil)
@@ -31,8 +43,8 @@ struct APIService {
     }
     
     
-    public static func getHangSX(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<HangSX>?, String?) -> ()) {
-        APIController.request(ResponseBase<HangSX>.self, manager, params: params, headers: headers) { error, data in
+    public static func getHangSX(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HangSX]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[HangSX]>.self, manager, params: params, headers: headers) { error, data in
             if let dataHangSX = data {
                 completion(dataHangSX, nil)
                 return

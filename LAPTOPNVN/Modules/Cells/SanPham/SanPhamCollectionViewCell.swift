@@ -9,6 +9,8 @@ import UIKit
 
 class SanPhamCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var view: UIView!
+    
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var oldPrice: UILabel!
@@ -16,6 +18,10 @@ class SanPhamCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        view.layer.cornerRadius = 12
+        view.layer.masksToBounds = true
+        view.layer.borderColor = UIColor.systemGray.cgColor
+        view.layer.borderWidth = 1
     }
 
 }

@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="U42-2E-6ac">
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search store" translatesAutoresizingMaskIntoConstraints="NO" id="U42-2E-6ac">
                     <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                     <textInputTraits key="textInputTraits"/>
                     <scopeButtonTitles>
@@ -28,21 +28,8 @@
                         <string>Title</string>
                     </scopeButtonTitles>
                 </searchBar>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="PNg-HL-878" userLabel="Banner">
-                    <rect key="frame" x="0.0" y="99" width="414" height="140"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="140" id="ghq-2v-eNL"/>
-                    </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lRs-AG-al7">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="rIK-4P-vZY">
-                    <rect key="frame" x="0.0" y="259" width="414" height="603"/>
+                    <rect key="frame" x="0.0" y="95" width="414" height="767"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PHq-J2-qqG">
                         <size key="itemSize" width="128" height="128"/>
@@ -55,16 +42,13 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="rIK-4P-vZY" firstAttribute="top" secondItem="PNg-HL-878" secondAttribute="bottom" constant="20" id="8vA-d4-0mz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="rIK-4P-vZY" secondAttribute="bottom" id="Ciq-j7-BRZ"/>
                 <constraint firstItem="U42-2E-6ac" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Gn1-qK-zOw"/>
-                <constraint firstItem="PNg-HL-878" firstAttribute="top" secondItem="U42-2E-6ac" secondAttribute="bottom" constant="4" id="Rtp-N3-cNm"/>
+                <constraint firstItem="rIK-4P-vZY" firstAttribute="top" secondItem="U42-2E-6ac" secondAttribute="bottom" id="IYS-Ed-lvg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="U42-2E-6ac" secondAttribute="trailing" id="Vhd-bY-bnQ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PNg-HL-878" secondAttribute="trailing" id="hmE-2c-7UM"/>
                 <constraint firstItem="rIK-4P-vZY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jRS-My-PUy"/>
                 <constraint firstItem="U42-2E-6ac" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="lGY-gL-aTG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rIK-4P-vZY" secondAttribute="trailing" id="tNS-AV-uqG"/>
-                <constraint firstItem="PNg-HL-878" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="x2c-xz-QK3"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="101.78571428571428"/>
         </view>
