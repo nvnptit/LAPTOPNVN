@@ -10,7 +10,8 @@ import SDWebImage
 
 class DetailSanPhamViewController: UIViewController {
     
-    var loaiSp: LoaiSanPham!
+    var loaiSp: LoaiSanPham?
+    var loaiSp2: LoaiSanPhamKM?
     let Host = "http://192.168.1.74"
 
     @IBOutlet weak var imageLSP: UIImageView!
@@ -35,14 +36,28 @@ class DetailSanPhamViewController: UIViewController {
             if let anhlsp = loaiSp.anhlsp {
                 let url =  Host + anhlsp
                 imageLSP.loadFrom(URLAddress: url)
+                tfCPU.text = loaiSp.cpu
+                tfRam.text = loaiSp.ram
+                tfCard.text = loaiSp.cardscreen
+                tfDisk.text = loaiSp.harddrive
+                tfOS.text = loaiSp.os
+                tfDescription.text = loaiSp.mota
+                tfDescription.sizeToFit()
             }
-            tfCPU.text = loaiSp.cpu
-            tfRam.text = loaiSp.ram
-            tfCard.text = loaiSp.cardscreen
-            tfDisk.text = loaiSp.harddrive
-            tfOS.text = loaiSp.os
-            tfDescription.text = loaiSp.mota
-            tfDescription.sizeToFit()
+        }
+        if let loaiSp = loaiSp2 {
+            // set du lieu vo
+            if let anhlsp = loaiSp.anhlsp {
+                let url =  Host + anhlsp
+                imageLSP.loadFrom(URLAddress: url)
+                tfCPU.text = loaiSp.cpu
+                tfRam.text = loaiSp.ram
+                tfCard.text = loaiSp.cardscreen
+                tfDisk.text = loaiSp.harddrive
+                tfOS.text = loaiSp.os
+                tfDescription.text = loaiSp.mota
+                tfDescription.sizeToFit()
+            }
         }
     }
 

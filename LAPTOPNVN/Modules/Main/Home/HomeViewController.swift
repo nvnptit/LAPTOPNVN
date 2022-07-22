@@ -21,10 +21,10 @@ enum HomeData<T> {
 enum HomDataType {
     case banner(img: [String])
     case newItems(HomeData<LoaiSanPham>)
-    case hotItems(laptops: Laptops)
+    case hotItems(HomeData<LoaiSanPhamKM>)
     case brands(HomeData<HangSX>)
     
-    case hotItemsByBrand(laptops: Laptops)
+    case hotItemsByBrand(HomeData<LoaiSanPham>)
     case empty
 }
 
@@ -33,6 +33,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var homeCollectionView: UICollectionView!
     fileprivate var homeData: [HomDataType] = [.empty, .empty, .empty, .empty, .empty]
     
+    var maHang = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,7 @@ class HomeViewController: UIViewController {
             UINib(nibName: "\(HomeHeaderReusableView.self)", bundle: nil),
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: UICollectionView.elementKindSectionHeader
-        ) 
+        )
         homeCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: "Empty", withReuseIdentifier: "Empty")
         homeCollectionView.register(UINib(nibName: "SanPhamCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SanPhamCollectionViewCell")
         homeCollectionView.register(UINib(nibName: "BannerCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BannerCollectionViewCell")
@@ -78,13 +79,18 @@ class HomeViewController: UIViewController {
                     self.homeCollectionView.reloadData()
                 }
             })
-            self.homeData [2] = .hotItems(
-                laptops: [
-                    (id: "Laptop1", name: "laptop1"),
-                    (id: "Laptop2", name: "laptop2"),
-                    (id: "Laptop3", name: "laptop3")
-                ]
-            )
+            APIService.getLoaiSanPhamKM(with: .getLoaiSanPhamKM, params: nil, headers: nil, completion: { [weak self] base, error in
+                guard let self = self, let base = base else { return }
+                if base.success == true {
+                    self.homeData[2] = .hotItems(.success(base.data ?? []))
+                } else {
+                    self.homeData[2] = .hotItems(.fail)
+                }
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.homeCollectionView.reloadData()
+                }
+            })
             //DATA HANGSX
             APIService.getHangSX(with: .getHangSX, params: nil, headers: nil, completion: { [weak self] base, error in
                 guard let self = self, let base = base else { return }
@@ -99,13 +105,20 @@ class HomeViewController: UIViewController {
                 }
             })
             
-            self.homeData[4] =   .hotItemsByBrand(
-                laptops: [
-                    (id: "Laptop1", name: "laptop1"),
-                    (id: "Laptop2", name: "laptop2"),
-                    (id: "Laptop3", name: "laptop3")
-                ]
-            )
+            let params = HangModel(maHang: self.maHang).convertToDictionary()
+            APIService.getLoaiSanPhamHang(with: .getLoaiSanPhamHang, params: params, headers: nil, completion: { [weak self] base, error in
+                guard let self = self, let base = base else { return }
+                if base.success == true {
+                    print(base.data)
+                    self.homeData[4] = .hotItemsByBrand(.success(base.data ?? []))
+                } else {
+                    self.homeData[4] = .hotItemsByBrand(.fail)
+                }
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.homeCollectionView.reloadData()
+                }
+            })
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.homeCollectionView.reloadData()
@@ -160,14 +173,13 @@ class HomeViewController: UIViewController {
                     let header = NSCollectionLayoutBoundarySupplementaryItem(
                         layoutSize: .init(
                             widthDimension: .fractionalWidth(1),
-                            heightDimension: .absolute(25)
+                            heightDimension: .absolute(75)
                         ),
                         elementKind: UICollectionView.elementKindSectionHeader,
                         alignment: .topLeading
                     )
                     header.contentInsets.leading = 16
                     header.contentInsets.trailing = 16
-                    header.contentInsets.top = 40
                     section.boundarySupplementaryItems = [
                         header
                     ]
@@ -175,6 +187,7 @@ class HomeViewController: UIViewController {
                 case .hotItemsByBrand(laptops: let laptops):
                     let section = self.laptopSection
                     return section
+                    
                 case .empty:
                     let section = self.laptopSection
                     return section
@@ -237,7 +250,7 @@ class HomeViewController: UIViewController {
         let section = NSCollectionLayoutSection(group: group)
         
         section.orthogonalScrollingBehavior = .groupPaging
-        section.interGroupSpacing = 16
+        section.interGroupSpacing = 10
         return section
     }
 }
@@ -262,7 +275,12 @@ extension HomeViewController: UICollectionViewDataSource {
                         return 1
                 }
             case .hotItems(laptops: let laptops):
-                return  laptops.count
+                switch laptops {
+                    case .success(let loaiSP):
+                        return loaiSP.count
+                    case .fail:
+                        return 1
+                }
             case .brands(brands: let brandType):
                 switch brandType {
                     case .success(let brands):
@@ -270,8 +288,13 @@ extension HomeViewController: UICollectionViewDataSource {
                     case .fail:
                         return 1
                 }
-            case .hotItemsByBrand(laptops: let laptops):
-                return laptops.count
+            case .hotItemsByBrand(laptops: let itemBrandType):
+                switch itemBrandType {
+                    case .success(let brands):
+                        return brands.count
+                    case .fail:
+                        return 1
+                }
             case .empty:
                 return 0
         }
@@ -285,7 +308,6 @@ extension HomeViewController: UICollectionViewDataSource {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BannerCollectionViewCell", for: indexPath) as? BannerCollectionViewCell else {fatalError()}
                 let e = img[indexPath.item]
                 cell.image.image = UIImage(named: e)
-                //                sd_setImage(with: URL(string: e.anhlsp ?? ""), placeholderImage: UIImage(named: "user"))
                 return cell
                 
             case .newItems(laptops: let loaiSPType):
@@ -294,12 +316,12 @@ extension HomeViewController: UICollectionViewDataSource {
                         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SanPhamCollectionViewCell", for: indexPath) as? SanPhamCollectionViewCell else {fatalError()}
                         let e = loaiSP[indexPath.item]
                         //                        cell.backgroundColor = .green
-                        cell.oldPrice.text = "Gia cu"
-                        cell.newPrice.text = "Gia moi"
+                        cell.oldPrice.text = "\(e.giamoi!)"
+                        cell.newPrice.text = ""
                         cell.name.text = e.tenlsp
                         //                        cell.image.loadFrom(URLAddress:  e.anhlsp ?? "")
                         if let anh = e.anhlsp {
-                            let url = Host + anh 
+                            let url = Host + anh
                             cell.image.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "user"))                        }
                         return cell
                         
@@ -309,14 +331,31 @@ extension HomeViewController: UICollectionViewDataSource {
                 }
                 
             case .hotItems(laptops: let laptops):
-                return  laptopCell(collectionView, cellForItemAt: indexPath)
+                switch laptops {
+                    case .success(let loaiSP):
+                        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SanPhamCollectionViewCell", for: indexPath) as? SanPhamCollectionViewCell else {fatalError()}
+                        let e = loaiSP[indexPath.item]
+                        //                        cell.backgroundColor = .green
+                        cell.oldPrice.text = "\(e.giamoi!)"
+                        cell.newPrice.text = ""
+                        cell.name.text = e.tenlsp
+                        //                        cell.image.loadFrom(URLAddress:  e.anhlsp ?? "")
+                        if let anh = e.anhlsp {
+                            let url = Host + anh
+                            cell.image.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "user"))                        }
+                        return cell
+                        
+                        
+                    case .fail:
+                        return  laptopCell(collectionView, cellForItemAt: indexPath)
+                }
                 
             case .brands(brands: let brandType):
                 switch brandType {
                     case .success(let brands):
                         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HangCollectionViewCell", for: indexPath) as? HangCollectionViewCell else {fatalError()}
                         let e = brands[indexPath.item]
-                        cell.name.text = e.tenhang
+//                        cell.name.text = e.tenhang
                         cell.logo.sd_setImage(with: URL(string: e.logo ?? ""), placeholderImage: UIImage(named: "noimage"))
                         return cell
                     case .fail:
@@ -324,19 +363,30 @@ extension HomeViewController: UICollectionViewDataSource {
                 }
                 
             case .hotItemsByBrand(laptops: let laptops):
-                return  laptopCell(collectionView, cellForItemAt: indexPath)
+                switch laptops {
+                    case .success(let loaiSP):
+                        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SanPhamCollectionViewCell", for: indexPath) as? SanPhamCollectionViewCell else {fatalError()}
+                        let e = loaiSP[indexPath.item]
+                        //                        cell.backgroundColor = .green
+                        cell.oldPrice.text = "\(e.giamoi!)"
+                        cell.newPrice.text = ""
+                        cell.name.text = e.tenlsp
+                        //                        cell.image.loadFrom(URLAddress:  e.anhlsp ?? "")
+                        if let anh = e.anhlsp {
+                            let url = Host + anh
+                            cell.image.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "user"))                        }
+                        return cell
+                        
+                        
+                    case .fail:
+                        return  laptopCell(collectionView, cellForItemAt: indexPath)
+                }
                 
             case .empty:
                 let collectionViewCell = UICollectionViewCell()
                 collectionViewCell.backgroundColor = .gray
                 return collectionViewCell
         }
-    }
-    
-    private func bannerCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Banner", for: indexPath)
-        cell.backgroundColor = .red
-        return cell
     }
     private func laptopCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Laptop", for: indexPath)
@@ -386,11 +436,47 @@ extension HomeViewController: UICollectionViewDelegate {
                         break
                 }
             case .hotItems(laptops: let laptops):
-                break
-            case .brands(_):
-                break
+                switch laptops {
+                    case .success(let loaiSp):
+                        let item = loaiSp[indexPath.item]
+                        let detailSPViewController = DetailSanPhamViewController()
+                        detailSPViewController.loaiSp2 = item
+                        present(detailSPViewController, animated: true)
+                    case .fail:
+                        break
+                }
+            case .brands(brands : let brandSwrap):
+                switch brandSwrap {
+                    case .success(let brand):
+                        let item = brand[indexPath.item]
+                        if let maHang = item.mahang {
+                            self.maHang = maHang
+                        }
+                        print(maHang)
+                        
+                        let params = HangModel(maHang: self.maHang).convertToDictionary()
+                            APIService.getLoaiSanPhamHang(with: .getLoaiSanPhamHang, params: params, headers: nil, completion: { [weak self] base, error in
+                                guard let self = self, let base = base else { return }
+                                if base.success == true {
+                                    print(base.data)
+                                    self.homeData[4] = .hotItemsByBrand(.success(base.data ?? []))
+                                } else {
+                                    self.homeData[4] = .hotItemsByBrand(.fail)
+                                }
+                                DispatchQueue.main.async { [weak self] in
+                                    guard let self = self else { return }
+                                    self.homeCollectionView.reloadData()
+                                }
+                            })
+                            DispatchQueue.main.async { [weak self] in
+                                guard let self = self else { return }
+                                self.homeCollectionView.reloadData()
+                            }
+                    case .fail:
+                        break
+                }
             case .hotItemsByBrand(laptops: let laptops):
-                break
+                break;
             case .empty:
                 break
         }

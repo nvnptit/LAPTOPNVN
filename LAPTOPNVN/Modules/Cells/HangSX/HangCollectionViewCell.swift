@@ -13,9 +13,13 @@ class HangCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var logo: UIImageView!
     
+    @IBOutlet weak var viewLogo: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        viewLogo.layer.cornerRadius = 5
+        viewLogo.layer.masksToBounds = true
+        viewLogo.layer.borderColor = UIColor.systemGray.cgColor
+        viewLogo.layer.borderWidth = 1
     }
 
 }

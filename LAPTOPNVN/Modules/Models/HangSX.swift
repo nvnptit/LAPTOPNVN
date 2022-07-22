@@ -14,3 +14,7 @@ struct HangSX: Decodable {
     let sdt: String?
     let logo: String?
 }
+
+struct HangModel: Encodable {
+    let maHang: Int?
+}
