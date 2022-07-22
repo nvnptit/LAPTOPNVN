@@ -21,6 +21,7 @@ struct APIController {
                     completion(nil, reponse)
                 }
             case .failure(let error):
+                    print(error.localizedDescription)
                 completion(error.localizedDescription, nil)
             }
         }

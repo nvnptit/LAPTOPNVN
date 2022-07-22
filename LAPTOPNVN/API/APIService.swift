@@ -42,6 +42,84 @@ struct APIService {
         }
     }
     
+    //get -> fetch
+    public static func getLoaiSanPhamKM(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[LoaiSanPhamKM]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[LoaiSanPhamKM]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    //get -> fetch
+    public static func getLoaiSanPhamGood(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[LoaiSanPham]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[LoaiSanPham]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    //get -> fetch
+    public static func getLoaiSanPhamHang(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[LoaiSanPham]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[LoaiSanPham]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    
+    //get -> fetch
+    public static func searchLoaiSanPham(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[LoaiSanPham]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[LoaiSanPham]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    
+    //get -> fetch
+    public static func getGioHang(with manager: APIManager,  params: Parameters?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[GioHangData]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[GioHangData]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    //get -> fetch
+    public static func addGioHang(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[LoaiSanPham]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[LoaiSanPham]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    //get -> fetch
+    public static func updateGioHang(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[LoaiSanPham]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[LoaiSanPham]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
     
     public static func getHangSX(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HangSX]>?, String?) -> ()) {
         APIController.request(ResponseBase<[HangSX]>.self, manager, params: params, headers: headers) { error, data in

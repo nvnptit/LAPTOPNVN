@@ -6,8 +6,11 @@ target 'LAPTOPNVN' do
   use_frameworks!
 
   # Pods for LAPTOPNVN
-  pod 'Alamofire', '~> 5.6.1'
-  pod 'SDWebImage', '~> 5.0'
+	pod 'Alamofire', '~> 5.6.1'
+	pod 'SDWebImage', '~> 5.0'
+	pod 'Cosmos'
+	pod 'NVActivityIndicatorView'
+	pod 'DropDown'
 
 
   target 'LAPTOPNVNTests' do

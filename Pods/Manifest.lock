@@ -1,22 +1,36 @@
 PODS:
   - Alamofire (5.6.1)
+  - Cosmos (23.0.0)
+  - DropDown (2.3.13)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - SDWebImage (5.12.5):
     - SDWebImage/Core (= 5.12.5)
   - SDWebImage/Core (5.12.5)
 
 DEPENDENCIES:
   - Alamofire (~> 5.6.1)
+  - Cosmos
+  - DropDown
+  - NVActivityIndicatorView
   - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Cosmos
+    - DropDown
+    - NVActivityIndicatorView
     - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
 
-PODFILE CHECKSUM: 7e9f24c90fa7707a17e23ff7260cf809a7a1374f
+PODFILE CHECKSUM: a24e2bb66fa8f43aebc86c4931ceea9ccca355d8
 
 COCOAPODS: 1.8.4

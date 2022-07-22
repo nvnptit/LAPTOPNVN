@@ -10,10 +10,21 @@ import Alamofire
 
 enum APIManager {
     case login
-    case getLoaiSanPhamFull
+    case register
+    case resetPass
+    
     case getHangSX
+    case getLoaiSanPhamFull
     case getLoaiSanPhamNew
-    case addSanPham
+    case getLoaiSanPhamKM
+    case getLoaiSanPhamGood
+    case getLoaiSanPhamHang
+    case searchLSP
+    
+    case addGioHang
+    case getGioHang
+    case updateGioHang
+    
 }
 
 extension APIManager {
@@ -23,17 +34,31 @@ extension APIManager {
     var url: String {
         var path = ""
         //        let version = "/v1"
-        
         switch self {
-            case .login: path = "/login"
-            case .getLoaiSanPhamFull:
-                path = "/loai-san-pham"
+            case .login: path = "/tai-khoan/login"
+            case .register: path = "/tai-khoan"
+            case .resetPass: path = "/tai-khoan/thay-matkhau"
+                
             case .getHangSX:
                 path = "/hang-sx"
+            case .getLoaiSanPhamFull:
+                path = "/loai-san-pham"
             case .getLoaiSanPhamNew:
                 path = "/loai-san-pham/get-new-lsp"
-            case .addSanPham:
-                path = "/add"
+            case .getLoaiSanPhamKM:
+                path = "/loai-san-pham/get-km-lsp"
+            case .getLoaiSanPhamGood:
+                path = "/loai-san-pham/get-good-lsp"
+            case .getLoaiSanPhamHang:
+                path = "/loai-san-pham/get-good-lsp-hang"
+                
+            case .searchLSP:
+                path = "/loai-san-pham/search"
+                
+            case .getGioHang: path = "/gio-hang/gio-hang-byKH"
+            case .addGioHang: path = "/gio-hang"
+            case .updateGioHang: path = "/gio-hang"
+                
         }
         return baseURL + path
     }
@@ -41,10 +66,15 @@ extension APIManager {
     //MARK: - METHOD
     var method: HTTPMethod {
         switch self {
-            case .getLoaiSanPhamFull, .getHangSX, .getLoaiSanPhamNew:
+            case  .getHangSX, .getLoaiSanPhamFull, .getLoaiSanPhamNew,
+                    .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGood, .getLoaiSanPhamHang, .searchLSP
+                :
                 return .get
-            case .login, .addSanPham:
+            case .login, .register, .resetPass, .addGioHang:
                 return .post
+            case .updateGioHang:
+                return .put
+                
         }
     }
     
@@ -60,10 +90,13 @@ extension APIManager {
     
     var encoding: ParameterEncoding {
         switch self.method {
-        case .post:
-            return URLEncoding.default
-        default:
-            return JSONEncoding.default
+                
+            default:
+                return URLEncoding.default
+                //        case .post:
+                //            return URLEncoding.default
+                //        default:
+                //            return JSONEncoding.default
         }
     }
 }
