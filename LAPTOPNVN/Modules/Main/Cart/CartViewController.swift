@@ -20,6 +20,7 @@ class CartViewController: UIViewController {
         collectionView.register(UINib(nibName: "CartItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CartItemCollectionViewCell")
         loadData()
     }
+    
     func configLayout(){
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -34,7 +35,6 @@ class CartViewController: UIViewController {
             APIService.getGioHang(with: .getGioHang, params: params, headers: nil, completion: { [weak self] base, error in
                 guard let self = self, let base = base else { return }
                 if base.success == true {
-                    print(base.data)
                     if let dataGioHang = base.data {
                         self.data = dataGioHang
                     }
@@ -92,11 +92,11 @@ extension CartViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CartItemCollectionViewCell", for: indexPath) as? CartItemCollectionViewCell else {fatalError()}
         let item = data[indexPath.item]
-        if let anhlsp = item.anhlsp {
+        if let anhlsp = item.anhlsp, let ten=item.tenlsp, let serial = item.serial, let gia = item.giamoi {
             cell.imageLSP.loadFrom(URLAddress: Host+anhlsp)
+            cell.nameLSP.text = ten + "\n"+serial
+            cell.priceLSP.text = "\(gia)"
         }
-        cell.nameLSP.text = item.tenlsp
-        cell.priceLSP.text = "\(item.giamoi!)"
         return cell
     }
     

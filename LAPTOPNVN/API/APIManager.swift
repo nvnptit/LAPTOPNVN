@@ -29,7 +29,6 @@ enum APIManager {
 
 extension APIManager {
     var baseURL: String  { return "http://192.168.1.74/api"}
-    
     //MARK: - URL
     var url: String {
         var path = ""
@@ -90,13 +89,12 @@ extension APIManager {
     
     var encoding: ParameterEncoding {
         switch self.method {
-                
+            case .post:
+                return JSONEncoding.default
+            case .get:
+                return URLEncoding.default
             default:
                 return URLEncoding.default
-                //        case .post:
-                //            return URLEncoding.default
-                //        default:
-                //            return JSONEncoding.default
         }
     }
 }

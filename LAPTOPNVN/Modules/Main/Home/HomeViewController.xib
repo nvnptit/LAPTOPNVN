@@ -29,7 +29,7 @@
                     </scopeButtonTitles>
                 </searchBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="rIK-4P-vZY">
-                    <rect key="frame" x="0.0" y="95" width="414" height="767"/>
+                    <rect key="frame" x="0.0" y="95" width="414" height="717"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PHq-J2-qqG">
                         <size key="itemSize" width="128" height="128"/>
@@ -42,7 +42,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="rIK-4P-vZY" secondAttribute="bottom" id="Ciq-j7-BRZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="rIK-4P-vZY" secondAttribute="bottom" constant="50" id="Ciq-j7-BRZ"/>
                 <constraint firstItem="U42-2E-6ac" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Gn1-qK-zOw"/>
                 <constraint firstItem="rIK-4P-vZY" firstAttribute="top" secondItem="U42-2E-6ac" secondAttribute="bottom" id="IYS-Ed-lvg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="U42-2E-6ac" secondAttribute="trailing" id="Vhd-bY-bnQ"/>

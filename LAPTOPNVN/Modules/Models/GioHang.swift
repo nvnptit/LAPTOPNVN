@@ -22,7 +22,7 @@ struct GioHang : Decodable{
     let nguoinhan: String?
     let diachi: String?
     let sdt: String?
-    let email: Int?
+    let email: String?
 }
 
 //struct GioHangData : Decodable{
@@ -60,4 +60,27 @@ struct GioHangData : Decodable{
     let giamoi: Int?
     let serial: String?
     let idgiohang: Int?
+}
+
+
+struct GioHangModel : Encodable{
+        let idgiohang: Int?
+        let ngaylapgiohang: String?
+        let tonggiatri: Int?
+        let matrangthai: Int?
+        let cmnd: String?
+        let manvgiao: String?
+        let manvduyet: String?
+        let nguoinhan: String?
+        let diachi: String?
+        let sdt: String?
+        let email: String?
+        let malsp: String?
+}
+
+
+
+struct GioHangResponse : Decodable{
+    let success: Bool?
+    let message: String?
 }

@@ -62,7 +62,19 @@ class DetailSanPhamViewController: UIViewController {
     }
 
     @IBAction func tapAddCart(_ sender: UIButton) {
-        
-        
+        if let loaiSp = loaiSp {
+            let params = GioHangModel(idgiohang: nil, ngaylapgiohang: nil, tonggiatri: 0, matrangthai: -1, cmnd: "300123456", manvgiao: nil, manvduyet: nil, nguoinhan: nil, diachi: nil, sdt: nil, email: nil, malsp: loaiSp.malsp).convertToDictionary()
+//            bi nay la do kieu du lieu moi bien thui ma cho nil  vs ""
+             
+            print(params)
+            
+            APIService.addGioHangC(with: .addGioHang, params: params, headers: nil, completion:   { base, error in
+            guard let base = base else { return }
+                    let alert = UIAlertController(title: "Thêm vào giỏ hàng thành công!", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+        })
+        }
     }
+    
 }

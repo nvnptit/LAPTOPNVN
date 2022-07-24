@@ -151,11 +151,11 @@
                         <constraint firstItem="Cnv-YV-jQB" firstAttribute="top" secondItem="OUa-4d-4v0" secondAttribute="bottom" constant="5" id="yEe-yT-ju4"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJ6-Ui-1j1">
-                    <rect key="frame" x="133" y="650" width="148" height="54"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJ6-Ui-1j1">
+                    <rect key="frame" x="133.5" y="650" width="147" height="54"/>
                     <color key="backgroundColor" red="0.043137254899999998" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="148" id="Is2-qb-UbU"/>
+                        <constraint firstAttribute="height" constant="54" id="45g-bN-fZj"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Thêm vào giỏ hàng">
