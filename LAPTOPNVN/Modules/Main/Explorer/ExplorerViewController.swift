@@ -8,7 +8,7 @@
 import UIKit
 
 class ExplorerViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     let Host = "http://192.168.1.74"
@@ -21,7 +21,6 @@ class ExplorerViewController: UIViewController {
         loadData()
     }
     func configLayout(){
-        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.collectionViewLayout = layout
@@ -47,20 +46,7 @@ class ExplorerViewController: UIViewController {
     private lazy var layout: UICollectionViewCompositionalLayout = {
         UICollectionViewCompositionalLayout { [weak self] (numberOfSection, env) in
             guard let self = self else { return nil }
-                let section = self.brandSection
-                let header = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: .init(
-                        widthDimension: .fractionalWidth(1),
-                        heightDimension: .absolute(30)
-                    ),
-                    elementKind: UICollectionView.elementKindSectionHeader,
-                    alignment: .topLeading
-                )
-                header.contentInsets.leading = 16
-                header.contentInsets.trailing = 16
-                section.boundarySupplementaryItems = [
-                    header
-                ]
+            let section = self.brandSection
             return section
             
         }
@@ -75,13 +61,12 @@ class ExplorerViewController: UIViewController {
         )
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: .init(
-                widthDimension: .absolute(180),
+                widthDimension: .absolute(200),
                 heightDimension: .absolute(100)
             ),
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
-//        section.orthogonalScrollingBehavior = .continuous
+        section.interGroupSpacing = -20
         return section
     }
     
@@ -89,7 +74,15 @@ class ExplorerViewController: UIViewController {
 
 extension ExplorerViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let item = data[indexPath.section]
+        let item = data[indexPath.item]
+        var hangsx = 1
+        if let maHang = item.mahang {
+            hangsx = maHang
+        }
+        let listLaptopViewController = ListLaptopViewController()
+        listLaptopViewController.typeHome = "Hang"
+        listLaptopViewController.maHang = hangsx
+        self.navigationController?.pushViewController(listLaptopViewController, animated: true)
         
     }
 }

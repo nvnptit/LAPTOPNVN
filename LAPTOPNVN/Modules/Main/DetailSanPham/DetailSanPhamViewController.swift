@@ -10,8 +10,7 @@ import SDWebImage
 
 class DetailSanPhamViewController: UIViewController {
     
-    var loaiSp: LoaiSanPham?
-    var loaiSp2: LoaiSanPhamKM?
+    var loaiSp: LoaiSanPhamKM?
     let Host = "http://192.168.1.74"
 
     @IBOutlet weak var imageLSP: UIImageView!
@@ -45,34 +44,24 @@ class DetailSanPhamViewController: UIViewController {
                 tfDescription.sizeToFit()
             }
         }
-        if let loaiSp = loaiSp2 {
-            // set du lieu vo
-            if let anhlsp = loaiSp.anhlsp {
-                let url =  Host + anhlsp
-                imageLSP.loadFrom(URLAddress: url)
-                tfCPU.text = loaiSp.cpu
-                tfRam.text = loaiSp.ram
-                tfCard.text = loaiSp.cardscreen
-                tfDisk.text = loaiSp.harddrive
-                tfOS.text = loaiSp.os
-                tfDescription.text = loaiSp.mota
-                tfDescription.sizeToFit()
-            }
-        }
     }
 
     @IBAction func tapAddCart(_ sender: UIButton) {
         if let loaiSp = loaiSp {
             let params = GioHangModel(idgiohang: nil, ngaylapgiohang: nil, tonggiatri: 0, matrangthai: -1, cmnd: "300123456", manvgiao: nil, manvduyet: nil, nguoinhan: nil, diachi: nil, sdt: nil, email: nil, malsp: loaiSp.malsp).convertToDictionary()
-//            bi nay la do kieu du lieu moi bien thui ma cho nil  vs ""
-             
-            print(params)
-            
             APIService.addGioHangC(with: .addGioHang, params: params, headers: nil, completion:   { base, error in
-            guard let base = base else { return }
-                    let alert = UIAlertController(title: "Thêm vào giỏ hàng thành công!", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
+                guard let base = base else { return }
+                var title = ""
+                if base.success == true{
+                    title = "Thêm vào giỏ hàng thành công"
+                } else {
+                    title = "Sản phẩm đang tạm thời hết hàng"
+                }
+                let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+                self.present(alert, animated: true)
         })
         }
     }

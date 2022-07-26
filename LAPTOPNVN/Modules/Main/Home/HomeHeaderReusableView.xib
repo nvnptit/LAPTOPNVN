@@ -20,9 +20,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSs-Rn-HkF">
-                    <rect key="frame" x="234.5" y="0.0" width="85.5" height="50"/>
+                    <rect key="frame" x="230.5" y="0.0" width="89.5" height="50"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="See more"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Xem thêm"/>
                     <connections>
                         <action selector="seeMoreAction:" destination="-1" eventType="touchUpInside" id="mtS-vL-dij"/>
                     </connections>
@@ -38,6 +38,7 @@
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="A8g-Ky-WYZ" secondAttribute="bottom" id="ogh-Yg-It4"/>
             </constraints>
             <connections>
+                <outlet property="btnSeemore" destination="BSs-Rn-HkF" id="N6D-vt-VXm"/>
                 <outlet property="title" destination="A8g-Ky-WYZ" id="ZtG-y5-cwX"/>
             </connections>
             <point key="canvasLocation" x="139" y="82"/>

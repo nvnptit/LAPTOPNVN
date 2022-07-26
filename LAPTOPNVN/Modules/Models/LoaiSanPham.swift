@@ -38,5 +38,6 @@ struct LoaiSanPhamKM : Decodable{
     let isnew: Bool?
     let isgood: Bool?
     let giamoi: Int?
-    let phantramgg: Int?
+    let ptgg: Int?
+    let giagiam: Int?
 }

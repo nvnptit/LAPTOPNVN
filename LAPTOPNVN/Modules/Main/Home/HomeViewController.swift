@@ -20,11 +20,11 @@ enum HomeData<T> {
 
 enum HomDataType {
     case banner(img: [String])
-    case newItems(HomeData<LoaiSanPham>)
+    case newItems(HomeData<LoaiSanPhamKM>)
     case hotItems(HomeData<LoaiSanPhamKM>)
     case brands(HomeData<HangSX>)
     
-    case hotItemsByBrand(HomeData<LoaiSanPham>)
+    case hotItemsByBrand(HomeData<LoaiSanPhamKM>)
     case empty
 }
 
@@ -38,14 +38,14 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.delegate = self
         homeCollectionView.dataSource = self
         homeCollectionView.delegate = self
         homeCollectionView.collectionViewLayout = layout
-        homeCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Banner")
-        
-        homeCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Laptop")
-        homeCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Brand")
-        homeCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Empty")
+        registerCell()
+    }
+    
+    func registerCell(){
         homeCollectionView.register(
             UINib(nibName: "\(HomeHeaderReusableView.self)", bundle: nil),
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -57,6 +57,7 @@ class HomeViewController: UIViewController {
         
         homeCollectionView.register(UINib(nibName: "HangCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HangCollectionViewCell")
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -243,19 +244,20 @@ class HomeViewController: UIViewController {
     private var bannerSection: NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(1)
+                widthDimension: .absolute(370),
+                heightDimension: .absolute(200)
             )
         )
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .absolute(400),
+                widthDimension: .absolute(500),
                 heightDimension: .absolute(200)
             ),
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets.leading = 10
         section.orthogonalScrollingBehavior = .groupPaging
-        section.interGroupSpacing = 10
+        section.interGroupSpacing = 0
         return section
     }
 }
@@ -320,14 +322,20 @@ extension HomeViewController: UICollectionViewDataSource {
                     case .success(let loaiSP):
                         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SanPhamCollectionViewCell", for: indexPath) as? SanPhamCollectionViewCell else {fatalError()}
                         let e = loaiSP[indexPath.item]
-                        //                        cell.backgroundColor = .green
-                        cell.oldPrice.text = "\(e.giamoi!)"
-                        cell.newPrice.text = ""
-                        cell.name.text = e.tenlsp
-                        //                        cell.image.loadFrom(URLAddress:  e.anhlsp ?? "")
-                        if let anh = e.anhlsp {
-                            let url = Host + anh
-                            cell.image.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "user"))                        }
+                        
+                        if let ten = e.tenlsp, let price = e.giamoi, let newPrice = e.giagiam , let anh = e.anhlsp, let gg = e.ptgg{
+                            cell.name.text = ten
+                            if (gg > 0 ){
+                                cell.oldPrice.text = "\(price)$"
+                                cell.oldPrice.textColor = .red
+                                cell.oldPrice.strikeThrough(true)
+                                cell.newPrice.text = "\(newPrice)$"
+                            }else {
+                                cell.oldPrice.text = ""
+                                cell.newPrice.text =  "\(price)$"
+                            }
+                            cell.image.loadFrom(URLAddress: Host + anh)
+                        }
                         return cell
                         
                         
@@ -340,12 +348,19 @@ extension HomeViewController: UICollectionViewDataSource {
                     case .success(let loaiSP):
                         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SanPhamCollectionViewCell", for: indexPath) as? SanPhamCollectionViewCell else {fatalError()}
                         let e = loaiSP[indexPath.item]
-                        cell.oldPrice.text = "\(e.giamoi!)"
-                        cell.newPrice.text = ""
-                        cell.name.text = e.tenlsp
-                        if let anh = e.anhlsp {
-                            let url = Host + anh
-                            cell.image.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "user"))                        }
+                        if let ten = e.tenlsp, let price = e.giamoi, let newPrice = e.giagiam , let anh = e.anhlsp, let gg = e.ptgg{
+                            cell.name.text = ten
+                            if (gg > 0 ){
+                                cell.oldPrice.text = "\(price)$"
+                                cell.oldPrice.textColor = .red
+                                cell.oldPrice.strikeThrough(true)
+                                cell.newPrice.text = "\(newPrice)$"
+                            }else {
+                                cell.oldPrice.text = ""
+                                cell.newPrice.text =  "\(price)$"
+                            }
+                            cell.image.loadFrom(URLAddress: Host + anh)
+                        }
                         return cell
                         
                         
@@ -369,12 +384,19 @@ extension HomeViewController: UICollectionViewDataSource {
                     case .success(let loaiSP):
                         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SanPhamCollectionViewCell", for: indexPath) as? SanPhamCollectionViewCell else {fatalError()}
                         let e = loaiSP[indexPath.item]
-                        cell.oldPrice.text = "\(e.giamoi!)"
-                        cell.newPrice.text = ""
-                        cell.name.text = e.tenlsp
-                        if let anh = e.anhlsp {
-                            let url = Host + anh
-                            cell.image.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "user"))                        }
+                        if let ten = e.tenlsp, let price = e.giamoi, let newPrice = e.giagiam , let anh = e.anhlsp, let gg = e.ptgg{
+                            cell.name.text = ten
+                            if (gg > 0 ){
+                                cell.oldPrice.text = "\(price)$"
+                                cell.oldPrice.textColor = .red
+                                cell.oldPrice.strikeThrough(true)
+                                cell.newPrice.text = "\(newPrice)$"
+                            }else {
+                                cell.oldPrice.text = ""
+                                cell.newPrice.text =  "\(price)$"
+                            }
+                            cell.image.loadFrom(URLAddress: Host + anh)
+                        }
                         return cell
                         
                         
@@ -413,6 +435,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 header.title.text = "Khuyến mãi khủng"
             case 3:
                 header.title.text = "Sản phẩm deal tốt"
+                header.btnSeemore.setTitle("", for: .normal)
             default:
                 return UICollectionReusableView()
         }
@@ -431,7 +454,7 @@ extension HomeViewController: UICollectionViewDelegate {
                         let item = loaiSp[indexPath.item]
                         let detailSPViewController = DetailSanPhamViewController()
                         detailSPViewController.loaiSp = item
-                        present(detailSPViewController, animated: true)
+                        self.navigationController?.pushViewController(detailSPViewController, animated: true)
                     case .fail:
                         break
                 }
@@ -440,8 +463,8 @@ extension HomeViewController: UICollectionViewDelegate {
                     case .success(let loaiSp):
                         let item = loaiSp[indexPath.item]
                         let detailSPViewController = DetailSanPhamViewController()
-                        detailSPViewController.loaiSp2 = item
-                        present(detailSPViewController, animated: true)
+                        detailSPViewController.loaiSp = item
+                        self.navigationController?.pushViewController(detailSPViewController, animated: true)
                     case .fail:
                         break
                 }
@@ -454,27 +477,36 @@ extension HomeViewController: UICollectionViewDelegate {
                         }
                         
                         let params = HangModel(maHang: self.maHang).convertToDictionary()
-                            APIService.getLoaiSanPhamHang(with: .getLoaiSanPhamHang, params: params, headers: nil, completion: { [weak self] base, error in
-                                guard let self = self, let base = base else { return }
-                                if base.success == true {
-                                    self.homeData[4] = .hotItemsByBrand(.success(base.data ?? []))
-                                } else {
-                                    self.homeData[4] = .hotItemsByBrand(.fail)
-                                }
-                                DispatchQueue.main.async { [weak self] in
-                                    guard let self = self else { return }
-                                    self.homeCollectionView.reloadData()
-                                }
-                            })
+                        APIService.getLoaiSanPhamHang(with: .getLoaiSanPhamHang, params: params, headers: nil, completion: { [weak self] base, error in
+                            guard let self = self, let base = base else { return }
+                            if base.success == true {
+                                self.homeData[4] = .hotItemsByBrand(.success(base.data ?? []))
+                            } else {
+                                self.homeData[4] = .hotItemsByBrand(.fail)
+                            }
                             DispatchQueue.main.async { [weak self] in
                                 guard let self = self else { return }
                                 self.homeCollectionView.reloadData()
                             }
+                        })
+                        DispatchQueue.main.async { [weak self] in
+                            guard let self = self else { return }
+                            self.homeCollectionView.reloadData()
+                        }
                     case .fail:
                         break
                 }
             case .hotItemsByBrand(laptops: let laptops):
-                break;
+                switch laptops {
+                    case .success(let loaiSp):
+                        let item = loaiSp[indexPath.item]
+                        let detailSPViewController = DetailSanPhamViewController()
+                        detailSPViewController.loaiSp = item
+                        self.navigationController?.pushViewController(detailSPViewController, animated: true)
+                    case .fail:
+                        break
+                        
+                }
             case .empty:
                 break
         }
@@ -483,6 +515,30 @@ extension HomeViewController: UICollectionViewDelegate {
 
 extension HomeViewController: HomeHeaderResuableViewDelegate {
     func homeHeader(_ homeHeader: HomeHeaderReusableView, seeMore sender: UIButton, indexPath: IndexPath) {
-        
+        switch indexPath.section {
+            case 0:
+                break
+            case 1:
+                let listLaptopViewController = ListLaptopViewController()
+                listLaptopViewController.typeHome = "Full"
+                self.navigationController?.pushViewController(listLaptopViewController, animated: true)
+            case 2:
+                let listLaptopViewController = ListLaptopViewController()
+                listLaptopViewController.typeHome = "KM"
+                self.navigationController?.pushViewController(listLaptopViewController, animated: true)
+            case 3:
+                let listLaptopViewController = ListLaptopViewController()
+                listLaptopViewController.typeHome = "Full"
+                self.navigationController?.pushViewController(listLaptopViewController, animated: true)
+            default:
+                break;
+        }
+    }
+}
+extension HomeViewController: UISearchBarDelegate{
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        let searchVC = SearchViewController()
+        self.navigationController?.pushViewController(searchVC, animated: true)
     }
 }

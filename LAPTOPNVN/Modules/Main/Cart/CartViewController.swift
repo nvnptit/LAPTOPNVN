@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class CartViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
     let Host = "http://192.168.1.74"
     @IBOutlet weak var btnDatHang: UIButton!
@@ -18,15 +21,32 @@ class CartViewController: UIViewController {
         super.viewDidLoad()
         configLayout()
         collectionView.register(UINib(nibName: "CartItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CartItemCollectionViewCell")
+        setupAnimation()
         loadData()
     }
-    
+    override func viewDidAppear(_ animated: Bool = false) {
+        loadData()
+    }
     func configLayout(){
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.collectionViewLayout = layout
     }
+    
+    private func setupAnimation() {
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(loading)
+        NSLayoutConstraint.activate([
+            loading.widthAnchor.constraint(equalToConstant: 20),
+            loading.heightAnchor.constraint(equalToConstant: 20),
+            loading.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loading.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 15)
+        ])
+    }
+    
+    
     func loadData(){
+        loading.startAnimating()
         DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self = self else { return }
             
@@ -44,6 +64,8 @@ class CartViewController: UIViewController {
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.collectionView.reloadData()
+                    
+                    self.loading.stopAnimating()
                 }
             })
         }

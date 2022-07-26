@@ -32,30 +32,32 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R52-4X-Yfg" userLabel="Price">
-                                <rect key="frame" x="74.5" y="293.5" width="41" height="21"/>
-                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
-                                <color key="textColor" red="0.0" green="0.7725490196" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5W-f4-p7i" userLabel="PriceNew">
-                                <rect key="frame" x="54" y="320.5" width="82.5" height="21"/>
-                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
-                                <color key="textColor" red="0.0" green="0.7725490196" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="dlf-Ue-d0j">
+                                <rect key="frame" x="70" y="293.5" width="50" height="106"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R52-4X-Yfg" userLabel="OldPrice">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <attributedString key="attributedText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5W-f4-p7i" userLabel="NewPrice">
+                                        <rect key="frame" x="0.0" y="56" width="50" height="50"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
+                                        <color key="textColor" red="0.0" green="0.7725490196" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="D0H-Je-YIb" secondAttribute="bottom" constant="85" id="4cR-Fx-yeG"/>
                             <constraint firstItem="OSK-6z-RjA" firstAttribute="centerX" secondItem="OqM-3k-Yua" secondAttribute="centerX" id="9Bs-TV-Q1K"/>
                             <constraint firstItem="D0H-Je-YIb" firstAttribute="top" secondItem="OqM-3k-Yua" secondAttribute="top" id="9Ue-7M-Tqj"/>
-                            <constraint firstItem="P5W-f4-p7i" firstAttribute="centerX" secondItem="OqM-3k-Yua" secondAttribute="centerX" id="IzB-Fu-b23"/>
-                            <constraint firstItem="R52-4X-Yfg" firstAttribute="top" secondItem="OSK-6z-RjA" secondAttribute="bottom" constant="5" id="KJV-zf-GHa"/>
+                            <constraint firstItem="dlf-Ue-d0j" firstAttribute="top" secondItem="OSK-6z-RjA" secondAttribute="bottom" constant="5" id="Ly5-k0-Ad8"/>
+                            <constraint firstItem="dlf-Ue-d0j" firstAttribute="centerX" secondItem="OqM-3k-Yua" secondAttribute="centerX" id="NrM-51-cLn"/>
                             <constraint firstItem="OSK-6z-RjA" firstAttribute="top" secondItem="D0H-Je-YIb" secondAttribute="bottom" constant="6" id="PoM-14-76E"/>
                             <constraint firstAttribute="trailing" secondItem="D0H-Je-YIb" secondAttribute="trailing" id="T8k-tI-flF"/>
-                            <constraint firstItem="R52-4X-Yfg" firstAttribute="centerX" secondItem="OqM-3k-Yua" secondAttribute="centerX" id="Wpn-H6-ssy"/>
-                            <constraint firstItem="P5W-f4-p7i" firstAttribute="top" secondItem="R52-4X-Yfg" secondAttribute="bottom" constant="6" id="iGg-yk-l2h"/>
                             <constraint firstItem="D0H-Je-YIb" firstAttribute="leading" secondItem="OqM-3k-Yua" secondAttribute="leading" id="lfd-eP-6sy"/>
                         </constraints>
                     </view>

@@ -13,6 +13,10 @@ protocol HomeHeaderResuableViewDelegate: AnyObject {
 
 class HomeHeaderReusableView: UICollectionReusableView {
     @IBOutlet weak var title: UILabel!
+    
+    @IBOutlet weak var btnSeemore: UIButton!
+    
+    
     var indexPath: IndexPath!
     weak var delegate: HomeHeaderResuableViewDelegate!
     

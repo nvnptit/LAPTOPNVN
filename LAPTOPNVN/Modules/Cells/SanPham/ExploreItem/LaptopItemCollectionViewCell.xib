@@ -70,6 +70,13 @@
                 <constraint firstItem="cF6-WP-miD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="wkA-hM-BHw"/>
             </constraints>
             <size key="customSize" width="415" height="148"/>
+            <connections>
+                <outlet property="description" destination="ebA-pB-3iy" id="i4S-6n-miL"/>
+                <outlet property="imagesp" destination="cF6-WP-miD" id="C12-qY-CdC"/>
+                <outlet property="mota" destination="ebA-pB-3iy" id="9Bq-vF-wBq"/>
+                <outlet property="name" destination="5wb-h2-VK3" id="j2O-Rq-ZGD"/>
+                <outlet property="price" destination="T6Z-t3-ZoK" id="WzE-0I-0px"/>
+            </connections>
             <point key="canvasLocation" x="402.17391304347831" y="134.59821428571428"/>
         </collectionViewCell>
     </objects>

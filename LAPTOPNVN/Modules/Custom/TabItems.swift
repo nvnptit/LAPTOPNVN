@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 enum TabItem: String, CaseIterable {
-    case shop = "Shop"
-    case explore = "Explore"
-    case cart = "Cart" 
-    case account = "Account"
+    case shop = "Trang chủ"
+    case explore = "Danh mục"
+    case cart = "Giỏ hàng"
+    case account = "Thông tin"
 
     var viewController: UIViewController {
         switch self {
