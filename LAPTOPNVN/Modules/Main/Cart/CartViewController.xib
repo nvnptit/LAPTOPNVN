@@ -20,17 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="niD-Nd-dd1">
-                    <rect key="frame" x="149.5" y="700.5" width="115" height="41.5"/>
-                    <color key="backgroundColor" systemColor="systemGreenColor"/>
-                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Đặt hàng">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="23"/>
-                    </buttonConfiguration>
-                </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1QS-bl-8ON">
-                    <rect key="frame" x="0.0" y="44" width="414" height="656.5"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="605"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nlF-8u-BqT">
                         <size key="itemSize" width="128" height="128"/>
@@ -39,16 +30,48 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TỔNG TIỀN:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZ7-YY-oe8">
+                    <rect key="frame" x="15" y="665.5" width="124" height="27.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="124" id="sjG-52-N10"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONEY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eao-04-fYa">
+                    <rect key="frame" x="166" y="665.5" width="233" height="28"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                    <color key="textColor" red="0.83312785625457764" green="0.092914126813411713" blue="0.2012096643447876" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="niD-Nd-dd1">
+                    <rect key="frame" x="149.5" y="709.5" width="115" height="41.5"/>
+                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="41.5" id="sJz-2C-kHv"/>
+                    </constraints>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Đặt hàng">
+                        <fontDescription key="titleFontDescription" type="system" pointSize="23"/>
+                    </buttonConfiguration>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="aUr-C7-7Ge"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="1QS-bl-8ON" firstAttribute="top" secondItem="aUr-C7-7Ge" secondAttribute="top" id="6Kf-WN-l3Q"/>
-                <constraint firstItem="niD-Nd-dd1" firstAttribute="centerX" secondItem="aUr-C7-7Ge" secondAttribute="centerX" id="7Dh-jR-sse"/>
                 <constraint firstItem="1QS-bl-8ON" firstAttribute="leading" secondItem="aUr-C7-7Ge" secondAttribute="leading" id="CjG-xg-R1W"/>
-                <constraint firstItem="1QS-bl-8ON" firstAttribute="bottom" secondItem="niD-Nd-dd1" secondAttribute="top" id="fW4-P0-gEN"/>
-                <constraint firstItem="aUr-C7-7Ge" firstAttribute="bottom" secondItem="niD-Nd-dd1" secondAttribute="bottom" constant="120" id="fxu-hs-ak6"/>
+                <constraint firstItem="niD-Nd-dd1" firstAttribute="top" secondItem="eao-04-fYa" secondAttribute="bottom" constant="16" id="OML-6a-Wnb"/>
+                <constraint firstItem="xZ7-YY-oe8" firstAttribute="leading" secondItem="aUr-C7-7Ge" secondAttribute="leading" constant="15" id="PFo-J7-VPK"/>
+                <constraint firstItem="eao-04-fYa" firstAttribute="top" secondItem="1QS-bl-8ON" secondAttribute="bottom" constant="16.5" id="cxi-HQ-8bi"/>
+                <constraint firstItem="aUr-C7-7Ge" firstAttribute="bottom" secondItem="niD-Nd-dd1" secondAttribute="bottom" constant="111" id="fxu-hs-ak6"/>
+                <constraint firstItem="niD-Nd-dd1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hpS-ib-U1H"/>
+                <constraint firstItem="aUr-C7-7Ge" firstAttribute="trailing" secondItem="eao-04-fYa" secondAttribute="trailing" constant="15" id="rnn-7O-Ggf"/>
                 <constraint firstItem="aUr-C7-7Ge" firstAttribute="trailing" secondItem="1QS-bl-8ON" secondAttribute="trailing" id="wRL-Mk-QZH"/>
+                <constraint firstItem="eao-04-fYa" firstAttribute="leading" secondItem="xZ7-YY-oe8" secondAttribute="trailing" constant="27" id="xU4-YV-G2R"/>
+                <constraint firstItem="xZ7-YY-oe8" firstAttribute="top" secondItem="1QS-bl-8ON" secondAttribute="bottom" constant="16.5" id="yeL-td-U9A"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="57.589285714285708"/>
         </view>

@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
+                <outlet property="password" destination="qnl-Xx-y2a" id="599-gJ-pAO"/>
+                <outlet property="username" destination="K9r-yc-0Z1" id="77N-qR-oQz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,7 +25,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="weF-EF-oFg" userLabel="ContentView">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <rect key="frame" x="0.0" y="88" width="414" height="896"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="SMc-Bk-YEY" userLabel="Logo">
                                     <rect key="frame" x="58" y="39" width="298" height="185"/>
@@ -32,8 +34,8 @@
                                         <constraint firstAttribute="width" constant="298" id="g7F-oF-1BE"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7E-I1-eGm">
-                                    <rect key="frame" x="42" y="284" width="41" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên đăng nhập" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7E-I1-eGm">
+                                    <rect key="frame" x="42" y="284" width="113.5" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="jel-CX-xX5"/>
                                     </constraints>
@@ -41,12 +43,14 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K9r-yc-0Z1" userLabel="FEmail" customClass="UITextFieldX" customModule="LAPTOPNVN" customModuleProvider="target">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mời nhập tên đăng nhập" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K9r-yc-0Z1" userLabel="Username" customClass="UITextFieldX" customModule="LAPTOPNVN" customModuleProvider="target">
                                     <rect key="frame" x="40" y="313" width="334" height="38"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="38" id="HtJ-Qv-bzH"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="SYM-xj-Mwy"/>
+                                        <constraint firstAttribute="width" constant="334" id="wlT-rY-r5N"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -57,8 +61,8 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poZ-lg-RTY">
-                                    <rect key="frame" x="43" y="374" width="73.5" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mật khẩu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poZ-lg-RTY">
+                                    <rect key="frame" x="43" y="374" width="70.5" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="TNA-9r-GZk"/>
                                     </constraints>
@@ -66,11 +70,13 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qnl-Xx-y2a" userLabel="FPassword" customClass="UITextFieldX" customModule="LAPTOPNVN" customModuleProvider="target">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mời nhập mật khẩu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qnl-Xx-y2a" userLabel="Password" customClass="UITextFieldX" customModule="LAPTOPNVN" customModuleProvider="target">
                                     <rect key="frame" x="40" y="403" width="334" height="38"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="QaX-LA-pZX"/>
+                                        <constraint firstAttribute="width" constant="334" id="gIa-WM-ZP8"/>
                                         <constraint firstAttribute="height" constant="38" id="vGK-oS-GWx"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -90,36 +96,41 @@
                                         <constraint firstAttribute="width" constant="146" id="pdg-9I-vmC"/>
                                     </constraints>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="gray" title="Login">
+                                    <buttonConfiguration key="configuration" style="gray" title="Đăng nhập">
                                         <fontDescription key="titleFontDescription" type="boldSystem" pointSize="19"/>
-                                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </buttonConfiguration>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myj-Af-cuH">
-                                    <rect key="frame" x="137" y="558" width="140" height="31"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="Forgot Password?">
                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="baseBackgroundColor" systemColor="systemMintColor"/>
                                     </buttonConfiguration>
+                                    <connections>
+                                        <action selector="didTapLogin:forEvent:" destination="-1" eventType="touchUpInside" id="Eaw-3f-EMM"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuj-0B-yT4">
+                                    <rect key="frame" x="66" y="535" width="282" height="34.5"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Chưa có tài khoản? Đăng ký ngay!">
+                                        <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="didTapRegister:forEvent:" destination="-1" eventType="touchUpInside" id="hgr-vG-5If"/>
+                                    </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.043137254899999998" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="poZ-lg-RTY" firstAttribute="leading" secondItem="weF-EF-oFg" secondAttribute="leading" constant="43" id="0N2-GG-6eD"/>
                                 <constraint firstItem="K9r-yc-0Z1" firstAttribute="top" secondItem="SMc-Bk-YEY" secondAttribute="bottom" constant="89" id="68g-GO-pde"/>
                                 <constraint firstItem="SMc-Bk-YEY" firstAttribute="centerX" secondItem="weF-EF-oFg" secondAttribute="centerX" id="6JB-tY-nbT"/>
-                                <constraint firstAttribute="trailing" secondItem="K9r-yc-0Z1" secondAttribute="trailing" constant="40" id="6ga-J0-pU8"/>
-                                <constraint firstItem="K9r-yc-0Z1" firstAttribute="leading" secondItem="weF-EF-oFg" secondAttribute="leading" constant="40" id="7bA-vd-equ"/>
                                 <constraint firstItem="N7E-I1-eGm" firstAttribute="top" secondItem="SMc-Bk-YEY" secondAttribute="bottom" constant="60" id="9Xa-hC-dv9"/>
                                 <constraint firstItem="poZ-lg-RTY" firstAttribute="top" secondItem="qnl-Xx-y2a" secondAttribute="bottom" constant="-67" id="GRu-Ds-V9K"/>
+                                <constraint firstItem="nuj-0B-yT4" firstAttribute="top" secondItem="nb4-kX-VQY" secondAttribute="bottom" constant="24" id="GhJ-mU-tQb"/>
+                                <constraint firstItem="nuj-0B-yT4" firstAttribute="centerX" secondItem="weF-EF-oFg" secondAttribute="centerX" id="RHN-t7-icx"/>
                                 <constraint firstItem="nb4-kX-VQY" firstAttribute="top" secondItem="qnl-Xx-y2a" secondAttribute="bottom" constant="33" id="T6g-CZ-35L"/>
+                                <constraint firstItem="K9r-yc-0Z1" firstAttribute="centerX" secondItem="weF-EF-oFg" secondAttribute="centerX" id="Vfz-Lo-4FS"/>
                                 <constraint firstItem="qnl-Xx-y2a" firstAttribute="top" secondItem="K9r-yc-0Z1" secondAttribute="bottom" constant="52" id="XcE-YW-8eA"/>
-                                <constraint firstItem="myj-Af-cuH" firstAttribute="centerX" secondItem="weF-EF-oFg" secondAttribute="centerX" id="YfB-lO-xkE"/>
                                 <constraint firstItem="N7E-I1-eGm" firstAttribute="leading" secondItem="weF-EF-oFg" secondAttribute="leading" constant="42" id="aOr-xN-Xyr"/>
-                                <constraint firstItem="qnl-Xx-y2a" firstAttribute="leading" secondItem="weF-EF-oFg" secondAttribute="leading" constant="40" id="fbD-sf-t7X"/>
-                                <constraint firstAttribute="trailing" secondItem="qnl-Xx-y2a" secondAttribute="trailing" constant="40" id="jU4-AM-K4b"/>
-                                <constraint firstItem="myj-Af-cuH" firstAttribute="top" secondItem="nb4-kX-VQY" secondAttribute="bottom" constant="47" id="lyf-ye-nrb"/>
+                                <constraint firstItem="qnl-Xx-y2a" firstAttribute="centerX" secondItem="weF-EF-oFg" secondAttribute="centerX" id="bDe-DY-lch"/>
                                 <constraint firstItem="nb4-kX-VQY" firstAttribute="centerX" secondItem="weF-EF-oFg" secondAttribute="centerX" id="o6t-Zz-Dfg"/>
                                 <constraint firstItem="poZ-lg-RTY" firstAttribute="top" secondItem="K9r-yc-0Z1" secondAttribute="bottom" constant="23" id="r5p-cH-yZ4"/>
                                 <constraint firstItem="N7E-I1-eGm" firstAttribute="leading" secondItem="weF-EF-oFg" secondAttribute="leading" constant="42" id="srO-Rw-u1F"/>
@@ -129,29 +140,29 @@
                         </view>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="9kj-Zc-vsW"/>
-                    <color key="backgroundColor" red="0.043137254899999998" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="weF-EF-oFg" secondAttribute="bottom" id="5bd-p6-hZR"/>
+                        <constraint firstAttribute="bottom" secondItem="weF-EF-oFg" secondAttribute="bottom" constant="-88" id="5bd-p6-hZR"/>
                         <constraint firstItem="weF-EF-oFg" firstAttribute="width" secondItem="2yn-ih-1Ss" secondAttribute="width" id="8C3-s2-hpO"/>
                         <constraint firstItem="weF-EF-oFg" firstAttribute="leading" secondItem="2yn-ih-1Ss" secondAttribute="leading" id="QRH-2k-H4P"/>
                         <constraint firstItem="weF-EF-oFg" firstAttribute="trailing" secondItem="2yn-ih-1Ss" secondAttribute="trailing" id="oeW-3j-vnX"/>
                         <constraint firstItem="weF-EF-oFg" firstAttribute="height" secondItem="2yn-ih-1Ss" secondAttribute="height" priority="250" id="s5c-7Z-f9P"/>
-                        <constraint firstItem="weF-EF-oFg" firstAttribute="top" secondItem="2yn-ih-1Ss" secondAttribute="top" id="sKW-cb-yxz"/>
+                        <constraint firstItem="weF-EF-oFg" firstAttribute="top" secondItem="2yn-ih-1Ss" secondAttribute="top" constant="88" id="sKW-cb-yxz"/>
                     </constraints>
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="139" y="102"/>
+            <point key="canvasLocation" x="137.68115942028987" y="101.78571428571428"/>
         </view>
     </objects>
     <designables>
         <designable name="K9r-yc-0Z1">
-            <size key="intrinsicContentSize" width="132.5" height="34"/>
+            <size key="intrinsicContentSize" width="212.5" height="34"/>
         </designable>
         <designable name="qnl-Xx-y2a">
-            <size key="intrinsicContentSize" width="160.5" height="34"/>
+            <size key="intrinsicContentSize" width="179" height="34"/>
         </designable>
     </designables>
     <resources>
@@ -159,6 +170,9 @@
         <image name="user" width="170.5" height="170.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

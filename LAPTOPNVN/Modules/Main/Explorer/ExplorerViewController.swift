@@ -61,11 +61,12 @@ class ExplorerViewController: UIViewController {
         )
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: .init(
-                widthDimension: .absolute(200),
+                widthDimension: .absolute(300),
                 heightDimension: .absolute(100)
             ),
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets.leading = 50
         section.interGroupSpacing = -20
         return section
     }

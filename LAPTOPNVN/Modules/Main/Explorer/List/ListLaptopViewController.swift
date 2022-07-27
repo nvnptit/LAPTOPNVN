@@ -115,6 +115,7 @@ class ListLaptopViewController: UIViewController {
             ),
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets.leading = 30
         section.interGroupSpacing = -20
         return section
     }

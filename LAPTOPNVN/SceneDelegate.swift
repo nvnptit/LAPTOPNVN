@@ -20,27 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         window?.rootViewController = UINavigationController(rootViewController: MainTabBarController())
         window?.makeKeyAndVisible()
-        
-//
-//             //Home
-//             let homeVC = HomeViewController()
-//             let homeNavi = UINavigationController(rootViewController: homeVC)
-//
-//             //Explorer
-//             let explorerVC = ExplorerViewController()
-//             let explorerNavi = UINavigationController(rootViewController: explorerVC)
-//
-//             //Cart
-//             let cartVC = CartViewController()
-//             let cartNavi = UINavigationController(rootViewController: cartVC)
-//
-//             //Account
-//             let accountVC = AccountViewController()
-//             let accountNavi = UINavigationController(rootViewController: accountVC)
-//
-//             self.window = window
-//             window.makeKeyAndVisible()
-        
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -105,6 +105,8 @@
 		795EE8A7288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */; };
 		795EE8A8288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */; };
 		795EE8A9288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */; };
+		796F56512890C248003F34EB /* PayPalCheckout in Frameworks */ = {isa = PBXBuildFile; productRef = 796F56502890C248003F34EB /* PayPalCheckout */; };
+		796F56532890C90A003F34EB /* Integer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F56522890C90A003F34EB /* Integer.swift */; };
 		79929767288EF91100642885 /* ListLaptopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79929765288EF91100642885 /* ListLaptopViewController.swift */; };
 		79929768288EF91100642885 /* ListLaptopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79929765288EF91100642885 /* ListLaptopViewController.swift */; };
 		79929769288EF91100642885 /* ListLaptopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79929765288EF91100642885 /* ListLaptopViewController.swift */; };
@@ -123,6 +125,12 @@
 		79A5440D288D70C300179574 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A54409288D70C300179574 /* SearchViewController.xib */; };
 		79A5440E288D70C300179574 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A54409288D70C300179574 /* SearchViewController.xib */; };
 		79A5440F288D70C300179574 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A54409288D70C300179574 /* SearchViewController.xib */; };
+		79B3296328914345000E4197 /* NoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3296128914345000E4197 /* NoLoginViewController.swift */; };
+		79B3296428914345000E4197 /* NoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3296128914345000E4197 /* NoLoginViewController.swift */; };
+		79B3296528914345000E4197 /* NoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3296128914345000E4197 /* NoLoginViewController.swift */; };
+		79B3296628914345000E4197 /* NoLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B3296228914345000E4197 /* NoLoginViewController.xib */; };
+		79B3296728914345000E4197 /* NoLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B3296228914345000E4197 /* NoLoginViewController.xib */; };
+		79B3296828914345000E4197 /* NoLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B3296228914345000E4197 /* NoLoginViewController.xib */; };
 		79CF9BCB288AFB5800709A26 /* GioHang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CF9BCA288AFB5800709A26 /* GioHang.swift */; };
 		79ECC22628850C460002E81D /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */; };
 		79ECC22728850C460002E81D /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */; };
@@ -230,12 +238,15 @@
 		795CAF6E28867BC0008458F0 /* DetailSanPhamViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSanPhamViewController.xib; sourceTree = "<group>"; };
 		795EE8A2288A5EAC00C4313F /* LaptopItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaptopItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaptopItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		796F56522890C90A003F34EB /* Integer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Integer.swift; sourceTree = "<group>"; };
 		79929765288EF91100642885 /* ListLaptopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLaptopViewController.swift; sourceTree = "<group>"; };
 		79929766288EF91100642885 /* ListLaptopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListLaptopViewController.xib; sourceTree = "<group>"; };
 		79A394BE28886C4200CB3325 /* CartItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		79A394BF28886C4200CB3325 /* CartItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		79A54408288D70C300179574 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		79A54409288D70C300179574 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		79B3296128914345000E4197 /* NoLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLoginViewController.swift; sourceTree = "<group>"; };
+		79B3296228914345000E4197 /* NoLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoLoginViewController.xib; sourceTree = "<group>"; };
 		79CF9BCA288AFB5800709A26 /* GioHang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GioHang.swift; sourceTree = "<group>"; };
 		79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -261,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B626DD0607C9AFDE93ED9D8B /* Pods_LAPTOPNVN.framework in Frameworks */,
+				796F56512890C248003F34EB /* PayPalCheckout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +329,6 @@
 			isa = PBXGroup;
 			children = (
 				79475E122882438D005911E3 /* LAPTOPNVN */,
-				79475E1E2882438E005911E3 /* LaunchScreen.storyboard */,
 				79475E292882438E005911E3 /* LAPTOPNVNTests */,
 				79475E332882438E005911E3 /* LAPTOPNVNUITests */,
 				79475E112882438D005911E3 /* Products */,
@@ -372,6 +383,7 @@
 		79475E432882455F005911E3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				79475E1E2882438E005911E3 /* LaunchScreen.storyboard */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -402,6 +414,7 @@
 				79475E7228824B26005911E3 /* UserDefaults.swift */,
 				79475E7628824B41005911E3 /* Date.swift */,
 				792DDAA3288F7DC8000ACAFC /* String.swift */,
+				796F56522890C90A003F34EB /* Integer.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -498,6 +511,7 @@
 		79475E9628824DAF005911E3 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				79B329602891432A000E4197 /* NoLogin */,
 				79475E9728824DBD005911E3 /* CartViewController.swift */,
 				79475E9828824DBD005911E3 /* CartViewController.xib */,
 			);
@@ -570,6 +584,15 @@
 			path = SearchBar;
 			sourceTree = "<group>";
 		};
+		79B329602891432A000E4197 /* NoLogin */ = {
+			isa = PBXGroup;
+			children = (
+				79B3296128914345000E4197 /* NoLoginViewController.swift */,
+				79B3296228914345000E4197 /* NoLoginViewController.xib */,
+			);
+			path = NoLogin;
+			sourceTree = "<group>";
+		};
 		79ECC22328850C350002E81D /* Banner */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,6 +643,9 @@
 			dependencies = (
 			);
 			name = LAPTOPNVN;
+			packageProductDependencies = (
+				796F56502890C248003F34EB /* PayPalCheckout */,
+			);
 			productName = LAPTOPNVN;
 			productReference = 79475E102882438D005911E3 /* LAPTOPNVN.app */;
 			productType = "com.apple.product-type.application";
@@ -695,6 +721,9 @@
 				Base,
 			);
 			mainGroup = 79475E072882438D005911E3;
+			packageReferences = (
+				796F564F2890C248003F34EB /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */,
+			);
 			productRefGroup = 79475E112882438D005911E3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -714,6 +743,7 @@
 				79475E9228824D96005911E3 /* ExplorerViewController.xib in Resources */,
 				79475EA528824DD2005911E3 /* AccountViewController.xib in Resources */,
 				79A394C328886C4200CB3325 /* CartItemCollectionViewCell.xib in Resources */,
+				79B3296628914345000E4197 /* NoLoginViewController.xib in Resources */,
 				79ECC22928850C460002E81D /* BannerCollectionViewCell.xib in Resources */,
 				79176F99288392D400CDA10E /* SanPhamCollectionViewCell.xib in Resources */,
 				79475E202882438E005911E3 /* LaunchScreen.storyboard in Resources */,
@@ -738,6 +768,7 @@
 				79475E9D28824DBD005911E3 /* CartViewController.xib in Resources */,
 				795EE8A8288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */,
 				79F33D8428831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
+				79B3296728914345000E4197 /* NoLoginViewController.xib in Resources */,
 				79475E9328824D96005911E3 /* ExplorerViewController.xib in Resources */,
 				795CAF7328867BC0008458F0 /* DetailSanPhamViewController.xib in Resources */,
 				7992976B288EF91100642885 /* ListLaptopViewController.xib in Resources */,
@@ -759,6 +790,7 @@
 				79475E9E28824DBD005911E3 /* CartViewController.xib in Resources */,
 				795EE8A9288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */,
 				79F33D8528831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
+				79B3296828914345000E4197 /* NoLoginViewController.xib in Resources */,
 				79475E9428824D96005911E3 /* ExplorerViewController.xib in Resources */,
 				795CAF7428867BC0008458F0 /* DetailSanPhamViewController.xib in Resources */,
 				7992976C288EF91100642885 /* ListLaptopViewController.xib in Resources */,
@@ -891,6 +923,7 @@
 				79475E4C28824765005911E3 /* TabItems.swift in Sources */,
 				79F33D932883252100F7BB4C /* APIHeader.swift in Sources */,
 				79475E63288249BD005911E3 /* JSONDecoder.swift in Sources */,
+				79B3296328914345000E4197 /* NoLoginViewController.swift in Sources */,
 				79475E5228824822005911E3 /* LoginViewController.swift in Sources */,
 				79475E6B28824A93005911E3 /* Encodable.swift in Sources */,
 				79475E162882438D005911E3 /* SceneDelegate.swift in Sources */,
@@ -900,6 +933,7 @@
 				79F33D8028831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */,
 				79ECC22628850C460002E81D /* BannerCollectionViewCell.swift in Sources */,
 				79475E8F28824D96005911E3 /* ExplorerViewController.swift in Sources */,
+				796F56532890C90A003F34EB /* Integer.swift in Sources */,
 				79475E7328824B26005911E3 /* UserDefaults.swift in Sources */,
 				79F33D9F28832F4C00F7BB4C /* LoginResponse.swift in Sources */,
 				79A394C028886C4200CB3325 /* CartItemCollectionViewCell.swift in Sources */,
@@ -938,6 +972,7 @@
 				79475EA328824DD2005911E3 /* AccountViewController.swift in Sources */,
 				79F33D982883254600F7BB4C /* APIResponse.swift in Sources */,
 				79F33D902883250400F7BB4C /* APIController.swift in Sources */,
+				79B3296428914345000E4197 /* NoLoginViewController.swift in Sources */,
 				79475E8228824C7E005911E3 /* MainTabBarController.swift in Sources */,
 				79475E9028824D96005911E3 /* ExplorerViewController.swift in Sources */,
 				79475E7828824B41005911E3 /* Date.swift in Sources */,
@@ -992,6 +1027,7 @@
 				79176FA1288392EC00CDA10E /* HangCollectionViewCell.swift in Sources */,
 				79475E5428824822005911E3 /* LoginViewController.swift in Sources */,
 				79F33D8D288324EC00F7BB4C /* APIManager.swift in Sources */,
+				79B3296528914345000E4197 /* NoLoginViewController.swift in Sources */,
 				79475E8328824C7E005911E3 /* MainTabBarController.swift in Sources */,
 				79F33D912883250400F7BB4C /* APIController.swift in Sources */,
 				79475E7528824B26005911E3 /* UserDefaults.swift in Sources */,
@@ -1324,6 +1360,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		796F564F2890C248003F34EB /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/paypal/paypalcheckout-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.99.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		796F56502890C248003F34EB /* PayPalCheckout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 796F564F2890C248003F34EB /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */;
+			productName = PayPalCheckout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 79475E082882438D005911E3 /* Project object */;
 }

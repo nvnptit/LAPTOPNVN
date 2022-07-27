@@ -19,10 +19,13 @@ class CartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         configLayout()
         collectionView.register(UINib(nibName: "CartItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CartItemCollectionViewCell")
         setupAnimation()
         loadData()
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
     override func viewDidAppear(_ animated: Bool = false) {
         loadData()
@@ -64,7 +67,6 @@ class CartViewController: UIViewController {
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.collectionView.reloadData()
-                    
                     self.loading.stopAnimating()
                 }
             })
@@ -114,12 +116,38 @@ extension CartViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CartItemCollectionViewCell", for: indexPath) as? CartItemCollectionViewCell else {fatalError()}
         let item = data[indexPath.item]
-        if let anhlsp = item.anhlsp, let ten=item.tenlsp, let serial = item.serial, let gia = item.giamoi {
+        if let ten = item.tenlsp, let serial = item.serial, let price = item.giamoi, let newPrice = item.giagiam , let anhlsp = item.anhlsp, let gg = item.ptgg{
+            
             cell.imageLSP.loadFrom(URLAddress: Host+anhlsp)
             cell.nameLSP.text = ten + "\n"+serial
-            cell.priceLSP.text = "\(gia)"
+            cell.oldPrice.text = "\(price)"
+            cell.newPrice.text = "\(newPrice)"
+            if (gg > 0 ){
+                cell.oldPrice.textColor = .red
+                cell.oldPrice.text = "\(price)$"
+                cell.oldPrice.strikeThrough(true)
+                cell.newPrice.textColor = .green
+                cell.newPrice.text = "\(newPrice)$"
+            }else {
+                cell.oldPrice.text = ""
+                cell.newPrice.textColor = .green
+                cell.newPrice.text =  "\(price)$"
+            }
+            
         }
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Click \(indexPath)")
+        let item = data[indexPath.item]
+        guard let cell = collectionView.cellForItem(at: indexPath)  as? CartItemCollectionViewCell else {return}
+        if (!cell.isChecked){
+            cell.isChecked=true
+            cell.checkBox.image = UIImage(named: "check")
+        }else {
+            cell.isChecked=false
+            cell.checkBox.image = UIImage(named: "uncheck")
+        }
     }
     
 }

@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import Foundation
+
 struct LoginModel: Encodable{
-    
+    let tenDangNhap: String?
+    let matKhau: String?
 }

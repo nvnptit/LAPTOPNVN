@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         searchBar.delegate = self
         homeCollectionView.dataSource = self
         homeCollectionView.delegate = self

@@ -43,25 +43,36 @@ struct GioHang : Decodable{
 //    let phantramgg: Int?
 //}
 
-struct GioHangData : Decodable{
-    let malsp: String?
-    let tenlsp: String?
+//struct GioHangData : Decodable{
+//    let malsp: String?
+//    let tenlsp: String?
+//    let soluong: Int?
+//    let anhlsp: String?
+//    let mota: String?
+//    let cpu: String?
+//    let ram: String?
+//    let harddrive: String?
+//    let cardscreen: String?
+//    let os: String?
+//    let mahang: Int?
+//    let isnew: Bool?
+//    let isgood: Bool?
+//    let giamoi: Int?
+//    let serial: String?
+//    let idgiohang: Int?
+//}
+
+struct GioHangData: Decodable {
+    let malsp, tenlsp: String?
     let soluong: Int?
-    let anhlsp: String?
-    let mota: String?
-    let cpu: String?
-    let ram: String?
-    let harddrive: String?
-    let cardscreen: String?
-    let os: String?
+    let anhlsp, mota, cpu, ram: String?
+    let harddrive, cardscreen, os: String?
     let mahang: Int?
-    let isnew: Bool?
-    let isgood: Bool?
-    let giamoi: Int?
+    let isnew, isgood: Bool?
+    let giamoi, ptgg, giagiam: Int?
     let serial: String?
     let idgiohang: Int?
 }
-
 
 struct GioHangModel : Encodable{
         let idgiohang: Int?
