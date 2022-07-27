@@ -15,6 +15,6 @@ struct Currency {
             numberFormatter.decimalSeparator = "."
             numberFormatter.numberStyle = .decimal
             numberFormatter.maximumFractionDigits = 2
-            return numberFormatter.string(from: price as NSNumber)!
+            return numberFormatter.string(from: price as NSNumber)! + " VNĐ"
         }
 }

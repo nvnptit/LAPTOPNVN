@@ -146,13 +146,13 @@ extension ListLaptopViewController: UICollectionViewDataSource{
         if let ten = e.tenlsp, let price = e.giamoi, let newPrice = e.giagiam , let anh = e.anhlsp, let gg = e.ptgg{
             cell.name.text = ten
             if (gg > 0 ){
-                cell.oldPrice.text = "\(price)$"
+                cell.oldPrice.text = "\(Currency.toVND(price))"
                 cell.oldPrice.textColor = .red
                 cell.oldPrice.strikeThrough(true)
-                cell.newPrice.text = "\(newPrice)$"
+                cell.newPrice.text = "\(Currency.toVND(newPrice))"
             }else {
                 cell.oldPrice.text = ""
-                cell.newPrice.text =  "\(price)$"
+                cell.newPrice.text =  "\(Currency.toVND(price))"
             }
             cell.image.loadFrom(URLAddress: Host + anh)
         }

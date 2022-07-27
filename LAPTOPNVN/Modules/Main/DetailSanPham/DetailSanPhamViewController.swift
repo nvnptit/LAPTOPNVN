@@ -47,22 +47,30 @@ class DetailSanPhamViewController: UIViewController {
     }
 
     @IBAction func tapAddCart(_ sender: UIButton) {
-        if let loaiSp = loaiSp {
-            let params = GioHangModel(idgiohang: nil, ngaylapgiohang: nil, tonggiatri: 0, matrangthai: -1, cmnd: "300123456", manvgiao: nil, manvduyet: nil, nguoinhan: nil, diachi: nil, sdt: nil, email: nil, malsp: loaiSp.malsp).convertToDictionary()
-            APIService.addGioHangC(with: .addGioHang, params: params, headers: nil, completion:   { base, error in
-                guard let base = base else { return }
-                var title = ""
-                if base.success == true{
-                    title = "Thêm vào giỏ hàng thành công"
-                } else {
-                    title = "Sản phẩm đang tạm thời hết hàng"
-                }
-                let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                self.dismiss(animated: true)
-            }))
-                self.present(alert, animated: true)
-        })
+        let cmnd = UserService.shared.cmnd
+        if (cmnd != ""){
+            if let loaiSp = loaiSp {
+                let params = GioHangModel(idgiohang: nil, ngaylapgiohang: nil, tonggiatri: 0, matrangthai: -1, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: nil, diachi: nil, sdt: nil, email: nil, malsp: loaiSp.malsp).convertToDictionary()
+                APIService.addGioHangC(with: .addGioHang, params: params, headers: nil, completion:   { base, error in
+                    guard let base = base else { return }
+                    var title = ""
+                    if base.success == true{
+                        title = "Thêm vào giỏ hàng thành công"
+                    } else {
+                        title = "Sản phẩm đang tạm thời hết hàng"
+                    }
+                    let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                    self.present(alert, animated: true)
+            })
+            }
+        }else {
+            
+                let loginVC = LoginViewController()
+            //        self.navigationController?.navigationItem.hidesBackButton = true
+                self.navigationController?.pushViewController(loginVC, animated: true)
         }
     }
     

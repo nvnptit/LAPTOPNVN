@@ -11,7 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
                 <outlet property="btnDatHang" destination="niD-Nd-dd1" id="sz3-86-hMe"/>
-                <outlet property="collectionView" destination="1QS-bl-8ON" id="L2T-oM-v2K"/>
+                <outlet property="lbTongTien" destination="xZ7-YY-oe8" id="91N-vb-28f"/>
+                <outlet property="money" destination="eao-04-fYa" id="JWp-km-lgH"/>
+                <outlet property="tableView" destination="kfN-I1-2iT" id="Ewe-bN-gOM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,18 +22,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1QS-bl-8ON">
-                    <rect key="frame" x="0.0" y="44" width="414" height="605"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nlF-8u-BqT">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TỔNG TIỀN:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZ7-YY-oe8">
-                    <rect key="frame" x="15" y="665.5" width="124" height="27.5"/>
+                    <rect key="frame" x="15" y="666" width="124" height="27.5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="124" id="sjG-52-N10"/>
                     </constraints>
@@ -39,8 +31,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONEY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eao-04-fYa">
-                    <rect key="frame" x="166" y="665.5" width="233" height="28"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 VNĐ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eao-04-fYa">
+                    <rect key="frame" x="166" y="666" width="233" height="27.5"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                     <color key="textColor" red="0.83312785625457764" green="0.092914126813411713" blue="0.2012096643447876" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -56,22 +48,32 @@
                     <buttonConfiguration key="configuration" style="plain" title="Đặt hàng">
                         <fontDescription key="titleFontDescription" type="system" pointSize="23"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="tapDatHang:forEvent:" destination="-1" eventType="touchUpInside" id="rOV-xw-5Rw"/>
+                    </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kfN-I1-2iT">
+                    <rect key="frame" x="0.0" y="44" width="414" height="605.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="aUr-C7-7Ge"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="1QS-bl-8ON" firstAttribute="top" secondItem="aUr-C7-7Ge" secondAttribute="top" id="6Kf-WN-l3Q"/>
-                <constraint firstItem="1QS-bl-8ON" firstAttribute="leading" secondItem="aUr-C7-7Ge" secondAttribute="leading" id="CjG-xg-R1W"/>
+                <constraint firstItem="xZ7-YY-oe8" firstAttribute="firstBaseline" secondItem="eao-04-fYa" secondAttribute="firstBaseline" id="D8D-M4-WxJ"/>
+                <constraint firstItem="xZ7-YY-oe8" firstAttribute="top" secondItem="kfN-I1-2iT" secondAttribute="bottom" constant="16.5" id="ESH-hn-AsF"/>
+                <constraint firstItem="aUr-C7-7Ge" firstAttribute="trailing" secondItem="kfN-I1-2iT" secondAttribute="trailing" id="GP0-WD-5qf"/>
                 <constraint firstItem="niD-Nd-dd1" firstAttribute="top" secondItem="eao-04-fYa" secondAttribute="bottom" constant="16" id="OML-6a-Wnb"/>
                 <constraint firstItem="xZ7-YY-oe8" firstAttribute="leading" secondItem="aUr-C7-7Ge" secondAttribute="leading" constant="15" id="PFo-J7-VPK"/>
-                <constraint firstItem="eao-04-fYa" firstAttribute="top" secondItem="1QS-bl-8ON" secondAttribute="bottom" constant="16.5" id="cxi-HQ-8bi"/>
+                <constraint firstItem="kfN-I1-2iT" firstAttribute="top" secondItem="aUr-C7-7Ge" secondAttribute="top" id="SKf-o5-XzR"/>
                 <constraint firstItem="aUr-C7-7Ge" firstAttribute="bottom" secondItem="niD-Nd-dd1" secondAttribute="bottom" constant="111" id="fxu-hs-ak6"/>
+                <constraint firstItem="kfN-I1-2iT" firstAttribute="leading" secondItem="aUr-C7-7Ge" secondAttribute="leading" id="gE2-Oa-NhQ"/>
                 <constraint firstItem="niD-Nd-dd1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hpS-ib-U1H"/>
+                <constraint firstItem="xZ7-YY-oe8" firstAttribute="centerY" secondItem="eao-04-fYa" secondAttribute="centerY" id="lgZ-FM-e9r"/>
+                <constraint firstItem="kfN-I1-2iT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qe2-v3-1WH"/>
                 <constraint firstItem="aUr-C7-7Ge" firstAttribute="trailing" secondItem="eao-04-fYa" secondAttribute="trailing" constant="15" id="rnn-7O-Ggf"/>
-                <constraint firstItem="aUr-C7-7Ge" firstAttribute="trailing" secondItem="1QS-bl-8ON" secondAttribute="trailing" id="wRL-Mk-QZH"/>
                 <constraint firstItem="eao-04-fYa" firstAttribute="leading" secondItem="xZ7-YY-oe8" secondAttribute="trailing" constant="27" id="xU4-YV-G2R"/>
-                <constraint firstItem="xZ7-YY-oe8" firstAttribute="top" secondItem="1QS-bl-8ON" secondAttribute="bottom" constant="16.5" id="yeL-td-U9A"/>
+                <constraint firstItem="xZ7-YY-oe8" firstAttribute="baseline" secondItem="eao-04-fYa" secondAttribute="firstBaseline" id="xbc-Te-EUx"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="57.589285714285708"/>
         </view>

@@ -11,7 +11,7 @@ target 'LAPTOPNVN' do
 	pod 'Cosmos'
 	pod 'NVActivityIndicatorView'
 	pod 'DropDown'
-
+	pod 'SwipeCellKit'
 
   target 'LAPTOPNVNTests' do
     inherit! :search_paths
