@@ -12,7 +12,13 @@ target 'LAPTOPNVN' do
 	pod 'Cosmos'
 	pod 'NVActivityIndicatorView'
 	pod 'DropDown'
-	pod 'SwipeCellKit'
+  pod 'Braintree'
+  
+  
+  # Optionally include additional Pods
+  pod 'Braintree/DataCollector'
+  pod 'Braintree/Venmo'
+
   
   target 'LAPTOPNVNTests' do
     inherit! :search_paths

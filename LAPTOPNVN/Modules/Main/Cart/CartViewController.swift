@@ -56,10 +56,17 @@ class CartViewController: UIViewController {
     }
     
     @IBAction func tapDatHang(_ sender: UIButton, forEvent event: UIEvent) {
-        
-        let vc = InformationViewController()
-        vc.dataGioHang = self.dataChecked
-        self.navigationController?.pushViewController(vc, animated: true)
+        if (!self.dataChecked.isEmpty){
+            let vc = InformationViewController()
+            vc.dataGioHang = self.dataChecked
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else {
+            let alert = UIAlertController(title: "Bạn chưa chọn sản phẩm nào", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+        }
         
     }
     override func viewDidAppear(_ animated: Bool = false) {

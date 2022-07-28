@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import BraintreePayPal
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // Fallback on earlier versions
             }
         }
+        BTAppContextSwitcher.setReturnURLScheme("com.nvn.LAPTOPNVN.payments")
         return true
     }
     
@@ -39,5 +40,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           animations: nil,
                           completion: nil)
     }
-
+    
 }
