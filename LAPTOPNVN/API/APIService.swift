@@ -121,6 +121,18 @@ struct APIService {
     }
     
     
+    
+    //get -> fetch
+    public static func deleteGioHang(with manager: APIManager,  params: Parameters?,  headers: HTTPHeaders?, completion: @escaping(GioHangResponse?, String?) -> ()) {
+        APIController.request(GioHangResponse.self, manager, params: params, headers: headers) { error, data in
+            if let dataL = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
     public static func getHangSX(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HangSX]>?, String?) -> ()) {
         APIController.request(ResponseBase<[HangSX]>.self, manager, params: params, headers: headers) { error, data in
             if let dataHangSX = data {

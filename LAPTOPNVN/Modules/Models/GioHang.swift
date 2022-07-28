@@ -90,3 +90,7 @@ struct GioHangResponse : Decodable{
     let success: Bool?
     let message: String?
 }
+
+struct GioHangDel : Encodable{
+    let idGioHang: Int?
+}

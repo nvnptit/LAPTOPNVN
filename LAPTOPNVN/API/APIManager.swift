@@ -24,6 +24,7 @@ enum APIManager {
     case addGioHang
     case getGioHang
     case updateGioHang
+    case deleteGioHang
     
 }
 
@@ -57,6 +58,7 @@ extension APIManager {
             case .getGioHang: path = "/gio-hang/gio-hang-byKH"
             case .addGioHang: path = "/gio-hang"
             case .updateGioHang: path = "/gio-hang"
+            case .deleteGioHang: path = "/gio-hang"
                 
         }
         return baseURL + path
@@ -73,6 +75,8 @@ extension APIManager {
                 return .post
             case .updateGioHang:
                 return .put
+            case .deleteGioHang:
+                return .delete
                 
         }
     }

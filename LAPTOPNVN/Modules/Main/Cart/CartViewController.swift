@@ -171,7 +171,33 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             cell.checkBox.image = UIImage(named: "uncheck")
         }
     }
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // delete
+        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
+             print("Delete: \(indexPath.row + 1)")
+            let item = self.data[indexPath.item]
+            self.data.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            // Xử lý API
+            let params = GioHangDel(idGioHang: item.idgiohang!).convertToDictionary()
+            APIService.deleteGioHang(with: .deleteGioHang, params: params, headers: nil, completion: {
+                 base, error in
+                    if let base = base {
+                        if (base.success == true){
+                        }else {
+                            print(base.message)
+                        }
+                    }
+            })
+             completionHandler(true)
+           }
+        delete.image = UIImage(systemName: "trash")
+        delete.backgroundColor = .red
+           // swipe
+           let swipe = UISwipeActionsConfiguration(actions: [delete])
+           
+           return swipe
+    }
 }
 
 
