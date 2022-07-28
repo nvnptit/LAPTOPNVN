@@ -25,7 +25,7 @@ class CartViewController: UIViewController {
     
     
     var data : [GioHangData] = []
-    var dataChecked : [DatHang] = []
+    var dataChecked : [GioHangData] = []
     
     let cmnd = UserService.shared.cmnd
     
@@ -57,6 +57,9 @@ class CartViewController: UIViewController {
     
     @IBAction func tapDatHang(_ sender: UIButton, forEvent event: UIEvent) {
         
+        let vc = InformationViewController()
+        vc.dataGioHang = self.dataChecked
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     override func viewDidAppear(_ animated: Bool = false) {
@@ -147,7 +150,6 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         cell.selectionStyle = .none
-
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -159,11 +161,13 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             cell.isChecked=true
             self.sum = self.sum + item.giagiam!
             self.money.text = "\(Currency.toVND(sum))"
+            self.dataChecked.append(item)
             cell.checkBox.image = UIImage(named: "check")
         }else {
             cell.isChecked=false
             self.sum = self.sum - item.giagiam!
             self.money.text = "\(Currency.toVND(sum))"
+            self.dataChecked = self.dataChecked.filter { $0.idgiohang != item.idgiohang }
             cell.checkBox.image = UIImage(named: "uncheck")
         }
     }

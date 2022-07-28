@@ -28,6 +28,7 @@ class DetailSanPhamViewController: UIViewController {
     
     @IBOutlet weak var btnAddCart: UIButton!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let loaiSp = loaiSp {

@@ -151,10 +151,10 @@
     </objects>
     <designables>
         <designable name="K9r-yc-0Z1">
-            <size key="intrinsicContentSize" width="184.5" height="34"/>
+            <size key="intrinsicContentSize" width="212.5" height="34"/>
         </designable>
         <designable name="qnl-Xx-y2a">
-            <size key="intrinsicContentSize" width="151" height="34"/>
+            <size key="intrinsicContentSize" width="179" height="34"/>
         </designable>
     </designables>
     <resources>

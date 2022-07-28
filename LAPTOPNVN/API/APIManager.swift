@@ -89,7 +89,7 @@ extension APIManager {
     
     var encoding: ParameterEncoding {
         switch self.method {
-            case .post:
+            case .post, .put:
                 return JSONEncoding.default
             case .get:
                 return URLEncoding.default

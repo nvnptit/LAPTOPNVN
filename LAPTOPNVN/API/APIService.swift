@@ -110,8 +110,8 @@ struct APIService {
     }
     
     //get -> fetch
-    public static func updateGioHang(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[LoaiSanPham]>?, String?) -> ()) {
-        APIController.request(ResponseBase<[LoaiSanPham]>.self, manager, params: params, headers: headers) { error, data in
+    public static func updateGioHang(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[GioHangResponse]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[GioHangResponse]>.self, manager, params: params, headers: headers) { error, data in
             if let dataLoaiSanPham = data {
                 completion(dataLoaiSanPham, nil)
                 return
