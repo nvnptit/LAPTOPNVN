@@ -31,6 +31,7 @@ class DetailSanPhamViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         if let loaiSp = loaiSp {
             // set du lieu vo
             if let anhlsp = loaiSp.anhlsp {

@@ -13,6 +13,8 @@ enum APIManager {
     case register
     case resetPass
     
+    case addUser
+    
     case getHangSX
     case getLoaiSanPhamFull
     case getLoaiSanPhamNew
@@ -60,6 +62,9 @@ extension APIManager {
             case .updateGioHang: path = "/gio-hang"
             case .deleteGioHang: path = "/gio-hang"
                 
+            case .addUser: path = "/khach-hang"
+                
+                
         }
         return baseURL + path
     }
@@ -71,7 +76,7 @@ extension APIManager {
                     .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGood, .getLoaiSanPhamHang, .searchLSP
                 :
                 return .get
-            case .login, .register, .resetPass, .addGioHang:
+            case .login, .register, .resetPass, .addGioHang, .addUser:
                 return .post
             case .updateGioHang:
                 return .put

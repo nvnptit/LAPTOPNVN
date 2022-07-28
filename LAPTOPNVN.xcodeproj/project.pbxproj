@@ -105,7 +105,19 @@
 		795EE8A7288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */; };
 		795EE8A8288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */; };
 		795EE8A9288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */; };
-		796F56512890C248003F34EB /* PayPalCheckout in Frameworks */ = {isa = PBXBuildFile; productRef = 796F56502890C248003F34EB /* PayPalCheckout */; };
+		796DF2A92892703500F34C82 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2A72892703500F34C82 /* RegisterViewController.swift */; };
+		796DF2AA2892703500F34C82 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2A72892703500F34C82 /* RegisterViewController.swift */; };
+		796DF2AB2892703500F34C82 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2A72892703500F34C82 /* RegisterViewController.swift */; };
+		796DF2AC2892703500F34C82 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 796DF2A82892703500F34C82 /* RegisterViewController.xib */; };
+		796DF2AD2892703500F34C82 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 796DF2A82892703500F34C82 /* RegisterViewController.xib */; };
+		796DF2AE2892703500F34C82 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 796DF2A82892703500F34C82 /* RegisterViewController.xib */; };
+		796DF2B02892850500F34C82 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2AF2892850500F34C82 /* Response.swift */; };
+		796DF2B12892850500F34C82 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2AF2892850500F34C82 /* Response.swift */; };
+		796DF2B22892850500F34C82 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2AF2892850500F34C82 /* Response.swift */; };
+		796DF2B428928A3000F34C82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2B328928A3000F34C82 /* User.swift */; };
+		796DF2B528928A3000F34C82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2B328928A3000F34C82 /* User.swift */; };
+		796DF2B628928A3000F34C82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2B328928A3000F34C82 /* User.swift */; };
+		796DF2B92892C35F00F34C82 /* PayPalCheckout in Frameworks */ = {isa = PBXBuildFile; productRef = 796DF2B82892C35F00F34C82 /* PayPalCheckout */; };
 		796F56532890C90A003F34EB /* Integer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F56522890C90A003F34EB /* Integer.swift */; };
 		79929767288EF91100642885 /* ListLaptopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79929765288EF91100642885 /* ListLaptopViewController.swift */; };
 		79929768288EF91100642885 /* ListLaptopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79929765288EF91100642885 /* ListLaptopViewController.swift */; };
@@ -137,7 +149,6 @@
 		79B3296F2891A5C4000E4197 /* InformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B3296B2891A5C4000E4197 /* InformationViewController.xib */; };
 		79B329702891A5C4000E4197 /* InformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B3296B2891A5C4000E4197 /* InformationViewController.xib */; };
 		79B329712891A5C4000E4197 /* InformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B3296B2891A5C4000E4197 /* InformationViewController.xib */; };
-		79BF62102891A8BA0007FE0D /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79BF620F2891A8BA0007FE0D /* SwipeCellKit */; };
 		79BF62122891AAB70007FE0D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF62112891AAB70007FE0D /* CustomCell.swift */; };
 		79BF62132891AAB70007FE0D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF62112891AAB70007FE0D /* CustomCell.swift */; };
 		79BF62142891AAB70007FE0D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF62112891AAB70007FE0D /* CustomCell.swift */; };
@@ -257,6 +268,10 @@
 		795CAF6E28867BC0008458F0 /* DetailSanPhamViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSanPhamViewController.xib; sourceTree = "<group>"; };
 		795EE8A2288A5EAC00C4313F /* LaptopItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaptopItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaptopItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		796DF2A72892703500F34C82 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		796DF2A82892703500F34C82 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		796DF2AF2892850500F34C82 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		796DF2B328928A3000F34C82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		796F56522890C90A003F34EB /* Integer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Integer.swift; sourceTree = "<group>"; };
 		79929765288EF91100642885 /* ListLaptopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLaptopViewController.swift; sourceTree = "<group>"; };
 		79929766288EF91100642885 /* ListLaptopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListLaptopViewController.xib; sourceTree = "<group>"; };
@@ -297,8 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B626DD0607C9AFDE93ED9D8B /* Pods_LAPTOPNVN.framework in Frameworks */,
-				79BF62102891A8BA0007FE0D /* SwipeCellKit in Frameworks */,
-				796F56512890C248003F34EB /* PayPalCheckout in Frameworks */,
+				796DF2B92892C35F00F34C82 /* PayPalCheckout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +474,7 @@
 		79475E482882465E005911E3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				796DF2BA2892C6BE00F34C82 /* CheckOut */,
 				79176F902883927E00CDA10E /* Cells */,
 				79475E4928824733005911E3 /* Custom */,
 				79475EA82882B63D005911E3 /* Models */,
@@ -483,6 +498,7 @@
 		79475E4A28824739005911E3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				796DF2A62892701100F34C82 /* Register */,
 				79A54403288D6F3C00179574 /* SearchBar */,
 				795CAF6028867B08008458F0 /* DetailSanPham */,
 				79475E9F28824DC6005911E3 /* Account */,
@@ -565,6 +581,8 @@
 				79CF9BCA288AFB5800709A26 /* GioHang.swift */,
 				792DDAA628901785000ACAFC /* Search.swift */,
 				79BF62222891C3650007FE0D /* DatHang.swift */,
+				796DF2AF2892850500F34C82 /* Response.swift */,
+				796DF2B328928A3000F34C82 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -585,6 +603,22 @@
 				795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */,
 			);
 			path = ExploreItem;
+			sourceTree = "<group>";
+		};
+		796DF2A62892701100F34C82 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				796DF2A72892703500F34C82 /* RegisterViewController.swift */,
+				796DF2A82892703500F34C82 /* RegisterViewController.xib */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		796DF2BA2892C6BE00F34C82 /* CheckOut */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CheckOut;
 			sourceTree = "<group>";
 		};
 		79929764288EF8EA00642885 /* List */ = {
@@ -692,8 +726,7 @@
 			);
 			name = LAPTOPNVN;
 			packageProductDependencies = (
-				796F56502890C248003F34EB /* PayPalCheckout */,
-				79BF620F2891A8BA0007FE0D /* SwipeCellKit */,
+				796DF2B82892C35F00F34C82 /* PayPalCheckout */,
 			);
 			productName = LAPTOPNVN;
 			productReference = 79475E102882438D005911E3 /* LAPTOPNVN.app */;
@@ -771,8 +804,7 @@
 			);
 			mainGroup = 79475E072882438D005911E3;
 			packageReferences = (
-				796F564F2890C248003F34EB /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */,
-				79BF620E2891A8BA0007FE0D /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
+				796DF2B72892C35F00F34C82 /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */,
 			);
 			productRefGroup = 79475E112882438D005911E3 /* Products */;
 			projectDirPath = "";
@@ -801,6 +833,7 @@
 				79176FA2288392EC00CDA10E /* HangCollectionViewCell.xib in Resources */,
 				79F33D8328831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
 				7992976A288EF91100642885 /* ListLaptopViewController.xib in Resources */,
+				796DF2AC2892703500F34C82 /* RegisterViewController.xib in Resources */,
 				79475E1D2882438E005911E3 /* Assets.xcassets in Resources */,
 				79BF621F2891BAB80007FE0D /* ItemCartTableViewCell.xib in Resources */,
 				79475E5528824822005911E3 /* LoginViewController.xib in Resources */,
@@ -821,6 +854,7 @@
 				795EE8A8288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */,
 				79BF62202891BAB80007FE0D /* ItemCartTableViewCell.xib in Resources */,
 				79B329702891A5C4000E4197 /* InformationViewController.xib in Resources */,
+				796DF2AD2892703500F34C82 /* RegisterViewController.xib in Resources */,
 				79F33D8428831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
 				79B3296728914345000E4197 /* NoLoginViewController.xib in Resources */,
 				79475E9328824D96005911E3 /* ExplorerViewController.xib in Resources */,
@@ -845,6 +879,7 @@
 				795EE8A9288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */,
 				79BF62212891BAB80007FE0D /* ItemCartTableViewCell.xib in Resources */,
 				79B329712891A5C4000E4197 /* InformationViewController.xib in Resources */,
+				796DF2AE2892703500F34C82 /* RegisterViewController.xib in Resources */,
 				79F33D8528831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
 				79B3296828914345000E4197 /* NoLoginViewController.xib in Resources */,
 				79475E9428824D96005911E3 /* ExplorerViewController.xib in Resources */,
@@ -976,6 +1011,7 @@
 				79475E8128824C7E005911E3 /* MainTabBarController.swift in Sources */,
 				79475E7C28824C04005911E3 /* UserService.swift in Sources */,
 				79475E142882438D005911E3 /* AppDelegate.swift in Sources */,
+				796DF2B02892850500F34C82 /* Response.swift in Sources */,
 				79475E4C28824765005911E3 /* TabItems.swift in Sources */,
 				79F33D932883252100F7BB4C /* APIHeader.swift in Sources */,
 				79475E63288249BD005911E3 /* JSONDecoder.swift in Sources */,
@@ -997,6 +1033,8 @@
 				79BF62122891AAB70007FE0D /* CustomCell.swift in Sources */,
 				79A394C028886C4200CB3325 /* CartItemCollectionViewCell.swift in Sources */,
 				79B3296C2891A5C4000E4197 /* InformationViewController.swift in Sources */,
+				796DF2B428928A3000F34C82 /* User.swift in Sources */,
+				796DF2A92892703500F34C82 /* RegisterViewController.swift in Sources */,
 				79475EA228824DD2005911E3 /* AccountViewController.swift in Sources */,
 				79A5440A288D70C300179574 /* SearchViewController.swift in Sources */,
 				792DDAA4288F7DC8000ACAFC /* String.swift in Sources */,
@@ -1043,13 +1081,16 @@
 				79176FA0288392EC00CDA10E /* HangCollectionViewCell.swift in Sources */,
 				79475E602882498E005911E3 /* UIImageView+UIImage.swift in Sources */,
 				79F33D8128831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */,
+				796DF2B12892850500F34C82 /* Response.swift in Sources */,
 				79475E5C28824939005911E3 /* UITextFieldX.swift in Sources */,
 				79F33D9C28832F3C00F7BB4C /* LoginModel.swift in Sources */,
 				79F33DA028832F4C00F7BB4C /* LoginResponse.swift in Sources */,
 				79A394C128886C4200CB3325 /* CartItemCollectionViewCell.swift in Sources */,
+				796DF2AA2892703500F34C82 /* RegisterViewController.swift in Sources */,
 				79BF621D2891BAB80007FE0D /* ItemCartTableViewCell.swift in Sources */,
 				79475E9A28824DBD005911E3 /* CartViewController.swift in Sources */,
 				79176F97288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */,
+				796DF2B528928A3000F34C82 /* User.swift in Sources */,
 				79ECC22728850C460002E81D /* BannerCollectionViewCell.swift in Sources */,
 				79475E7028824AE5005911E3 /* UINavigationBar.swift in Sources */,
 				79475E64288249BD005911E3 /* JSONDecoder.swift in Sources */,
@@ -1086,12 +1127,14 @@
 				79BF62252891C3650007FE0D /* DatHang.swift in Sources */,
 				79176F98288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */,
 				79475EA428824DD2005911E3 /* AccountViewController.swift in Sources */,
+				796DF2B628928A3000F34C82 /* User.swift in Sources */,
 				79F33D8228831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */,
 				79F33D9D28832F3C00F7BB4C /* LoginModel.swift in Sources */,
 				79A394C228886C4200CB3325 /* CartItemCollectionViewCell.swift in Sources */,
 				79F33DA128832F4C00F7BB4C /* LoginResponse.swift in Sources */,
 				79176FA1288392EC00CDA10E /* HangCollectionViewCell.swift in Sources */,
 				79BF62142891AAB70007FE0D /* CustomCell.swift in Sources */,
+				796DF2B22892850500F34C82 /* Response.swift in Sources */,
 				79475E5428824822005911E3 /* LoginViewController.swift in Sources */,
 				79F33D8D288324EC00F7BB4C /* APIManager.swift in Sources */,
 				79B3296528914345000E4197 /* NoLoginViewController.swift in Sources */,
@@ -1104,6 +1147,7 @@
 				795CAF7128867BC0008458F0 /* DetailSanPhamViewController.swift in Sources */,
 				79475E7928824B41005911E3 /* Date.swift in Sources */,
 				79475E352882438E005911E3 /* LAPTOPNVNUITests.swift in Sources */,
+				796DF2AB2892703500F34C82 /* RegisterViewController.swift in Sources */,
 				795EE8A6288A5EAC00C4313F /* LaptopItemCollectionViewCell.swift in Sources */,
 				79475E372882438E005911E3 /* LAPTOPNVNUITestsLaunchTests.swift in Sources */,
 			);
@@ -1430,7 +1474,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		796F564F2890C248003F34EB /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */ = {
+		796DF2B72892C35F00F34C82 /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/paypal/paypalcheckout-ios.git";
 			requirement = {
@@ -1438,26 +1482,13 @@
 				minimumVersion = 0.99.0;
 			};
 		};
-		79BF620E2891A8BA0007FE0D /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
-			requirement = {
-				kind = exactVersion;
-				version = 2.7.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		796F56502890C248003F34EB /* PayPalCheckout */ = {
+		796DF2B82892C35F00F34C82 /* PayPalCheckout */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 796F564F2890C248003F34EB /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */;
+			package = 796DF2B72892C35F00F34C82 /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */;
 			productName = PayPalCheckout;
-		};
-		79BF620F2891A8BA0007FE0D /* SwipeCellKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 79BF620E2891A8BA0007FE0D /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
-			productName = SwipeCellKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

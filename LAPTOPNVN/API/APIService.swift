@@ -12,6 +12,30 @@ typealias LoaiSanPhams = [LoaiSanPham]
 typealias HangSXs = [HangSX]
 
 struct APIService {
+    
+    
+    public static func postRegister(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+        APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    public static func postUser(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<User>?, String?) -> ()) {
+        APIController.request(ResponseBase<User>.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    
+    
     public static func postLogin(with manager: APIManager, _ params: [String: Any], _ headers: HTTPHeaders?, completion: @escaping(ResponseBase<LoginResponse>?, String?) -> ()) {
         APIController.request(ResponseBase<LoginResponse>.self, manager, params: params, headers: headers) { error, data in
             if let dataLogin = data {

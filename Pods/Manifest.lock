@@ -1,13 +1,13 @@
 PODS:
-  - Alamofire (5.6.1)
+  - Alamofire (5.6.2)
   - Cosmos (23.0.0)
   - DropDown (2.3.13)
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
-  - SDWebImage (5.12.5):
-    - SDWebImage/Core (= 5.12.5)
-  - SDWebImage/Core (5.12.5)
+  - SDWebImage (5.13.2):
+    - SDWebImage/Core (= 5.13.2)
+  - SDWebImage/Core (5.13.2)
   - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
@@ -28,13 +28,13 @@ SPEC REPOS:
     - SwipeCellKit
 
 SPEC CHECKSUMS:
-  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
-  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
+  SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: 01241f62aae15b2195a041fedd73c16163985a97
+PODFILE CHECKSUM: cac591f946038a8e7403c5c666ba0493839c5ea8
 
 COCOAPODS: 1.8.4

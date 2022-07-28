@@ -20,7 +20,6 @@ class LoginViewController: UIViewController {
     
     @IBAction func didTapLogin(_ sender: UIButton, forEvent event: UIEvent) {
         guard let user = username.text, let pass = password.text else {
-            
             let alert = UIAlertController(title: "Tên đăng nhập hoặc mật khẩu không được để trống", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                 self.dismiss(animated: true)
@@ -52,8 +51,8 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func didTapRegister(_ sender: UIButton, forEvent event: UIEvent) {
-        let amount = 123456
-        print(Currency.toVND(amount))
+        let vc = RegisterViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
