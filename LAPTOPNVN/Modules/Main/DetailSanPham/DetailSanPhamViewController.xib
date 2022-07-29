@@ -108,8 +108,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thông tinnacnmancsmnacmasnmcThông tinnacnma" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyk-9s-J7H">
-                            <rect key="frame" x="13" y="217" width="332" height="41"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đây là mô tả" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyk-9s-J7H">
+                            <rect key="frame" x="13" y="217" width="332" height="20.5"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="120" id="jEY-ho-gWr"/>
                             </constraints>

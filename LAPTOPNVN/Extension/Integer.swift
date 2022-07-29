@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Currency {
+struct CurrencyVN {
     static func toVND(_ price: Int) -> String{
             let numberFormatter = NumberFormatter()
             numberFormatter.groupingSeparator = ","

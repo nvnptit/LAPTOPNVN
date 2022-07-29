@@ -37,7 +37,7 @@ class CartViewController: UIViewController {
             money.isHidden = true
             btnDatHang.isHidden = true
             let noLoginVC = NoLoginViewController()
-            self.navigationController?.pushViewController(noLoginVC, animated: true)
+            self.navigationController?.pushViewController(noLoginVC, animated: false)
             return
         }else {
             lbTongTien.isHidden = false
@@ -142,18 +142,18 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             
             cell.imageLSP.loadFrom(URLAddress: Host+anhlsp)
             cell.nameLSP.text = ten + "\n"+serial
-            cell.oldPrice.text = "\(Currency.toVND(price))"
-            cell.newPrice.text = "\(Currency.toVND(newPrice))"
+            cell.oldPrice.text = "\(CurrencyVN.toVND(price))"
+            cell.newPrice.text = "\(CurrencyVN.toVND(newPrice))"
             if (gg > 0 ){
                 cell.oldPrice.textColor = .red
-                cell.oldPrice.text = "\(Currency.toVND(price))"
+                cell.oldPrice.text = "\(CurrencyVN.toVND(price))"
                 cell.oldPrice.strikeThrough(true)
                 cell.newPrice.textColor = .systemGreen
-                cell.newPrice.text = "\(Currency.toVND(newPrice))"
+                cell.newPrice.text = "\(CurrencyVN.toVND(newPrice))"
             }else {
                 cell.oldPrice.text = ""
                 cell.newPrice.textColor = .systemGreen
-                cell.newPrice.text =  "\(Currency.toVND(price))"
+                cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
             }
         }
         cell.selectionStyle = .none
@@ -167,13 +167,13 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         if (!cell.isChecked){
             cell.isChecked=true
             self.sum = self.sum + item.giagiam!
-            self.money.text = "\(Currency.toVND(sum))"
+            self.money.text = "\(CurrencyVN.toVND(sum))"
             self.dataChecked.append(item)
             cell.checkBox.image = UIImage(named: "check")
         }else {
             cell.isChecked=false
             self.sum = self.sum - item.giagiam!
-            self.money.text = "\(Currency.toVND(sum))"
+            self.money.text = "\(CurrencyVN.toVND(sum))"
             self.dataChecked = self.dataChecked.filter { $0.idgiohang != item.idgiohang }
             cell.checkBox.image = UIImage(named: "uncheck")
         }

@@ -326,13 +326,13 @@ extension HomeViewController: UICollectionViewDataSource {
                         if let ten = e.tenlsp, let price = e.giamoi, let newPrice = e.giagiam , let anh = e.anhlsp, let gg = e.ptgg{
                             cell.name.text = ten
                             if (gg > 0 ){
-                                cell.oldPrice.text = "\(Currency.toVND(price))"
+                                cell.oldPrice.text = "\(CurrencyVN.toVND(price))"
                                 cell.oldPrice.textColor = .red
                                 cell.oldPrice.strikeThrough(true)
-                                cell.newPrice.text = "\(Currency.toVND(newPrice))"
+                                cell.newPrice.text = "\(CurrencyVN.toVND(newPrice))"
                             }else {
                                 cell.oldPrice.text = ""
-                                cell.newPrice.text =  "\(Currency.toVND(price))"
+                                cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
                             }
                             cell.image.loadFrom(URLAddress: Host + anh)
                         }
@@ -351,13 +351,13 @@ extension HomeViewController: UICollectionViewDataSource {
                         if let ten = e.tenlsp, let price = e.giamoi, let newPrice = e.giagiam , let anh = e.anhlsp, let gg = e.ptgg{
                             cell.name.text = ten
                             if (gg > 0 ){
-                                cell.oldPrice.text = "\(Currency.toVND(price))"
+                                cell.oldPrice.text = "\(CurrencyVN.toVND(price))"
                                 cell.oldPrice.textColor = .red
                                 cell.oldPrice.strikeThrough(true)
-                                cell.newPrice.text = "\(Currency.toVND(newPrice))"
+                                cell.newPrice.text = "\(CurrencyVN.toVND(newPrice))"
                             }else {
                                 cell.oldPrice.text = ""
-                                cell.newPrice.text =  "\(Currency.toVND(price))"
+                                cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
                             }
                             cell.image.loadFrom(URLAddress: Host + anh)
                         }
@@ -387,13 +387,13 @@ extension HomeViewController: UICollectionViewDataSource {
                         if let ten = e.tenlsp, let price = e.giamoi, let newPrice = e.giagiam , let anh = e.anhlsp, let gg = e.ptgg{
                             cell.name.text = ten
                             if (gg > 0 ){
-                                cell.oldPrice.text = "\(Currency.toVND(price))"
+                                cell.oldPrice.text = "\(CurrencyVN.toVND(price))"
                                 cell.oldPrice.textColor = .red
                                 cell.oldPrice.strikeThrough(true)
-                                cell.newPrice.text = "\(Currency.toVND(newPrice))"
+                                cell.newPrice.text = "\(CurrencyVN.toVND(newPrice))"
                             }else {
                                 cell.oldPrice.text = ""
-                                cell.newPrice.text =  "\(Currency.toVND(price))"
+                                cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
                             }
                             cell.image.loadFrom(URLAddress: Host + anh)
                         }

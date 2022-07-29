@@ -18,7 +18,6 @@ class NoLoginViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         if isMovingFromParent, transitionCoordinator?.isInteractive == false {
             let vc = MainTabBarController()
             self.navigationController?.pushViewController(vc, animated: false)

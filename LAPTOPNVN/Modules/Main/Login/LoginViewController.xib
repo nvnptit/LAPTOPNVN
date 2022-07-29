@@ -43,7 +43,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mời nhập tên đăng nhập" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K9r-yc-0Z1" userLabel="Username" customClass="UITextFieldX" customModule="LAPTOPNVN" customModuleProvider="target">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="kh01" borderStyle="roundedRect" placeholder="Mời nhập tên đăng nhập" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K9r-yc-0Z1" userLabel="Username" customClass="UITextFieldX" customModule="LAPTOPNVN" customModuleProvider="target">
                                     <rect key="frame" x="40" y="322" width="334" height="38"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -59,7 +59,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mời nhập mật khẩu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qnl-Xx-y2a" userLabel="Password" customClass="UITextFieldX" customModule="LAPTOPNVN" customModuleProvider="target">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="kh01" borderStyle="roundedRect" placeholder="Mời nhập mật khẩu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qnl-Xx-y2a" userLabel="Password" customClass="UITextFieldX" customModule="LAPTOPNVN" customModuleProvider="target">
                                     <rect key="frame" x="40" y="413" width="334" height="34"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -151,10 +151,10 @@
     </objects>
     <designables>
         <designable name="K9r-yc-0Z1">
-            <size key="intrinsicContentSize" width="212.5" height="34"/>
+            <size key="intrinsicContentSize" width="184.5" height="34"/>
         </designable>
         <designable name="qnl-Xx-y2a">
-            <size key="intrinsicContentSize" width="179" height="34"/>
+            <size key="intrinsicContentSize" width="151" height="34"/>
         </designable>
     </designables>
     <resources>

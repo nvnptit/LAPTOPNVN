@@ -7,6 +7,9 @@
 
 import UIKit
 
+import BraintreePayPal
+import BraintreeDataCollector
+
 class InformationViewController: UIViewController {
     
     @IBOutlet weak var name: UITextField!
@@ -18,10 +21,15 @@ class InformationViewController: UIViewController {
     
     var dataGioHang : [GioHangData] = []
     
+    var braintreeClient: BTAPIClient!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         address.layer.shadowColor = UIColor.lightGray.cgColor
         address.layer.borderWidth = 0.2
+        
+        
+        self.braintreeClient = BTAPIClient(authorization: "sandbox_d596sjps_7hsb2swzq3w35xrj")
         
     }
     func checkFill() -> Bool{
@@ -60,22 +68,63 @@ class InformationViewController: UIViewController {
     }
     @IBAction func tapThanhToan(_ sender: Any) {
         if (checkFill()){
-            let name = name.text
-            let phone = phone.text
-            let email = email.text
-            let address = address.text
-            for item in dataGioHang{
-                var params = GioHangEdit(idgiohang: item.idgiohang, ngaylapgiohang: nil, tonggiatri: item.giagiam, matrangthai: 0, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email).convertToDictionary()
-                updateGH(params: params)
+            // Chuyen doi tien te
+            let currencyConverter = CurrencyConverter()
+            currencyConverter.updateExchangeRates(completion: {
+                       let doubleResult = currencyConverter.convert(10, valueCurrency: .USD, outputCurrency: .EUR)
+                       
+                   })
+            
+            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+            
+            let request = BTPayPalCheckoutRequest(amount: "100.67")
+            request.currencyCode = "USD"
+            
+            payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
+                if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                    print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+                    // Access additional information
+                    let emailPP = tokenizedPayPalAccount.email
+                    let firstNamePP = tokenizedPayPalAccount.firstName
+                    let lastNamePP = tokenizedPayPalAccount.lastName
+                    let phonePP = tokenizedPayPalAccount.phone
+                    print("INFO: \(firstNamePP) |\(lastNamePP) |\(emailPP) |\(phonePP)")
+                    
+                    // Xử lý db
+                    let name = self.name.text
+                    let phone = self.phone.text
+                    let email = self.email.text
+                    let address = self.address.text
+                    for item in self.dataGioHang{
+                        var params = GioHangEdit(idgiohang: item.idgiohang, ngaylapgiohang: nil, tonggiatri: item.giagiam, matrangthai: 0, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email).convertToDictionary()
+                        self.updateGH(params: params)
+                    }
+                    
+                    
+                    let alert = UIAlertController(title: "Thanh toán thành công", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                        self.dismiss(animated: true)
+                        let vc = MainTabBarController()
+                        self.navigationController?.pushViewController(vc, animated: false)
+                    }))
+                    self.present(alert, animated: true)
+                    
+                } else if let error = error {
+                    // Handle error here...
+                    let alert = UIAlertController(title: "Đã có lỗi xảy ra", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                        self.dismiss(animated: true)
+                    }))
+                    self.present(alert, animated: true)
+                } else {
+                    // Buyer canceled payment approval
+                }
             }
-            let alert = UIAlertController(title: "Thanh toán thành công", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                self.dismiss(animated: true)
-                let vc = MainTabBarController()
-                self.navigationController?.pushViewController(vc, animated: false)
-            }))
-            self.present(alert, animated: true)
+            
+            
+            
         }
+        
     }
     
     
@@ -105,3 +154,24 @@ extension InformationViewController {
         return passwordTest.evaluate(with:email)
     }
 }
+
+//        if (checkFill()){
+//            let name = name.text
+//            let phone = phone.text
+//            let email = email.text
+//            let address = address.text
+//            for item in dataGioHang{
+//                var params = GioHangEdit(idgiohang: item.idgiohang, ngaylapgiohang: nil, tonggiatri: item.giagiam, matrangthai: 0, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email).convertToDictionary()
+//                updateGH(params: params)
+//            }
+//
+//
+//
+//            let alert = UIAlertController(title: "Thanh toán thành công", message: "", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+//                self.dismiss(animated: true)
+//                let vc = MainTabBarController()
+//                self.navigationController?.pushViewController(vc, animated: false)
+//            }))
+//            self.present(alert, animated: true)
+//        }
