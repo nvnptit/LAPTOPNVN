@@ -14,6 +14,7 @@ enum APIManager {
     case resetPass
     
     case addUser
+    case updateUser
     
     case getHangSX
     case getLoaiSanPhamFull
@@ -27,6 +28,8 @@ enum APIManager {
     case getGioHang
     case updateGioHang
     case deleteGioHang
+    
+    case getHistoryOrder
     
 }
 
@@ -63,7 +66,9 @@ extension APIManager {
             case .deleteGioHang: path = "/gio-hang"
                 
             case .addUser: path = "/khach-hang"
-                
+            case .updateUser: path = "/khach-hang"
+            
+            case .getHistoryOrder: path = "/gio-hang/history-order"
                 
         }
         return baseURL + path
@@ -73,12 +78,13 @@ extension APIManager {
     var method: HTTPMethod {
         switch self {
             case  .getHangSX, .getLoaiSanPhamFull, .getLoaiSanPhamNew,
-                    .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGood, .getLoaiSanPhamHang, .searchLSP
+                    .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGood, .getLoaiSanPhamHang, .searchLSP,
+                    .getHistoryOrder
                 :
                 return .get
             case .login, .register, .resetPass, .addGioHang, .addUser:
                 return .post
-            case .updateGioHang:
+            case .updateGioHang, .updateUser:
                 return .put
             case .deleteGioHang:
                 return .delete

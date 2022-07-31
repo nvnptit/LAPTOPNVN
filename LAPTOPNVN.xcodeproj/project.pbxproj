@@ -124,13 +124,19 @@
 		7992976A288EF91100642885 /* ListLaptopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79929766288EF91100642885 /* ListLaptopViewController.xib */; };
 		7992976B288EF91100642885 /* ListLaptopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79929766288EF91100642885 /* ListLaptopViewController.xib */; };
 		7992976C288EF91100642885 /* ListLaptopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79929766288EF91100642885 /* ListLaptopViewController.xib */; };
+		799627132896066D00B6EDF9 /* HistoryOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */; };
+		799627142896066D00B6EDF9 /* HistoryOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */; };
+		799627152896066D00B6EDF9 /* HistoryOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */; };
+		799627162896066D00B6EDF9 /* HistoryOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799627122896066D00B6EDF9 /* HistoryOrderTableViewCell.xib */; };
+		799627172896066D00B6EDF9 /* HistoryOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799627122896066D00B6EDF9 /* HistoryOrderTableViewCell.xib */; };
+		799627182896066D00B6EDF9 /* HistoryOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799627122896066D00B6EDF9 /* HistoryOrderTableViewCell.xib */; };
+		7996271A28960F6D00B6EDF9 /* HistoryOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7996271928960F6D00B6EDF9 /* HistoryOrder.swift */; };
+		7996271B28960F6D00B6EDF9 /* HistoryOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7996271928960F6D00B6EDF9 /* HistoryOrder.swift */; };
+		7996271C28960F6D00B6EDF9 /* HistoryOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7996271928960F6D00B6EDF9 /* HistoryOrder.swift */; };
+		7996271F2896133E00B6EDF9 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7996271E2896133E00B6EDF9 /* HistoryModel.swift */; };
+		799627202896133E00B6EDF9 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7996271E2896133E00B6EDF9 /* HistoryModel.swift */; };
+		799627212896133E00B6EDF9 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7996271E2896133E00B6EDF9 /* HistoryModel.swift */; };
 		79998D8A2893D5A00006EF49 /* CurrencyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79998D892893D5A00006EF49 /* CurrencyConverter.swift */; };
-		79998D8E2893FFCF0006EF49 /* HistoryCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79998D8C2893FFCF0006EF49 /* HistoryCartViewController.swift */; };
-		79998D8F2893FFCF0006EF49 /* HistoryCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79998D8C2893FFCF0006EF49 /* HistoryCartViewController.swift */; };
-		79998D902893FFCF0006EF49 /* HistoryCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79998D8C2893FFCF0006EF49 /* HistoryCartViewController.swift */; };
-		79998D912893FFCF0006EF49 /* HistoryCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79998D8D2893FFCF0006EF49 /* HistoryCartViewController.xib */; };
-		79998D922893FFCF0006EF49 /* HistoryCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79998D8D2893FFCF0006EF49 /* HistoryCartViewController.xib */; };
-		79998D932893FFCF0006EF49 /* HistoryCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79998D8D2893FFCF0006EF49 /* HistoryCartViewController.xib */; };
 		79A394C028886C4200CB3325 /* CartItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A394BE28886C4200CB3325 /* CartItemCollectionViewCell.swift */; };
 		79A394C128886C4200CB3325 /* CartItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A394BE28886C4200CB3325 /* CartItemCollectionViewCell.swift */; };
 		79A394C228886C4200CB3325 /* CartItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A394BE28886C4200CB3325 /* CartItemCollectionViewCell.swift */; };
@@ -289,9 +295,11 @@
 		796F56522890C90A003F34EB /* Integer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Integer.swift; sourceTree = "<group>"; };
 		79929765288EF91100642885 /* ListLaptopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLaptopViewController.swift; sourceTree = "<group>"; };
 		79929766288EF91100642885 /* ListLaptopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListLaptopViewController.xib; sourceTree = "<group>"; };
+		799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOrderTableViewCell.swift; sourceTree = "<group>"; };
+		799627122896066D00B6EDF9 /* HistoryOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryOrderTableViewCell.xib; sourceTree = "<group>"; };
+		7996271928960F6D00B6EDF9 /* HistoryOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOrder.swift; sourceTree = "<group>"; };
+		7996271E2896133E00B6EDF9 /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
 		79998D892893D5A00006EF49 /* CurrencyConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
-		79998D8C2893FFCF0006EF49 /* HistoryCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCartViewController.swift; sourceTree = "<group>"; };
-		79998D8D2893FFCF0006EF49 /* HistoryCartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryCartViewController.xib; sourceTree = "<group>"; };
 		79A394BE28886C4200CB3325 /* CartItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		79A394BF28886C4200CB3325 /* CartItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		79A54408288D70C300179574 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -658,11 +666,21 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		7996271D28960F7200B6EDF9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7996271928960F6D00B6EDF9 /* HistoryOrder.swift */,
+				7996271E2896133E00B6EDF9 /* HistoryModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		79998D8B2893FFB50006EF49 /* History Cart */ = {
 			isa = PBXGroup;
 			children = (
-				79998D8C2893FFCF0006EF49 /* HistoryCartViewController.swift */,
-				79998D8D2893FFCF0006EF49 /* HistoryCartViewController.xib */,
+				7996271D28960F7200B6EDF9 /* Model */,
+				799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */,
+				799627122896066D00B6EDF9 /* HistoryOrderTableViewCell.xib */,
 			);
 			path = "History Cart";
 			sourceTree = "<group>";
@@ -875,10 +893,10 @@
 				79176FA2288392EC00CDA10E /* HangCollectionViewCell.xib in Resources */,
 				79F33D8328831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
 				7992976A288EF91100642885 /* ListLaptopViewController.xib in Resources */,
-				79998D912893FFCF0006EF49 /* HistoryCartViewController.xib in Resources */,
 				796DF2AC2892703500F34C82 /* RegisterViewController.xib in Resources */,
 				79475E1D2882438E005911E3 /* Assets.xcassets in Resources */,
 				79BF621F2891BAB80007FE0D /* ItemCartTableViewCell.xib in Resources */,
+				799627162896066D00B6EDF9 /* HistoryOrderTableViewCell.xib in Resources */,
 				79475E5528824822005911E3 /* LoginViewController.xib in Resources */,
 				795EE8A7288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */,
 				79475E9C28824DBD005911E3 /* CartViewController.xib in Resources */,
@@ -897,7 +915,6 @@
 				79475E9D28824DBD005911E3 /* CartViewController.xib in Resources */,
 				795EE8A8288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */,
 				79BF62202891BAB80007FE0D /* ItemCartTableViewCell.xib in Resources */,
-				79998D922893FFCF0006EF49 /* HistoryCartViewController.xib in Resources */,
 				79B329702891A5C4000E4197 /* InformationViewController.xib in Resources */,
 				796DF2AD2892703500F34C82 /* RegisterViewController.xib in Resources */,
 				79F33D8428831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
@@ -908,6 +925,7 @@
 				79A5440E288D70C300179574 /* SearchViewController.xib in Resources */,
 				79475E5628824822005911E3 /* LoginViewController.xib in Resources */,
 				79475E8B28824D7E005911E3 /* HomeViewController.xib in Resources */,
+				799627172896066D00B6EDF9 /* HistoryOrderTableViewCell.xib in Resources */,
 				79475EA628824DD2005911E3 /* AccountViewController.xib in Resources */,
 				79ECC22A28850C460002E81D /* BannerCollectionViewCell.xib in Resources */,
 				79A394C428886C4200CB3325 /* CartItemCollectionViewCell.xib in Resources */,
@@ -923,7 +941,6 @@
 				79475E9E28824DBD005911E3 /* CartViewController.xib in Resources */,
 				795EE8A9288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */,
 				79BF62212891BAB80007FE0D /* ItemCartTableViewCell.xib in Resources */,
-				79998D932893FFCF0006EF49 /* HistoryCartViewController.xib in Resources */,
 				79B329712891A5C4000E4197 /* InformationViewController.xib in Resources */,
 				796DF2AE2892703500F34C82 /* RegisterViewController.xib in Resources */,
 				79F33D8528831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
@@ -934,6 +951,7 @@
 				79A5440F288D70C300179574 /* SearchViewController.xib in Resources */,
 				79475E5728824822005911E3 /* LoginViewController.xib in Resources */,
 				79475E8C28824D7E005911E3 /* HomeViewController.xib in Resources */,
+				799627182896066D00B6EDF9 /* HistoryOrderTableViewCell.xib in Resources */,
 				79475EA728824DD2005911E3 /* AccountViewController.xib in Resources */,
 				79ECC22B28850C460002E81D /* BannerCollectionViewCell.xib in Resources */,
 				79A394C528886C4200CB3325 /* CartItemCollectionViewCell.xib in Resources */,
@@ -1060,12 +1078,14 @@
 				79475E142882438D005911E3 /* AppDelegate.swift in Sources */,
 				796DF2B02892850500F34C82 /* Response.swift in Sources */,
 				79475E4C28824765005911E3 /* TabItems.swift in Sources */,
+				799627132896066D00B6EDF9 /* HistoryOrderTableViewCell.swift in Sources */,
 				79F33D932883252100F7BB4C /* APIHeader.swift in Sources */,
 				79475E63288249BD005911E3 /* JSONDecoder.swift in Sources */,
 				79B3296328914345000E4197 /* NoLoginViewController.swift in Sources */,
 				79475E5228824822005911E3 /* LoginViewController.swift in Sources */,
 				79475E6B28824A93005911E3 /* Encodable.swift in Sources */,
 				79475E162882438D005911E3 /* SceneDelegate.swift in Sources */,
+				7996271F2896133E00B6EDF9 /* HistoryModel.swift in Sources */,
 				79CF9BCB288AFB5800709A26 /* GioHang.swift in Sources */,
 				792DDAA728901785000ACAFC /* Search.swift in Sources */,
 				795EE8A4288A5EAC00C4313F /* LaptopItemCollectionViewCell.swift in Sources */,
@@ -1087,6 +1107,7 @@
 				792DDAA4288F7DC8000ACAFC /* String.swift in Sources */,
 				79475EB02882B7EF005911E3 /* HangSX.swift in Sources */,
 				79475E8728824D7E005911E3 /* HomeViewController.swift in Sources */,
+				7996271A28960F6D00B6EDF9 /* HistoryOrder.swift in Sources */,
 				79F33D8F2883250400F7BB4C /* APIController.swift in Sources */,
 				79475E6728824A3E005911E3 /* TogglePassword.swift in Sources */,
 				79475E6F28824AE5005911E3 /* UINavigationBar.swift in Sources */,
@@ -1101,7 +1122,6 @@
 				795CAF6F28867BC0008458F0 /* DetailSanPhamViewController.swift in Sources */,
 				79F33D8B288324EC00F7BB4C /* APIManager.swift in Sources */,
 				79F33D87288324B800F7BB4C /* APIService.swift in Sources */,
-				79998D8E2893FFCF0006EF49 /* HistoryCartViewController.swift in Sources */,
 				79475EAA2882B657005911E3 /* SanPham.swift in Sources */,
 				79D8CD352892ECAF00984EF3 /* PayPalViewController.swift in Sources */,
 			);
@@ -1114,13 +1134,13 @@
 				79F33D942883252100F7BB4C /* APIHeader.swift in Sources */,
 				79475E6C28824A93005911E3 /* Encodable.swift in Sources */,
 				79F33D8C288324EC00F7BB4C /* APIManager.swift in Sources */,
+				7996271B28960F6D00B6EDF9 /* HistoryOrder.swift in Sources */,
 				79475E7D28824C04005911E3 /* UserService.swift in Sources */,
 				79929768288EF91100642885 /* ListLaptopViewController.swift in Sources */,
 				79475EA328824DD2005911E3 /* AccountViewController.swift in Sources */,
 				79F33D982883254600F7BB4C /* APIResponse.swift in Sources */,
 				79F33D902883250400F7BB4C /* APIController.swift in Sources */,
 				79B3296428914345000E4197 /* NoLoginViewController.swift in Sources */,
-				79998D8F2893FFCF0006EF49 /* HistoryCartViewController.swift in Sources */,
 				79475E8228824C7E005911E3 /* MainTabBarController.swift in Sources */,
 				79475E9028824D96005911E3 /* ExplorerViewController.swift in Sources */,
 				79475E7828824B41005911E3 /* Date.swift in Sources */,
@@ -1132,6 +1152,7 @@
 				79475E602882498E005911E3 /* UIImageView+UIImage.swift in Sources */,
 				79F33D8128831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */,
 				796DF2B12892850500F34C82 /* Response.swift in Sources */,
+				799627142896066D00B6EDF9 /* HistoryOrderTableViewCell.swift in Sources */,
 				79475E5C28824939005911E3 /* UITextFieldX.swift in Sources */,
 				79F33D9C28832F3C00F7BB4C /* LoginModel.swift in Sources */,
 				79F33DA028832F4C00F7BB4C /* LoginResponse.swift in Sources */,
@@ -1144,6 +1165,7 @@
 				79ECC22728850C460002E81D /* BannerCollectionViewCell.swift in Sources */,
 				79475E7028824AE5005911E3 /* UINavigationBar.swift in Sources */,
 				79475E64288249BD005911E3 /* JSONDecoder.swift in Sources */,
+				799627202896133E00B6EDF9 /* HistoryModel.swift in Sources */,
 				79475E7428824B26005911E3 /* UserDefaults.swift in Sources */,
 				79475E5328824822005911E3 /* LoginViewController.swift in Sources */,
 				79475E6828824A3E005911E3 /* TogglePassword.swift in Sources */,
@@ -1174,15 +1196,17 @@
 				79ECC22828850C460002E81D /* BannerCollectionViewCell.swift in Sources */,
 				79F33D952883252100F7BB4C /* APIHeader.swift in Sources */,
 				79A5440C288D70C300179574 /* SearchViewController.swift in Sources */,
+				7996271C28960F6D00B6EDF9 /* HistoryOrder.swift in Sources */,
+				799627212896133E00B6EDF9 /* HistoryModel.swift in Sources */,
 				79BF62252891C3650007FE0D /* DatHang.swift in Sources */,
 				79176F98288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */,
 				79475EA428824DD2005911E3 /* AccountViewController.swift in Sources */,
+				799627152896066D00B6EDF9 /* HistoryOrderTableViewCell.swift in Sources */,
 				796DF2B628928A3000F34C82 /* User.swift in Sources */,
 				79F33D8228831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */,
 				79F33D9D28832F3C00F7BB4C /* LoginModel.swift in Sources */,
 				79A394C228886C4200CB3325 /* CartItemCollectionViewCell.swift in Sources */,
 				79F33DA128832F4C00F7BB4C /* LoginResponse.swift in Sources */,
-				79998D902893FFCF0006EF49 /* HistoryCartViewController.swift in Sources */,
 				79176FA1288392EC00CDA10E /* HangCollectionViewCell.swift in Sources */,
 				79BF62142891AAB70007FE0D /* CustomCell.swift in Sources */,
 				796DF2B22892850500F34C82 /* Response.swift in Sources */,
@@ -1366,7 +1390,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nvn.LAPTOPNVN;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nvn.LAPTOPNVN2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1395,7 +1419,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nvn.LAPTOPNVN;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nvn.LAPTOPNVN2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

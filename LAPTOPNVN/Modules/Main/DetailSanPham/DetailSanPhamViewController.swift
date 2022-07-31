@@ -11,6 +11,7 @@ import SDWebImage
 class DetailSanPhamViewController: UIViewController {
     
     var loaiSp: LoaiSanPhamKM?
+    var order: HistoryOrder?
     let Host = "http://192.168.1.74"
 
     @IBOutlet weak var imageLSP: UIImageView!
@@ -44,6 +45,20 @@ class DetailSanPhamViewController: UIViewController {
                 tfOS.text = loaiSp.os
                 tfDescription.text = loaiSp.mota
                 tfDescription.sizeToFit()
+            }
+        }
+        if let loaiSp = order {
+            // set du lieu vo
+            if let anhlsp = loaiSp.anhlsp {
+                let url =  Host + anhlsp
+                imageLSP.loadFrom(URLAddress: url)
+                tfCPU.text = loaiSp.cpu
+                tfRam.text = loaiSp.ram
+                tfCard.text = loaiSp.cardscreen
+                tfDisk.text = loaiSp.harddrive
+                tfOS.text = loaiSp.os
+                tfDescription.isHidden = true
+                btnAddCart.isHidden = true
             }
         }
     }

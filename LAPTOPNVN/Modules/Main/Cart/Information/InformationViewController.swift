@@ -69,11 +69,11 @@ class InformationViewController: UIViewController {
     @IBAction func tapThanhToan(_ sender: Any) {
         if (checkFill()){
             // Chuyen doi tien te
-            let currencyConverter = CurrencyConverter()
-            currencyConverter.updateExchangeRates(completion: {
-                       let doubleResult = currencyConverter.convert(10, valueCurrency: .USD, outputCurrency: .EUR)
-                       
-                   })
+//            let currencyConverter = CurrencyConverter()
+//            currencyConverter.updateExchangeRates(completion: {
+//                       let doubleResult = currencyConverter.convert(10, valueCurrency: .USD, outputCurrency: .EUR)
+//                       
+//                   })
             
             let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
             

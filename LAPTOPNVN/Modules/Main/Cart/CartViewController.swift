@@ -141,7 +141,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         if let ten = item.tenlsp, let serial = item.serial, let price = item.giamoi, let newPrice = item.giagiam , let anhlsp = item.anhlsp, let gg = item.ptgg{
             
             cell.imageLSP.loadFrom(URLAddress: Host+anhlsp)
-            cell.nameLSP.text = ten + "\n"+serial
+            cell.nameLSP.text = ten + "\nSerial: "+serial
             cell.oldPrice.text = "\(CurrencyVN.toVND(price))"
             cell.newPrice.text = "\(CurrencyVN.toVND(newPrice))"
             if (gg > 0 ){
