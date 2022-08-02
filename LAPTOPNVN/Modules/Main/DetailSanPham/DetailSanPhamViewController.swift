@@ -45,6 +45,7 @@ class DetailSanPhamViewController: UIViewController {
                 tfOS.text = loaiSp.os
                 tfDescription.text = loaiSp.mota
                 tfDescription.sizeToFit()
+                self.title = loaiSp.tenlsp
             }
         }
         if let loaiSp = order {
@@ -57,8 +58,9 @@ class DetailSanPhamViewController: UIViewController {
                 tfCard.text = loaiSp.cardscreen
                 tfDisk.text = loaiSp.harddrive
                 tfOS.text = loaiSp.os
-                tfDescription.isHidden = true
+                tfDescription.text =  loaiSp.mota
                 btnAddCart.isHidden = true
+                self.title = loaiSp.tenlsp
             }
         }
     }

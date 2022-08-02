@@ -7,10 +7,14 @@
 
 import UIKit
 import NVActivityIndicatorView
-
+import DropDown
 
 class AccountViewController: UIViewController {
     
+    
+    @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var dropdownStatus: UIView!
+    var maStatus = -1
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var segment: UISegmentedControl!
@@ -42,6 +46,8 @@ class AccountViewController: UIViewController {
     
     @IBOutlet weak var tfTo: UITextField!
     
+    var statusDrop = DropDown()
+    let statusValues: [String] = ["Chờ duyệt","Đã duyệt đơn","Đang giao hàng","Đã giao hàng","Đã huỷ"]
     
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
@@ -53,7 +59,6 @@ class AccountViewController: UIViewController {
     let datePicker2 = UIDatePicker()
     
     var dataHistory: [HistoryOrder] = []
-    
     
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false
@@ -69,6 +74,8 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDropDown()
+        setupStatus()
         let cmnd = UserService.shared.cmnd
         if (cmnd == ""){
             let loginVC = LoginViewController()
@@ -87,7 +94,7 @@ class AccountViewController: UIViewController {
             // Fallback on earlier versions
         }
         
-        loadDataHistory()
+//        loadDataHistory()
         
         setupAnimation()
         tableView.dataSource = self
@@ -103,22 +110,48 @@ class AccountViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     
+    func convertDate(_ date: String) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        let dateFromString = dateFormatter.date(from: date)
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateSql = dateFormatter.string(from: dateFromString!)
+        return dateSql
+    }
     
+    func convertDateSQL(_ date: String) -> String{
+        var date1 = date.prefix(19)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let dateFromString = dateFormatter.date(from: String(date1))
+        
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        let dateSql = dateFormatter.string(from: dateFromString!)
+        return dateSql
+    }
     func loadDataHistory(){
         loading.startAnimating()
+        let from = tfFrom.text == "" ? nil : convertDate(tfFrom.text!)
+        let to = self.tfTo.text == "" ? nil : convertDate(tfTo.text!)
+        
+        
+        let params = HistoryModel(status: self.maStatus, cmnd: UserService.shared.cmnd, dateFrom: from, dateTo: to).convertToDictionary()
+        print(params)
         DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self = self , self.cmnd != "" else { return }
+            print(params)
             
-            let params = HistoryModel(cmnd: self.cmnd, dateFrom: "2022-07-20", dateTo: "2022-07-28").convertToDictionary()
             APIService.getHistoryOrder(with: .getHistoryOrder, params: params, headers: nil, completion: {
                 [weak self] base, error in
                 guard let self = self, let base = base else { return }
                 if base.success == true {
                     if let data = base.data {
                         self.dataHistory = data
+                        print(data)
                     }
                 } else {
-                    fatalError()
+                    print(base.success)
                 }
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
@@ -131,6 +164,42 @@ class AccountViewController: UIViewController {
     }
     
     
+    // BEGIN STATUS
+    
+    private func setupStatus() {
+        statusDrop.anchorView = dropdownStatus
+        statusDrop.dataSource = statusValues
+        statusDrop.bottomOffset = CGPoint(x: 0, y:(statusDrop.anchorView?.plainView.bounds.height)! + 5)
+        statusDrop.direction = .bottom
+        statusDrop.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.status.text = item
+//            self.maStatus = statusValues.firstIndex(where: {$0 == item})!
+            self.maStatus = index
+            loadDataHistory()
+        }
+        
+        let gestureClock = UITapGestureRecognizer(target: self, action: #selector(didTapStatus))
+    dropdownStatus.addGestureRecognizer(gestureClock)
+    dropdownStatus.layer.borderWidth = 1
+    dropdownStatus.layer.borderColor = UIColor.lightGray.cgColor
+        
+    }
+    
+    @objc func didTapStatus() {
+        statusDrop.show()
+    }
+    
+    
+    private func setupDropDown() {
+        DropDown.appearance().textColor = UIColor.black
+        DropDown.appearance().selectedTextColor = UIColor.black
+        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 15)
+        DropDown.appearance().backgroundColor = UIColor.white
+        DropDown.appearance().selectionBackgroundColor = UIColor.cyan
+        DropDown.appearance().cornerRadius = 8
+    }
+    
+    // END STATUS
     
     func showhide(_ sh: Bool){
         lb1.isHidden = sh
@@ -251,7 +320,7 @@ class AccountViewController: UIViewController {
         }
     }
     
-}
+} 
 
 extension AccountViewController{
     //MARK: - Datepicker
@@ -298,12 +367,14 @@ extension AccountViewController{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         tfFrom.text =  dateFormatter.string(from: datePicker1.date)
+        loadDataHistory()
         view.endEditing(true)
     }
     @objc func donedatePicker2() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         tfTo.text =  dateFormatter.string(from: datePicker2.date)
+        loadDataHistory()
         view.endEditing(true)
     }
 }
@@ -376,28 +447,28 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderTableViewCell", for: indexPath) as! HistoryOrderTableViewCell
         let item = dataHistory[indexPath.item]
         if let ngaylapgiohang = item.ngaylapgiohang,
-            let tonggiatri = item.tonggiatri,
+//            let tonggiatri = item.tonggiatri,
             let tentrangthai = item.tentrangthai,
-            let nvgiao = item.nvgiao,
-            let nvduyet = item.nvduyet,
+//            let nvgiao = item.nvgiao,
+//            let nvduyet = item.nvduyet,
             let nguoinhan = item.nguoinhan,
             let diachi = item.diachi,
-            let sdt = item.sdt,
-            let email = item.email,
+            let sdt = item.sdt
+//            let email = item.email,
             
-            let serial = item.serial,
-            let tenlsp = item.tenlsp,
-            let anhlsp = item.anhlsp,
-            let mota = item.mota,
-            let cpu = item.cpu,
-            let ram = item.ram,
-            let harddrive = item.harddrive,
-            let cardscreen = item.cardscreen,
-            let os = item.os
+//            let serial = item.serial,
+//            let tenlsp = item.tenlsp,
+//            let anhlsp = item.anhlsp,
+//            let mota = item.mota,
+//            let cpu = item.cpu,
+//            let ram = item.ram,
+//            let harddrive = item.harddrive,
+//            let cardscreen = item.cardscreen,
+//            let os = item.os
             {
-            cell.date.text = ngaylapgiohang
+            cell.date.text = convertDateSQL(ngaylapgiohang)
             cell.status.text = tentrangthai
-            cell.status.textColor = .green
+            cell.status.textColor = .orange
             cell.receiver.text = nguoinhan
             cell.address.text = diachi
             cell.phone.text = sdt

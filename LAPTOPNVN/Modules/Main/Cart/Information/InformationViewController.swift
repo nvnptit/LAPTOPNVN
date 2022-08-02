@@ -28,9 +28,16 @@ class InformationViewController: UIViewController {
         address.layer.shadowColor = UIColor.lightGray.cgColor
         address.layer.borderWidth = 0.2
         
-        
+        loadInfo()
         self.braintreeClient = BTAPIClient(authorization: "sandbox_d596sjps_7hsb2swzq3w35xrj")
         
+    }
+    func loadInfo(){
+        guard let user = UserService.shared.infoProfile else {return}
+        name.text = user.ten
+        phone.text = user.sdt
+        email.text = user.email
+        address.text = user.diachi
     }
     func checkFill() -> Bool{
         guard let name = name.text,

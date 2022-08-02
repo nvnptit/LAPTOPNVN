@@ -7,6 +7,7 @@
 
 import Foundation
 struct HistoryModel : Encodable{
+    let status: Int?
     let cmnd: String?
     let dateFrom: String?
     let dateTo: String?
