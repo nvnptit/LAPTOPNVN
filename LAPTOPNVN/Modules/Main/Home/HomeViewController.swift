@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         searchBar.delegate = self
         homeCollectionView.dataSource = self
         homeCollectionView.delegate = self
@@ -431,8 +431,10 @@ extension HomeViewController: UICollectionViewDataSource {
                 break
             case 1:
                 header.title.text = "Sản phẩm mới nhất"
+                header.btnSeemore.setTitle("Xem thêm", for: .normal)
             case 2:
                 header.title.text = "Khuyến mãi khủng"
+                header.btnSeemore.setTitle("Xem thêm", for: .normal)
             case 3:
                 header.title.text = "Sản phẩm deal tốt"
                 header.btnSeemore.setTitle("", for: .normal)
@@ -520,7 +522,7 @@ extension HomeViewController: HomeHeaderResuableViewDelegate {
                 break
             case 1:
                 let listLaptopViewController = ListLaptopViewController()
-                listLaptopViewController.typeHome = "Full"
+                listLaptopViewController.typeHome = "New"
                 self.navigationController?.pushViewController(listLaptopViewController, animated: true)
             case 2:
                 let listLaptopViewController = ListLaptopViewController()
@@ -528,7 +530,7 @@ extension HomeViewController: HomeHeaderResuableViewDelegate {
                 self.navigationController?.pushViewController(listLaptopViewController, animated: true)
             case 3:
                 let listLaptopViewController = ListLaptopViewController()
-                listLaptopViewController.typeHome = "Full"
+                listLaptopViewController.typeHome = "Brand"
                 self.navigationController?.pushViewController(listLaptopViewController, animated: true)
             default:
                 break;

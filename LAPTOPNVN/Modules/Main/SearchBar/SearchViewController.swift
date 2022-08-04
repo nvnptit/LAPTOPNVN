@@ -31,6 +31,8 @@ class SearchViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDropDown()
+        setupKeyboard()
+        
         searchBar.delegate = self
         tfGiaMin.delegate = self
         tfGiaMax.delegate = self
@@ -38,12 +40,12 @@ class SearchViewController: UIViewController{
         configLayout()
         
         collectionView.register(UINib(nibName: "SanPhamCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SanPhamCollectionViewCell")
-    }
-    
-    
-    @IBAction func didTapTimKiem(_ sender: UIButton, forEvent event: UIEvent) {
         
+//        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
+//        self.view.addGestureRecognizer(gesture)
     }
+    
+    
     
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false
@@ -217,4 +219,30 @@ extension SearchViewController {
         })
     }
     
+}
+
+extension SearchViewController{
+    //MARK: - Setup keyboard, user
+    private func setupKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc func didTapOnView() {
+        view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(notification:NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        //        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        //        contentInset.bottom = keyboardFrame.size.height + 70
+        //        scrollView.contentInset = contentInset
+    }
+    @objc func keyboardWillHide(notification:NSNotification) {
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        //        scrollView.contentInset = contentInset
+    }
+    //MARK: - End Setup keyboard
 }

@@ -55,6 +55,15 @@ struct APIService {
         }
     }
     
+    public static func delTK(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+        APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
     
     
     public static func postLogin(with manager: APIManager, _ params: [String: Any], _ headers: HTTPHeaders?, completion: @escaping(ResponseBase<LoginResponse>?, String?) -> ()) {

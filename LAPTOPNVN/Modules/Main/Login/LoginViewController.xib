@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
                 <outlet property="password" destination="qnl-Xx-y2a" id="599-gJ-pAO"/>
+                <outlet property="scrollView" destination="2yn-ih-1Ss" id="Kdb-Jj-4a8"/>
                 <outlet property="username" destination="K9r-yc-0Z1" id="77N-qR-oQz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

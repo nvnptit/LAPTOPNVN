@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
                 <outlet property="btnRegister" destination="kNU-kb-U69" id="hnc-t3-dmP"/>
+                <outlet property="scrollView" destination="JJY-LY-Y7M" id="I9O-Ka-qmL"/>
                 <outlet property="tfAddress" destination="dBT-ct-NfW" id="tuO-Uj-Gk1"/>
                 <outlet property="tfBirthday" destination="ElX-kd-50C" id="eX4-Fd-HO8"/>
                 <outlet property="tfCMND" destination="l26-fn-kgr" id="tg8-42-FpL"/>
@@ -31,7 +32,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUU-g4-9dB">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="918"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ĐĂNG KÝ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rj-Ie-aJZ">
                                     <rect key="frame" x="147.5" y="40" width="119" height="34"/>
@@ -70,7 +71,7 @@
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="213456789" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l26-fn-kgr">
                                     <rect key="frame" x="125" y="216" width="259" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HỌ TÊN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adh-Qh-dMq">
                                     <rect key="frame" x="30" y="275" width="56" height="18"/>
@@ -114,7 +115,7 @@
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0974428986" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RWk-l6-IYJ">
                                     <rect key="frame" x="125" y="427" width="259" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ĐỊA CHỈ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2f-cu-S7V">
                                     <rect key="frame" x="30" y="487" width="54" height="18"/>
@@ -193,7 +194,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="WUU-g4-9dB" firstAttribute="leading" secondItem="JJY-LY-Y7M" secondAttribute="leading" id="9e8-sG-5Du"/>
-                        <constraint firstItem="WUU-g4-9dB" firstAttribute="height" secondItem="JJY-LY-Y7M" secondAttribute="height" priority="250" constant="100" id="deZ-oz-eV0"/>
+                        <constraint firstItem="WUU-g4-9dB" firstAttribute="height" secondItem="JJY-LY-Y7M" secondAttribute="height" priority="250" id="deZ-oz-eV0"/>
                         <constraint firstAttribute="trailing" secondItem="WUU-g4-9dB" secondAttribute="trailing" id="kki-Wt-yt2"/>
                         <constraint firstItem="WUU-g4-9dB" firstAttribute="width" secondItem="JJY-LY-Y7M" secondAttribute="width" id="pcC-Ah-Jm1"/>
                         <constraint firstAttribute="bottom" secondItem="WUU-g4-9dB" secondAttribute="bottom" constant="-100" id="r7w-Wn-bd0"/>

@@ -10,6 +10,7 @@ class HistoryOrder : Decodable{
     
     let idgiohang: Int?
     let ngaylapgiohang: String?
+    let ngaydukien: String?
     let tonggiatri: Int?
     let tentrangthai: String?
     let nvgiao: String?

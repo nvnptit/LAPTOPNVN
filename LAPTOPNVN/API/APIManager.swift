@@ -23,6 +23,7 @@ enum APIManager {
     case getLoaiSanPhamGood
     case getLoaiSanPhamHang
     case searchLSP
+    case delTK
     
     case addGioHang
     case getGioHang
@@ -69,7 +70,7 @@ extension APIManager {
             case .updateUser: path = "/khach-hang"
             
             case .getHistoryOrder: path = "/gio-hang/history-order"
-                
+            case .delTK: path = "/tai-khoan"
         }
         return baseURL + path
     }
@@ -86,7 +87,7 @@ extension APIManager {
                 return .post
             case .updateGioHang, .updateUser:
                 return .put
-            case .deleteGioHang:
+            case .deleteGioHang, .delTK:
                 return .delete
                 
         }

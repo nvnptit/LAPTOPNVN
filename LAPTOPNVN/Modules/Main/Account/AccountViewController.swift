@@ -47,7 +47,7 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var tfTo: UITextField!
     
     var statusDrop = DropDown()
-    let statusValues: [String] = ["Chờ duyệt","Đã duyệt đơn","Đang giao hàng","Đã giao hàng","Đã huỷ"]
+    let statusValues: [String] = ["Chờ duyệt","Đang giao hàng","Đã giao hàng","Đã huỷ"]
     
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
@@ -88,13 +88,16 @@ class AccountViewController: UIViewController {
         info.isHidden = false
         history.isHidden = true
         
+//        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
+//        view.addGestureRecognizer(gesture)
+        
         if #available(iOS 13.4, *) {
             createDatePicker()
         } else {
             // Fallback on earlier versions
         }
         
-//        loadDataHistory()
+        //        loadDataHistory()
         
         setupAnimation()
         tableView.dataSource = self
@@ -110,30 +113,10 @@ class AccountViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     
-    func convertDate(_ date: String) -> String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
-        let dateFromString = dateFormatter.date(from: date)
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateSql = dateFormatter.string(from: dateFromString!)
-        return dateSql
-    }
-    
-    func convertDateSQL(_ date: String) -> String{
-        var date1 = date.prefix(19)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        let dateFromString = dateFormatter.date(from: String(date1))
-        
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
-        let dateSql = dateFormatter.string(from: dateFromString!)
-        return dateSql
-    }
     func loadDataHistory(){
         loading.startAnimating()
-        let from = tfFrom.text == "" ? nil : convertDate(tfFrom.text!)
-        let to = self.tfTo.text == "" ? nil : convertDate(tfTo.text!)
+        let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
+        let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
         
         
         let params = HistoryModel(status: self.maStatus, cmnd: UserService.shared.cmnd, dateFrom: from, dateTo: to).convertToDictionary()
@@ -173,15 +156,15 @@ class AccountViewController: UIViewController {
         statusDrop.direction = .bottom
         statusDrop.selectionAction = { [unowned self] (index: Int, item: String) in
             self.status.text = item
-//            self.maStatus = statusValues.firstIndex(where: {$0 == item})!
+            //            self.maStatus = statusValues.firstIndex(where: {$0 == item})!
             self.maStatus = index
             loadDataHistory()
         }
         
         let gestureClock = UITapGestureRecognizer(target: self, action: #selector(didTapStatus))
-    dropdownStatus.addGestureRecognizer(gestureClock)
-    dropdownStatus.layer.borderWidth = 1
-    dropdownStatus.layer.borderColor = UIColor.lightGray.cgColor
+        dropdownStatus.addGestureRecognizer(gestureClock)
+        dropdownStatus.layer.borderWidth = 1
+        dropdownStatus.layer.borderColor = UIColor.lightGray.cgColor
         
     }
     
@@ -231,13 +214,71 @@ class AccountViewController: UIViewController {
         
         dateFormatter.dateFormat = "dd-MM-yyyy"
         let date = dateFormatter.string(from: dateFromString!)
-        
+        let date1 = Date().convertDateSQLToView(String(day!))
         
         tfBirthday.text  = date
         tfEmail.text  = info.email
         tfPhone.text  = info.sdt
         tfAddress.text  = info.diachi
         tfCMND.text = info.cmnd
+    }
+    
+    func isValidPhone(phone: String) -> Bool {
+        let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
+        let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
+        print(phoneTest.evaluate(with: phone))
+        return phoneTest.evaluate(with: phone)
+    }
+    func isValidEmail( email:String)->Bool{
+        let regexEmail = "^[\\w-\\.\\+]+@([\\w-]+\\.)+[\\w-]{2,4}$"
+        let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
+        print(passwordTest.evaluate(with:email))
+        return passwordTest.evaluate(with:email)
+    }
+    
+    func checkFill() -> Bool{
+        
+        let emailE = chuanHoa(tfEmail.text)
+        let nameE = chuanHoa(tfName.text)
+        let addressE = chuanHoa(tfAddress.text)
+        
+        let dayE = chuanHoa(tfBirthday.text)
+        
+        let phoneE = chuanHoa(tfPhone.text)
+        
+        if (emailE.isEmpty || nameE.isEmpty || addressE.isEmpty || dayE.isEmpty || phoneE.isEmpty) {
+            let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
+        }
+        if (!Date().checkDate18(date: dayE)){
+            let alert = UIAlertController(title: "Ngày sinh không hợp lệ cần đủ 18 tuổi", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
+        }
+        if (!isValidEmail(email: emailE)){
+            let alert = UIAlertController(title: "Email không đúng định dạng", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
+        }
+        if (!isValidPhone(phone: phoneE)){
+            let alert = UIAlertController(title: "Số điện thoại không hợp lệ", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
+        }
+        return true
     }
     
     @IBAction func tapChangeInfo(_ sender: UIButton, forEvent event: UIEvent) {
@@ -257,42 +298,39 @@ class AccountViewController: UIViewController {
             btnThayDoi.setTitle("LƯU THAY ĐỔI", for: .normal)
         }
         else {
-            tfName.backgroundColor = .lightGray
-            tfBirthday.backgroundColor = .lightGray
-            tfEmail.backgroundColor = .lightGray
-            tfPhone.backgroundColor = .lightGray
-            tfAddress.backgroundColor = .lightGray
-            
-            tfName.isEnabled = false
-            tfBirthday.isEnabled = false
-            tfEmail.isEnabled = false
-            tfPhone.isEnabled = false
-            tfAddress.isEnabled = false
-            
-            let emailE = chuanHoa(tfEmail.text)
-            let nameE = chuanHoa(tfName.text)
-            let addressE = chuanHoa(tfAddress.text)
-            let dayE = chuanHoa(tfBirthday.text)
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yyyy"
-            let dateFromString = dateFormatter.date(from: dayE)
-            
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            let dateSql = dateFormatter.string(from: dateFromString!)
-            let phoneE = chuanHoa(tfPhone.text)
-            
-            tfEmail.text = emailE
-            tfName.text = nameE
-            tfAddress.text = addressE
-            tfBirthday.text = dayE
-            tfPhone.text = phoneE
-            
-            
-            let params = UserEdit(cmnd: tfCMND.text, email: emailE, ten: nameE, diachi: addressE, ngaysinh: dateSql, sdt: phoneE).convertToDictionary()
-            updateUser(params: params)
-            
-            btnThayDoi.setTitle("THAY ĐỔI THÔNG TIN", for: .normal)
+            if (checkFill()){
+                
+                tfName.backgroundColor = .lightGray
+                tfBirthday.backgroundColor = .lightGray
+                tfEmail.backgroundColor = .lightGray
+                tfPhone.backgroundColor = .lightGray
+                tfAddress.backgroundColor = .lightGray
+                
+                tfName.isEnabled = false
+                tfBirthday.isEnabled = false
+                tfEmail.isEnabled = false
+                tfPhone.isEnabled = false
+                tfAddress.isEnabled = false
+                let emailE = chuanHoa(tfEmail.text)
+                let nameE = chuanHoa(tfName.text)
+                let addressE = chuanHoa(tfAddress.text)
+                let dayE = chuanHoa(tfBirthday.text)
+                
+                let dateSql = Date().convertDateViewToSQL(dayE)
+                let phoneE = chuanHoa(tfPhone.text)
+                
+                tfEmail.text = emailE
+                tfName.text = nameE
+                tfAddress.text = addressE
+                tfBirthday.text = dayE
+                tfPhone.text = phoneE
+                
+                let params = UserEdit(cmnd: tfCMND.text, email: emailE, ten: nameE, diachi: addressE, ngaysinh: dateSql, sdt: phoneE).convertToDictionary()
+                updateUser(params: params)
+                
+                btnThayDoi.setTitle("THAY ĐỔI THÔNG TIN", for: .normal)
+                
+            }
         }
     }
     
@@ -394,13 +432,13 @@ extension AccountViewController{
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         
-//        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-//        contentInset.bottom = keyboardFrame.size.height + 70
-//        scrollView.contentInset = contentInset
+        //        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        //        contentInset.bottom = keyboardFrame.size.height + 70
+        //        scrollView.contentInset = contentInset
     }
     @objc func keyboardWillHide(notification:NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-//        scrollView.contentInset = contentInset
+        //        scrollView.contentInset = contentInset
     }
     //MARK: - End Setup keyboard
 }
@@ -447,26 +485,26 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderTableViewCell", for: indexPath) as! HistoryOrderTableViewCell
         let item = dataHistory[indexPath.item]
         if let ngaylapgiohang = item.ngaylapgiohang,
-//            let tonggiatri = item.tonggiatri,
-            let tentrangthai = item.tentrangthai,
-//            let nvgiao = item.nvgiao,
-//            let nvduyet = item.nvduyet,
+           //            let tonggiatri = item.tonggiatri,
+           let tentrangthai = item.tentrangthai,
+           //            let nvgiao = item.nvgiao,
+           //            let nvduyet = item.nvduyet,
             let nguoinhan = item.nguoinhan,
-            let diachi = item.diachi,
-            let sdt = item.sdt
-//            let email = item.email,
-            
-//            let serial = item.serial,
-//            let tenlsp = item.tenlsp,
-//            let anhlsp = item.anhlsp,
-//            let mota = item.mota,
-//            let cpu = item.cpu,
-//            let ram = item.ram,
-//            let harddrive = item.harddrive,
-//            let cardscreen = item.cardscreen,
-//            let os = item.os
-            {
-            cell.date.text = convertDateSQL(ngaylapgiohang)
+           let diachi = item.diachi,
+           let sdt = item.sdt
+        //            let email = item.email,
+        
+        //            let serial = item.serial,
+        //            let tenlsp = item.tenlsp,
+        //            let anhlsp = item.anhlsp,
+        //            let mota = item.mota,
+        //            let cpu = item.cpu,
+        //            let ram = item.ram,
+        //            let harddrive = item.harddrive,
+        //            let cardscreen = item.cardscreen,
+        //            let os = item.os
+        {
+            cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss")
             cell.status.text = tentrangthai
             cell.status.textColor = .orange
             cell.receiver.text = nguoinhan
@@ -479,10 +517,10 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = dataHistory[indexPath.item]
         guard let cell = tableView.cellForRow(at: indexPath) as? HistoryOrderTableViewCell else { return }
-
-    let detailSPViewController = DetailSanPhamViewController()
-    detailSPViewController.order = item
-    self.navigationController?.pushViewController(detailSPViewController, animated: true)
+        
+        let detailSPViewController = DetailSanPhamViewController()
+        detailSPViewController.order = item
+        self.navigationController?.pushViewController(detailSPViewController, animated: true)
     }
 }
 

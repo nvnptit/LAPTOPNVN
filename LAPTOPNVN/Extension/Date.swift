@@ -104,3 +104,85 @@ extension Date {
         return dayAfter.month != month
     }
 }
+extension Date {
+    func convertDateViewToSQL(_ date: String) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        let dateFromString = dateFormatter.date(from: date)
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateSql = dateFormatter.string(from: dateFromString!)
+        return dateSql
+    }
+    
+    func convertDateTimeSQLToView(date: String,format: String) -> String{
+        var date1 = date.prefix(19)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let dateFromString = dateFormatter.date(from: String(date1))
+        //"dd-MM-yyyy HH:mm:ss"
+        //"dd-MM-yyyy"
+        dateFormatter.dateFormat = format
+        let dateSql = dateFormatter.string(from: dateFromString!)
+        return dateSql
+    }
+    
+    func convertDateSQLToView(_ date: String) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateFromString = dateFormatter.date(from: date)
+        
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        let dateSql = dateFormatter.string(from: dateFromString!)
+        return dateSql
+    }
+}
+
+extension Date {
+    func checkDatePlan( start: String, end: String) -> Bool{
+        print(start + "   " + end)
+        let dateFormat = "dd-MM-yyyy"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+
+        let startDate = dateFormatter.date(from: start)
+        let endDate = dateFormatter.date(from: end)
+
+        guard let startDate = startDate, let endDate = endDate else {
+            fatalError("Định dạng ngày không hợp lệ ⚠️")
+        }
+        
+        if !(startDate > endDate) {
+            return false
+        } else if startDate == endDate {
+            return false
+        }
+        return true
+    }
+    func checkDate18(date: String) -> Bool{
+        
+        let dateCurrent = Date()
+        let calendar = Calendar.current
+        
+        let components1 = calendar.dateComponents([Calendar.Component.day, Calendar.Component.month, Calendar.Component.year], from: dateCurrent)
+        
+        let dateFormat = "dd-MM-yyyy"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        let dayCheck = dateFormatter.date(from: date)
+
+        guard let day = dayCheck else {
+            fatalError("Định dạng ngày không hợp lệ ⚠️")
+        }
+        let components2 = calendar.dateComponents([Calendar.Component.day, Calendar.Component.month, Calendar.Component.year], from: day)
+        
+        if (((components1.year!) - (components2.year!)) < 18){
+            return false
+        }
+        
+        
+        
+        return true
+    }
+    
+}

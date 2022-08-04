@@ -14,6 +14,7 @@ struct GioHangRequest : Encodable{
 struct GioHang : Decodable{
     let idgiohang: Int?
     let ngaylapgiohang: String?
+    let ngaydukien: String?
     let tonggiatri: Int?
     let matrangthai: Int?
     let cmnd: String?
@@ -28,6 +29,7 @@ struct GioHang : Decodable{
 struct GioHangEdit : Encodable{
     let idgiohang: Int?
     let ngaylapgiohang: String?
+    let ngaydukien: String?
     let tonggiatri: Int?
     let matrangthai: Int?
     let manvgiao: String?
@@ -72,6 +74,7 @@ struct GioHangData: Decodable {
 struct GioHangModel : Encodable{
         let idgiohang: Int?
         let ngaylapgiohang: String?
+        let ngaydukien: String?
         let tonggiatri: Int?
         let matrangthai: Int?
         let cmnd: String?

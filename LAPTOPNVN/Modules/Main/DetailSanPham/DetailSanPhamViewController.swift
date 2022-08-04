@@ -69,7 +69,7 @@ class DetailSanPhamViewController: UIViewController {
         let cmnd = UserService.shared.cmnd
         if (cmnd != ""){
             if let loaiSp = loaiSp {
-                let params = GioHangModel(idgiohang: nil, ngaylapgiohang: nil, tonggiatri: 0, matrangthai: -1, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: nil, diachi: nil, sdt: nil, email: nil, malsp: loaiSp.malsp).convertToDictionary()
+                let params = GioHangModel(idgiohang: nil, ngaylapgiohang: nil,ngaydukien: nil, tonggiatri: 0, matrangthai: -1, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: nil, diachi: nil, sdt: nil, email: nil, malsp: loaiSp.malsp).convertToDictionary()
                 APIService.addGioHangC(with: .addGioHang, params: params, headers: nil, completion:   { base, error in
                     guard let base = base else { return }
                     var title = ""

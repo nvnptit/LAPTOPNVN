@@ -21,11 +21,11 @@ class ListLaptopViewController: UIViewController {
         configLayout()
         collectionView.register(UINib(nibName: "SanPhamCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SanPhamCollectionViewCell")
         switch typeHome {
-            case "Full":
-                loadDataFull()
+            case "New":
+                loadDataNew()
             case "KM":
                 loadDataKM()
-            case "Hang":
+            case "Brand":
                 loadDataHang()
             default:
                 break
@@ -37,11 +37,13 @@ class ListLaptopViewController: UIViewController {
         collectionView.delegate = self
         collectionView.collectionViewLayout = layout
     }
-    func loadDataFull(){
+    func loadDataNew(){
+        
+        
         DispatchQueue.init(label: "SanPhamVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self = self else { return }
             
-            APIService.getLoaiSanPhamFull(with: .getLoaiSanPhamFull, params: nil, headers: nil, completion: { [weak self] base, error in
+            APIService.getLoaiSanPhamNew(with: .getLoaiSanPhamNew, params: nil, headers: nil, completion: { [weak self] base, error in
                 guard let self = self, let base = base else { return }
                 if base.success == true {
                     self.data = (base.data ?? [])
@@ -77,10 +79,10 @@ class ListLaptopViewController: UIViewController {
                     let alert = UIAlertController(title: "Hiện tại danh mục chưa có sản phẩm", message: "", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                         self.navigationController?.popViewController(animated: true)
-                }))
+                    }))
                     self.present(alert, animated: true)
                 }
-                        
+                
             }
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
