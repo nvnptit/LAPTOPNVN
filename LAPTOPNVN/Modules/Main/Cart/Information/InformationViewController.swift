@@ -12,6 +12,7 @@ import BraintreeDataCollector
 
 class InformationViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var name: UITextField!
     
     @IBOutlet weak var datePlan: UITextField!
@@ -30,6 +31,7 @@ class InformationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupKeyboard()
         address.layer.shadowColor = UIColor.lightGray.cgColor
         address.layer.borderWidth = 0.2
         
@@ -240,13 +242,13 @@ extension InformationViewController{
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         
-//        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-//        contentInset.bottom = keyboardFrame.size.height + 70
-//        scrollView.contentInset = contentInset
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 70
+        scrollView.contentInset = contentInset
     }
     @objc func keyboardWillHide(notification:NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-//        scrollView.contentInset = contentInset
+        scrollView.contentInset = contentInset
     }
     //MARK: - End Setup keyboard
 }

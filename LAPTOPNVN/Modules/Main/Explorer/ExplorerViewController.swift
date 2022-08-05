@@ -11,7 +11,6 @@ class ExplorerViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let Host = "http://192.168.1.74"
     var data : [HangSX] = []
     
     override func viewDidLoad() {
@@ -81,7 +80,7 @@ extension ExplorerViewController: UICollectionViewDelegate{
             hangsx = maHang
         }
         let listLaptopViewController = ListLaptopViewController()
-        listLaptopViewController.typeHome = "Hang"
+        listLaptopViewController.typeHome = "Brand"
         listLaptopViewController.maHang = hangsx
         self.navigationController?.pushViewController(listLaptopViewController, animated: true)
         

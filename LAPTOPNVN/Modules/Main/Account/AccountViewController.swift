@@ -51,7 +51,6 @@ class AccountViewController: UIViewController {
     
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
-    let Host = "http://192.168.1.74"
     
     let cmnd = UserService.shared.cmnd
     
@@ -88,8 +87,8 @@ class AccountViewController: UIViewController {
         info.isHidden = false
         history.isHidden = true
         
-//        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
-//        view.addGestureRecognizer(gesture)
+        //        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
+        //        view.addGestureRecognizer(gesture)
         
         if #available(iOS 13.4, *) {
             createDatePicker()
@@ -491,8 +490,9 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
            //            let nvduyet = item.nvduyet,
             let nguoinhan = item.nguoinhan,
            let diachi = item.diachi,
-           let sdt = item.sdt
-        //            let email = item.email,
+           let sdt = item.sdt,
+           let datePlan = item.ngaydukien,
+           let idGH = item.idgiohang
         
         //            let serial = item.serial,
         //            let tenlsp = item.tenlsp,
@@ -510,6 +510,8 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
             cell.receiver.text = nguoinhan
             cell.address.text = diachi
             cell.phone.text = sdt
+            cell.datePlan.text = Date().convertDateSQLToView(String(datePlan.prefix(10)))
+            cell.idGH.text = "\(idGH)"
         }
         cell.selectionStyle = .none
         return cell

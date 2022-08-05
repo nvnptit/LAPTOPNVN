@@ -11,7 +11,6 @@ import SDWebImage
 
 typealias Laptop = (id: String, name: String)
 typealias Laptops = [Laptop]
-let Host = "http://192.168.1.74"
 
 enum HomeData<T> {
     case success([T])
@@ -334,7 +333,7 @@ extension HomeViewController: UICollectionViewDataSource {
                                 cell.oldPrice.text = ""
                                 cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
                             }
-                            cell.image.loadFrom(URLAddress: Host + anh)
+                            cell.image.loadFrom(URLAddress: APIService.baseUrl + anh)
                         }
                         return cell
                         
@@ -359,7 +358,7 @@ extension HomeViewController: UICollectionViewDataSource {
                                 cell.oldPrice.text = ""
                                 cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
                             }
-                            cell.image.loadFrom(URLAddress: Host + anh)
+                            cell.image.loadFrom(URLAddress: APIService.baseUrl + anh)
                         }
                         return cell
                         
@@ -395,7 +394,7 @@ extension HomeViewController: UICollectionViewDataSource {
                                 cell.oldPrice.text = ""
                                 cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
                             }
-                            cell.image.loadFrom(URLAddress: Host + anh)
+                            cell.image.loadFrom(URLAddress: APIService.baseUrl + anh)
                         }
                         return cell
                         

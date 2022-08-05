@@ -20,7 +20,6 @@ class CartViewController: UIViewController {
     var sum: Int = 0
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
-    let Host = "http://192.168.1.74"
     @IBOutlet weak var btnDatHang: UIButton!
     
     
@@ -140,7 +139,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         let item = data[indexPath.item]
         if let ten = item.tenlsp, let serial = item.serial, let price = item.giamoi, let newPrice = item.giagiam , let anhlsp = item.anhlsp, let gg = item.ptgg{
             
-            cell.imageLSP.loadFrom(URLAddress: Host+anhlsp)
+            cell.imageLSP.loadFrom(URLAddress: APIService.baseUrl+anhlsp)
             cell.nameLSP.text = ten + "\nSerial: "+serial
             cell.oldPrice.text = "\(CurrencyVN.toVND(price))"
             cell.newPrice.text = "\(CurrencyVN.toVND(newPrice))"

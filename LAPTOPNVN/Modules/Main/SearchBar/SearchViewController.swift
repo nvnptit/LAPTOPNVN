@@ -183,7 +183,7 @@ extension SearchViewController: UICollectionViewDataSource{
                 cell.oldPrice.text = ""
                 cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
             }
-            cell.image.loadFrom(URLAddress: Host + anh)
+            cell.image.loadFrom(URLAddress: APIService.baseUrl + anh)
         }
         return cell
     }

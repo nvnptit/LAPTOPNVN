@@ -12,7 +12,6 @@ class ListLaptopViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     
-    let Host = "http://192.168.1.74"
     var data : [LoaiSanPhamKM] = []
     var maHang = 1
     var typeHome = ""
@@ -38,8 +37,6 @@ class ListLaptopViewController: UIViewController {
         collectionView.collectionViewLayout = layout
     }
     func loadDataNew(){
-        
-        
         DispatchQueue.init(label: "SanPhamVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self = self else { return }
             
@@ -156,7 +153,7 @@ extension ListLaptopViewController: UICollectionViewDataSource{
                 cell.oldPrice.text = ""
                 cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
             }
-            cell.image.loadFrom(URLAddress: Host + anh)
+            cell.image.loadFrom(URLAddress: APIService.baseUrl + anh)
         }
         return cell
     }

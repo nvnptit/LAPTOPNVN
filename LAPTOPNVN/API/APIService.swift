@@ -12,7 +12,7 @@ typealias LoaiSanPhams = [LoaiSanPham]
 typealias HangSXs = [HangSX]
 
 struct APIService {
-    
+    static let baseUrl: String = "http://192.168.2.19"
     //get -> fetch
     public static func getHistoryOrder(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HistoryOrder]>?, String?) -> ()) {
         APIController.request(ResponseBase<[HistoryOrder]>.self, manager, params: params, headers: headers) { error, data in

@@ -35,7 +35,7 @@ enum APIManager {
 }
 
 extension APIManager {
-    var baseURL: String  { return "http://192.168.1.74/api"}
+    var baseURL: String  { return "\(APIService.baseUrl)/api"}
     //MARK: - URL
     var url: String {
         var path = ""

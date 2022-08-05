@@ -12,6 +12,9 @@ class HistoryOrderTableViewCell: UITableViewCell {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var status: UILabel!
     
+    @IBOutlet weak var datePlan: UILabel!
+    @IBOutlet weak var idGH: UILabel!
+    
     @IBOutlet weak var receiver: UILabel!
     
     @IBOutlet weak var address: UILabel!

@@ -12,7 +12,6 @@ class DetailSanPhamViewController: UIViewController {
     
     var loaiSp: LoaiSanPhamKM?
     var order: HistoryOrder?
-    let Host = "http://192.168.1.74"
 
     @IBOutlet weak var imageLSP: UIImageView!
     
@@ -36,7 +35,7 @@ class DetailSanPhamViewController: UIViewController {
         if let loaiSp = loaiSp {
             // set du lieu vo
             if let anhlsp = loaiSp.anhlsp {
-                let url =  Host + anhlsp
+                let url =  APIService.baseUrl + anhlsp
                 imageLSP.loadFrom(URLAddress: url)
                 tfCPU.text = loaiSp.cpu
                 tfRam.text = loaiSp.ram
@@ -51,7 +50,7 @@ class DetailSanPhamViewController: UIViewController {
         if let loaiSp = order {
             // set du lieu vo
             if let anhlsp = loaiSp.anhlsp {
-                let url =  Host + anhlsp
+                let url =  APIService.baseUrl + anhlsp
                 imageLSP.loadFrom(URLAddress: url)
                 tfCPU.text = loaiSp.cpu
                 tfRam.text = loaiSp.ram
