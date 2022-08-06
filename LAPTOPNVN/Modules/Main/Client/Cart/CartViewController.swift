@@ -71,6 +71,10 @@ class CartViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool = false) {
         self.navigationController?.isNavigationBarHidden = true
         loadData()
+        if (data.isEmpty){
+            self.money.text = "0 VNĐ"
+            
+        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -182,6 +186,9 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
              print("Delete: \(indexPath.row + 1)")
             let item = self.data[indexPath.item]
+            self.sum = self.sum - item.giagiam!
+            self.money.text = "\(CurrencyVN.toVND(self.sum))"
+            
             self.data.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             // Xử lý API

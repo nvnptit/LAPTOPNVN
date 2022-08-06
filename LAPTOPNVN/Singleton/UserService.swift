@@ -14,7 +14,9 @@ class UserService {
     private init() { }
     
     public var infoProfile: LoginResponse?
+    public var infoNV: ModelNV?
     public var cmnd: String = ""
+    public var maNV: String = ""
 
     func setInfo(with data: LoginResponse?){
         guard let info = data else {return}
@@ -29,5 +31,23 @@ class UserService {
     func removeAll() {
         self.infoProfile = nil
         self.cmnd = ""
+    }
+}
+extension UserService{
+    //Nhan vien
+    
+    func setInfoNV(with data: ModelNV?){
+        guard let info = data else {return}
+        self.infoNV = info
+        if let maNV = info.manv {
+            self.maNV = maNV
+        }
+    }
+    func getInfoNV() -> ModelNV?{
+        return self.infoNV
+    }
+    func removeAllNV() {
+        self.infoNV = nil
+        self.maNV = ""
     }
 }

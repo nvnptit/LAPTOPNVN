@@ -12,7 +12,20 @@ typealias LoaiSanPhams = [LoaiSanPham]
 typealias HangSXs = [HangSX]
 
 struct APIService {
-    static let baseUrl: String = "http://192.168.2.19"
+    static let baseUrl: String = "http://192.168.1.12" //2.19
+    
+    
+    //get -> fetch
+    public static func getNV(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[EmployeeModel]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[EmployeeModel]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataNV = data {
+                completion(dataNV, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
     //get -> fetch
     public static func getHistoryOrder(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HistoryOrder]>?, String?) -> ()) {
         APIController.request(ResponseBase<[HistoryOrder]>.self, manager, params: params, headers: headers) { error, data in
@@ -66,8 +79,8 @@ struct APIService {
     }
     
     
-    public static func postLogin(with manager: APIManager, _ params: [String: Any], _ headers: HTTPHeaders?, completion: @escaping(ResponseBase<LoginResponse>?, String?) -> ()) {
-        APIController.request(ResponseBase<LoginResponse>.self, manager, params: params, headers: headers) { error, data in
+    public static func postLogin(with manager: APIManager, _ params: [String: Any], _ headers: HTTPHeaders?, completion: @escaping(ResponseBase<LoginRes>?, String?) -> ()) {
+        APIController.request(ResponseBase<LoginRes>.self, manager, params: params, headers: headers) { error, data in
             if let dataLogin = data {
                 completion(dataLogin, nil)
                 return
@@ -164,8 +177,8 @@ struct APIService {
     }
     
     //get -> fetch
-    public static func updateGioHang(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[GioHangResponse]>?, String?) -> ()) {
-        APIController.request(ResponseBase<[GioHangResponse]>.self, manager, params: params, headers: headers) { error, data in
+    public static func updateGioHang(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(GioHangResponse?, String?) -> ()) {
+        APIController.request(GioHangResponse.self, manager, params: params, headers: headers) { error, data in
             if let dataLoaiSanPham = data {
                 completion(dataLoaiSanPham, nil)
                 return

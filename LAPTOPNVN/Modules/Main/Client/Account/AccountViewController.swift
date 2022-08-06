@@ -12,8 +12,12 @@ import DropDown
 class AccountViewController: UIViewController {
     
     
-    @IBOutlet weak var status: UILabel!
+    
+    @IBOutlet weak var tfFrom: UITextField!
+    @IBOutlet weak var tfTo: UITextField!
+    
     @IBOutlet weak var dropdownStatus: UIView!
+    @IBOutlet weak var status: UILabel!
     var maStatus = -1
     @IBOutlet weak var tableView: UITableView!
     
@@ -41,10 +45,6 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var btnThayDoi: UIButton!
     @IBOutlet weak var btnDangXuat: UIButton!
     
-    
-    @IBOutlet weak var tfFrom: UITextField!
-    
-    @IBOutlet weak var tfTo: UITextField!
     
     var statusDrop = DropDown()
     let statusValues: [String] = ["Chờ duyệt","Đang giao hàng","Đã giao hàng","Đã huỷ"]

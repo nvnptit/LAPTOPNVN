@@ -39,9 +39,23 @@ class LoginViewController: UIViewController {
             [weak self] base,error in
             guard let self = self, let base = base else { return }
             if base.success == true {
-                UserService.shared.setInfo(with: base.data)
-                let mainVC = MainTabBarController()
-                self.navigationController?.pushViewController(mainVC, animated: true)
+                if (base.data?.maquyen == 7){
+                    guard let dataz = base.data else {return}
+                    let info = LoginResponse(cmnd: dataz.cmnd, email: dataz.email, ten: dataz.ten, diachi: dataz.diachi, ngaysinh: dataz.ngaysinh, sdt: dataz.sdt, tendangnhap: dataz.tendangnhap)
+                    UserService.shared.setInfo(with: info)
+                    
+                    let mainVC = MainTabBarController()
+                    self.navigationController?.pushViewController(mainVC, animated: true)
+                }
+                else {
+                        guard let dataz = base.data else {return}
+                    let info = ModelNV(manv: dataz.manv, email: dataz.email, ten: dataz.ten, ngaysinh: dataz.ngaysinh, sdt: dataz.sdt, tendangnhap: dataz.tendangnhap)
+                        UserService.shared.setInfoNV(with: info)
+                    
+                    
+                    let mainVC = HomeAdminViewController()
+                    self.navigationController?.pushViewController(mainVC, animated: true)
+                }
             } else {
                 let alert = UIAlertController(title: "Tên đăng nhập hoặc mật khẩu không hợp lệ", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in

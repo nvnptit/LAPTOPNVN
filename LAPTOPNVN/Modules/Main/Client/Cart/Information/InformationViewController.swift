@@ -128,9 +128,9 @@ class InformationViewController: UIViewController {
                     let phone = self.phone.text
                     let email = self.email.text
                     let address = self.address.text
-                    let dayPlan = self.datePlan.text
+                    let dayPlan = Date().convertDateViewToSQL(self.datePlan.text!)
                     for item in self.dataGioHang{
-                        var params = GioHangEdit(idgiohang: item.idgiohang, ngaylapgiohang: nil,ngaydukien: dayPlan,  tonggiatri: item.giagiam, matrangthai: 0, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email).convertToDictionary()
+                        let params = GioHangEdit(idgiohang: item.idgiohang, ngaylapgiohang: nil,ngaydukien: dayPlan, tonggiatri: item.giagiam, matrangthai: 0, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email).convertToDictionary()
                         self.updateGH(params: params)
                     }
                     
@@ -168,7 +168,7 @@ extension InformationViewController {
         APIService.updateGioHang(with: .updateGioHang, params: params, headers: nil, completion: { base, error in
             guard let base = base else { return }
             if base.success == true {
-                
+                print(base)
             }
             else {
                 fatalError()

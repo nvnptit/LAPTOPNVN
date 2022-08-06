@@ -25,9 +25,13 @@ enum APIManager {
     case searchLSP
     case delTK
     
+    case getNVDuyet
+    case getNVGiao
+    
     case addGioHang
     case getGioHang
     case updateGioHang
+    case updateGioHangAdmin
     case deleteGioHang
     
     case getHistoryOrder
@@ -65,12 +69,19 @@ extension APIManager {
             case .addGioHang: path = "/gio-hang"
             case .updateGioHang: path = "/gio-hang"
             case .deleteGioHang: path = "/gio-hang"
+            case .updateGioHangAdmin: path = "/gio-hang/admin"
                 
             case .addUser: path = "/khach-hang"
             case .updateUser: path = "/khach-hang"
+                
+            
             
             case .getHistoryOrder: path = "/gio-hang/history-order"
             case .delTK: path = "/tai-khoan"
+            case .getNVDuyet:
+                path = "/nhan-vien/NV-Duyet"
+            case .getNVGiao:
+                path = "/nhan-vien/NV-Giaohang"
         }
         return baseURL + path
     }
@@ -80,12 +91,12 @@ extension APIManager {
         switch self {
             case  .getHangSX, .getLoaiSanPhamFull, .getLoaiSanPhamNew,
                     .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGood, .getLoaiSanPhamHang, .searchLSP,
-                    .getHistoryOrder
+                    .getHistoryOrder, .getNVGiao, .getNVDuyet
                 :
                 return .get
             case .login, .register, .resetPass, .addGioHang, .addUser:
                 return .post
-            case .updateGioHang, .updateUser:
+            case .updateGioHang, .updateUser,.updateGioHangAdmin:
                 return .put
             case .deleteGioHang, .delTK:
                 return .delete
