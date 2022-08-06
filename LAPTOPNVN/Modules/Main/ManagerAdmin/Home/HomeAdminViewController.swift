@@ -28,6 +28,8 @@ class HomeAdminViewController: UIViewController {
     }
 
     @IBAction func tapBrand(_ sender: UIButton, forEvent event: UIEvent) {
+        let mainVC = BrandViewController()
+        self.navigationController?.pushViewController(mainVC, animated: true)
         
     }
     @IBAction func tapEmployee(_ sender: UIButton, forEvent event: UIEvent) {

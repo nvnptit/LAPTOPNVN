@@ -138,7 +138,7 @@
                                         <action selector="tapRegister:forEvent:" destination="-1" eventType="touchUpInside" id="sMA-kg-RPO"/>
                                     </connections>
                                 </button>
-                                <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="97 Man Thien Phường Hiệp Phú, Quận 9" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dBT-ct-NfW">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="97 Man Thien Phường Hiệp Phú, Quận 9" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dBT-ct-NfW">
                                     <rect key="frame" x="30" y="513" width="354" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -186,6 +186,7 @@
                                 <constraint firstItem="l26-fn-kgr" firstAttribute="top" secondItem="LLy-Gb-jEG" secondAttribute="bottom" constant="19" id="ls3-A2-ohO"/>
                                 <constraint firstItem="O2f-cu-S7V" firstAttribute="top" secondItem="Cnd-jZ-wBD" secondAttribute="bottom" constant="35" id="mHC-Nl-5rK"/>
                                 <constraint firstItem="xsN-Gd-p8w" firstAttribute="top" secondItem="itn-B3-hng" secondAttribute="bottom" constant="35" id="mgY-kX-AYc"/>
+                                <constraint firstItem="dBT-ct-NfW" firstAttribute="leading" secondItem="WUU-g4-9dB" secondAttribute="leading" constant="30" id="mnT-a8-0W7"/>
                                 <constraint firstItem="kNU-kb-U69" firstAttribute="top" secondItem="dBT-ct-NfW" secondAttribute="bottom" constant="37" id="pgQ-cf-APf"/>
                                 <constraint firstItem="ElX-kd-50C" firstAttribute="leading" secondItem="itn-B3-hng" secondAttribute="trailing" constant="16" id="sC0-Ha-hl5"/>
                                 <constraint firstItem="wfU-dD-fc3" firstAttribute="top" secondItem="ElX-kd-50C" secondAttribute="bottom" constant="19" id="sfu-Fp-Brk"/>
