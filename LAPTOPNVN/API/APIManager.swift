@@ -35,6 +35,7 @@ enum APIManager {
     case deleteGioHang
     
     case getHistoryOrder
+    case getDoanhThu
     
 }
 
@@ -82,6 +83,8 @@ extension APIManager {
                 path = "/nhan-vien/NV-Duyet"
             case .getNVGiao:
                 path = "/nhan-vien/NV-Giaohang"
+            case .getDoanhThu:
+                path = "/gio-hang/doanh-thu"
         }
         return baseURL + path
     }
@@ -91,7 +94,7 @@ extension APIManager {
         switch self {
             case  .getHangSX, .getLoaiSanPhamFull, .getLoaiSanPhamNew,
                     .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGood, .getLoaiSanPhamHang, .searchLSP,
-                    .getHistoryOrder, .getNVGiao, .getNVDuyet
+                    .getHistoryOrder, .getNVGiao, .getNVDuyet , .getDoanhThu
                 :
                 return .get
             case .login, .register, .resetPass, .addGioHang, .addUser:

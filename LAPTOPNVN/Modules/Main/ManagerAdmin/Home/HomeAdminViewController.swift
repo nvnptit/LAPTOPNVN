@@ -50,7 +50,8 @@ class HomeAdminViewController: UIViewController {
     }
     
     @IBAction func tapStatistics(_ sender: UIButton, forEvent event: UIEvent) {
-        
+        let mainVC = StatisticViewController()
+        self.navigationController?.pushViewController(mainVC, animated: true)
     }
     
 }

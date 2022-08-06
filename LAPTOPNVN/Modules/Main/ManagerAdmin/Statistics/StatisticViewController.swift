@@ -9,7 +9,7 @@ import UIKit
 import NVActivityIndicatorView
 
 class StatisticViewController: UIViewController {
-
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var tfFrom: UITextField!
@@ -17,12 +17,15 @@ class StatisticViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var tongDoanhThu: UILabel!
+    var sum: Int = 0
+    
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
     let datePicker1 = UIDatePicker()
     let datePicker2 = UIDatePicker()
     
-    var data: [String] = []
+    var data: [DoanhThuResponse] = []
     
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false
@@ -39,35 +42,50 @@ class StatisticViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAnimation()
+        
+        if #available(iOS 13.4, *) {
+            createDatePicker()
+        } else {
+            // Fallback on earlier versions
+        }
+        
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: "HistoryOrderTableViewCell", bundle: nil), forCellReuseIdentifier: "HistoryOrderTableViewCell")
+        tableView.register(UINib(nibName: "StatTableViewCell", bundle: nil), forCellReuseIdentifier: "StatTableViewCell")
+        
     }
-
+    
     
     override func viewDidAppear(_ animated: Bool = false) {
-        loadDataHistory()
+//        loadDataDoanhThu()
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }
     
-    func loadDataHistory(){
+    func loadDataDoanhThu(){
         loading.startAnimating()
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
         let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
         
         
-        let params = HistoryModel(status: 1, cmnd: nil, dateFrom: from, dateTo: to).convertToDictionary()
+        let params = DoanhThuModel(dateFrom: from, dateTo: to).convertToDictionary()
         print(params)
-        DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            APIService.getHistoryOrder(with: .getHistoryOrder, params: params, headers: nil, completion: {
-                [weak self] base, error in
+        DispatchQueue.init(label: "DoanhThuVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            APIService.getDoanhThu(with: .getDoanhThu, params: params, headers: nil, completion:
+                 {  base, error in
                 guard let self = self, let base = base else { return }
                 if base.success == true {
                     if let data = base.data {
-//                        self.dataHistory = data
+                        print(data)
+                      self.data = data
+                        for i in data {
+                            if let money = i.doanhthu{
+                                self.sum = self.sum + money
+                            }
+                        }
                     }
+                    self.tongDoanhThu.text = CurrencyVN.toVND(self.sum)
                 } else {
                     print(base.success)
                 }
@@ -81,7 +99,7 @@ class StatisticViewController: UIViewController {
         
     }
     
-
+    
 }
 
 
@@ -99,13 +117,13 @@ extension StatisticViewController{
         guard let userInfo = notification.userInfo else { return }
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-                var contentInset:UIEdgeInsets = self.scrollView.contentInset
-                contentInset.bottom = keyboardFrame.size.height + 70
-                scrollView.contentInset = contentInset
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 70
+        scrollView.contentInset = contentInset
     }
     @objc func keyboardWillHide(notification:NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-                scrollView.contentInset = contentInset
+        scrollView.contentInset = contentInset
     }
     //MARK: - End Setup keyboard
 }
@@ -124,54 +142,83 @@ extension StatisticViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 153
+        return 50
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderTableViewCell", for: indexPath) as! HistoryOrderTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StatTableViewCell", for: indexPath) as! StatTableViewCell
         let item = data[indexPath.item]
-        if let ngaylapgiohang = item.
-//           //            let tonggiatri = item.tonggiatri,
-//           let tentrangthai = item.tentrangthai,
-//           //            let nvgiao = item.nvgiao,
-//           //            let nvduyet = item.nvduyet,
-//            let nguoinhan = item.nguoinhan,
-//           let diachi = item.diachi,
-//           let sdt = item.sdt,
-//           let datePlan = item.ngaydukien,
-//           let idGH = item.idgiohang
-        
-        //            let serial = item.serial,
-        //            let tenlsp = item.tenlsp,
-        //            let anhlsp = item.anhlsp,
-        //            let mota = item.mota,
-        //            let cpu = item.cpu,
-        //            let ram = item.ram,
-        //            let harddrive = item.harddrive,
-        //            let cardscreen = item.cardscreen,
-        //            let os = item.os
-        {
-            cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss")
-            cell.status.text = tentrangthai
-            cell.status.textColor = .orange
-            cell.receiver.text = nguoinhan
-            cell.address.text = diachi
-            cell.phone.text = sdt
-            cell.datePlan.text = Date().convertDateSQLToView(String(datePlan.prefix(10)))
-            cell.idGH.text = "\(idGH)"
-        }
+        cell.date.text = "\(item.thang!)-\(item.nam!)"
+        cell.money.text = "\(CurrencyVN.toVND(item.doanhthu!))"
         cell.selectionStyle = .none
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let item = dataHistory[indexPath.item]
-//        let detailStatisticViewController = DetailStatisticViewController()
-//        detailStatisticViewController.order = item
-//        self.navigationController?.pushViewController(detailStatisticViewController, animated: true)
+        //        let item = dataHistory[indexPath.item]
+        //        let detailStatisticViewController = DetailStatisticViewController()
+        //        detailStatisticViewController.order = item
+        //        self.navigationController?.pushViewController(detailStatisticViewController, animated: true)
     }
 }
 
+
+extension StatisticViewController{
+    //MARK: - Datepicker
+    
+    private func createToolbar(_ datePickerView: UIDatePicker) -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapOnView))
+        switch (datePickerView){
+            case datePicker1:
+                let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donedatePicker1))
+                let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                toolbar.setItems([cancelButton,flexButton,doneButton], animated: true)
+            case datePicker2:
+                let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donedatePicker2))
+                let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                toolbar.setItems([cancelButton,flexButton,doneButton], animated: true)
+            default: break
+                
+        }
+        
+        return toolbar
+    }
+    @available(iOS 13.4, *)
+    private func createDatePicker() {
+        datePicker1.preferredDatePickerStyle = .wheels
+        datePicker2.preferredDatePickerStyle = .wheels
+        
+        if #available(iOS 14, *) {
+            datePicker1.preferredDatePickerStyle = .inline
+            datePicker2.preferredDatePickerStyle = .inline
+        }
+        
+        datePicker1.datePickerMode = .date
+        tfFrom.inputView = datePicker1
+        tfFrom.inputAccessoryView = createToolbar(datePicker1)
+        
+        datePicker2.datePickerMode = .date
+        tfTo.inputView = datePicker2
+        tfTo.inputAccessoryView = createToolbar(datePicker2)
+    }
+    
+    @objc func donedatePicker1() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        tfFrom.text =  dateFormatter.string(from: datePicker1.date)
+        view.endEditing(true)
+        loadDataDoanhThu()
+    }
+    @objc func donedatePicker2() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        tfTo.text =  dateFormatter.string(from: datePicker2.date)
+        view.endEditing(true)
+        loadDataDoanhThu()
+    }
+}
 
 

@@ -14,6 +14,16 @@ typealias HangSXs = [HangSX]
 struct APIService {
     static let baseUrl: String = "http://192.168.1.12" //2.19
     
+    //get -> fetch
+    public static func getDoanhThu(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[DoanhThuResponse]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[DoanhThuResponse]>.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
     
     //get -> fetch
     public static func getNV(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[EmployeeModel]>?, String?) -> ()) {
