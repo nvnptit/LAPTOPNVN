@@ -12,7 +12,8 @@ typealias LoaiSanPhams = [LoaiSanPham]
 typealias HangSXs = [HangSX]
 
 struct APIService {
-    static let baseUrl: String = "http://192.168.2.21" //2.21 .1.12
+    static let baseUrl: String = "http://192.168.2.21"
+    //2.21 .1.12
     
     public static func uploadAvatar(with manager: APIManager, image: UIImage?, completion: @escaping(Response?, String?) -> ()) {
         guard let image = image else {
