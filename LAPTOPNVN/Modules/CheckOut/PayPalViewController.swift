@@ -22,7 +22,7 @@ class PayPalViewController: UIViewController {
         
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
         
-        let request = BTPayPalCheckoutRequest(amount: "100.67")
+        let request = BTPayPalCheckoutRequest(amount: "100")
         request.currencyCode = "USD"
         
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in

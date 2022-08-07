@@ -12,7 +12,28 @@ typealias LoaiSanPhams = [LoaiSanPham]
 typealias HangSXs = [HangSX]
 
 struct APIService {
-    static let baseUrl: String = "http://192.168.1.12" //2.19
+    static let baseUrl: String = "http://192.168.2.21" //2.21 .1.12
+    
+    public static func uploadAvatar(with manager: APIManager, image: UIImage?, completion: @escaping(Response?, String?) -> ()) {
+        guard let image = image else {
+            return
+        }
+        AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(image.jpegData(compressionQuality: 0.5)!, withName: "file" , fileName: "file.jpeg", mimeType: "image/jpeg")
+        },
+                  to: manager.url, method: manager.method , headers: APIHeader.multipartFormData())
+        .responseData { response in
+            switch response.result {
+                case .success(let data):
+                    JSONDecoder.decode(Response.self, from: data) { error, reponse in
+                        completion(reponse, nil)
+                    }
+                case .failure(let error):
+                    completion(nil, error.localizedDescription)
+            }
+        }
+    }
+    
     
     //get -> fetch
     public static func getDoanhThu(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[DoanhThuResponse]>?, String?) -> ()) {

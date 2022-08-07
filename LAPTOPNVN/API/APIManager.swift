@@ -36,6 +36,7 @@ enum APIManager {
     
     case getHistoryOrder
     case getDoanhThu
+    case uploadAvatar
     
 }
 
@@ -85,6 +86,8 @@ extension APIManager {
                 path = "/nhan-vien/NV-Giaohang"
             case .getDoanhThu:
                 path = "/gio-hang/doanh-thu"
+            case .uploadAvatar:
+                path = "/loai-san-pham/uploadPicture"
         }
         return baseURL + path
     }
@@ -97,7 +100,7 @@ extension APIManager {
                     .getHistoryOrder, .getNVGiao, .getNVDuyet , .getDoanhThu
                 :
                 return .get
-            case .login, .register, .resetPass, .addGioHang, .addUser:
+            case .login, .register, .resetPass, .addGioHang, .addUser, .uploadAvatar:
                 return .post
             case .updateGioHang, .updateUser,.updateGioHangAdmin:
                 return .put

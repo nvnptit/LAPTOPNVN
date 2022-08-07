@@ -11,6 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailBrandViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
                 <outlet property="btnChange" destination="4fo-CW-V4J" id="NQh-8E-zQY"/>
+                <outlet property="camera" destination="TqQ-ql-ydj" id="b0T-3b-u2u"/>
+                <outlet property="scrollView" destination="zYc-H2-8f3" id="d5M-eB-guV"/>
                 <outlet property="tfEmail" destination="bVZ-dR-Q5I" id="8OZ-28-UTi"/>
                 <outlet property="tfMaHang" destination="rTq-N8-4hj" id="nkw-26-ix4"/>
                 <outlet property="tfPhone" destination="MoY-uM-UYL" id="w4G-6G-QYl"/>
@@ -100,7 +102,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vc4-rl-tXz" userLabel="tfPhone">
-                                    <rect key="frame" x="131" y="303" width="253" height="34"/>
+                                    <rect key="frame" x="131" y="303" width="208" height="34"/>
                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
@@ -122,6 +124,23 @@
                                         <action selector="tapDelete:" destination="-1" eventType="touchUpInside" id="gWI-Cd-t3G"/>
                                     </connections>
                                 </button>
+                                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TqQ-ql-ydj" userLabel="View Camera">
+                                    <rect key="frame" x="343" y="292" width="55" height="55"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cam1" translatesAutoresizingMaskIntoConstraints="NO" id="icm-CF-4g1">
+                                            <rect key="frame" x="-1" y="0.0" width="55" height="55"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="55" id="6pb-V5-xjH"/>
+                                        <constraint firstAttribute="height" constant="55" id="Akd-tw-Iir"/>
+                                        <constraint firstAttribute="bottom" secondItem="icm-CF-4g1" secondAttribute="bottom" id="WnT-hk-gx0"/>
+                                        <constraint firstItem="icm-CF-4g1" firstAttribute="top" secondItem="TqQ-ql-ydj" secondAttribute="top" id="cB4-rc-qHN"/>
+                                        <constraint firstAttribute="trailing" secondItem="icm-CF-4g1" secondAttribute="trailing" constant="1" id="u1U-yq-ElI"/>
+                                        <constraint firstItem="icm-CF-4g1" firstAttribute="leading" secondItem="TqQ-ql-ydj" secondAttribute="leading" constant="-1" id="yZM-RS-Lyt"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
@@ -130,13 +149,13 @@
                                 <constraint firstItem="rtq-aW-NeC" firstAttribute="top" secondItem="rTq-N8-4hj" secondAttribute="bottom" constant="17" id="5hM-SG-KZB"/>
                                 <constraint firstItem="MoY-uM-UYL" firstAttribute="top" secondItem="bVZ-dR-Q5I" secondAttribute="bottom" constant="17" id="6RK-RF-OYM"/>
                                 <constraint firstItem="4fo-CW-V4J" firstAttribute="centerX" secondItem="fee-KE-4h7" secondAttribute="centerX" id="7Oh-Th-aN0"/>
+                                <constraint firstItem="TqQ-ql-ydj" firstAttribute="leading" secondItem="Vc4-rl-tXz" secondAttribute="trailing" constant="4" id="9UG-AX-nhX"/>
                                 <constraint firstItem="rTq-N8-4hj" firstAttribute="leading" secondItem="WZ6-sv-wmU" secondAttribute="trailing" constant="43" id="B7S-fg-Foi"/>
                                 <constraint firstItem="4fo-CW-V4J" firstAttribute="top" secondItem="Vc4-rl-tXz" secondAttribute="bottom" constant="50" id="BMT-Km-McX"/>
                                 <constraint firstAttribute="trailing" secondItem="bVZ-dR-Q5I" secondAttribute="trailing" constant="30" id="Cik-db-IB3"/>
                                 <constraint firstItem="BiA-RE-T5d" firstAttribute="top" secondItem="JuN-jP-46A" secondAttribute="bottom" constant="29" id="D6m-GV-b6w"/>
                                 <constraint firstItem="rTq-N8-4hj" firstAttribute="top" secondItem="fee-KE-4h7" secondAttribute="top" constant="101" id="E1O-FE-0V6"/>
                                 <constraint firstItem="WZ6-sv-wmU" firstAttribute="top" secondItem="fee-KE-4h7" secondAttribute="top" constant="109" id="GJa-bg-D2v"/>
-                                <constraint firstAttribute="trailing" secondItem="Vc4-rl-tXz" secondAttribute="trailing" constant="30" id="IIK-XN-7cd"/>
                                 <constraint firstItem="WZ6-sv-wmU" firstAttribute="leading" secondItem="fee-KE-4h7" secondAttribute="leading" constant="30" id="Jl7-XE-5UY"/>
                                 <constraint firstItem="Vc4-rl-tXz" firstAttribute="top" secondItem="MoY-uM-UYL" secondAttribute="bottom" constant="19" id="L7C-Dt-CH0"/>
                                 <constraint firstItem="bVZ-dR-Q5I" firstAttribute="leading" secondItem="BiA-RE-T5d" secondAttribute="trailing" constant="65" id="LE9-VY-EZD"/>
@@ -146,12 +165,15 @@
                                 <constraint firstItem="Vc4-rl-tXz" firstAttribute="leading" secondItem="yld-PO-kKr" secondAttribute="trailing" constant="40" id="XEm-S6-FBi"/>
                                 <constraint firstItem="DWq-Mb-QdH" firstAttribute="top" secondItem="4fo-CW-V4J" secondAttribute="bottom" constant="23" id="Xag-Xw-0IB"/>
                                 <constraint firstAttribute="trailing" secondItem="rTq-N8-4hj" secondAttribute="trailing" constant="30" id="XoJ-kL-CUO"/>
+                                <constraint firstAttribute="trailing" secondItem="TqQ-ql-ydj" secondAttribute="trailing" constant="16" id="fJk-h0-hNA"/>
                                 <constraint firstAttribute="trailing" secondItem="rtq-aW-NeC" secondAttribute="trailing" constant="30" id="hrr-Nz-m5j"/>
+                                <constraint firstAttribute="trailing" secondItem="Vc4-rl-tXz" secondAttribute="trailing" constant="75" id="kdh-fL-3VY"/>
                                 <constraint firstItem="sbE-2n-reh" firstAttribute="leading" secondItem="fee-KE-4h7" secondAttribute="leading" constant="30" id="lE7-yj-lsC"/>
                                 <constraint firstItem="MoY-uM-UYL" firstAttribute="leading" secondItem="sbE-2n-reh" secondAttribute="trailing" constant="32" id="pKr-s6-NbB"/>
                                 <constraint firstItem="yld-PO-kKr" firstAttribute="leading" secondItem="fee-KE-4h7" secondAttribute="leading" constant="30" id="pYZ-Qo-nOT"/>
                                 <constraint firstItem="BiA-RE-T5d" firstAttribute="leading" secondItem="fee-KE-4h7" secondAttribute="leading" constant="30" id="r8M-H4-WXx"/>
                                 <constraint firstItem="JuN-jP-46A" firstAttribute="leading" secondItem="fee-KE-4h7" secondAttribute="leading" constant="30" id="sX7-mY-gkw"/>
+                                <constraint firstItem="TqQ-ql-ydj" firstAttribute="top" secondItem="MoY-uM-UYL" secondAttribute="bottom" constant="8" id="tQT-cZ-U6g"/>
                                 <constraint firstItem="JuN-jP-46A" firstAttribute="top" secondItem="WZ6-sv-wmU" secondAttribute="bottom" constant="33" id="upp-uY-FDf"/>
                                 <constraint firstAttribute="trailing" secondItem="MoY-uM-UYL" secondAttribute="trailing" constant="30" id="zfM-aQ-ik8"/>
                             </constraints>
@@ -180,6 +202,7 @@
         </view>
     </objects>
     <resources>
+        <image name="cam1" width="1920" height="1080"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

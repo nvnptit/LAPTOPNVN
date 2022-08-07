@@ -19,8 +19,7 @@ class APIHeader {
 //        return [.authorization(token)]
 //    }
 //
-//    static func multipartFormData() -> HTTPHeaders? {
-//        guard let token = UserService.shared.getTokenLogin() else { return nil }
-//        return [.authorization(token), .contentType("multipart/form-data") ]
-//    }
+    static func multipartFormData() -> HTTPHeaders? {
+        return [.contentType("multipart/form-data") ]
+    }
 }
