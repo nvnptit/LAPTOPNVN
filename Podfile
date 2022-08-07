@@ -12,12 +12,12 @@ target 'LAPTOPNVN' do
 	pod 'Cosmos'
 	pod 'NVActivityIndicatorView'
 	pod 'DropDown'
-  pod 'Braintree'
+  #pod 'Braintree'
   
   
   # Optionally include additional Pods
-  pod 'Braintree/DataCollector'
-  pod 'Braintree/Venmo'
+ #pod 'Braintree/DataCollector'
+  #pod 'Braintree/Venmo'
 
   
   target 'LAPTOPNVNTests' do
