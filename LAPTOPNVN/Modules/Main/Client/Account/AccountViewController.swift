@@ -345,7 +345,6 @@ class AccountViewController: UIViewController {
         let vc = MainTabBarController()
         vc.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     @IBAction func switchView(_ sender: UISegmentedControl, forEvent event: UIEvent) {
         if segment.selectedSegmentIndex == 0 {

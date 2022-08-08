@@ -1,28 +1,29 @@
 //
-//  OrderViewController.swift
+//  OrderShipViewController.swift
 //  LAPTOPNVN
 //
-//  Created by Nhat on 06/08/2022.
+//  Created by Nhat on 08/08/2022.
 //
 
 import UIKit
-import NVActivityIndicatorView
 import DropDown
+import NVActivityIndicatorView
 
-class OrderViewController: UIViewController {
+class OrderShipViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var tfFrom: UITextField!
+    
     @IBOutlet weak var tfTo: UITextField!
     
     @IBOutlet weak var dropdownStatus: UIView!
-    @IBOutlet weak var status: UILabel!
     
+    @IBOutlet weak var status: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    var maStatus = 0
+    
+    var maStatus = 1
     var statusDrop = DropDown()
-    let statusValues: [String] = ["Chờ duyệt","Đang giao hàng","Đã giao hàng","Đã huỷ"]
+    let statusValues: [String] = ["Đang giao hàng","Đã giao hàng"]
     
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
@@ -45,7 +46,7 @@ class OrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupDropDown()
         setupStatus()
         if #available(iOS 13.4, *) {
@@ -53,34 +54,37 @@ class OrderViewController: UIViewController {
         } else {
             // Fallback on earlier versions
         }
-        
-        //        loadDataHistory()
-        self.status.text = "Chờ duyệt"
         setupAnimation()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "HistoryOrderTableViewCell", bundle: nil), forCellReuseIdentifier: "HistoryOrderTableViewCell")
+        status.text = "Đang giao hàng"
     }
-
+    
     
     override func viewDidAppear(_ animated: Bool = false) {
-//        self.navigationController?.isNavigationBarHidden = true
+        //        self.navigationController?.isNavigationBarHidden = true
         loadDataHistory()
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }
     
+    @IBAction func tapLogout(_ sender: UIButton, forEvent event: UIEvent) {
+        UserService.shared.removeAllNV()
+        let vc = LoginViewController()
+        vc.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     func loadDataHistory(){
         loading.startAnimating()
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
         let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
-        
-        
-        let params = HistoryModel(status: self.maStatus, cmnd: nil, dateFrom: from, dateTo: to).convertToDictionary()
+        guard let maNV = UserService.shared.infoNV?.manv else {return}
+        let params = ShipperModel(manv: maNV, dateFrom: from, dateTo: to, status: self.maStatus).convertToDictionary()
         print(params)
         DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            APIService.getHistoryOrder(with: .getHistoryOrder, params: params, headers: nil, completion: {
+            APIService.getOrderShipper(with: .getOrderShipper, params: params, headers: nil, completion: {
                 [weak self] base, error in
                 guard let self = self, let base = base else { return }
                 if base.success == true {
@@ -110,8 +114,7 @@ class OrderViewController: UIViewController {
         statusDrop.direction = .bottom
         statusDrop.selectionAction = { [unowned self] (index: Int, item: String) in
             self.status.text = item
-            //            self.maStatus = statusValues.firstIndex(where: {$0 == item})!
-            self.maStatus = index
+            self.maStatus = index+1
             loadDataHistory()
         }
         
@@ -137,10 +140,10 @@ class OrderViewController: UIViewController {
     }
     
     // END STATUS
-
+    
 }
 
-extension OrderViewController{
+extension OrderShipViewController{
     //MARK: - Datepicker
     
     private func createToolbar(_ datePickerView: UIDatePicker) -> UIToolbar {
@@ -197,7 +200,7 @@ extension OrderViewController{
     }
 }
 
-extension OrderViewController{
+extension OrderShipViewController{
     //MARK: - Setup keyboard, user
     private func setupKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
@@ -225,7 +228,7 @@ extension OrderViewController{
 
 // History
 
-extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
+extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -246,25 +249,13 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderTableViewCell", for: indexPath) as! HistoryOrderTableViewCell
         let item = dataHistory[indexPath.item]
         if let ngaylapgiohang = item.ngaylapgiohang,
-           //            let tonggiatri = item.tonggiatri,
            let tentrangthai = item.tentrangthai,
-           //            let nvgiao = item.nvgiao,
-           //            let nvduyet = item.nvduyet,
-            let nguoinhan = item.nguoinhan,
+           let nguoinhan = item.nguoinhan,
            let diachi = item.diachi,
            let sdt = item.sdt,
            let datePlan = item.ngaydukien,
            let idGH = item.idgiohang
-        
-        //            let serial = item.serial,
-        //            let tenlsp = item.tenlsp,
-        //            let anhlsp = item.anhlsp,
-        //            let mota = item.mota,
-        //            let cpu = item.cpu,
-        //            let ram = item.ram,
-        //            let harddrive = item.harddrive,
-        //            let cardscreen = item.cardscreen,
-        //            let os = item.os
+            
         {
             cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss")
             cell.status.text = tentrangthai
@@ -280,14 +271,8 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = dataHistory[indexPath.item]
-        
-//            let item = loaiSp[indexPath.item]
-//            let detailSPViewController = DetailSanPhamViewController()
-//            detailSPViewController.loaiSp = item
-//            self.navigationController?.pushViewController(detailSPViewController, animated: true)
-//
-        
         let detailOrderViewController = DetailOrderViewController()
+        detailOrderViewController.KEY = "SHIPPER"
         detailOrderViewController.order = item
         self.navigationController?.pushViewController(detailOrderViewController, animated: true)
         

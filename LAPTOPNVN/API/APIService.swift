@@ -12,8 +12,19 @@ typealias LoaiSanPhams = [LoaiSanPham]
 typealias HangSXs = [HangSX]
 
 struct APIService {
-    static let baseUrl: String = "http://192.168.2.21"
+    static let baseUrl: String = "http://192.168.1.12"
     //2.21 .1.12
+    
+    //get -> fetch
+    public static func getOrderShipper(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HistoryOrder]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[HistoryOrder]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
     
     public static func uploadAvatar(with manager: APIManager, image: UIImage?, completion: @escaping(Response?, String?) -> ()) {
         guard let image = image else {
@@ -211,8 +222,8 @@ struct APIService {
     //get -> fetch
     public static func updateGioHang(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(GioHangResponse?, String?) -> ()) {
         APIController.request(GioHangResponse.self, manager, params: params, headers: headers) { error, data in
-            if let dataLoaiSanPham = data {
-                completion(dataLoaiSanPham, nil)
+            if let data = data {
+                completion(data, nil)
                 return
             }
             completion(nil, error)

@@ -24,7 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BTAppContextSwitcher.setReturnURLScheme("com.nvn.LAPTOPNVN.payments")
         return true
     }
-    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if url.scheme?.localizedCaseInsensitiveCompare("com.nvn.LAPTOPNVN.payments") == .orderedSame {
+            return BTAppContextSwitcher.handleOpenURL(url)
+        }
+        return false
+    }
     func setRootViewController(_ vc: UIViewController, animated: Bool = true) {
         guard animated, let window = self.window else {
             self.window?.rootViewController = vc

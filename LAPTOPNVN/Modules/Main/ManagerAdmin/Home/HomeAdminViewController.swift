@@ -8,25 +8,28 @@
 import UIKit
 
 class HomeAdminViewController: UIViewController {
-
+    
     @IBOutlet weak var welcome: UILabel!
-    
-    
-    
-    
     let info = UserService.shared.infoNV
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.hidesBackButton = true
         if let name = info?.ten {
             welcome.text = "Chào mừng bạn, \(name)"
         }
         // Do any additional setup after loading the view.
     }
+    
     func loadData(){
         
     }
-
+    @IBAction func tapLogout(_ sender: UIButton, forEvent event: UIEvent) {
+        
+        UserService.shared.removeAllNV()
+        let vc = LoginViewController()
+        vc.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func tapBrand(_ sender: UIButton, forEvent event: UIEvent) {
         let mainVC = BrandViewController()
         self.navigationController?.pushViewController(mainVC, animated: true)
@@ -46,7 +49,6 @@ class HomeAdminViewController: UIViewController {
     }
     
     @IBAction func updateOrder(_ sender: UIButton, forEvent event: UIEvent) {
-        
         let mainVC = OrderViewController()
         self.navigationController?.pushViewController(mainVC, animated: true)
     }

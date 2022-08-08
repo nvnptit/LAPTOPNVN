@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chào mừng bạn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amf-6R-jgC">
-                    <rect key="frame" x="138.5" y="81" width="137.5" height="23"/>
+                    <rect key="frame" x="138.5" y="101" width="137.5" height="23"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -161,27 +161,45 @@
                         <action selector="tapStatistics:forEvent:" destination="-1" eventType="touchUpInside" id="ggL-Ew-l2o"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1V-pG-hbI">
+                    <rect key="frame" x="309" y="60" width="95" height="31"/>
+                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="95" id="HuF-gU-zLC"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="ĐĂNG XUẤT">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="tapLogout:forEvent:" destination="-1" eventType="touchUpInside" id="ZdQ-94-TF3"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="p1V-pG-hbI" secondAttribute="trailing" constant="10" id="1Qs-zd-ak0"/>
                 <constraint firstItem="Vc1-vO-B5E" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4Ty-ua-zte"/>
-                <constraint firstItem="amf-6R-jgC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="37" id="8gP-aA-r1J"/>
+                <constraint firstItem="amf-6R-jgC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="57" id="8gP-aA-r1J"/>
                 <constraint firstItem="oxy-WR-wiL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="BSb-vx-HFo"/>
                 <constraint firstItem="29U-va-3Gg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GvW-dK-8aZ"/>
                 <constraint firstItem="lQr-CJ-Olg" firstAttribute="top" secondItem="y2i-Qd-dQl" secondAttribute="bottom" constant="45" id="HqA-WK-dS0"/>
-                <constraint firstItem="n7J-if-TT2" firstAttribute="top" secondItem="amf-6R-jgC" secondAttribute="bottom" constant="105" id="HwN-fa-Mg1"/>
+                <constraint firstItem="n7J-if-TT2" firstAttribute="top" secondItem="amf-6R-jgC" secondAttribute="bottom" constant="85" id="HwN-fa-Mg1"/>
                 <constraint firstItem="oxy-WR-wiL" firstAttribute="top" secondItem="lQr-CJ-Olg" secondAttribute="bottom" constant="47" id="OBU-FU-FMQ"/>
                 <constraint firstItem="Vc1-vO-B5E" firstAttribute="top" secondItem="oxy-WR-wiL" secondAttribute="bottom" constant="22" id="PdC-ww-cgV"/>
                 <constraint firstItem="dfV-Gn-VH2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Tp3-la-3Gf"/>
                 <constraint firstItem="ImH-Aj-svI" firstAttribute="top" secondItem="n7J-if-TT2" secondAttribute="bottom" constant="45" id="Yzk-b4-Ble"/>
-                <constraint firstItem="dfV-Gn-VH2" firstAttribute="top" secondItem="amf-6R-jgC" secondAttribute="bottom" constant="57" id="bsJ-MU-U9U"/>
+                <constraint firstItem="dfV-Gn-VH2" firstAttribute="top" secondItem="amf-6R-jgC" secondAttribute="bottom" constant="37" id="bsJ-MU-U9U"/>
                 <constraint firstItem="amf-6R-jgC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c9C-ky-A8e"/>
                 <constraint firstItem="y2i-Qd-dQl" firstAttribute="top" secondItem="dfV-Gn-VH2" secondAttribute="bottom" constant="28" id="dJD-fI-ryE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="n7J-if-TT2" secondAttribute="trailing" constant="55" id="dg8-tL-SfV"/>
+                <constraint firstItem="n7J-if-TT2" firstAttribute="top" secondItem="p1V-pG-hbI" secondAttribute="bottom" constant="118" id="nr5-H4-VBl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ImH-Aj-svI" secondAttribute="trailing" constant="55" id="osd-Qi-D1M"/>
                 <constraint firstItem="29U-va-3Gg" firstAttribute="top" secondItem="Vc1-vO-B5E" secondAttribute="bottom" constant="22" id="rsy-30-Mrp"/>
                 <constraint firstItem="lQr-CJ-Olg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="55" id="soN-Hd-8WB"/>
+                <constraint firstItem="p1V-pG-hbI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="tbg-Gz-uvs"/>
                 <constraint firstItem="y2i-Qd-dQl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="55" id="ucy-bc-d5s"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="62.946428571428569"/>
@@ -196,6 +214,9 @@
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -20,6 +20,7 @@ class DetailOrderViewController: UIViewController {
     @IBOutlet weak var diaChi: UILabel!
     @IBOutlet weak var trangThai: UILabel!
     
+    @IBOutlet weak var tongtien: UILabel!
     @IBOutlet weak var nvDuyet: UILabel!
     
     @IBOutlet weak var lbNVGiao: UILabel!
@@ -31,7 +32,7 @@ class DetailOrderViewController: UIViewController {
     @IBOutlet weak var btnDuyet: UIButton!
     @IBOutlet weak var btnHuy: UIButton!
     var data: [EmployeeModel] = []
-    
+    var KEY = ""
     var dropNVDuyet = DropDown()
     var dropNVGiao = DropDown()
     var nvDuyetValues: [String] = []
@@ -53,21 +54,25 @@ class DetailOrderViewController: UIViewController {
             self.title = "Giỏ hàng \(order.idgiohang!)"
         }
         if (order?.tentrangthai == "Chờ duyệt"){
-            lbNVGiao.isHidden = true
-            dropDownNVGiao.isHidden = true
-            nvGiao.isHidden = true
-            getDataNVDuyet()
-        }else if (order?.tentrangthai == "Đang giao hàng") {
+            if let name = UserService.shared.infoNV?.ten,
+               let manvd = UserService.shared.infoNV?.manv{
+                self.maNVD = manvd
+                nvDuyet.text = name
+            }
+            getDataNVGiao()
+        }else if (order?.tentrangthai == "Đang giao hàng" && KEY != "SHIPPER") {
             lbNVGiao.isHidden = false
             dropDownNVGiao.isHidden = false
             nvGiao.isHidden = false
             getDataNVGiao()
             btnHuy.isHidden = true
             btnDuyet.setTitle("Lưu thay đổi", for: .normal)
+        }else if (order?.tentrangthai == "Đang giao hàng" && KEY == "SHIPPER") {
+            btnHuy.isHidden = true
+            btnDuyet.setTitle("Xác nhận đã giao hàng", for: .normal)
         }else {
             btnDuyet.isHidden = true
             btnHuy.isHidden = true
-            
         }
     }
     
@@ -82,6 +87,7 @@ class DetailOrderViewController: UIViewController {
             trangThai.text = order.tentrangthai
             nvDuyet.text = order.nvduyet ?? ""
             nvGiao.text = order.nvgiao ?? ""
+            tongtien.text = "\(CurrencyVN.toVND(order.tonggiatri!))"
         }
     }
     
@@ -109,8 +115,8 @@ class DetailOrderViewController: UIViewController {
     @IBAction func tapDuyetDon(_ sender: UIButton, forEvent event: UIEvent) {
         if (btnDuyet.titleLabel?.text == "Duyệt đơn"){
             print("Duyệt")
-            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: nil, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
-                self.updateGH(params: params)
+            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
+            self.updateGH(params: params)
             print(params)
             let alert = UIAlertController(title: "Duyệt đơn hàng thành công", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
@@ -120,10 +126,23 @@ class DetailOrderViewController: UIViewController {
             }))
             self.present(alert, animated: true)
             
+        }else if (btnDuyet.titleLabel?.text == "Xác nhận đã giao hàng"){
+            print("Xác nhận")
+            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 2, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
+            self.updateShipper(params: params)
+            print(params)
+            let alert = UIAlertController(title: "Giao hàng thành công", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+                let vc = OrderShipViewController()
+                self.navigationController?.pushViewController(vc, animated: false)
+            }))
+            self.present(alert, animated: true)
+            
         }else {
             print("Lưu")
             let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
-                self.updateGH(params: params)
+            self.updateGH(params: params)
             print(params)
             let alert = UIAlertController(title: "Cập nhật nhân viên giao hàng thành công", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
@@ -138,7 +157,7 @@ class DetailOrderViewController: UIViewController {
     
     @IBAction func tapHuyDon(_ sender: UIButton, forEvent event: UIEvent) {
         let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
-            self.updateGH(params: params)
+        self.updateGH(params: params)
         
         let alert = UIAlertController(title: "Huỷ đơn hàng thành công", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
@@ -154,6 +173,17 @@ class DetailOrderViewController: UIViewController {
 extension DetailOrderViewController {
     func updateGH(params: [String : Any]?){
         APIService.updateGioHang(with: .updateGioHangAdmin, params: params, headers: nil, completion: { base, error in
+            guard let base = base else { return }
+            if base.success == true {
+                print(base)
+            }
+            else {
+                fatalError()
+            }
+        })
+    }
+    func updateShipper(params: [String : Any]?){
+        APIService.updateGioHang(with: .putOrderShipper, params: params, headers: nil, completion: { base, error in
             guard let base = base else { return }
             if base.success == true {
                 print(base)

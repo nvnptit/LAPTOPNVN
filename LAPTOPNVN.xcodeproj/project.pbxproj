@@ -55,6 +55,15 @@
 		791BB941289EE0CF002B5871 /* DetailBrandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791BB93D289EE0CF002B5871 /* DetailBrandViewController.xib */; };
 		791BB942289EE0CF002B5871 /* DetailBrandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791BB93D289EE0CF002B5871 /* DetailBrandViewController.xib */; };
 		791BB943289EE0CF002B5871 /* DetailBrandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791BB93D289EE0CF002B5871 /* DetailBrandViewController.xib */; };
+		7923192928A0F8080017E370 /* OrderShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923192728A0F8080017E370 /* OrderShipViewController.swift */; };
+		7923192A28A0F8080017E370 /* OrderShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923192728A0F8080017E370 /* OrderShipViewController.swift */; };
+		7923192B28A0F8080017E370 /* OrderShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923192728A0F8080017E370 /* OrderShipViewController.swift */; };
+		7923192C28A0F8080017E370 /* OrderShipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7923192828A0F8080017E370 /* OrderShipViewController.xib */; };
+		7923192D28A0F8080017E370 /* OrderShipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7923192828A0F8080017E370 /* OrderShipViewController.xib */; };
+		7923192E28A0F8080017E370 /* OrderShipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7923192828A0F8080017E370 /* OrderShipViewController.xib */; };
+		7923193128A10A270017E370 /* ShipperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923193028A10A270017E370 /* ShipperModel.swift */; };
+		7923193228A10A270017E370 /* ShipperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923193028A10A270017E370 /* ShipperModel.swift */; };
+		7923193328A10A270017E370 /* ShipperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923193028A10A270017E370 /* ShipperModel.swift */; };
 		792DDAA4288F7DC8000ACAFC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DDAA3288F7DC8000ACAFC /* String.swift */; };
 		792DDAA728901785000ACAFC /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DDAA628901785000ACAFC /* Search.swift */; };
 		79475E142882438D005911E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79475E132882438D005911E3 /* AppDelegate.swift */; };
@@ -307,6 +316,9 @@
 		791BB934289EC165002B5871 /* BrandViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrandViewController.xib; sourceTree = "<group>"; };
 		791BB93C289EE0CF002B5871 /* DetailBrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBrandViewController.swift; sourceTree = "<group>"; };
 		791BB93D289EE0CF002B5871 /* DetailBrandViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailBrandViewController.xib; sourceTree = "<group>"; };
+		7923192728A0F8080017E370 /* OrderShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderShipViewController.swift; sourceTree = "<group>"; };
+		7923192828A0F8080017E370 /* OrderShipViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderShipViewController.xib; sourceTree = "<group>"; };
+		7923193028A10A270017E370 /* ShipperModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipperModel.swift; sourceTree = "<group>"; };
 		792DDAA3288F7DC8000ACAFC /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		792DDAA628901785000ACAFC /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		79475E102882438D005911E3 /* LAPTOPNVN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LAPTOPNVN.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -519,6 +531,14 @@
 			path = DetailBrand;
 			sourceTree = "<group>";
 		};
+		7923192F28A10A140017E370 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7923193028A10A270017E370 /* ShipperModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		79475E072882438D005911E3 = {
 			isa = PBXGroup;
 			children = (
@@ -653,6 +673,7 @@
 		79475E4A28824739005911E3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				79ABC17028A0B65900A235E6 /* Shipper */,
 				799B9167289D8CEE001F6B5F /* Client */,
 				799B9162289D8B2D001F6B5F /* ManagerAdmin */,
 			);
@@ -872,6 +893,24 @@
 			path = SearchBar;
 			sourceTree = "<group>";
 		};
+		79ABC17028A0B65900A235E6 /* Shipper */ = {
+			isa = PBXGroup;
+			children = (
+				79ABC17128A0B6DB00A235E6 /* OrderShip */,
+			);
+			path = Shipper;
+			sourceTree = "<group>";
+		};
+		79ABC17128A0B6DB00A235E6 /* OrderShip */ = {
+			isa = PBXGroup;
+			children = (
+				7923192F28A10A140017E370 /* Model */,
+				7923192728A0F8080017E370 /* OrderShipViewController.swift */,
+				7923192828A0F8080017E370 /* OrderShipViewController.xib */,
+			);
+			path = OrderShip;
+			sourceTree = "<group>";
+		};
 		79B329602891432A000E4197 /* NoLogin */ = {
 			isa = PBXGroup;
 			children = (
@@ -1086,6 +1125,7 @@
 				79475E1D2882438E005911E3 /* Assets.xcassets in Resources */,
 				791BB92A289E729F002B5871 /* StatTableViewCell.xib in Resources */,
 				79BF621F2891BAB80007FE0D /* ItemCartTableViewCell.xib in Resources */,
+				7923192C28A0F8080017E370 /* OrderShipViewController.xib in Resources */,
 				799627162896066D00B6EDF9 /* HistoryOrderTableViewCell.xib in Resources */,
 				79475E5528824822005911E3 /* LoginViewController.xib in Resources */,
 				791BB941289EE0CF002B5871 /* DetailBrandViewController.xib in Resources */,
@@ -1110,6 +1150,7 @@
 				795EE8A8288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */,
 				791BB942289EE0CF002B5871 /* DetailBrandViewController.xib in Resources */,
 				79BF62202891BAB80007FE0D /* ItemCartTableViewCell.xib in Resources */,
+				7923192D28A0F8080017E370 /* OrderShipViewController.xib in Resources */,
 				79B329702891A5C4000E4197 /* InformationViewController.xib in Resources */,
 				796DF2AD2892703500F34C82 /* RegisterViewController.xib in Resources */,
 				79F33D8428831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
@@ -1143,6 +1184,7 @@
 				795EE8A9288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */,
 				791BB943289EE0CF002B5871 /* DetailBrandViewController.xib in Resources */,
 				79BF62212891BAB80007FE0D /* ItemCartTableViewCell.xib in Resources */,
+				7923192E28A0F8080017E370 /* OrderShipViewController.xib in Resources */,
 				79B329712891A5C4000E4197 /* InformationViewController.xib in Resources */,
 				796DF2AE2892703500F34C82 /* RegisterViewController.xib in Resources */,
 				79F33D8528831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
@@ -1328,6 +1370,7 @@
 				79475E6728824A3E005911E3 /* TogglePassword.swift in Sources */,
 				79475E6F28824AE5005911E3 /* UINavigationBar.swift in Sources */,
 				79475E7728824B41005911E3 /* Date.swift in Sources */,
+				7923192928A0F8080017E370 /* OrderShipViewController.swift in Sources */,
 				791BB911289E0F2A002B5871 /* DetailOrderViewController.swift in Sources */,
 				79F33D972883254600F7BB4C /* APIResponse.swift in Sources */,
 				79176F96288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */,
@@ -1340,6 +1383,7 @@
 				795CAF6F28867BC0008458F0 /* DetailSanPhamViewController.swift in Sources */,
 				79F33D8B288324EC00F7BB4C /* APIManager.swift in Sources */,
 				79F33D87288324B800F7BB4C /* APIService.swift in Sources */,
+				7923193128A10A270017E370 /* ShipperModel.swift in Sources */,
 				79475EAA2882B657005911E3 /* SanPham.swift in Sources */,
 				79D8CD352892ECAF00984EF3 /* PayPalViewController.swift in Sources */,
 			);
@@ -1387,6 +1431,7 @@
 				79475E9A28824DBD005911E3 /* CartViewController.swift in Sources */,
 				79176F97288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */,
 				796DF2B528928A3000F34C82 /* User.swift in Sources */,
+				7923192A28A0F8080017E370 /* OrderShipViewController.swift in Sources */,
 				79ECC22728850C460002E81D /* BannerCollectionViewCell.swift in Sources */,
 				79475E7028824AE5005911E3 /* UINavigationBar.swift in Sources */,
 				79475E64288249BD005911E3 /* JSONDecoder.swift in Sources */,
@@ -1395,6 +1440,7 @@
 				79475E5328824822005911E3 /* LoginViewController.swift in Sources */,
 				79475E6828824A3E005911E3 /* TogglePassword.swift in Sources */,
 				79475E8828824D7E005911E3 /* HomeViewController.swift in Sources */,
+				7923193228A10A270017E370 /* ShipperModel.swift in Sources */,
 				79F33D88288324B800F7BB4C /* APIService.swift in Sources */,
 				791BB928289E729F002B5871 /* StatTableViewCell.swift in Sources */,
 				79475E2B2882438E005911E3 /* LAPTOPNVNTests.swift in Sources */,
@@ -1417,10 +1463,12 @@
 				79475E612882498E005911E3 /* UIImageView+UIImage.swift in Sources */,
 				79475E9128824D96005911E3 /* ExplorerViewController.swift in Sources */,
 				79475E7E28824C04005911E3 /* UserService.swift in Sources */,
+				7923192B28A0F8080017E370 /* OrderShipViewController.swift in Sources */,
 				79F33D992883254600F7BB4C /* APIResponse.swift in Sources */,
 				79B3296E2891A5C4000E4197 /* InformationViewController.swift in Sources */,
 				79475E8928824D7E005911E3 /* HomeViewController.swift in Sources */,
 				79475E5D28824939005911E3 /* UITextFieldX.swift in Sources */,
+				7923193328A10A270017E370 /* ShipperModel.swift in Sources */,
 				79ECC22828850C460002E81D /* BannerCollectionViewCell.swift in Sources */,
 				79F33D952883252100F7BB4C /* APIHeader.swift in Sources */,
 				799B916D289D92EA001F6B5F /* HomeAdminViewController.swift in Sources */,

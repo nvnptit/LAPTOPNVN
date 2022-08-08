@@ -14,7 +14,7 @@ class PayPalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.braintreeClient = BTAPIClient(authorization: "sandbox_d596sjps_7hsb2swzq3w35xrj")
+        self.braintreeClient = BTAPIClient(authorization: "sandbox_9qswqysc_7hsb2swzq3w35xrj")
         
     }
     
@@ -22,7 +22,7 @@ class PayPalViewController: UIViewController {
         
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
         
-        let request = BTPayPalCheckoutRequest(amount: "100")
+        let request = BTPayPalCheckoutRequest(amount: "100.00")
         request.currencyCode = "USD"
         
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
@@ -45,6 +45,7 @@ class PayPalViewController: UIViewController {
                 
             } else if let error = error {
                 // Handle error here...
+                print(error)
                 let alert = UIAlertController(title: "Đã có lỗi xảy ra", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)

@@ -47,13 +47,21 @@ class LoginViewController: UIViewController {
                     let mainVC = MainTabBarController()
                     self.navigationController?.pushViewController(mainVC, animated: true)
                 }
-                else {
-                        guard let dataz = base.data else {return}
+                else  if (base.data?.maquyen == 6) {
+                    guard let dataz = base.data else {return}
                     let info = ModelNV(manv: dataz.manv, email: dataz.email, ten: dataz.ten, ngaysinh: dataz.ngaysinh, sdt: dataz.sdt, tendangnhap: dataz.tendangnhap)
-                        UserService.shared.setInfoNV(with: info)
+                    UserService.shared.setInfoNV(with: info)
                     
+                    let mainVC = OrderShipViewController()
+                    mainVC.navigationItem.hidesBackButton = true
+                    self.navigationController?.pushViewController(mainVC, animated: true)
+                } else {
+                    guard let dataz = base.data else {return}
+                    let info = ModelNV(manv: dataz.manv, email: dataz.email, ten: dataz.ten, ngaysinh: dataz.ngaysinh, sdt: dataz.sdt, tendangnhap: dataz.tendangnhap)
+                    UserService.shared.setInfoNV(with: info)
                     
                     let mainVC = HomeAdminViewController()
+                    mainVC.navigationItem.hidesBackButton = true
                     self.navigationController?.pushViewController(mainVC, animated: true)
                 }
             } else {

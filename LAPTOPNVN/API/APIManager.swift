@@ -37,6 +37,8 @@ enum APIManager {
     case getHistoryOrder
     case getDoanhThu
     case uploadAvatar
+    case getOrderShipper
+    case putOrderShipper
     
 }
 
@@ -88,6 +90,10 @@ extension APIManager {
                 path = "/gio-hang/doanh-thu"
             case .uploadAvatar:
                 path = "/loai-san-pham/uploadPicture"
+            case .getOrderShipper:
+                path = "/gio-hang/order-shipper"
+            case .putOrderShipper:
+                path = "/gio-hang/shipper"
         }
         return baseURL + path
     }
@@ -97,12 +103,12 @@ extension APIManager {
         switch self {
             case  .getHangSX, .getLoaiSanPhamFull, .getLoaiSanPhamNew,
                     .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGood, .getLoaiSanPhamHang, .searchLSP,
-                    .getHistoryOrder, .getNVGiao, .getNVDuyet , .getDoanhThu
+                    .getHistoryOrder, .getNVGiao, .getNVDuyet , .getDoanhThu, .getOrderShipper
                 :
                 return .get
             case .login, .register, .resetPass, .addGioHang, .addUser, .uploadAvatar:
                 return .post
-            case .updateGioHang, .updateUser,.updateGioHangAdmin:
+            case .updateGioHang, .updateUser,.updateGioHangAdmin, .putOrderShipper:
                 return .put
             case .deleteGioHang, .delTK:
                 return .delete
