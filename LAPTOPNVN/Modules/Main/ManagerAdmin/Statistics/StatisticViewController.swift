@@ -26,7 +26,7 @@ class StatisticViewController: UIViewController {
     let datePicker2 = UIDatePicker()
     
     var data: [DoanhThuResponse] = []
-    
+    var allDates: [String] = []
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loading)
@@ -68,7 +68,7 @@ class StatisticViewController: UIViewController {
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
         let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
         
-        
+        var data1: [DoanhThuResponse] = []
         let params = DoanhThuModel(dateFrom: from, dateTo: to).convertToDictionary()
         print(params)
         DispatchQueue.init(label: "DoanhThuVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
@@ -76,18 +76,29 @@ class StatisticViewController: UIViewController {
                  {  base, error in
                 guard let self = self, let base = base else { return }
                 if base.success == true {
+                    if let dateStart = from , let dateEnd = to {
+                        self.allDates = self.getMonthAndYearBetween(from: dateStart, to: dateEnd)
+                    }
+                    print("ADD: \(self.allDates)")
+                    for i in self.allDates {
+                        data1.append(DoanhThuResponse(thang: Int(i.prefix(2)), nam: Int(i.suffix(4)) , doanhthu: 0))                    }
+                    
                     if let data = base.data {
                         print(data)
                       self.data = data
+                        
                         for i in data {
                             if let money = i.doanhthu{
                                 self.sum = self.sum + money
                             }
+                            data1 = data1.map {  $0.thang == i.thang && $0.nam == i.nam ? i : $0}
                         }
+                        print("\n\n\(data1)")
+                        self.data = data1
                     }
                     self.tongDoanhThu.text = CurrencyVN.toVND(self.sum)
                 } else {
-                    print(base.success)
+                    print("ERROR: \(base.success)")
                 }
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
@@ -222,3 +233,32 @@ extension StatisticViewController{
 }
 
 
+
+extension StatisticViewController{
+    func getMonthAndYearBetween(from start: String, to end: String) -> [String] {
+        let format = DateFormatter()
+        format.dateFormat = "yyyy-MM-dd"
+
+        guard let startDate = format.date(from: start),
+            let endDate = format.date(from: end) else {
+                return []
+        }
+
+        let calendar = Calendar(identifier: .gregorian)
+        let components = calendar.dateComponents(Set([.month]), from: startDate, to: endDate)
+
+        var allDates: [String] = []
+        let dateRangeFormatter = DateFormatter()
+        dateRangeFormatter.dateFormat = "MM-yyyy"
+
+        for i in 0 ... components.month! {
+            guard let date = calendar.date(byAdding: .month, value: i, to: startDate) else {
+            continue
+            }
+
+            let formattedDate = dateRangeFormatter.string(from: date)
+            allDates += [formattedDate]
+        }
+        return allDates
+    }
+}

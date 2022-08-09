@@ -9,9 +9,9 @@ import Foundation
 
 // MARK: - DoanhThuModel
 struct DoanhThuResponse: Decodable {
-    let thang: Int?
-    let nam: Int?
-    let doanhthu: Int?
+    var thang: Int?
+    var nam: Int?
+    var doanhthu: Int?
 }
 
 struct DoanhThuModel: Encodable {
