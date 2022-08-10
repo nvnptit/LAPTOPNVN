@@ -18,3 +18,11 @@ struct HangSX: Decodable {
 struct HangModel: Encodable {
     let maHang: Int?
 }
+
+struct HangSXModel: Encodable {
+    let mahang: Int?
+    let tenhang: String?
+    let email: String?
+    let sdt: String?
+    let logo: String?
+}

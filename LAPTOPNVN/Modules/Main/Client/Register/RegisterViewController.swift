@@ -70,7 +70,7 @@ class RegisterViewController: UIViewController {
             else {return}
             let params1 = TaiKhoan(tendangnhap: username, matkhau: password, maquyen: 7).convertToDictionary()
             print(params1)
-            APIService.postRegister(with: .register, params: params1, headers: nil, completion: {
+            APIService.postRegisterKH(with: .register, params: params1, headers: nil, completion: {
                 base , error in
                 if let success = base?.success {
                     if (success){
@@ -84,7 +84,7 @@ class RegisterViewController: UIViewController {
                         let dateSql = dateFormatter.string(from: dateFromString!)
                         
                         let params2 = UserModel(cmnd: cmnd, email: email, ten: name, diachi: address, ngaysinh: dateSql, sdt: phone, tendangnhap: username).convertToDictionary()
-                        APIService.postUser(with: .addUser, params: params2, headers: nil, completion: {
+                        APIService.postUserKH(with: .addUserKH, params: params2, headers: nil, completion: {
                             base, error in
                             if let base = base {
                                 if (base.success == true) {

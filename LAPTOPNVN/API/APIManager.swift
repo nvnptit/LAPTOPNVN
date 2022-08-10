@@ -13,10 +13,28 @@ enum APIManager {
     case register
     case resetPass
     
-    case addUser
-    case updateUser
+    case addUserKH
+    case updateUserKH
     
     case getHangSX
+    case postHangSX
+    case putHangSX
+    case delHangSX
+    
+    case getNV
+    case postNV
+    case putNV
+    case delNV
+    
+    case getSP
+    case postSP
+    case putSP
+    case delSP
+    
+    case postLSP
+    case putLSP
+    case delLSP
+    
     case getLoaiSanPhamFull
     case getLoaiSanPhamNew
     case getLoaiSanPhamKM
@@ -55,6 +73,43 @@ extension APIManager {
                 
             case .getHangSX:
                 path = "/hang-sx"
+            case .postHangSX:
+                path = "/hang-sx"
+            case .putHangSX:
+                path = "/hang-sx"
+            case .delHangSX:
+                path = "/hang-sx"
+                
+                
+            case .getNV:
+                path = "/nhan-vien"
+            case .postNV:
+                path = "/nhan-vien"
+            case .putNV:
+                path = "/nhan-vien"
+            case .delNV:
+                path = "/nhan-vien"
+                
+            case .getSP:
+                path = "/san-pham"
+            case .postSP:
+                path = "/san-pham"
+            case .putSP:
+                path = "/san-pham"
+            case .delSP:
+                path = "/san-pham"
+                
+                
+            case .postLSP:
+                path = "/loai-san-pham"
+            case .putLSP:
+                path = "/loai-san-pham"
+            case .delLSP:
+                path = "/loai-san-pham"
+                
+             
+                
+                
             case .getLoaiSanPhamFull:
                 path = "/loai-san-pham"
             case .getLoaiSanPhamNew:
@@ -75,17 +130,19 @@ extension APIManager {
             case .deleteGioHang: path = "/gio-hang"
             case .updateGioHangAdmin: path = "/gio-hang/admin"
                 
-            case .addUser: path = "/khach-hang"
-            case .updateUser: path = "/khach-hang"
+            case .addUserKH: path = "/khach-hang"
+            case .updateUserKH: path = "/khach-hang"
                 
             
             
             case .getHistoryOrder: path = "/gio-hang/history-order"
             case .delTK: path = "/tai-khoan"
+                
             case .getNVDuyet:
                 path = "/nhan-vien/NV-Duyet"
             case .getNVGiao:
                 path = "/nhan-vien/NV-Giaohang"
+                
             case .getDoanhThu:
                 path = "/gio-hang/doanh-thu"
             case .uploadAvatar:
@@ -101,16 +158,21 @@ extension APIManager {
     //MARK: - METHOD
     var method: HTTPMethod {
         switch self {
-            case  .getHangSX, .getLoaiSanPhamFull, .getLoaiSanPhamNew,
+            case   .getLoaiSanPhamFull, .getLoaiSanPhamNew,
                     .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGood, .getLoaiSanPhamHang, .searchLSP,
-                    .getHistoryOrder, .getNVGiao, .getNVDuyet , .getDoanhThu, .getOrderShipper
+                    .getHistoryOrder, .getNVGiao, .getNVDuyet , .getDoanhThu, .getOrderShipper,
+                    .getHangSX, .getNV, .getSP
                 :
                 return .get
-            case .login, .register, .resetPass, .addGioHang, .addUser, .uploadAvatar:
+            case .login, .register, .resetPass, .addGioHang, .addUserKH, .uploadAvatar,
+                    .postHangSX, .postNV, .postLSP, .postSP
+                :
                 return .post
-            case .updateGioHang, .updateUser,.updateGioHangAdmin, .putOrderShipper:
+            case .updateGioHang, .updateUserKH,.updateGioHangAdmin, .putOrderShipper,
+                    .putHangSX, .putNV, .putLSP, .putSP:
                 return .put
-            case .deleteGioHang, .delTK:
+            case .deleteGioHang, .delTK,
+                    .delHangSX, .delNV, .delLSP, .delSP:
                 return .delete
                 
         }

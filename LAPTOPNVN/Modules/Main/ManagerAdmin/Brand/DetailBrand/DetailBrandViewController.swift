@@ -8,13 +8,15 @@
 import UIKit
 
 class DetailBrandViewController: UIViewController {
-
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tfMaHang: UITextField!
     @IBOutlet weak var tfTenHang: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPhone: UITextField!
-    @IBOutlet weak var tfPicture: UITextField!
+    
+    @IBOutlet weak var viewPicture: UIView!
+    @IBOutlet weak var imagePicture: UIImageView!
     
     @IBOutlet weak var btnChange: UIButton!
     var brand: HangSX?
@@ -22,12 +24,18 @@ class DetailBrandViewController: UIViewController {
     @IBOutlet weak var camera: UIView!
     let imagePickerController = UIImagePickerController()
     var image = UIImage()
+    var picture: String = ""
+    var isUploadPicture: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
         // Do any additional setup after loading the view.
         title = brand?.tenhang!
         
+        viewPicture.layer.cornerRadius = 12
+        viewPicture.layer.masksToBounds = true
+        viewPicture.layer.borderColor = UIColor.systemGray.cgColor
+        viewPicture.layer.borderWidth = 1
         setupKeyboard()
         setupUploadAvatar()
     }
@@ -37,7 +45,9 @@ class DetailBrandViewController: UIViewController {
             self.tfTenHang.text = brand.tenhang!
             self.tfEmail.text = brand.email
             self.tfPhone.text = brand.sdt
-            self.tfPicture.text = brand.logo
+            if let logo = brand.logo{
+                self.imagePicture.loadFrom(URLAddress: APIService.baseUrl+logo)
+            }
         }
     }
     
@@ -53,53 +63,62 @@ class DetailBrandViewController: UIViewController {
     }
     @IBAction func tapChangeInfo(_ sender: UIButton, forEvent event: UIEvent) {
         
-            if (btnChange.currentTitle == "THAY ĐỔI THÔNG TIN"){
-                tfTenHang.backgroundColor = .none
-                tfEmail.backgroundColor = .none
-                tfPhone.backgroundColor = .none
-                tfPicture.backgroundColor = .none
+        if (btnChange.currentTitle == "THAY ĐỔI THÔNG TIN"){
+            tfTenHang.backgroundColor = .none
+            tfEmail.backgroundColor = .none
+            tfPhone.backgroundColor = .none
+            
+            tfTenHang.isEnabled = true
+            tfEmail.isEnabled = true
+            tfPhone.isEnabled = true
+            
+            btnChange.setTitle("LƯU THAY ĐỔI", for: .normal)
+        }
+        else {
+            if (checkFill()){
+                //                    tfMaHang.backgroundColor = .lightGray
+                tfTenHang.backgroundColor = .lightGray
+                tfEmail.backgroundColor = .lightGray
+                tfPhone.backgroundColor = .lightGray
                 
-                tfTenHang.isEnabled = true
-                tfEmail.isEnabled = true
-                tfPhone.isEnabled = true
-                tfPicture.isEnabled = true
+                //                    tfMaHang.isEnabled = false
+                tfTenHang.isEnabled = false
+                tfEmail.isEnabled = false
+                tfPhone.isEnabled = false
                 
-                btnChange.setTitle("LƯU THAY ĐỔI", for: .normal)
-            }
-            else {
-                if (checkFill()){
-//                    tfMaHang.backgroundColor = .lightGray
-                    tfTenHang.backgroundColor = .lightGray
-                    tfEmail.backgroundColor = .lightGray
-                    tfPhone.backgroundColor = .lightGray
-                    tfPicture.backgroundColor = .lightGray
-                    
-//                    tfMaHang.isEnabled = false
-                    tfTenHang.isEnabled = false
-                    tfEmail.isEnabled = false
-                    tfPhone.isEnabled = false
-                    tfPicture.isEnabled = false
-                    
-                    let maHang = Int(tfMaHang.text!)
-                    let name = chuanHoa(tfTenHang.text)
-                    let email = chuanHoa(tfEmail.text)
-                    let phone = chuanHoa(tfPhone.text)
-                    let picture = chuanHoa(tfPicture.text)
-                    
-                    
-                    tfTenHang.text = name
-                    tfEmail.text = email
-                    tfPhone.text = phone
-                    tfPicture.text = picture
-                    
-                    let params = HangSX(mahang: maHang, tenhang: name, email: email, sdt: phone, logo: picture)
-                    
-        //            avatar.image = image
-        //            presenter.postUploadAvatar(image)
-                    btnChange.setTitle("THAY ĐỔI THÔNG TIN", for: .normal)
-                    
+                let maHang = Int(tfMaHang.text!)
+                let name = chuanHoa(tfTenHang.text)
+                let email = chuanHoa(tfEmail.text)
+                let phone = chuanHoa(tfPhone.text)
+                let logoG = brand?.logo!
+                
+                
+                tfTenHang.text = name
+                tfEmail.text = email
+                tfPhone.text = phone
+                
+                if (isUploadPicture){
+                    APIService.uploadAvatar(with: .uploadAvatar, image: image) { base, error in
+                        if let base = base {
+                            if base.success == true{
+                                if let url = base.message{
+                                    self.picture = url
+                                }
+                                let params = HangSXModel(mahang: maHang, tenhang: name, email: email, sdt: phone, logo: self.picture).convertToDictionary()
+                                // xử lý update
+                                self.updateHangSX(params: params)
+                            }
+                        }
+                    }
+                }else {
+                    let params = HangSXModel(mahang: maHang, tenhang: name, email: email, sdt: phone, logo: logoG).convertToDictionary()
+                    print(params)
+                    self.updateHangSX(params: params)
                 }
+                
+                self.btnChange.setTitle("THAY ĐỔI THÔNG TIN", for: .normal)
             }
+        }
     }
     
     @IBAction func tapDelete(_ sender: UIButton) {
@@ -115,23 +134,23 @@ extension DetailBrandViewController{
         imagePickerController.videoQuality = .typeMedium
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapOnAvatar))
         gesture.numberOfTapsRequired = 1
-//        viewOfAvatar.addGestureRecognizer(gesture)
+        //        viewOfAvatar.addGestureRecognizer(gesture)
         camera.addGestureRecognizer(gesture)
-//        tfPicture.addGestureRecognizer(gesture)
+        //        tfPicture.addGestureRecognizer(gesture)
     }
     
     @objc private func tapOnAvatar() {
-        let alert = UIAlertController(title: "Upload your avatar.", message: "Select a way", preferredStyle: .actionSheet)
-        let actionPhoto = UIAlertAction(title: "Choose Photo", style: .default) { action in
+        let alert = UIAlertController(title: "Tải lên hình ảnh", message: "Chọn 1 mục", preferredStyle: .actionSheet)
+        let actionPhoto = UIAlertAction(title: "Chọn từ thư viện", style: .default) { action in
             self.imagePickerController.sourceType = .photoLibrary
             self.present(self.imagePickerController, animated: true, completion: nil)
         }
-        let actionCamera = UIAlertAction(title: "Take Photo", style: .default) { action in
+        let actionCamera = UIAlertAction(title: "Chụp ảnh mới", style: .default) { action in
             self.imagePickerController.sourceType = .camera
             self.present(self.imagePickerController, animated: true, completion: nil)
         }
         
-        let actionCencal = UIAlertAction(title: "Cencal", style: .cancel, handler: nil)
+        let actionCencal = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
         
         alert.addAction(actionPhoto)
         alert.addAction(actionCamera)
@@ -171,20 +190,31 @@ extension DetailBrandViewController: UIImagePickerControllerDelegate, UINavigati
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image: UIImage = info[.editedImage] as? UIImage {
-            self.image = image
-            imagePickerController.dismiss(animated: true)
-        }
+        guard let image1: UIImage = info[.editedImage] as? UIImage else {return}
+        self.image = image1
+        imagePickerController.dismiss(animated: true)
+        imagePicture.image = image1
+        isUploadPicture = true
     }
 }
 extension DetailBrandViewController{
-    private func uploadAvatar(image: UIImage?) {
-        APIService.uploadAvatar(with: .uploadAvatar, image: image) { base, error in
-            if let base = base {
-                if base.success == true{
-                    print("success")
-                }
+    private func updateHangSX(params: [String: Any]?) {
+        APIService.postHangSX(with: .putHangSX, params: params, headers: nil, completion: {
+            base, error in
+            guard let base = base else { return }
+            if base.success == true {
+                let alert = UIAlertController(title: "Cập nhật thành công!", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+            } else {
+                let alert = UIAlertController(title: "Đã có lỗi xảy ra", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
             }
-        }
+        })
     }
 }

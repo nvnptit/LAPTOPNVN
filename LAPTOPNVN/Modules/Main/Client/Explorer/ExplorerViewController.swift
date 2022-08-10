@@ -98,7 +98,9 @@ extension ExplorerViewController: UICollectionViewDataSource{
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HangCollectionViewCell", for: indexPath) as? HangCollectionViewCell else {fatalError()}
         let e = data[indexPath.item]
-        cell.logo.sd_setImage(with: URL(string: e.logo ?? ""), placeholderImage: UIImage(named: "noimage"))
+        if let logo = e.logo{
+            cell.logo.loadFrom(URLAddress: APIService.baseUrl+logo)
+        }
         return cell
     }
     

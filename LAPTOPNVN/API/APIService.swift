@@ -13,7 +13,19 @@ typealias HangSXs = [HangSX]
 
 struct APIService {
     static let baseUrl: String = "http://192.168.1.12"
-    //2.21 .1.12
+//    static let baseUrl: String = "http://192.168.2.19"
+//    static let baseUrl: String = "http://192.168.2.21"
+    
+    public static func postHangSX(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+        APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
     
     //get -> fetch
     public static func getOrderShipper(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HistoryOrder]>?, String?) -> ()) {
@@ -31,10 +43,11 @@ struct APIService {
             return
         }
         AF.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(image.jpegData(compressionQuality: 0.5)!, withName: "file" , fileName: "file.jpeg", mimeType: "image/jpeg")
+            multipartFormData.append(image.jpegData(compressionQuality: 0.5)!, withName: "fileUpload" , fileName: "file.jpeg", mimeType: "image/jpeg")
         },
                   to: manager.url, method: manager.method , headers: APIHeader.multipartFormData())
         .responseData { response in
+            
             switch response.result {
                 case .success(let data):
                     JSONDecoder.decode(Response.self, from: data) { error, reponse in
@@ -59,7 +72,7 @@ struct APIService {
     }
     
     //get -> fetch
-    public static func getNV(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[EmployeeModel]>?, String?) -> ()) {
+    public static func getNVDG(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[EmployeeModel]>?, String?) -> ()) {
         APIController.request(ResponseBase<[EmployeeModel]>.self, manager, params: params, headers: headers) { error, data in
             if let dataNV = data {
                 completion(dataNV, nil)
@@ -81,7 +94,7 @@ struct APIService {
     }
     
     
-    public static func postRegister(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+    public static func postRegisterKH(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
         APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
             if let dataLoaiSanPham = data {
                 completion(dataLoaiSanPham, nil)
@@ -91,7 +104,7 @@ struct APIService {
         }
     }
     
-    public static func postUser(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<User>?, String?) -> ()) {
+    public static func postUserKH(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<User>?, String?) -> ()) {
         APIController.request(ResponseBase<User>.self, manager, params: params, headers: headers) { error, data in
             if let data = data {
                 completion(data, nil)
@@ -101,7 +114,7 @@ struct APIService {
         }
     }
     
-    public static func updateUser(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+    public static func updateUserKH(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
         APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
             if let data = data {
                 completion(data, nil)

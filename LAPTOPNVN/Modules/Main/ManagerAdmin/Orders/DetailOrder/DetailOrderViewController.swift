@@ -241,7 +241,7 @@ extension DetailOrderViewController{
     }
     
     private func getDataNVDuyet(){
-        APIService.getNV(with: .getNVDuyet, params: nil, headers: nil, completion: { [weak self] base, error in
+        APIService.getNVDG(with: .getNVDuyet, params: nil, headers: nil, completion: { [weak self] base, error in
             guard let self = self, let base = base else { return }
             if base.success == true {
                 self.data = base.data ?? []
@@ -283,7 +283,7 @@ extension DetailOrderViewController{
     }
     
     private func getDataNVGiao(){
-        APIService.getNV(with: .getNVGiao, params: nil, headers: nil, completion: { [weak self] base, error in
+        APIService.getNVDG(with: .getNVGiao, params: nil, headers: nil, completion: { [weak self] base, error in
             guard let self = self, let base = base else { return }
             if base.success == true {
                 self.data = base.data ?? []

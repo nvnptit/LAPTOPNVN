@@ -325,7 +325,7 @@ class AccountViewController: UIViewController {
                 tfPhone.text = phoneE
                 
                 let params = UserEdit(cmnd: tfCMND.text, email: emailE, ten: nameE, diachi: addressE, ngaysinh: dateSql, sdt: phoneE).convertToDictionary()
-                updateUser(params: params)
+                updateUserKH(params: params)
                 
                 btnThayDoi.setTitle("THAY ĐỔI THÔNG TIN", for: .normal)
                 
@@ -442,8 +442,8 @@ extension AccountViewController{
 }
 
 extension AccountViewController {
-    func updateUser(params: [String : Any]?){
-        APIService.updateUser(with: .updateUser, params: params, headers: nil, completion: { base, error in
+    func updateUserKH(params: [String : Any]?){
+        APIService.updateUserKH(with: .updateUserKH, params: params, headers: nil, completion: { base, error in
             guard let base = base else { return }
             if base.success == true {
                 let emailE = self.chuanHoa(self.tfEmail.text)
