@@ -41,6 +41,9 @@
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Thêm mới"/>
+                    <connections>
+                        <action selector="tapAddHangSX:forEvent:" destination="-1" eventType="touchUpInside" id="dbI-4g-Usq"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="5bp-Pd-Ezd"/>

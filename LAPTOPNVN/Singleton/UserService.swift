@@ -12,9 +12,9 @@ class UserService {
     static let shared = UserService()
      
     private init() { }
-    
+    public var listQuyen: [QuyenResponse]?
     public var infoProfile: LoginResponse?
-    public var infoNV: ModelNV?
+    public var infoNV: ModelNVResponse?
     public var cmnd: String = ""
     public var maNV: String = ""
 
@@ -36,18 +36,33 @@ class UserService {
 extension UserService{
     //Nhan vien
     
-    func setInfoNV(with data: ModelNV?){
+    func setInfoNV(with data: ModelNVResponse?){
         guard let info = data else {return}
         self.infoNV = info
         if let maNV = info.manv {
             self.maNV = maNV
         }
     }
-    func getInfoNV() -> ModelNV?{
+    func getInfoNV() -> ModelNVResponse?{
         return self.infoNV
     }
     func removeAllNV() {
         self.infoNV = nil
         self.maNV = ""
+    }
+}
+
+extension UserService{
+    //Nhan vien
+    
+    func setListQuyen(with data: [QuyenResponse]?){
+        guard let data = data else {return}
+        self.listQuyen = data
+    }
+    func getListQuyen() -> [QuyenResponse]?{
+        return self.listQuyen
+    }
+    func removeAllQuyen() {
+        self.listQuyen = nil
     }
 }

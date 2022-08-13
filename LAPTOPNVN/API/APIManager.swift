@@ -13,6 +13,11 @@ enum APIManager {
     case register
     case resetPass
     
+    case getQuyen
+    case getMaSoNV
+    case getMaSoLSP
+    case putQuyenKichHoat
+    
     case addUserKH
     case updateUserKH
     
@@ -70,6 +75,11 @@ extension APIManager {
             case .login: path = "/tai-khoan/login"
             case .register: path = "/tai-khoan"
             case .resetPass: path = "/tai-khoan/thay-matkhau"
+             
+            case .getQuyen: path = "/quyen"
+            case .getMaSoNV: path = "/nhan-vien/MANV"
+            case .getMaSoLSP: path = "/loai-san-pham/MALSP"
+            case .putQuyenKichHoat: path = "/tai-khoan/Quyen"
                 
             case .getHangSX:
                 path = "/hang-sx"
@@ -161,7 +171,8 @@ extension APIManager {
             case   .getLoaiSanPhamFull, .getLoaiSanPhamNew,
                     .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGood, .getLoaiSanPhamHang, .searchLSP,
                     .getHistoryOrder, .getNVGiao, .getNVDuyet , .getDoanhThu, .getOrderShipper,
-                    .getHangSX, .getNV, .getSP
+                    .getHangSX, .getNV, .getSP,
+                    .getMaSoNV, .getMaSoLSP, .getQuyen
                 :
                 return .get
             case .login, .register, .resetPass, .addGioHang, .addUserKH, .uploadAvatar,
@@ -169,7 +180,9 @@ extension APIManager {
                 :
                 return .post
             case .updateGioHang, .updateUserKH,.updateGioHangAdmin, .putOrderShipper,
-                    .putHangSX, .putNV, .putLSP, .putSP:
+                    .putHangSX, .putNV, .putLSP, .putSP,
+                    .putQuyenKichHoat
+                :
                 return .put
             case .deleteGioHang, .delTK,
                     .delHangSX, .delNV, .delLSP, .delSP:

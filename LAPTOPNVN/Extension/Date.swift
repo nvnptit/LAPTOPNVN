@@ -116,7 +116,7 @@ extension Date {
     }
     
     func convertDateTimeSQLToView(date: String,format: String) -> String{
-        var date1 = date.prefix(19)
+        let date1 = date.prefix(19)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let dateFromString = dateFormatter.date(from: String(date1))

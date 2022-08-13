@@ -26,6 +26,12 @@ class BrandViewController: UIViewController {
     }
     
     
+    @IBAction func tapAddHangSX(_ sender: UIButton, forEvent event: UIEvent) {
+        let vc = DetailBrandViewController()
+        vc.isNew  = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func configLayout(){
         collectionView.dataSource = self
         collectionView.delegate = self

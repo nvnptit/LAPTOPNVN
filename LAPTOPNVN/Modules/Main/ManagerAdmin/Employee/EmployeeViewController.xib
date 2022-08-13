@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmployeeViewController" customModule="LAPTOPNVN" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="Cg7-i6-19s" id="3y3-2X-3uH"/>
+                <outlet property="view" destination="jNz-g0-FHk" id="2dQ-AS-Z91"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="jNz-g0-FHk">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUẢN LÝ NHÂN VIÊN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMW-hm-Zx6">
+                    <rect key="frame" x="20" y="114" width="164" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wh7-QV-XkE">
+                    <rect key="frame" x="280" y="109" width="88" height="31"/>
+                    <color key="backgroundColor" red="0.03095769558" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Thêm mới"/>
+                    <connections>
+                        <action selector="tapThemMoi:forEvent:" destination="-1" eventType="touchUpInside" id="5Qv-uR-2yI"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Cg7-i6-19s">
+                    <rect key="frame" x="23" y="169" width="368" height="630"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="8rs-tG-NJK"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="CMW-hm-Zx6" firstAttribute="leading" secondItem="8rs-tG-NJK" secondAttribute="leading" constant="20" id="6Fm-jQ-fdv"/>
+                <constraint firstItem="Cg7-i6-19s" firstAttribute="centerX" secondItem="jNz-g0-FHk" secondAttribute="centerX" id="Nr4-JZ-pvo"/>
+                <constraint firstItem="Cg7-i6-19s" firstAttribute="leading" secondItem="8rs-tG-NJK" secondAttribute="leading" constant="23" id="ZCM-aQ-9yx"/>
+                <constraint firstItem="Wh7-QV-XkE" firstAttribute="top" secondItem="8rs-tG-NJK" secondAttribute="top" constant="65" id="f09-Lx-9rF"/>
+                <constraint firstItem="8rs-tG-NJK" firstAttribute="bottom" secondItem="Cg7-i6-19s" secondAttribute="bottom" constant="63" id="fiR-N7-jpy"/>
+                <constraint firstItem="CMW-hm-Zx6" firstAttribute="top" secondItem="8rs-tG-NJK" secondAttribute="top" constant="70" id="lVC-hz-s63"/>
+                <constraint firstItem="8rs-tG-NJK" firstAttribute="trailing" secondItem="Wh7-QV-XkE" secondAttribute="trailing" constant="46" id="lih-mz-Daa"/>
+                <constraint firstItem="Cg7-i6-19s" firstAttribute="top" secondItem="Wh7-QV-XkE" secondAttribute="bottom" constant="29" id="yYk-Fq-kbU"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="57.589285714285708"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

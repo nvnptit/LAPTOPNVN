@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
                 }
                 else  if (base.data?.maquyen == 6) {
                     guard let dataz = base.data else {return}
-                    let info = ModelNV(manv: dataz.manv, email: dataz.email, ten: dataz.ten, ngaysinh: dataz.ngaysinh, sdt: dataz.sdt, tendangnhap: dataz.tendangnhap)
+                    let info = ModelNVResponse(manv: dataz.manv, email: dataz.email, ten: dataz.ten, ngaysinh: dataz.ngaysinh, sdt: dataz.sdt, tendangnhap: dataz.tendangnhap)
                     UserService.shared.setInfoNV(with: info)
                     
                     let mainVC = OrderShipViewController()
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
                     self.navigationController?.pushViewController(mainVC, animated: true)
                 } else {
                     guard let dataz = base.data else {return}
-                    let info = ModelNV(manv: dataz.manv, email: dataz.email, ten: dataz.ten, ngaysinh: dataz.ngaysinh, sdt: dataz.sdt, tendangnhap: dataz.tendangnhap)
+                    let info = ModelNVResponse(manv: dataz.manv, email: dataz.email, ten: dataz.ten, ngaysinh: dataz.ngaysinh, sdt: dataz.sdt, tendangnhap: dataz.tendangnhap)
                     UserService.shared.setInfoNV(with: info)
                     
                     let mainVC = HomeAdminViewController()
@@ -72,7 +72,7 @@ class LoginViewController: UIViewController {
                 self.present(alert, animated: true)
             }
         })
-        
+        getQuyen()
     }
     
     
@@ -80,6 +80,21 @@ class LoginViewController: UIViewController {
     @IBAction func didTapRegister(_ sender: UIButton, forEvent event: UIEvent) {
         let vc = RegisterViewController()
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    private func getQuyen(){
+        APIService.getQuyen(with: .getQuyen, params: nil, headers: nil, completion: {
+            base, error in
+            guard let base = base else { return }
+            if base.success == true {
+                UserService.shared.setListQuyen(with: base.data)
+            } else {
+                let alert = UIAlertController(title:"Đã có lỗi xảy ra", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+            }
+        })
     }
 }
 

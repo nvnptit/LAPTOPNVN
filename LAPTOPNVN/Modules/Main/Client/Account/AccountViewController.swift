@@ -11,14 +11,12 @@ import DropDown
 
 class AccountViewController: UIViewController {
     
-    
-    
     @IBOutlet weak var tfFrom: UITextField!
     @IBOutlet weak var tfTo: UITextField!
     
     @IBOutlet weak var dropdownStatus: UIView!
     @IBOutlet weak var status: UILabel!
-    var maStatus = -1
+    var maStatus = 0
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var segment: UISegmentedControl!
@@ -74,6 +72,7 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDropDown()
+        self.status.text = "Chờ duyệt"
         setupStatus()
         let cmnd = UserService.shared.cmnd
         if (cmnd == ""){

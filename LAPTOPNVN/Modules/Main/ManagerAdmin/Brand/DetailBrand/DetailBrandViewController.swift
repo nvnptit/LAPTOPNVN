@@ -9,6 +9,7 @@ import UIKit
 
 class DetailBrandViewController: UIViewController {
     
+    @IBOutlet weak var lbMaHang: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tfMaHang: UITextField!
     @IBOutlet weak var tfTenHang: UITextField!
@@ -21,16 +22,29 @@ class DetailBrandViewController: UIViewController {
     @IBOutlet weak var btnChange: UIButton!
     var brand: HangSX?
     
+    @IBOutlet weak var btnDelete: UIButton!
     @IBOutlet weak var camera: UIView!
     let imagePickerController = UIImagePickerController()
     var image = UIImage()
     var picture: String = ""
     var isUploadPicture: Bool = false
+    var isNew: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        camera.isUserInteractionEnabled = false;
         // Do any additional setup after loading the view.
-        title = brand?.tenhang!
+        if (!isNew){
+            title = brand?.tenhang!
+        }else {
+            title = " THÊM HÃNG SẢN XUẤT MỚI"
+            lbMaHang.isHidden = true
+            tfMaHang.isHidden = true
+            btnDelete.isHidden = true
+            
+            btnChange.setTitle("THÊM MỚI", for: .normal)
+            self.onFill()
+        }
         
         viewPicture.layer.cornerRadius = 12
         viewPicture.layer.masksToBounds = true
@@ -61,9 +75,18 @@ class DetailBrandViewController: UIViewController {
     func checkFill()->Bool {
         return true
     }
-    @IBAction func tapChangeInfo(_ sender: UIButton, forEvent event: UIEvent) {
+    func offFill(){
+        camera.isUserInteractionEnabled = false;
+        tfTenHang.backgroundColor = .lightGray
+        tfEmail.backgroundColor = .lightGray
+        tfPhone.backgroundColor = .lightGray
         
-        if (btnChange.currentTitle == "THAY ĐỔI THÔNG TIN"){
+        tfTenHang.isEnabled = false
+        tfEmail.isEnabled = false
+        tfPhone.isEnabled = false
+    }
+    func onFill(){
+        camera.isUserInteractionEnabled = true;
             tfTenHang.backgroundColor = .none
             tfEmail.backgroundColor = .none
             tfPhone.backgroundColor = .none
@@ -71,20 +94,45 @@ class DetailBrandViewController: UIViewController {
             tfTenHang.isEnabled = true
             tfEmail.isEnabled = true
             tfPhone.isEnabled = true
-            
+    }
+    @IBAction func tapChangeInfo(_ sender: UIButton, forEvent event: UIEvent) {
+        if (btnChange.currentTitle == "THÊM MỚI"){
+            if (checkFill()){
+                let name = chuanHoa(tfTenHang.text)
+                let email = chuanHoa(tfEmail.text)
+                let phone = chuanHoa(tfPhone.text)
+                
+                
+                tfTenHang.text = name
+                tfEmail.text = email
+                tfPhone.text = phone
+                
+                if (isUploadPicture){
+                    APIService.uploadAvatar(with: .uploadAvatar, image: image) { base, error in
+                        if let base = base {
+                            if base.success == true{
+                                if let url = base.message{
+                                    self.picture = url
+                                }
+                                let params = HangSXModel(mahang: nil, tenhang: name, email: email, sdt: phone, logo: self.picture).convertToDictionary()
+                                // xử lý update
+                                self.addHangSX(params: params)
+                            }
+                        }
+                    }
+                }else {
+                    let params = HangSXModel(mahang: nil, tenhang: name, email: email, sdt: phone, logo: "/images/noimage.png").convertToDictionary()
+                    print(params)
+                    self.addHangSX(params: params)
+                }
+            }
+        } else
+        if (btnChange.currentTitle == "THAY ĐỔI THÔNG TIN"){
+            self.onFill()
             btnChange.setTitle("LƯU THAY ĐỔI", for: .normal)
         }
         else {
             if (checkFill()){
-                //                    tfMaHang.backgroundColor = .lightGray
-                tfTenHang.backgroundColor = .lightGray
-                tfEmail.backgroundColor = .lightGray
-                tfPhone.backgroundColor = .lightGray
-                
-                //                    tfMaHang.isEnabled = false
-                tfTenHang.isEnabled = false
-                tfEmail.isEnabled = false
-                tfPhone.isEnabled = false
                 
                 let maHang = Int(tfMaHang.text!)
                 let name = chuanHoa(tfTenHang.text)
@@ -115,14 +163,13 @@ class DetailBrandViewController: UIViewController {
                     print(params)
                     self.updateHangSX(params: params)
                 }
-                
-                self.btnChange.setTitle("THAY ĐỔI THÔNG TIN", for: .normal)
             }
         }
     }
     
     @IBAction func tapDelete(_ sender: UIButton) {
-        
+        let params = HangModel(maHang: Int(tfMaHang.text!)).convertToDictionary()
+        delHangSX(params: params)
         
     }
     
@@ -206,10 +253,57 @@ extension DetailBrandViewController{
                 let alert = UIAlertController(title: "Cập nhật thành công!", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
+                    self.btnChange.setTitle("THAY ĐỔI THÔNG TIN", for: .normal)
+                    self.offFill()
                 }))
                 self.present(alert, animated: true)
             } else {
-                let alert = UIAlertController(title: "Đã có lỗi xảy ra", message: "", preferredStyle: .alert)
+                let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+            }
+        })
+    }
+    private func addHangSX(params: [String: Any]?) {
+        APIService.postHangSX(with: .postHangSX, params: params, headers: nil, completion: {
+            base, error in
+            guard let base = base else { return }
+            if base.success == true {
+                let alert = UIAlertController(title: "Thêm mới thành công!", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                    
+                    let vc = BrandViewController()
+                    vc.navigationItem.hidesBackButton = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }))
+                self.present(alert, animated: true)
+            } else {
+                let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+            }
+        })
+    }
+    private func delHangSX(params: [String: Any]?) {
+        APIService.postHangSX(with: .delHangSX, params: params, headers: nil, completion: {
+            base, error in
+            guard let base = base else { return }
+            if base.success == true {
+                let alert = UIAlertController(title: "Xoá hãng thành công!", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                    let vc = BrandViewController()
+                    vc.navigationItem.hidesBackButton = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }))
+                self.present(alert, animated: true)
+            } else {
+                let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
                 }))

@@ -11,8 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailBrandViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
                 <outlet property="btnChange" destination="4fo-CW-V4J" id="NQh-8E-zQY"/>
+                <outlet property="btnDelete" destination="DWq-Mb-QdH" id="pvD-FB-nwo"/>
                 <outlet property="camera" destination="TqQ-ql-ydj" id="b0T-3b-u2u"/>
                 <outlet property="imagePicture" destination="fet-ai-nfK" id="mNT-g5-1jO"/>
+                <outlet property="lbMaHang" destination="WZ6-sv-wmU" id="Dkg-ev-bQ7"/>
                 <outlet property="scrollView" destination="zYc-H2-8f3" id="d5M-eB-guV"/>
                 <outlet property="tfEmail" destination="bVZ-dR-Q5I" id="8OZ-28-UTi"/>
                 <outlet property="tfMaHang" destination="rTq-N8-4hj" id="nkw-26-ix4"/>
@@ -109,7 +111,6 @@
                                         <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="22"/>
                                     </buttonConfiguration>
                                     <connections>
-                                        <action selector="tapChangeInfo:forEvent:" destination="-1" eventType="touchUpInside" id="xrf-zZ-8dr"/>
                                         <action selector="tapDelete:" destination="-1" eventType="touchUpInside" id="gWI-Cd-t3G"/>
                                     </connections>
                                 </button>
