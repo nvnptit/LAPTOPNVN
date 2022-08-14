@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoryViewController" customModule="LAPTOPNVN" customModuleProvider="target">
+            <connections>
+                <outlet property="btnBack" destination="d12-gY-aIr" id="Vay-8f-7u2"/>
+                <outlet property="tableView" destination="d1Z-hr-xxx" id="DZH-ni-XGQ"/>
+                <outlet property="view" destination="ekn-nF-Ky1" id="74d-7g-pdA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ekn-nF-Ky1">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUẢN LÝ LOẠI SẢN PHẨM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cB-he-aHU">
+                    <rect key="frame" x="20" y="114" width="202" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDC-wC-wQE">
+                    <rect key="frame" x="280" y="109" width="88" height="31"/>
+                    <color key="backgroundColor" red="0.03095769558" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Thêm mới"/>
+                    <connections>
+                        <action selector="tapThemMoi:forEvent:" destination="-1" eventType="touchUpInside" id="U3D-KY-VXg"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="d1Z-hr-xxx">
+                    <rect key="frame" x="23" y="169" width="368" height="630"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d12-gY-aIr">
+                    <rect key="frame" x="20" y="65" width="69" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="&lt; Back"/>
+                    <connections>
+                        <action selector="tapBack:forEvent:" destination="-1" eventType="touchUpInside" id="myV-sd-Mz8"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="rpC-g1-svy"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="rpC-g1-svy" firstAttribute="bottom" secondItem="d1Z-hr-xxx" secondAttribute="bottom" constant="63" id="0Z5-04-cvw"/>
+                <constraint firstItem="d1Z-hr-xxx" firstAttribute="centerX" secondItem="ekn-nF-Ky1" secondAttribute="centerX" id="7Ag-ed-fAR"/>
+                <constraint firstItem="rpC-g1-svy" firstAttribute="trailing" secondItem="IDC-wC-wQE" secondAttribute="trailing" constant="46" id="HJj-xy-GAF"/>
+                <constraint firstItem="IDC-wC-wQE" firstAttribute="top" secondItem="rpC-g1-svy" secondAttribute="top" constant="65" id="Nnv-wC-mYs"/>
+                <constraint firstItem="7cB-he-aHU" firstAttribute="leading" secondItem="rpC-g1-svy" secondAttribute="leading" constant="20" id="Skd-Xj-cEA"/>
+                <constraint firstItem="d1Z-hr-xxx" firstAttribute="top" secondItem="IDC-wC-wQE" secondAttribute="bottom" constant="29" id="VFC-GH-qZz"/>
+                <constraint firstItem="7cB-he-aHU" firstAttribute="top" secondItem="d12-gY-aIr" secondAttribute="bottom" constant="18" id="WfQ-WM-gp3"/>
+                <constraint firstItem="7cB-he-aHU" firstAttribute="top" secondItem="rpC-g1-svy" secondAttribute="top" constant="70" id="tr0-aB-tK9"/>
+                <constraint firstItem="d12-gY-aIr" firstAttribute="leading" secondItem="rpC-g1-svy" secondAttribute="leading" constant="20" id="u1a-df-Lzz"/>
+                <constraint firstItem="d1Z-hr-xxx" firstAttribute="leading" secondItem="rpC-g1-svy" secondAttribute="leading" constant="23" id="yMf-T7-3M4"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="57.589285714285708"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BrandViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
+                <outlet property="btnBack" destination="ZTj-Ch-bmg" id="Q8L-JY-wBH"/>
                 <outlet property="collectionView" destination="rdN-C2-kF5" id="bkr-7L-hcS"/>
                 <outlet property="view" destination="COY-mr-8K0" id="IND-vW-blZ"/>
             </connections>
@@ -45,17 +46,27 @@
                         <action selector="tapAddHangSX:forEvent:" destination="-1" eventType="touchUpInside" id="dbI-4g-Usq"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTj-Ch-bmg">
+                    <rect key="frame" x="19" y="75" width="69" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="&lt; Back"/>
+                    <connections>
+                        <action selector="tapBack:forEvent:" destination="-1" eventType="touchUpInside" id="wmw-Fc-p9H"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="5bp-Pd-Ezd"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="5bp-Pd-Ezd" firstAttribute="trailing" secondItem="rdN-C2-kF5" secondAttribute="trailing" constant="20" id="4Nr-vu-EGp"/>
+                <constraint firstItem="7cj-5I-bqF" firstAttribute="top" secondItem="ZTj-Ch-bmg" secondAttribute="bottom" constant="8" id="FJP-H5-2u2"/>
                 <constraint firstItem="7cj-5I-bqF" firstAttribute="top" secondItem="5bp-Pd-Ezd" secondAttribute="top" constant="70" id="Hhw-1R-def"/>
                 <constraint firstItem="ShG-U5-P0v" firstAttribute="top" secondItem="5bp-Pd-Ezd" secondAttribute="top" constant="65" id="UWP-HI-BnJ"/>
                 <constraint firstItem="5bp-Pd-Ezd" firstAttribute="bottom" secondItem="rdN-C2-kF5" secondAttribute="bottom" constant="84" id="XGZ-3e-gNJ"/>
                 <constraint firstItem="5bp-Pd-Ezd" firstAttribute="trailing" secondItem="ShG-U5-P0v" secondAttribute="trailing" constant="46" id="Yex-vQ-Xcz"/>
                 <constraint firstItem="rdN-C2-kF5" firstAttribute="top" secondItem="5bp-Pd-Ezd" secondAttribute="top" constant="126" id="gB2-sJ-65b"/>
                 <constraint firstItem="7cj-5I-bqF" firstAttribute="leading" secondItem="5bp-Pd-Ezd" secondAttribute="leading" constant="20" id="jLF-ux-Ef0"/>
+                <constraint firstItem="ZTj-Ch-bmg" firstAttribute="leading" secondItem="5bp-Pd-Ezd" secondAttribute="leading" constant="19" id="la8-Qe-qNN"/>
                 <constraint firstItem="rdN-C2-kF5" firstAttribute="leading" secondItem="5bp-Pd-Ezd" secondAttribute="leading" constant="20" id="r2J-se-N7q"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="57.589285714285708"/>

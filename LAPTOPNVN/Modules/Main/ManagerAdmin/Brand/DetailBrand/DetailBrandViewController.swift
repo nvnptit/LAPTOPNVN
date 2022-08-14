@@ -72,7 +72,52 @@ class DetailBrandViewController: UIViewController {
         print(kq)
         return kq;
     }
-    func checkFill()->Bool {
+    func checkInfo() -> Bool{
+        
+//        @IBOutlet weak var tfMaHang: UITextField!
+//        @IBOutlet weak var tfTenHang: UITextField!
+//        @IBOutlet weak var tfEmail: UITextField!
+//        @IBOutlet weak var tfPhone: UITextField!
+        guard
+            var email = tfEmail.text,
+            var name = tfTenHang.text,
+            var phone = tfPhone.text
+        else {
+            return false
+        }
+        
+        email = chuanHoa(tfEmail.text)
+        name = chuanHoa(tfTenHang.text)
+        phone = chuanHoa(tfPhone.text)
+        tfEmail.text = email
+        tfTenHang.text = name
+        tfPhone.text = phone
+        
+        if (email.isEmpty || name.isEmpty || phone.isEmpty) {
+            let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
+        }
+        
+        if (!isValidEmail(email: email)){
+            let alert = UIAlertController(title: "Email không đúng định dạng", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
+        }
+        if (!isValidPhone(phone: phone)){
+            let alert = UIAlertController(title: "Số điện thoại không hợp lệ", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
+        }
         return true
     }
     func offFill(){
@@ -97,7 +142,7 @@ class DetailBrandViewController: UIViewController {
     }
     @IBAction func tapChangeInfo(_ sender: UIButton, forEvent event: UIEvent) {
         if (btnChange.currentTitle == "THÊM MỚI"){
-            if (checkFill()){
+            if (checkInfo()){
                 let name = chuanHoa(tfTenHang.text)
                 let email = chuanHoa(tfEmail.text)
                 let phone = chuanHoa(tfPhone.text)
@@ -132,7 +177,7 @@ class DetailBrandViewController: UIViewController {
             btnChange.setTitle("LƯU THAY ĐỔI", for: .normal)
         }
         else {
-            if (checkFill()){
+            if (checkInfo()){
                 
                 let maHang = Int(tfMaHang.text!)
                 let name = chuanHoa(tfTenHang.text)
@@ -277,6 +322,7 @@ extension DetailBrandViewController{
                     
                     let vc = BrandViewController()
                     vc.navigationItem.hidesBackButton = true
+                    vc.isAdded = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }))
                 self.present(alert, animated: true)
@@ -311,4 +357,20 @@ extension DetailBrandViewController{
             }
         })
     }
+}
+extension DetailBrandViewController{
+    
+    func isValidPhone(phone: String) -> Bool {
+        let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
+        let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
+        print(phoneTest.evaluate(with: phone))
+        return phoneTest.evaluate(with: phone)
+    }
+    func isValidEmail( email:String)->Bool{
+        let regexEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
+        let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
+        print(passwordTest.evaluate(with:email))
+        return passwordTest.evaluate(with:email)
+    }
+    
 }

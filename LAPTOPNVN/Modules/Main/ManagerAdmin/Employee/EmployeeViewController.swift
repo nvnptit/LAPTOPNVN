@@ -10,19 +10,23 @@ import NVActivityIndicatorView
 
 
 class EmployeeViewController: UIViewController {
+    @IBOutlet weak var btnBack: UIButton!
+    
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
     @IBOutlet weak var tableView: UITableView!
     
     var dataNV : [ModelNVResponseAD] = []
     
-    var isValidAccount = false;
-    
-    let datePicker = UIDatePicker()
-    
+    var isAdded: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if (isAdded){
+            btnBack.isHidden = false
+        }else {
+            btnBack.isHidden = true
+        }
         setupAnimation()
         
         tableView.dataSource = self
@@ -30,8 +34,13 @@ class EmployeeViewController: UIViewController {
         tableView.register(UINib(nibName: "EmployeeTableViewCell", bundle: nil), forCellReuseIdentifier: "EmployeeTableViewCell")
     }
     
+    @IBAction func tapBack(_ sender: UIButton, forEvent event: UIEvent) {
+        let vc = HomeAdminViewController()
+        vc.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     override func viewDidAppear(_ animated: Bool = false) {
-//        self.navigationController?.isNavigationBarHidden = true
+        //        self.navigationController?.isNavigationBarHidden = true
         loadDataNV()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -63,13 +72,22 @@ class EmployeeViewController: UIViewController {
     }
     
     @IBAction func tapThemMoi(_ sender: UIButton, forEvent event: UIEvent) {
-            let vc = DetailEmployeeViewController()
-            vc.isNew  = true
-            self.navigationController?.pushViewController(vc, animated: true)
+        
+        let vc = DetailEmployeeViewController()
+        var data: [String] = []
+        if let listQuyen = UserService.shared.getListQuyen(){
+            for i in listQuyen{
+                data.append(i.tenquyen ?? "")
+                //                if (i.maquyen == UserService.shared.)
+            }
+        }
+        vc.statusValues = data
+        vc.isNew  = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
-
-
+    
+    
 }
 extension EmployeeViewController{
     
@@ -108,8 +126,8 @@ extension EmployeeViewController: UITableViewDataSource, UITableViewDelegate {
             cell.ngaySinh.text = Date().convertDateTimeSQLToView(date: ngaysinh, format:"dd-MM-yyyy")
             cell.sdt.text = sdt
             cell.tenDangNhap.text = tendangnhap
-//            cell.datePlan.text = Date().convertDateSQLToView(String(datePlan.prefix(10)))
-
+            //            cell.datePlan.text = Date().convertDateSQLToView(String(datePlan.prefix(10)))
+            
         }
         cell.selectionStyle = .none
         return cell
@@ -122,7 +140,7 @@ extension EmployeeViewController: UITableViewDataSource, UITableViewDelegate {
         if let listQuyen = UserService.shared.getListQuyen(){
             for i in listQuyen{
                 data.append(i.tenquyen ?? "")
-//                if (i.maquyen == UserService.shared.)
+                //                if (i.maquyen == UserService.shared.)
             }
         }
         print(data)

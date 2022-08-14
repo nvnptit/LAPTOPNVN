@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmployeeViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
+                <outlet property="btnBack" destination="GUR-un-V2b" id="yCg-6M-cWN"/>
                 <outlet property="tableView" destination="Cg7-i6-19s" id="3y3-2X-3uH"/>
                 <outlet property="view" destination="jNz-g0-FHk" id="2dQ-AS-Z91"/>
             </connections>
@@ -39,17 +40,27 @@
                     <rect key="frame" x="23" y="169" width="368" height="630"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUR-un-V2b">
+                    <rect key="frame" x="20" y="75" width="69" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="&lt; Back"/>
+                    <connections>
+                        <action selector="tapBack:forEvent:" destination="-1" eventType="touchUpInside" id="d9G-Vr-n5F"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="8rs-tG-NJK"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="CMW-hm-Zx6" firstAttribute="leading" secondItem="8rs-tG-NJK" secondAttribute="leading" constant="20" id="6Fm-jQ-fdv"/>
+                <constraint firstItem="CMW-hm-Zx6" firstAttribute="top" secondItem="GUR-un-V2b" secondAttribute="bottom" constant="8" id="IVz-yb-8KF"/>
                 <constraint firstItem="Cg7-i6-19s" firstAttribute="centerX" secondItem="jNz-g0-FHk" secondAttribute="centerX" id="Nr4-JZ-pvo"/>
                 <constraint firstItem="Cg7-i6-19s" firstAttribute="leading" secondItem="8rs-tG-NJK" secondAttribute="leading" constant="23" id="ZCM-aQ-9yx"/>
                 <constraint firstItem="Wh7-QV-XkE" firstAttribute="top" secondItem="8rs-tG-NJK" secondAttribute="top" constant="65" id="f09-Lx-9rF"/>
                 <constraint firstItem="8rs-tG-NJK" firstAttribute="bottom" secondItem="Cg7-i6-19s" secondAttribute="bottom" constant="63" id="fiR-N7-jpy"/>
                 <constraint firstItem="CMW-hm-Zx6" firstAttribute="top" secondItem="8rs-tG-NJK" secondAttribute="top" constant="70" id="lVC-hz-s63"/>
                 <constraint firstItem="8rs-tG-NJK" firstAttribute="trailing" secondItem="Wh7-QV-XkE" secondAttribute="trailing" constant="46" id="lih-mz-Daa"/>
+                <constraint firstItem="GUR-un-V2b" firstAttribute="leading" secondItem="8rs-tG-NJK" secondAttribute="leading" constant="20" id="vqw-mN-xsL"/>
                 <constraint firstItem="Cg7-i6-19s" firstAttribute="top" secondItem="Wh7-QV-XkE" secondAttribute="bottom" constant="29" id="yYk-Fq-kbU"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="57.589285714285708"/>

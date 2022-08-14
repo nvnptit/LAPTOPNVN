@@ -41,8 +41,8 @@ class HomeAdminViewController: UIViewController {
     }
     
     @IBAction func tapCategory(_ sender: Any) {
-//        let mainVC = EmployeeViewController()
-//        self.navigationController?.pushViewController(mainVC, animated: true)
+        let mainVC = CategoryViewController()
+        self.navigationController?.pushViewController(mainVC, animated: true)
         
     }
     

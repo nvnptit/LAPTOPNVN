@@ -59,14 +59,14 @@ class RegisterViewController: UIViewController {
     @IBAction func tapRegister(_ sender: UIButton, forEvent event: UIEvent) {
         if (checkInfo()){
             guard
-            let username = tfUser.text,
-            let password = tfPass.text,
-            let cmnd = tfCMND.text,
-            let name = tfName.text,
-            let birthday = tfBirthday.text,
-            let email = tfEmail.text,
-            let phone = tfPhone.text,
-            let address = tfAddress.text
+                let username = tfUser.text,
+                let password = tfPass.text,
+                let cmnd = tfCMND.text,
+                let name = tfName.text,
+                let birthday = tfBirthday.text,
+                let email = tfEmail.text,
+                let phone = tfPhone.text,
+                let address = tfAddress.text
             else {return}
             let params1 = TaiKhoan(tendangnhap: username, matkhau: password, maquyen: 7).convertToDictionary()
             print(params1)

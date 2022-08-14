@@ -9,12 +9,19 @@ import UIKit
 
 class BrandViewController: UIViewController {
 
+    @IBOutlet weak var btnBack: UIButton!
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     var data : [HangSX] = []
-    
+    var isAdded: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        if (isAdded){
+            btnBack.isHidden = false
+        }else {
+            btnBack.isHidden = true
+        }
         configLayout()
         collectionView.register(UINib(nibName: "HangCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HangCollectionViewCell")
         loadData()
@@ -23,6 +30,11 @@ class BrandViewController: UIViewController {
     // call lại
     override func viewDidAppear(_ animated: Bool) {
         loadData()
+    }
+    @IBAction func tapBack(_ sender: UIButton, forEvent event: UIEvent) {
+            let vc = HomeAdminViewController()
+        vc.navigationItem.hidesBackButton = true
+            self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
