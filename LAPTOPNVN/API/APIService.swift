@@ -16,6 +16,15 @@ struct APIService {
 //    static let baseUrl: String = "http://192.168.2.19"
 //    static let baseUrl: String = "http://192.168.2.21"
     
+    public static func getSanPham(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[SanPham]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[SanPham]>.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
     
     public static func updateQuyenKichHoat(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
         APIController.request(Response.self, manager, params: params, headers: headers) { error, data in

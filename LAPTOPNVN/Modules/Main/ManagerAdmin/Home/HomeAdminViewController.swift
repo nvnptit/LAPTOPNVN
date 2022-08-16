@@ -47,9 +47,8 @@ class HomeAdminViewController: UIViewController {
     }
     
     @IBAction func tapProduct(_ sender: UIButton, forEvent event: UIEvent) {
-        
-//            let mainVC = EmployeeViewController()
-//            self.navigationController?.pushViewController(mainVC, animated: true)
+            let mainVC = SanPhamViewController()
+            self.navigationController?.pushViewController(mainVC, animated: true)
     }
     
     @IBAction func updateOrder(_ sender: UIButton, forEvent event: UIEvent) {

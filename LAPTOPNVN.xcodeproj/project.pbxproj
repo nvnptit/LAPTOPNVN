@@ -200,6 +200,12 @@
 		7992976A288EF91100642885 /* ListLaptopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79929766288EF91100642885 /* ListLaptopViewController.xib */; };
 		7992976B288EF91100642885 /* ListLaptopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79929766288EF91100642885 /* ListLaptopViewController.xib */; };
 		7992976C288EF91100642885 /* ListLaptopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79929766288EF91100642885 /* ListLaptopViewController.xib */; };
+		799547F628A8B597002760A7 /* SanPhamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799547F428A8B597002760A7 /* SanPhamViewController.swift */; };
+		799547F728A8B597002760A7 /* SanPhamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799547F428A8B597002760A7 /* SanPhamViewController.swift */; };
+		799547F828A8B597002760A7 /* SanPhamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799547F428A8B597002760A7 /* SanPhamViewController.swift */; };
+		799547F928A8B597002760A7 /* SanPhamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799547F528A8B597002760A7 /* SanPhamViewController.xib */; };
+		799547FA28A8B597002760A7 /* SanPhamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799547F528A8B597002760A7 /* SanPhamViewController.xib */; };
+		799547FB28A8B597002760A7 /* SanPhamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799547F528A8B597002760A7 /* SanPhamViewController.xib */; };
 		799627132896066D00B6EDF9 /* HistoryOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */; };
 		799627142896066D00B6EDF9 /* HistoryOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */; };
 		799627152896066D00B6EDF9 /* HistoryOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */; };
@@ -434,6 +440,8 @@
 		7986295128A8238600FC08AE /* DetailProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailProductViewController.xib; sourceTree = "<group>"; };
 		79929765288EF91100642885 /* ListLaptopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLaptopViewController.swift; sourceTree = "<group>"; };
 		79929766288EF91100642885 /* ListLaptopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListLaptopViewController.xib; sourceTree = "<group>"; };
+		799547F428A8B597002760A7 /* SanPhamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanPhamViewController.swift; sourceTree = "<group>"; };
+		799547F528A8B597002760A7 /* SanPhamViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SanPhamViewController.xib; sourceTree = "<group>"; };
 		799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOrderTableViewCell.swift; sourceTree = "<group>"; };
 		799627122896066D00B6EDF9 /* HistoryOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryOrderTableViewCell.xib; sourceTree = "<group>"; };
 		7996271928960F6D00B6EDF9 /* HistoryOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOrder.swift; sourceTree = "<group>"; };
@@ -904,6 +912,8 @@
 			children = (
 				7986293F28A81FA200FC08AE /* Detail */,
 				7986293E28A81F9C00FC08AE /* Cell */,
+				799547F428A8B597002760A7 /* SanPhamViewController.swift */,
+				799547F528A8B597002760A7 /* SanPhamViewController.xib */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -1308,6 +1318,7 @@
 				791BB938289EC165002B5871 /* BrandViewController.xib in Resources */,
 				79C43FF5289DFD2F008EA789 /* OrderViewController.xib in Resources */,
 				795CAF7228867BC0008458F0 /* DetailSanPhamViewController.xib in Resources */,
+				799547F928A8B597002760A7 /* SanPhamViewController.xib in Resources */,
 				79A5440D288D70C300179574 /* SearchViewController.xib in Resources */,
 				79475E8A28824D7E005911E3 /* HomeViewController.xib in Resources */,
 				79D8CD362892ECAF00984EF3 /* PayPalViewController.xib in Resources */,
@@ -1335,6 +1346,7 @@
 				79B3296728914345000E4197 /* NoLoginViewController.xib in Resources */,
 				79475E9328824D96005911E3 /* ExplorerViewController.xib in Resources */,
 				79AAC99A28A73CBE00CD2E23 /* EmployeeTableViewCell.xib in Resources */,
+				799547FA28A8B597002760A7 /* SanPhamViewController.xib in Resources */,
 				795CAF7328867BC0008458F0 /* DetailSanPhamViewController.xib in Resources */,
 				7992976B288EF91100642885 /* ListLaptopViewController.xib in Resources */,
 				79A5440E288D70C300179574 /* SearchViewController.xib in Resources */,
@@ -1377,6 +1389,7 @@
 				79B3296828914345000E4197 /* NoLoginViewController.xib in Resources */,
 				79475E9428824D96005911E3 /* ExplorerViewController.xib in Resources */,
 				79AAC99B28A73CBE00CD2E23 /* EmployeeTableViewCell.xib in Resources */,
+				799547FB28A8B597002760A7 /* SanPhamViewController.xib in Resources */,
 				795CAF7428867BC0008458F0 /* DetailSanPhamViewController.xib in Resources */,
 				7992976C288EF91100642885 /* ListLaptopViewController.xib in Resources */,
 				79A5440F288D70C300179574 /* SearchViewController.xib in Resources */,
@@ -1562,6 +1575,7 @@
 				791BB93E289EE0CF002B5871 /* DetailBrandViewController.swift in Sources */,
 				79A5440A288D70C300179574 /* SearchViewController.swift in Sources */,
 				792DDAA4288F7DC8000ACAFC /* String.swift in Sources */,
+				799547F628A8B597002760A7 /* SanPhamViewController.swift in Sources */,
 				79475EB02882B7EF005911E3 /* HangSX.swift in Sources */,
 				79475E8728824D7E005911E3 /* HomeViewController.swift in Sources */,
 				7996271A28960F6D00B6EDF9 /* HistoryOrder.swift in Sources */,
@@ -1617,6 +1631,7 @@
 				79475E7828824B41005911E3 /* Date.swift in Sources */,
 				791BB93F289EE0CF002B5871 /* DetailBrandViewController.swift in Sources */,
 				791BB91F289E7013002B5871 /* StatisticViewController.swift in Sources */,
+				799547F728A8B597002760A7 /* SanPhamViewController.swift in Sources */,
 				79BF62132891AAB70007FE0D /* CustomCell.swift in Sources */,
 				7986293828A81D4500FC08AE /* CategoryTableViewCell.swift in Sources */,
 				79BF62242891C3650007FE0D /* DatHang.swift in Sources */,
@@ -1691,6 +1706,7 @@
 				79A5440C288D70C300179574 /* SearchViewController.swift in Sources */,
 				7996271C28960F6D00B6EDF9 /* HistoryOrder.swift in Sources */,
 				799627212896133E00B6EDF9 /* HistoryModel.swift in Sources */,
+				799547F828A8B597002760A7 /* SanPhamViewController.swift in Sources */,
 				79BF62252891C3650007FE0D /* DatHang.swift in Sources */,
 				79176F98288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */,
 				791BB931289EA93C002B5871 /* DoanhThuModel.swift in Sources */,

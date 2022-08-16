@@ -160,6 +160,14 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         cell.selectionStyle = .none
+        // Checked
+        if  dataChecked.contains(where: {$0.serial == item.serial }){
+            cell.isChecked = true
+            cell.checkBox.image = UIImage(named: "check")
+        }else {
+            cell.isChecked = false
+            cell.checkBox.image = UIImage(named: "uncheck")
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -186,9 +194,12 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
              print("Delete: \(indexPath.row + 1)")
             let item = self.data[indexPath.item]
-            self.sum = self.sum - item.giagiam!
-            self.money.text = "\(CurrencyVN.toVND(self.sum))"
-            
+            if  self.dataChecked.contains(where: {$0.serial == item.serial }){
+                self.sum = self.sum - item.giagiam!
+                self.money.text = "\(CurrencyVN.toVND(self.sum))"
+                self.dataChecked = self.dataChecked.filter { $0.idgiohang != item.idgiohang }
+            }
+
             self.data.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             // Xử lý API
@@ -212,5 +223,6 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
            return swipe
     }
 }
+
 
 

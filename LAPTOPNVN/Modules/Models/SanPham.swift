@@ -6,11 +6,10 @@
 //
 
 import Foundation
-struct SanPham{
+struct SanPham: Decodable{
     let serial: String?
     let idgiohang: Int?
     let maphieutra: Int?
     let maphieunhap: Int?
-    let tenhang: Int?
     let malsp: String?
 }
