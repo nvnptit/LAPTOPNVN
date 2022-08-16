@@ -22,6 +22,7 @@
                 <outlet property="lb5" destination="O0c-8p-yhf" id="fU2-4F-qYN"/>
                 <outlet property="lb6" destination="QEA-2a-Yqc" id="UwG-rc-Rfp"/>
                 <outlet property="lb7" destination="EiA-zn-6ra" id="rPI-pH-vJi"/>
+                <outlet property="scrollView" destination="yJD-sh-hTA" id="6Mz-OR-Bk2"/>
                 <outlet property="segment" destination="zmG-Wf-cdC" id="yGS-UM-0hK"/>
                 <outlet property="status" destination="KH6-pm-GCO" id="be1-5G-x2I"/>
                 <outlet property="tableView" destination="QqE-Cc-LIY" id="rDV-a6-Bul"/>

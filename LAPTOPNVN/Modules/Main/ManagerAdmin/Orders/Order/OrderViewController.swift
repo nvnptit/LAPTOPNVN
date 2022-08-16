@@ -286,7 +286,6 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
 //            detailSPViewController.loaiSp = item
 //            self.navigationController?.pushViewController(detailSPViewController, animated: true)
 //
-        
         let detailOrderViewController = DetailOrderViewController()
         detailOrderViewController.order = item
         self.navigationController?.pushViewController(detailOrderViewController, animated: true)

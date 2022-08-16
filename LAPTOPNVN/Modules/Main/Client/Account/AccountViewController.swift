@@ -11,6 +11,7 @@ import DropDown
 
 class AccountViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tfFrom: UITextField!
     @IBOutlet weak var tfTo: UITextField!
     
@@ -71,6 +72,7 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupKeyboard()
         setupDropDown()
         self.status.text = "Chờ duyệt"
         setupStatus()
@@ -429,13 +431,13 @@ extension AccountViewController{
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         
-        //        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        //        contentInset.bottom = keyboardFrame.size.height + 70
-        //        scrollView.contentInset = contentInset
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 70
+        scrollView.contentInset = contentInset
     }
     @objc func keyboardWillHide(notification:NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        //        scrollView.contentInset = contentInset
+        scrollView.contentInset = contentInset
     }
     //MARK: - End Setup keyboard
 }

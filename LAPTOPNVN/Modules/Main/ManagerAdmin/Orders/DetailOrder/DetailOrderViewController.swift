@@ -167,6 +167,12 @@ class DetailOrderViewController: UIViewController {
         }))
         self.present(alert, animated: true)
     }
+    
+    @IBAction func tapDetail(_ sender: UIButton, forEvent event: UIEvent) {
+        let vc = DetailSanPhamViewController()
+        vc.order = self.order
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 
@@ -294,5 +300,4 @@ extension DetailOrderViewController{
             }
         })
     }
-    
 }

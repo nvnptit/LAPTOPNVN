@@ -242,12 +242,23 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLS-3m-fOS">
+                                    <rect key="frame" x="282" y="22" width="101" height="31"/>
+                                    <color key="backgroundColor" red="0.03095769558" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Xem chi tiết"/>
+                                    <connections>
+                                        <action selector="tapDetail:forEvent:" destination="-1" eventType="touchUpInside" id="70G-Ow-V8f"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="T1e-as-ufn" firstAttribute="top" secondItem="pOm-AM-uor" secondAttribute="bottom" constant="8" id="0ib-97-J7e"/>
                                 <constraint firstItem="WpH-Jg-QTK" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="29" id="0yL-eV-T7U"/>
                                 <constraint firstItem="15a-19-EVn" firstAttribute="top" secondItem="T1e-as-ufn" secondAttribute="bottom" constant="8" id="6JX-jk-uHh"/>
+                                <constraint firstItem="LLS-3m-fOS" firstAttribute="top" secondItem="WaG-LW-CPj" secondAttribute="top" constant="22" id="7OQ-HM-hup"/>
                                 <constraint firstItem="a8z-Ag-sNi" firstAttribute="top" secondItem="WaG-LW-CPj" secondAttribute="top" constant="73" id="7n3-wo-LVh"/>
                                 <constraint firstItem="Btb-UY-b1i" firstAttribute="top" secondItem="9uR-lE-vvM" secondAttribute="bottom" constant="9" id="82C-9d-niw"/>
                                 <constraint firstItem="Zpb-uH-WHh" firstAttribute="top" secondItem="hdE-EB-VKE" secondAttribute="bottom" constant="7" id="AFN-k9-sOF"/>
@@ -278,6 +289,7 @@
                                 <constraint firstItem="3ee-dn-pmT" firstAttribute="top" secondItem="ggu-Gg-zoo" secondAttribute="bottom" constant="21" id="iEU-UL-LR2"/>
                                 <constraint firstItem="ro0-mE-L8U" firstAttribute="leading" secondItem="Btb-UY-b1i" secondAttribute="trailing" constant="10" id="kJp-BU-433"/>
                                 <constraint firstItem="hdE-EB-VKE" firstAttribute="leading" secondItem="ggu-Gg-zoo" secondAttribute="trailing" constant="8" id="kpg-U6-y0d"/>
+                                <constraint firstAttribute="trailing" secondItem="LLS-3m-fOS" secondAttribute="trailing" constant="31" id="lCR-lO-q1y"/>
                                 <constraint firstItem="W9F-8o-ehe" firstAttribute="top" secondItem="0V1-3h-RfD" secondAttribute="bottom" constant="8" id="nZL-SQ-laq"/>
                                 <constraint firstItem="Mg8-e9-juq" firstAttribute="top" secondItem="AyL-3e-RZx" secondAttribute="bottom" constant="35" id="qya-Uo-vIt"/>
                                 <constraint firstItem="a8z-Ag-sNi" firstAttribute="leading" secondItem="WpH-Jg-QTK" secondAttribute="trailing" constant="27.5" id="qzP-7G-R8e"/>
