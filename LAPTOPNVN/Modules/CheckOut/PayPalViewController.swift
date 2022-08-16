@@ -19,7 +19,7 @@ class PayPalViewController: UIViewController {
     }
     
     @IBAction func tapPay(_ sender: UIButton, forEvent event: UIEvent) {
-        print(getMonthAndYearBetween(from: "02/05/2021", to: "19/08/2022"))
+//        print(getMonthAndYearBetween(from: "02/05/2021", to: "19/08/2022"))
 //        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
 //
 //        let request = BTPayPalCheckoutRequest(amount: "100.00")

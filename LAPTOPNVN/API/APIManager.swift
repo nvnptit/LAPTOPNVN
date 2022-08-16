@@ -13,6 +13,8 @@ enum APIManager {
     case register
     case resetPass
     
+    case getTyGia
+    
     case getQuyen
     case getMaSoNV
     case getMaSoLSP
@@ -75,7 +77,9 @@ extension APIManager {
             case .login: path = "/tai-khoan/login"
             case .register: path = "/tai-khoan"
             case .resetPass: path = "/tai-khoan/thay-matkhau"
-             
+            
+            case .getTyGia: path = "/ty-gia"
+                
             case .getQuyen: path = "/quyen"
             case .getMaSoNV: path = "/nhan-vien/MANV"
             case .getMaSoLSP: path = "/loai-san-pham/MALSP"
@@ -172,7 +176,7 @@ extension APIManager {
                     .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGood, .getLoaiSanPhamHang, .searchLSP,
                     .getHistoryOrder, .getNVGiao, .getNVDuyet , .getDoanhThu, .getOrderShipper,
                     .getHangSX, .getNV, .getSP,
-                    .getMaSoNV, .getMaSoLSP, .getQuyen
+                    .getMaSoNV, .getMaSoLSP, .getQuyen, .getTyGia
                 :
                 return .get
             case .login, .register, .resetPass, .addGioHang, .addUserKH, .uploadAvatar,

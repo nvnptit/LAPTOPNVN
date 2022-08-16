@@ -140,7 +140,7 @@ extension Date {
 
 extension Date {
     func checkDatePlan( start: String, end: String) -> Bool{
-        print(start + "   " + end)
+//        print(start + "   " + end)
         let dateFormat = "dd-MM-yyyy"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat

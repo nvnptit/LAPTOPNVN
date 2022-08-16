@@ -222,7 +222,5 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
            
            return swipe
     }
+    
 }
-
-
-

@@ -28,13 +28,17 @@ class InformationViewController: UIViewController {
     let datePicker = UIDatePicker()
 
     var braintreeClient: BTAPIClient!
+    var tyGiaUSD: TyGiaResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboard()
         address.layer.shadowColor = UIColor.lightGray.cgColor
         address.layer.borderWidth = 0.2
-        
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.getTyGia()
+            }
         if #available(iOS 13.4, *) {
             createDatePicker()
         } else {
@@ -42,7 +46,7 @@ class InformationViewController: UIViewController {
         }
         
         loadInfo()
-        self.braintreeClient = BTAPIClient(authorization: "sandbox_d596sjps_7hsb2swzq3w35xrj")
+        self.braintreeClient = BTAPIClient(authorization: "sandbox_9qswqysc_7hsb2swzq3w35xrj")
         
     }
     func loadInfo(){
@@ -100,17 +104,27 @@ class InformationViewController: UIViewController {
         return true
     }
     @IBAction func tapThanhToan(_ sender: Any) {
+        guard let usd = tyGiaUSD?.giatri else {
+            let alert = UIAlertController(title: "Lỗi lấy tỷ giá", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return
+        }
+//        print(tyGiaUSD?.giatri)
+        var sum = 0
         if (checkFill()){
-            // Chuyen doi tien te
-//            let currencyConverter = CurrencyConverter()
-//            currencyConverter.updateExchangeRates(completion: {
-//                       let doubleResult = currencyConverter.convert(10, valueCurrency: .USD, outputCurrency: .EUR)
-//                       
-//                   })
-            
+            for item in dataGioHang {
+                if let gia = item.giagiam{
+                    sum += gia
+                }
+            }
+            let total = Double(sum) / Double(usd)
+            print(total.rounded(toPlaces: 2))
             let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
             
-            let request = BTPayPalCheckoutRequest(amount: "100.67")
+            let request = BTPayPalCheckoutRequest(amount: total.rounded(toPlaces: 2))
             request.currencyCode = "USD"
             
             payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
@@ -145,6 +159,7 @@ class InformationViewController: UIViewController {
                     
                 } else if let error = error {
                     // Handle error here...
+                    print(error)
                     let alert = UIAlertController(title: "Đơn hàng chưa được thanh toán", message: "", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                         self.dismiss(animated: true)
@@ -152,16 +167,17 @@ class InformationViewController: UIViewController {
                     self.present(alert, animated: true)
                 } else {
                     // Buyer canceled payment approval
+                    
+                    let alert = UIAlertController(title: "Đơn hàng chưa được thanh toán", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                        self.dismiss(animated: true)
+                    }))
+                    self.present(alert, animated: true)
                 }
             }
-            
-            
-            
         }
         
     }
-    
-    
 }
 extension InformationViewController {
     func updateGH(params: [String : Any]?){
@@ -252,6 +268,34 @@ extension InformationViewController{
     }
     //MARK: - End Setup keyboard
 }
+
+extension InformationViewController{
+    private func getTyGia(){
+        APIService.getTyGia(with: .getTyGia, params: nil, headers: nil, completion: {
+            base, error in
+            guard let base = base else { return }
+            if base.success == true {
+                self.tyGiaUSD = base.data?.filter({$0.matg == "USD"}).first
+//                print(self.tyGiaUSD)
+            } else {
+                let alert = UIAlertController(title:"Lỗi get tỷ giá", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+            }
+        })
+        
+    }
+}
+
+    // Chuyen doi tien te
+//            let currencyConverter = CurrencyConverter()
+//            currencyConverter.updateExchangeRates(completion: {
+//                       let doubleResult = currencyConverter.convert(10, valueCurrency: .USD, outputCurrency: .EUR)
+//
+//                   })
+
 
 //        if (checkFill()){
 //            let name = name.text
