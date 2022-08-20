@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailSanPhamViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
                 <outlet property="btnAddCart" destination="CJ6-Ui-1j1" id="ISh-l2-Nxe"/>
+                <outlet property="btnCancel" destination="goG-yf-wyh" id="CDc-3c-S5f"/>
                 <outlet property="imageLSP" destination="l8g-5o-gmo" id="Tjg-AA-W6A"/>
                 <outlet property="tfCPU" destination="n5Z-rV-Pug" id="9bO-cM-aL4"/>
                 <outlet property="tfCard" destination="XDa-rU-bRV" id="Ty2-wc-ezQ"/>
@@ -165,15 +166,31 @@
                         <action selector="tapAddCart:" destination="-1" eventType="touchUpInside" id="Mzo-V5-uvN"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="goG-yf-wyh">
+                    <rect key="frame" x="150" y="712" width="114.5" height="54"/>
+                    <color key="backgroundColor" red="0.043137254899999998" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="RPD-e9-wls"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Huỷ đơn hàng">
+                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="tapCancel:forEvent:" destination="-1" eventType="touchUpInside" id="THc-aK-HmU"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="l8g-5o-gmo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="27d-pA-0B5"/>
                 <constraint firstItem="l8g-5o-gmo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8Qj-Qb-Meo"/>
+                <constraint firstItem="goG-yf-wyh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AF1-3U-vh8"/>
                 <constraint firstItem="CJ6-Ui-1j1" firstAttribute="top" secondItem="Vea-tE-YFd" secondAttribute="bottom" constant="24" id="ZJ1-JM-oxj"/>
                 <constraint firstItem="CJ6-Ui-1j1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cGW-eG-Zpm"/>
                 <constraint firstItem="Vea-tE-YFd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="deL-BN-E3g"/>
+                <constraint firstItem="goG-yf-wyh" firstAttribute="top" secondItem="Vea-tE-YFd" secondAttribute="bottom" constant="86" id="hhl-mX-HlZ"/>
                 <constraint firstItem="Vea-tE-YFd" firstAttribute="top" secondItem="l8g-5o-gmo" secondAttribute="bottom" constant="24" id="klW-2n-Mhd"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="57.589285714285708"/>

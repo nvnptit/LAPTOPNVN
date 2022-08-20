@@ -44,7 +44,7 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var btnThayDoi: UIButton!
     @IBOutlet weak var btnDangXuat: UIButton!
     
-    
+    var isCancel:Bool = false
     var statusDrop = DropDown()
     let statusValues: [String] = ["Chờ duyệt","Đang giao hàng","Đã giao hàng","Đã huỷ"]
     
@@ -90,8 +90,6 @@ class AccountViewController: UIViewController {
         info.isHidden = false
         history.isHidden = true
         
-        //        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
-        //        view.addGestureRecognizer(gesture)
         
         if #available(iOS 13.4, *) {
             createDatePicker()
@@ -108,6 +106,11 @@ class AccountViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool = false) {
+//        if (isCancel){
+//       self.segment.selectedSegmentIndex = 1
+//            info.isHidden = true
+//            history.isHidden = false
+//        }
         self.navigationController?.isNavigationBarHidden = true
         loadDataHistory()
     }
@@ -502,7 +505,10 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 153
+        return 200
+    }
+    func tableView(_ tableView: UITableView, widthForRowAt indexPath: IndexPath) -> CGFloat {
+        return 492
     }
     
     
@@ -546,10 +552,9 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = dataHistory[indexPath.item]
         guard let cell = tableView.cellForRow(at: indexPath) as? HistoryOrderTableViewCell else { return }
-        
-        let detailSPViewController = DetailSanPhamViewController()
-        detailSPViewController.order = item
-        self.navigationController?.pushViewController(detailSPViewController, animated: true)
+        let vc = DetailSanPhamViewController()
+        vc.order = item
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
