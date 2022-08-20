@@ -13,6 +13,8 @@ class UserService {
      
     private init() { }
     public var listQuyen: [QuyenResponse]?
+    public var listHang: [HangSX]?
+    
     public var infoProfile: LoginResponse?
     public var infoNV: ModelNVResponse?
     public var cmnd: String = ""
@@ -53,7 +55,7 @@ extension UserService{
 }
 
 extension UserService{
-    //Nhan vien
+    //Quyen
     
     func setListQuyen(with data: [QuyenResponse]?){
         guard let data = data else {return}
@@ -66,3 +68,18 @@ extension UserService{
         self.listQuyen = nil
     }
 }
+//
+//extension UserService{
+//    //Hangsx
+//    
+//    func setListHang(with data: [HangSX]?){
+//        guard let data = data else {return}
+//        self.listHang = data
+//    }
+//    func getListHang() -> [HangSX]?{
+//        return self.listHang
+//    }
+//    func removeAllHang() {
+//        self.listQuyen = nil
+//    }
+//}

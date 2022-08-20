@@ -166,7 +166,7 @@ class DetailBrandViewController: UIViewController {
                         }
                     }
                 }else {
-                    let params = HangSXModel(mahang: nil, tenhang: name, email: email, sdt: phone, logo: "/images/noimage.png").convertToDictionary()
+                    let params = HangSXModel(mahang: nil, tenhang: name, email: email, sdt: phone, logo: "/images/noimage.jpg").convertToDictionary()
                     print(params)
                     self.addHangSX(params: params)
                 }
@@ -215,7 +215,6 @@ class DetailBrandViewController: UIViewController {
     @IBAction func tapDelete(_ sender: UIButton) {
         let params = HangModel(maHang: Int(tfMaHang.text!)).convertToDictionary()
         delHangSX(params: params)
-        
     }
     
 }

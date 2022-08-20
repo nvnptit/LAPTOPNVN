@@ -40,24 +40,19 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TÀI KHOẢN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSX-jD-mY6">
-                                    <rect key="frame" x="30" y="118" width="78" height="18"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TÊN ĐĂNG NHẬP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSX-jD-mY6">
+                                    <rect key="frame" x="1" y="118" width="121" height="18"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="minhnhat" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Em1-6j-2vS">
-                                    <rect key="frame" x="125" y="110" width="259" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MẬT KHẨU" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7so-gA-NfO">
                                     <rect key="frame" x="30" y="171" width="76" height="18"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LLy-Gb-jEG">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LLy-Gb-jEG">
                                     <rect key="frame" x="125" y="163" width="259" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -68,7 +63,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="213456789" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l26-fn-kgr">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l26-fn-kgr">
                                     <rect key="frame" x="125" y="216" width="259" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -79,7 +74,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Nguyen Minh Nhat" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ue3-y7-UZO">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ue3-y7-UZO">
                                     <rect key="frame" x="125" y="267" width="259" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -90,7 +85,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="28-03-2000" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ElX-kd-50C">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ElX-kd-50C">
                                     <rect key="frame" x="125" y="318" width="259" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -101,7 +96,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="minhnhat@gmail.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wfU-dD-fc3">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wfU-dD-fc3">
                                     <rect key="frame" x="125" y="371" width="259" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -112,7 +107,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0974428986" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RWk-l6-IYJ">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RWk-l6-IYJ">
                                     <rect key="frame" x="125" y="427" width="259" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
@@ -138,8 +133,13 @@
                                         <action selector="tapRegister:forEvent:" destination="-1" eventType="touchUpInside" id="sMA-kg-RPO"/>
                                     </connections>
                                 </button>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="97 Man Thien Phường Hiệp Phú, Quận 9" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dBT-ct-NfW">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dBT-ct-NfW">
                                     <rect key="frame" x="30" y="513" width="354" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Em1-6j-2vS">
+                                    <rect key="frame" x="125" y="110" width="259" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
@@ -147,8 +147,8 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="ue3-y7-UZO" secondAttribute="trailing" constant="30" id="1vG-Gi-Hvg"/>
-                                <constraint firstItem="wSX-jD-mY6" firstAttribute="leading" secondItem="WUU-g4-9dB" secondAttribute="leading" constant="30" id="22K-P9-AYk"/>
-                                <constraint firstItem="Em1-6j-2vS" firstAttribute="leading" secondItem="wSX-jD-mY6" secondAttribute="trailing" constant="17" id="3uA-Jt-BJC"/>
+                                <constraint firstItem="wSX-jD-mY6" firstAttribute="leading" secondItem="WUU-g4-9dB" secondAttribute="leading" constant="1" id="22K-P9-AYk"/>
+                                <constraint firstItem="Em1-6j-2vS" firstAttribute="leading" secondItem="wSX-jD-mY6" secondAttribute="trailing" constant="3" id="3uA-Jt-BJC"/>
                                 <constraint firstItem="adh-Qh-dMq" firstAttribute="top" secondItem="BO3-NB-i0u" secondAttribute="bottom" constant="33" id="4Zx-qI-9Xj"/>
                                 <constraint firstItem="ue3-y7-UZO" firstAttribute="top" secondItem="l26-fn-kgr" secondAttribute="bottom" constant="17" id="6j4-3N-BhO"/>
                                 <constraint firstAttribute="trailing" secondItem="dBT-ct-NfW" secondAttribute="trailing" constant="30" id="A05-Md-7YD"/>
@@ -198,7 +198,7 @@
                         <constraint firstItem="WUU-g4-9dB" firstAttribute="height" secondItem="JJY-LY-Y7M" secondAttribute="height" priority="250" id="deZ-oz-eV0"/>
                         <constraint firstAttribute="trailing" secondItem="WUU-g4-9dB" secondAttribute="trailing" id="kki-Wt-yt2"/>
                         <constraint firstItem="WUU-g4-9dB" firstAttribute="width" secondItem="JJY-LY-Y7M" secondAttribute="width" id="pcC-Ah-Jm1"/>
-                        <constraint firstAttribute="bottom" secondItem="WUU-g4-9dB" secondAttribute="bottom" constant="-100" id="r7w-Wn-bd0"/>
+                        <constraint firstAttribute="bottom" secondItem="WUU-g4-9dB" secondAttribute="bottom" id="r7w-Wn-bd0"/>
                         <constraint firstItem="WUU-g4-9dB" firstAttribute="top" secondItem="JJY-LY-Y7M" secondAttribute="top" id="rvi-0J-xus"/>
                     </constraints>
                 </scrollView>

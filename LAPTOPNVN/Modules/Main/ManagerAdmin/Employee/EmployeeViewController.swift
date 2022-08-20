@@ -18,10 +18,33 @@ class EmployeeViewController: UIViewController {
     
     var dataNV : [ModelNVResponseAD] = []
     
+    var dataQuyen : [QuyenResponse] = []
+    
+    func loadDataQuyen(){
+        DispatchQueue.init(label: "QuyenVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else { return }
+            
+            APIService.getQuyen(with: .getQuyen, params: nil, headers: nil, completion: { [weak self] base, error in
+                guard let self = self, let base = base else { return }
+                if base.success == true {
+                    self.dataQuyen = (base.data ?? [])
+                }
+//                else {
+//                    let alert = UIAlertController(title:"Đã có lỗi xảy ra", message: "", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+//                        self.dismiss(animated: true)
+//                    }))
+//                    self.present(alert, animated: true)
+//                }
+            })
+        }
+        
+    }
+    
     var isAdded: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadDataQuyen()
         if (isAdded){
             btnBack.isHidden = false
         }else {
@@ -42,6 +65,7 @@ class EmployeeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool = false) {
         //        self.navigationController?.isNavigationBarHidden = true
         loadDataNV()
+        loadDataQuyen()
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -75,12 +99,9 @@ class EmployeeViewController: UIViewController {
         
         let vc = DetailEmployeeViewController()
         var data: [String] = []
-        if let listQuyen = UserService.shared.getListQuyen(){
-            for i in listQuyen{
+            for i in dataQuyen{
                 data.append(i.tenquyen ?? "")
-                //                if (i.maquyen == UserService.shared.)
             }
-        }
         vc.statusValues = data
         vc.isNew  = true
         self.navigationController?.pushViewController(vc, animated: true)
@@ -89,10 +110,6 @@ class EmployeeViewController: UIViewController {
     
     
 }
-extension EmployeeViewController{
-    
-}
-
 extension EmployeeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -137,12 +154,9 @@ extension EmployeeViewController: UITableViewDataSource, UITableViewDelegate {
         let detailEmployeeViewController = DetailEmployeeViewController()
         detailEmployeeViewController.employee = item
         var data: [String] = []
-        if let listQuyen = UserService.shared.getListQuyen(){
-            for i in listQuyen{
+            for i in dataQuyen{
                 data.append(i.tenquyen ?? "")
-                //                if (i.maquyen == UserService.shared.)
             }
-        }
         print(data)
         detailEmployeeViewController.statusValues = data
         self.navigationController?.pushViewController(detailEmployeeViewController, animated: true)

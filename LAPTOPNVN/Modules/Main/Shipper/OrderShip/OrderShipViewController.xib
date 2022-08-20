@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderShipViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
                 <outlet property="dropdownStatus" destination="a3R-4h-mDL" id="9pG-UG-GoF"/>
+                <outlet property="lbWelcome" destination="RTh-Ef-UMp" id="9GZ-de-AOv"/>
                 <outlet property="scrollView" destination="4KK-9Z-JPX" id="KGu-fD-yEo"/>
                 <outlet property="status" destination="3lm-HC-pOg" id="P8p-Fn-P6S"/>
                 <outlet property="tableView" destination="LVQ-qh-Iid" id="eGX-Gz-ZLK"/>
@@ -93,6 +94,12 @@
                                         <action selector="tapLogout:forEvent:" destination="-1" eventType="touchUpInside" id="50Q-br-Nsl"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chào mừng bạn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTh-Ef-UMp">
+                                    <rect key="frame" x="27" y="9" width="121" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
@@ -102,6 +109,7 @@
                                 <constraint firstItem="iyU-mj-xBY" firstAttribute="top" secondItem="Y3k-RQ-y2d" secondAttribute="bottom" constant="13" id="8da-N9-gDY"/>
                                 <constraint firstAttribute="trailing" secondItem="Y3k-RQ-y2d" secondAttribute="trailing" constant="28" id="AAv-0W-hOq"/>
                                 <constraint firstItem="DXd-Oh-95M" firstAttribute="leading" secondItem="QYg-HT-b7q" secondAttribute="leading" constant="28" id="EX3-tb-vff"/>
+                                <constraint firstItem="RTh-Ef-UMp" firstAttribute="leading" secondItem="QYg-HT-b7q" secondAttribute="leading" constant="27" id="HUq-VQ-6UA"/>
                                 <constraint firstAttribute="trailing" secondItem="iyU-mj-xBY" secondAttribute="trailing" constant="28" id="OVW-hX-SOa"/>
                                 <constraint firstItem="Y3k-RQ-y2d" firstAttribute="leading" secondItem="mMi-KI-OM0" secondAttribute="trailing" constant="35" id="Qq5-NN-pkK"/>
                                 <constraint firstItem="Y3k-RQ-y2d" firstAttribute="top" secondItem="MlI-es-uor" secondAttribute="bottom" constant="20" id="Vub-2G-Y8G"/>
@@ -113,6 +121,7 @@
                                 <constraint firstAttribute="trailing" secondItem="a3R-4h-mDL" secondAttribute="trailing" constant="28" id="d1w-V6-Ypq"/>
                                 <constraint firstItem="a3R-4h-mDL" firstAttribute="leading" secondItem="fuu-YL-GcW" secondAttribute="trailing" constant="9.5" id="ffF-Fw-bgF"/>
                                 <constraint firstItem="iyU-mj-xBY" firstAttribute="leading" secondItem="DXd-Oh-95M" secondAttribute="trailing" constant="21" id="gQZ-Qa-eKV"/>
+                                <constraint firstItem="RTh-Ef-UMp" firstAttribute="top" secondItem="QYg-HT-b7q" secondAttribute="top" constant="9" id="iwV-5r-nGa"/>
                                 <constraint firstItem="mMi-KI-OM0" firstAttribute="top" secondItem="QYg-HT-b7q" secondAttribute="top" constant="67" id="kd1-f4-cRG"/>
                                 <constraint firstAttribute="trailing" secondItem="MlI-es-uor" secondAttribute="trailing" constant="19" id="ldv-kY-KfI"/>
                                 <constraint firstItem="LVQ-qh-Iid" firstAttribute="leading" secondItem="QYg-HT-b7q" secondAttribute="leading" constant="27" id="mBB-kG-YJ0"/>

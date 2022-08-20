@@ -8,13 +8,23 @@
 import Foundation
 import Alamofire
 
-typealias LoaiSanPhams = [LoaiSanPham]
-typealias HangSXs = [HangSX]
+//typealias LoaiSanPhams = [LoaiSanPham]
+//typealias HangSXs = [HangSX]
 
 struct APIService {
-//    static let baseUrl: String = "http://192.168.1.12"
-    static let baseUrl: String = "http://192.168.2.19"
+    static let baseUrl: String = "http://192.168.1.12"
+//    static let baseUrl: String = "http://192.168.2.19"
 //    static let baseUrl: String = "http://192.168.2.21"
+    
+    public static func postLSP(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+        APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
     
     public static func getTyGia(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[TyGiaResponse]>?, String?) -> ()) {
         APIController.request(ResponseBase<[TyGiaResponse]>.self, manager, params: params, headers: headers) { error, data in

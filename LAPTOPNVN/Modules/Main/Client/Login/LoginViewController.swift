@@ -24,15 +24,15 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func didTapLogin(_ sender: UIButton, forEvent event: UIEvent) {
-        guard let user = username.text, let pass = password.text else {
-            let alert = UIAlertController(title: "Tên đăng nhập hoặc mật khẩu không được để trống", message: "", preferredStyle: .alert)
+        if (username.text == "" || password.text == "" ) {
+            let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                 self.dismiss(animated: true)
             }))
             self.present(alert, animated: true)
             return
         }
-        
+        guard let user = username.text, let pass = password.text else {return}
         let params = LoginModel(tenDangNhap: user, matKhau: pass).convertToDictionary()
         
         APIService.postLogin(with: .login, params, nil, completion: {
@@ -72,7 +72,6 @@ class LoginViewController: UIViewController {
                 self.present(alert, animated: true)
             }
         })
-        getQuyen()
     }
     
     
@@ -80,21 +79,6 @@ class LoginViewController: UIViewController {
     @IBAction func didTapRegister(_ sender: UIButton, forEvent event: UIEvent) {
         let vc = RegisterViewController()
         self.navigationController?.pushViewController(vc, animated: true)
-    }
-    private func getQuyen(){
-        APIService.getQuyen(with: .getQuyen, params: nil, headers: nil, completion: {
-            base, error in
-            guard let base = base else { return }
-            if base.success == true {
-                UserService.shared.setListQuyen(with: base.data)
-            } else {
-                let alert = UIAlertController(title:"Đã có lỗi xảy ra", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                    self.dismiss(animated: true)
-                }))
-                self.present(alert, animated: true)
-            }
-        })
     }
 }
 

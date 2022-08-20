@@ -48,6 +48,7 @@ class DetailEmployeeViewController: UIViewController {
     var maQuyen: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Cập nhật thông tin nhân viên"
         setupAnimation()
         setupKeyboard()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
@@ -71,7 +72,6 @@ class DetailEmployeeViewController: UIViewController {
             btnChange.setTitle("THÊM MỚI", for: .normal)
             btnDelete.isHidden = true
             getMaNV()
-            
         }
         setupDropDown()
         setupStatus()
@@ -197,6 +197,21 @@ class DetailEmployeeViewController: UIViewController {
     
     @IBAction func tapDelete(_ sender: UIButton, forEvent event: UIEvent) {
         print("DELETE")
+        let alert = UIAlertController(title: "Bạn có chắc xoá nhân viên này", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
+            self.dismiss(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
+            self.dismiss(animated: true)
+            let params = ModelNV(manv: self.tfMaNV.text!).convertToDictionary()
+            self.delNV(params: params)
+            // Huỷ kích hoạt tài khoản
+            let paramQKH = TaiKhoanQuyenKichHoat(tendangnhap: self.employee?.tendangnhap!, maquyen: self.employee?.maquyen!, kichhoat: false).convertToDictionary()
+            print(paramQKH)
+            self.updateQuyenKichHoat(params: paramQKH)
+            
+        }))
+        self.present(alert, animated: true)
     }
     
     func offFill(){
@@ -465,7 +480,7 @@ extension DetailEmployeeViewController{
                 }))
                 self.present(alert, animated: true)
             } else {
-                let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
+                let alert = UIAlertController(title: base.message! + "\n Đã huỷ kích hoạt tài khoản", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
                 }))

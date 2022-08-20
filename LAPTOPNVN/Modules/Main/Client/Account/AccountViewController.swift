@@ -56,6 +56,8 @@ class AccountViewController: UIViewController {
     let datePicker1 = UIDatePicker()
     let datePicker2 = UIDatePicker()
     
+    let datePicker = UIDatePicker()
+    
     var dataHistory: [HistoryOrder] = []
     
     private func setupAnimation() {
@@ -367,10 +369,16 @@ extension AccountViewController{
         toolbar.sizeToFit()
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapOnView))
         switch (datePickerView){
+            case datePicker:
+                let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donedatePicker))
+                let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                toolbar.setItems([cancelButton,flexButton,doneButton], animated: true)
+                
             case datePicker1:
                 let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donedatePicker1))
                 let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
                 toolbar.setItems([cancelButton,flexButton,doneButton], animated: true)
+                
             case datePicker2:
                 let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donedatePicker2))
                 let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
@@ -383,13 +391,19 @@ extension AccountViewController{
     }
     @available(iOS 13.4, *)
     private func createDatePicker() {
+        datePicker.preferredDatePickerStyle = .wheels
         datePicker1.preferredDatePickerStyle = .wheels
         datePicker2.preferredDatePickerStyle = .wheels
         
         if #available(iOS 14, *) {
+            datePicker.preferredDatePickerStyle = .inline
             datePicker1.preferredDatePickerStyle = .inline
             datePicker2.preferredDatePickerStyle = .inline
         }
+        
+        datePicker.datePickerMode = .date
+        tfBirthday.inputView = datePicker
+        tfBirthday.inputAccessoryView = createToolbar(datePicker)
         
         datePicker1.datePickerMode = .date
         tfFrom.inputView = datePicker1
@@ -398,6 +412,13 @@ extension AccountViewController{
         datePicker2.datePickerMode = .date
         tfTo.inputView = datePicker2
         tfTo.inputAccessoryView = createToolbar(datePicker2)
+    }
+    
+    @objc func donedatePicker() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        tfBirthday.text =  dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
     }
     
     @objc func donedatePicker1() {
@@ -414,6 +435,7 @@ extension AccountViewController{
         loadDataHistory()
         view.endEditing(true)
     }
+    
 }
 
 extension AccountViewController{
@@ -454,6 +476,11 @@ extension AccountViewController {
                 let phoneE = self.chuanHoa(self.tfPhone.text)
                 let model = LoginResponse(cmnd: self.tfCMND.text, email: emailE, ten: nameE, diachi: addressE, ngaysinh: dayE, sdt: phoneE, tendangnhap: UserService.shared.infoProfile?.tendangnhap)
                 UserService.shared.setInfo(with: model)
+                let alert = UIAlertController(title: "Cập nhật thông tin thành công", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
             }
             else {
                 fatalError()

@@ -438,7 +438,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 header.title.text = "Khuyến mãi khủng"
                 header.btnSeemore.setTitle("Xem thêm", for: .normal)
             case 3:
-                header.title.text = "Sản phẩm deal tốt"
+                header.title.text = "Sản phẩm giá tốt"
                 header.btnSeemore.setTitle("", for: .normal)
             default:
                 return UICollectionReusableView()

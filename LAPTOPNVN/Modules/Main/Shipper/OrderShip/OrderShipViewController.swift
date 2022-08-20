@@ -11,6 +11,7 @@ import NVActivityIndicatorView
 
 class OrderShipViewController: UIViewController {
     
+    @IBOutlet weak var lbWelcome: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tfFrom: UITextField!
     
@@ -46,7 +47,9 @@ class OrderShipViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if let name = UserService.shared.infoNV?.ten{
+            lbWelcome.text = "Chào mừng bạn,\(name)"
+        }
         setupDropDown()
         setupStatus()
         if #available(iOS 13.4, *) {

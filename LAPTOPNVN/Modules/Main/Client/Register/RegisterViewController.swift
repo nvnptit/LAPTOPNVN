@@ -75,13 +75,15 @@ class RegisterViewController: UIViewController {
                 if let success = base?.success {
                     if (success){
                         self.isValidAccount = true;
+//
+//                        let dateFormatter = DateFormatter()
+//                        dateFormatter.dateFormat = "dd-MM-yyyy"
+//                        let dateFromString = dateFormatter.date(from: birthday)
+//
+//                        dateFormatter.dateFormat = "yyyy-MM-dd"
+//                        let dateSql = dateFormatter.string(from: dateFromString!)
                         
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "dd-MM-yyyy"
-                        let dateFromString = dateFormatter.date(from: birthday)
-                        
-                        dateFormatter.dateFormat = "yyyy-MM-dd"
-                        let dateSql = dateFormatter.string(from: dateFromString!)
+                        let dateSql = Date().convertDateViewToSQL(birthday)
                         
                         let params2 = UserModel(cmnd: cmnd, email: email, ten: name, diachi: address, ngaysinh: dateSql, sdt: phone, tendangnhap: username).convertToDictionary()
                         APIService.postUserKH(with: .addUserKH, params: params2, headers: nil, completion: {
@@ -165,6 +167,15 @@ class RegisterViewController: UIViewController {
             return false
         }
         
+        if (!isValidCMND(cmnd: cmnd)){
+            let alert = UIAlertController(title: "Số chứng minh nhân dân \n không hợp lệ gồm 9-12 số", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
+        }
+        
         if (!Date().checkDate18(date: birthday)){
             let alert = UIAlertController(title: "Ngày sinh không hợp lệ \ncần đủ 18 tuổi", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
@@ -195,6 +206,15 @@ class RegisterViewController: UIViewController {
 }
 extension RegisterViewController {
     
+    func isValidCMND(cmnd: String) -> Bool {
+        let regexC1 =  "[0-9]{9}"
+        let regexC2 =  "[0-9]{12}"
+        let cmndC1 = NSPredicate(format: "SELF MATCHES%@", regexC1)
+        let cmndC2 = NSPredicate(format: "SELF MATCHES%@", regexC2)
+        let rs = cmndC1.evaluate(with: cmnd) || cmndC2.evaluate(with: cmnd)
+        print(rs)
+        return rs
+    }
     func isValidPhone(phone: String) -> Bool {
         let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
         let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)

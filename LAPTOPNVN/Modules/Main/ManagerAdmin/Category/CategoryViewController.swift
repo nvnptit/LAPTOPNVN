@@ -9,7 +9,7 @@ import UIKit
 import NVActivityIndicatorView
 
 class CategoryViewController: UIViewController {
-
+    
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,11 +17,27 @@ class CategoryViewController: UIViewController {
     
     
     var dataLSP : [LoaiSanPhamKM] = []
+    var dataHang : [HangSX] = []
+    
+    func loadDataHang(){
+        DispatchQueue.init(label: "HangVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else { return }
+            
+            APIService.getHangSX(with: .getHangSX, params: nil, headers: nil, completion: { [weak self] base, error in
+                guard let self = self, let base = base else { return }
+                if base.success == true {
+                    self.dataHang = (base.data ?? [])
+                }
+            })
+        }
+        
+    }
     
     var isAdded: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadDataLSP()
+        loadDataHang()
         if (isAdded){
             btnBack.isHidden = false
         }else {
@@ -36,6 +52,7 @@ class CategoryViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool = false) {
         loadDataLSP()
+        loadDataHang()
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -64,32 +81,28 @@ class CategoryViewController: UIViewController {
             loading.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 15)
         ])
     }
-
+    
     @IBAction func tapThemMoi(_ sender: UIButton, forEvent event: UIEvent) {
-        
-        //        let vc = DetailEmployeeViewController()
-        //        var data: [String] = []
-        //        if let listQuyen = UserService.shared.getListQuyen(){
-        //            for i in listQuyen{
-        //                data.append(i.tenquyen ?? "")
-        //                //                if (i.maquyen == UserService.shared.)
-        //            }
-        //        }
-        //        vc.statusValues = data
-        //        vc.isNew  = true
-        //        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = DetailCategoryViewController()
+        var data: [String] = []
+        for i in dataHang{
+            data.append(i.tenhang ?? "")
+        }
+        vc.dataHang = dataHang
+        vc.hangValues = data
+        vc.isNew  = true
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
     @IBAction func tapBack(_ sender: UIButton, forEvent event: UIEvent) {
-                let vc = HomeAdminViewController()
-                vc.navigationItem.hidesBackButton = true
-                self.navigationController?.pushViewController(vc, animated: true)
+        let vc = HomeAdminViewController()
+        vc.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
 }
-
 
 extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -118,7 +131,7 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
             let harddisk = item.harddrive,
             let os = item.os,
             let img = item.anhlsp
-            
+                
         {
             cell.name.text = name
             cell.cpu.text = cpu
@@ -136,15 +149,12 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
         let item = dataLSP[indexPath.item]
         let  vc = DetailCategoryViewController()
         vc.category = item
-//        var data: [String] = []
-//        if let listQuyen = UserService.shared.getListQuyen(){
-//            for i in listQuyen{
-//                data.append(i.tenquyen ?? "")
-//                //                if (i.maquyen == UserService.shared.)
-//            }
-//        }
-//        print(data)
-//        detailEmployeeViewController.statusValues = data
+        var data: [String] = []
+            for i in dataHang{
+                data.append(i.tenhang ?? "")
+            }
+        vc.hangValues = data
+        vc.dataHang = dataHang
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

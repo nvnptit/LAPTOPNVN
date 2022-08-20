@@ -191,8 +191,21 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // delete
-        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
+//        
+//            let alert = UIAlertController(title: "Bạn muốn loại bỏ sản phẩm này", message: "", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Có", style: .cancel, handler:{ _ in
+//            self.dismiss(animated: true)
+//        }))
+//        alert.addAction(UIAlertAction(title: "Không", style: .cancel, handler:{ _ in
+//            self.dismiss(animated: true)
+//            return
+//        }))
+//            self.present(alert, animated: true)
+        
+        let delete = UIContextualAction(style: .normal, title: "Xoá") { (action, view, completionHandler) in
              print("Delete: \(indexPath.row + 1)")
+            
+            
             let item = self.data[indexPath.item]
             if  self.dataChecked.contains(where: {$0.serial == item.serial }){
                 self.sum = self.sum - item.giagiam!

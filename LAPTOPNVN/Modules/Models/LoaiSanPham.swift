@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct LoaiSanPham : Decodable{
+struct LoaiSanPham : Encodable{
     let malsp: String?
     let tenlsp: String?
     let soluong: Int?
@@ -21,7 +21,9 @@ struct LoaiSanPham : Decodable{
     let isnew: Bool?
     let isgood: Bool?
     let giamoi: Int?
+    let manv: String?
 }
+
 
 struct LoaiSanPhamKM : Decodable{
     let malsp: String?
@@ -40,4 +42,8 @@ struct LoaiSanPhamKM : Decodable{
     let giamoi: Int?
     let ptgg: Int?
     let giagiam: Int?
+}
+
+struct DeleteLSP : Encodable{
+    let maLSP: String?
 }

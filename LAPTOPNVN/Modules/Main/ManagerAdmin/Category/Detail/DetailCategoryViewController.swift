@@ -6,9 +6,17 @@
 //
 
 import UIKit
+import DropDown
 
 class DetailCategoryViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var sw1: UISwitch!
+    
+    @IBOutlet weak var sw2: UISwitch!
+    @IBOutlet weak var tfMaLSP: UITextField!
+    @IBOutlet weak var lbMaLSP: UILabel!
+    
     var category: LoaiSanPhamKM?
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -34,6 +42,7 @@ class DetailCategoryViewController: UIViewController {
     
     @IBOutlet weak var mota: UITextView!
     
+    @IBOutlet weak var gia: UITextField!
     
     let imagePickerController = UIImagePickerController()
     var image = UIImage()
@@ -41,18 +50,62 @@ class DetailCategoryViewController: UIViewController {
     var isUploadPicture: Bool = false
     var isNew: Bool = false
     
+    @IBOutlet weak var soLuong: UITextField!
+    @IBOutlet weak var dropDownHangSX: UIView!
+    @IBOutlet weak var hangSX: UILabel!
+    var hangDrop = DropDown()
+    var dataHang : [HangSX] = []
+    var hangValues: [String] = []
+    
+    var maHang: Int?
+    var maLSP: Int?
+    
+    var swNew: Bool?
+    var swPrice: Bool?
+    var maNV: String = UserService.shared.maNV
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUploadAvatar()
-        
-        self.offFill()
         setupKeyboard()
+        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
         view.addGestureRecognizer(gesture)
-        
         mota.layer.borderWidth = 1
         mota.layer.borderColor = UIColor.lightGray.cgColor
-        loadData()
+        
+        self.offFill()
+        
+        if (!isNew){
+            print(hangValues)
+            loadData()
+            self.maHang = category?.mahang
+        }else {
+            self.onFill()
+            btnChange.setTitle("THÊM MỚI", for: .normal)
+            btnDelete.isHidden = true
+            getMaLSP()
+        }
+        setupDropDown()
+        setupStatus()
+    }
+    
+    @IBAction func tapNew(_ sender: UISwitch, forEvent event: UIEvent) {
+        if sender.isOn {
+            self.swNew = true
+        }else {
+            self.swNew = false
+        }
+        print(self.swNew)
+    }
+    
+    @IBAction func tapPrice(_ sender: UISwitch, forEvent event: UIEvent) {
+        if sender.isOn {
+            self.swPrice = true
+        }else {
+            self.swPrice = false
+        }
+        print(self.swPrice)
     }
     
     override func viewDidAppear(_ animated: Bool = false) {
@@ -62,6 +115,7 @@ class DetailCategoryViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     func offFill(){
+        self.tfMaLSP.isEnabled = false
         self.name.isEnabled = false
         self.cpu.isEnabled = false
         self.ram.isEnabled = false
@@ -70,7 +124,13 @@ class DetailCategoryViewController: UIViewController {
         self.os.isEnabled = false
         self.mota.isEditable = false
         camera.isUserInteractionEnabled = false
+        self.dropDownHangSX.isUserInteractionEnabled = false
+        self.sw1.isEnabled = false
+        self.sw2.isEnabled = false
+        self.gia.isEnabled = false
+        self.soLuong.isEnabled = false
         
+        self.tfMaLSP.backgroundColor = .lightGray
         self.name.backgroundColor = .lightGray
         self.cpu.backgroundColor = .lightGray
         self.ram.backgroundColor = .lightGray
@@ -78,6 +138,9 @@ class DetailCategoryViewController: UIViewController {
         self.disk.backgroundColor = .lightGray
         self.os.backgroundColor = .lightGray
         self.mota.backgroundColor = .lightGray
+        self.dropDownHangSX.backgroundColor = .lightGray
+        self.gia.backgroundColor = .lightGray
+        self.soLuong.backgroundColor = .lightGray
     }
     func onFill(){
         self.name.isEnabled = true
@@ -88,6 +151,12 @@ class DetailCategoryViewController: UIViewController {
         self.os.isEnabled = true
         self.mota.isEditable = true
         camera.isUserInteractionEnabled = true
+        self.dropDownHangSX.isUserInteractionEnabled = true
+        self.gia.isEnabled = true
+        self.soLuong.isEnabled = true
+        
+        self.sw1.isEnabled = true
+        self.sw2.isEnabled = true
         
         self.name.backgroundColor = .none
         self.cpu.backgroundColor = .none
@@ -96,9 +165,13 @@ class DetailCategoryViewController: UIViewController {
         self.disk.backgroundColor = .none
         self.os.backgroundColor = .none
         self.mota.backgroundColor = .none
+        self.dropDownHangSX.backgroundColor = .none
+        self.gia.backgroundColor = .none
+        self.soLuong.backgroundColor = .none
     }
     func loadData(){
         if let category = category {
+            tfMaLSP.text = category.malsp
             imagePicture.loadFrom(URLAddress: APIService.baseUrl + category.anhlsp!)
             name.text = category.tenlsp
             cpu.text = category.cpu
@@ -107,83 +180,132 @@ class DetailCategoryViewController: UIViewController {
             disk.text = category.harddrive
             os.text = category.os
             mota.text = category.mota
+            hangSX.text = dataHang.filter({$0.mahang == category.mahang})[0].tenhang
+            sw1.isOn = category.isnew!
+            sw2.isOn = category.isgood!
+            gia.text = "\(category.giamoi!)"
+            soLuong.text = "\(category.soluong!)"
+            swNew = category.isnew!
+            swPrice = category.isgood!
         }
     }
     @IBAction func tapChange(_ sender: UIButton, forEvent event: UIEvent) {
-        
         if (btnChange.currentTitle == "THÊM MỚI"){
-//            if (checkInfo()){
-//                let name = chuanHoa(tfTenHang.text)
-//                let email = chuanHoa(tfEmail.text)
-//                let phone = chuanHoa(tfPhone.text)
-//
-//
-//                tfTenHang.text = name
-//                tfEmail.text = email
-//                tfPhone.text = phone
-//
-//                if (isUploadPicture){
-//                    APIService.uploadAvatar(with: .uploadAvatar, image: image) { base, error in
-//                        if let base = base {
-//                            if base.success == true{
-//                                if let url = base.message{
-//                                    self.picture = url
-//                                }
-//                                let params = HangSXModel(mahang: nil, tenhang: name, email: email, sdt: phone, logo: self.picture).convertToDictionary()
-//                                // xử lý update
-//                                self.addHangSX(params: params)
-//                            }
-//                        }
-//                    }
-//                }else {
-//                    let params = HangSXModel(mahang: nil, tenhang: name, email: email, sdt: phone, logo: "/images/noimage.png").convertToDictionary()
-//                    print(params)
-//                    self.addHangSX(params: params)
-//                }
-//            }
+            if (checkInfo()){
+                let maLSP = tfMaLSP.text
+                let name = name.text
+                let cpu = cpu.text
+                let ram = ram.text
+                let card = card.text
+                let disk = disk.text
+                let os = os.text
+                let mota = mota.text
+                let gia = Int(gia.text!)
+                
+                if (isUploadPicture){
+                    APIService.uploadAvatar(with: .uploadAvatar, image: image) { [self] base, error in
+                        if let base = base {
+                            if base.success == true{
+                                if let url = base.message{
+                                    self.picture = url
+                                }
+                                let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: self.picture, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: swNew, isgood: swPrice, giamoi: gia, manv: self.maNV).convertToDictionary()
+                                print(params)
+                                self.addLSP(params: params)
+                            }
+                        }
+                    }
+                }else {
+                    let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: "/images/noimage.jpg", mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: swNew, isgood: swPrice, giamoi: gia, manv: self.maNV).convertToDictionary()
+                    print(params)
+                    self.addLSP(params: params)
+                    //
+                }
+            }
         } else
-        if (btnChange.currentTitle == "THAY ĐỔI THÔNG TIN"){
+        if (btnChange.currentTitle == "CẬP NHẬT THÔNG TIN"){
             self.onFill()
             btnChange.setTitle("LƯU THAY ĐỔI", for: .normal)
         }
         else {
-//            if (checkInfo()){
-//
-//                let maHang = Int(tfMaHang.text!)
-//                let name = chuanHoa(tfTenHang.text)
-//                let email = chuanHoa(tfEmail.text)
-//                let phone = chuanHoa(tfPhone.text)
-//                let logoG = brand?.logo!
-//
-//
-//                tfTenHang.text = name
-//                tfEmail.text = email
-//                tfPhone.text = phone
-//
-//                if (isUploadPicture){
-//                    APIService.uploadAvatar(with: .uploadAvatar, image: image) { base, error in
-//                        if let base = base {
-//                            if base.success == true{
-//                                if let url = base.message{
-//                                    self.picture = url
-//                                }
-//                                let params = HangSXModel(mahang: maHang, tenhang: name, email: email, sdt: phone, logo: self.picture).convertToDictionary()
-//                                // xử lý update
-//                                self.updateHangSX(params: params)
-//                            }
-//                        }
-//                    }
-//                }else {
-//                    let params = HangSXModel(mahang: maHang, tenhang: name, email: email, sdt: phone, logo: logoG).convertToDictionary()
-//                    print(params)
-//                    self.updateHangSX(params: params)
-//                }
-//            }
+            if (checkInfo()){
+                let maLSP = tfMaLSP.text
+                let name = name.text
+                let cpu = cpu.text
+                let ram = ram.text
+                let card = card.text
+                let disk = disk.text
+                let os = os.text
+                let mota = mota.text
+                let gia = Int(gia.text!)
+                
+                if (isUploadPicture){
+                    APIService.uploadAvatar(with: .uploadAvatar, image: image) { [self] base, error in
+                        if let base = base {
+                            if base.success == true{
+                                if let url = base.message{
+                                    self.picture = url
+                                }
+                                let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: self.picture, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: self.swNew, isgood: self.swPrice, giamoi: gia, manv: self.maNV).convertToDictionary()
+                                print(params)
+                                self.updateLSP(params: params)
+                            }
+                        }
+                    }
+                }else {
+                    let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: category?.anhlsp!, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: self.swNew, isgood: self.swPrice, giamoi: gia, manv: self.maNV).convertToDictionary()
+                    print(params)
+                    self.updateLSP(params: params)
+                    //
+                }
+            }
         }
     }
     
     @IBAction func tapDelete(_ sender: UIButton, forEvent event: UIEvent) {
+        print("Delete")
+        let params = DeleteLSP(maLSP: category?.malsp!).convertToDictionary()
+        print(params)
+        delLSP(params: params)
     }
+}
+
+extension DetailCategoryViewController{
+    
+    // BEGIN Hãng
+    
+    private func setupStatus() {
+        hangDrop.anchorView = dropDownHangSX
+        hangDrop.dataSource = hangValues
+        hangDrop.bottomOffset = CGPoint(x: 0, y:(hangDrop.anchorView?.plainView.bounds.height)! + 5)
+        hangDrop.direction = .bottom
+        hangDrop.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.hangSX.text = item
+            self.maHang = dataHang.filter( {$0.tenhang == item})[0].mahang
+        }
+        
+        let gestureClock = UITapGestureRecognizer(target: self, action: #selector(didTapStatus))
+        dropDownHangSX.addGestureRecognizer(gestureClock)
+        dropDownHangSX.layer.borderWidth = 1
+        dropDownHangSX.layer.borderColor = UIColor.lightGray.cgColor
+        
+    }
+    
+    @objc func didTapStatus() {
+        hangDrop.show()
+    }
+    
+    
+    private func setupDropDown() {
+        DropDown.appearance().textColor = UIColor.black
+        DropDown.appearance().selectedTextColor = UIColor.black
+        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 15)
+        DropDown.appearance().backgroundColor = UIColor.white
+        DropDown.appearance().selectionBackgroundColor = UIColor.cyan
+        DropDown.appearance().cornerRadius = 8
+    }
+    
+    // END Hãng
 }
 
 extension DetailCategoryViewController{
@@ -220,39 +342,43 @@ extension DetailCategoryViewController{
         print(kq)
         return kq;
     }
-    
+    func chuanHoaTF(){
+        name.text = chuanHoa( name.text)
+        cpu.text = chuanHoa( cpu.text)
+        ram.text = chuanHoa( ram.text)
+        card.text = chuanHoa( card.text)
+        disk.text = chuanHoa( disk.text)
+        os.text = chuanHoa( os.text)
+        mota.text = chuanHoa( mota.text)
+        gia.text = chuanHoa( gia.text)
+        soLuong.text = chuanHoa( soLuong.text)
+    }
     func checkInfo() -> Bool{
-//        guard
-//            var email = tfEmail.text,
-//            var name = tfTen.text,
-//            var birthday = tfNgaySinh.text,
-//            var phone = tfSDT.text
-//        else {
-//            return false
-//        }
+        chuanHoaTF()
+        guard
+            let name = name.text,
+            let cpu = cpu.text,
+            let ram = ram.text,
+            let card = card.text,
+            let disk = disk.text,
+            let os = os.text,
+            let mota = mota.text,
+            let hang = hangSX.text,
+            let gia = gia.text,
+            let soLuong = soLuong.text
+        else {
+            return false
+        }
         
-//        email = chuanHoa(tfEmail.text)
-//        name = chuanHoa(tfTen.text)
-//        phone = chuanHoa(tfSDT.text)
-//        if (email.isEmpty || name.isEmpty ||
-//            birthday.isEmpty || phone.isEmpty) {
-//            let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-//                self.dismiss(animated: true)
-//            }))
-//            self.present(alert, animated: true)
-//            return false
-//        }
-//
-//        if (!isValidEmail(email: email)){
-//            let alert = UIAlertController(title: "Email không đúng định dạng", message: "", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-//                self.dismiss(animated: true)
-//            }))
-//            self.present(alert, animated: true)
-//            return false
-//        }
-       
+        if (name.isEmpty || cpu.isEmpty || ram.isEmpty || card.isEmpty || disk.isEmpty ||
+            os.isEmpty || mota.isEmpty || hang.isEmpty || gia.isEmpty || soLuong.isEmpty) {
+            let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
+        }
         return true
     }
     
@@ -307,5 +433,92 @@ extension DetailCategoryViewController: UIImagePickerControllerDelegate, UINavig
         imagePickerController.dismiss(animated: true)
         imagePicture.image = image1
         isUploadPicture = true
+    }
+}
+
+extension DetailCategoryViewController{
+    private func getMaLSP(){
+        APIService.getMaSo(with: .getMaSoLSP, params: nil, headers: nil, completion: {
+            base, error in
+            guard let base = base else { return }
+            if base.success == true {
+                self.maLSP = base.data?[0].maso
+                self.tfMaLSP.text = "LSP" + String(describing: self.maLSP!+1)
+            } else {
+                let alert = UIAlertController(title:"Đã có lỗi lấy mã", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+            }
+        })
+    }
+    
+    private func updateLSP(params: [String: Any]?) {
+        APIService.postLSP(with: .putLSP, params: params, headers: nil, completion: {
+            base, error in
+            guard let base = base else { return }
+            if base.success == true {
+                let alert = UIAlertController(title: "Cập nhật thành công!", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                    self.btnChange.setTitle("CẬP NHẬT THÔNG TIN", for: .normal)
+                    self.offFill()
+                }))
+                self.present(alert, animated: true)
+            } else {
+                let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+            }
+        })
+    }
+    private func addLSP(params: [String: Any]?) {
+        APIService.postLSP(with: .postLSP, params: params, headers: nil, completion: {
+            base, error in
+            guard let base = base else { return }
+            print(base)
+            if base.success == true {
+                let alert = UIAlertController(title: "Thêm mới thành công!", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                    let vc = CategoryViewController()
+                    vc.navigationItem.hidesBackButton = true
+                    vc.isAdded = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }))
+                self.present(alert, animated: true)
+            } else {
+                let alert = UIAlertController(title: base.message, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+            }
+        })
+    }
+    private func delLSP(params: [String: Any]?) {
+        APIService.postHangSX(with: .delLSP, params: params, headers: nil, completion: {
+            base, error in
+            guard let base = base else { return }
+            if base.success == true {
+                let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                    let vc = CategoryViewController()
+                    vc.navigationItem.hidesBackButton = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }))
+                self.present(alert, animated: true)
+            } else {
+                let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+            }
+        })
     }
 }
