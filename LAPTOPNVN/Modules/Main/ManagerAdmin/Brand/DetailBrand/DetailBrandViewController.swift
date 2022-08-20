@@ -213,8 +213,20 @@ class DetailBrandViewController: UIViewController {
     }
     
     @IBAction func tapDelete(_ sender: UIButton) {
-        let params = HangModel(maHang: Int(tfMaHang.text!)).convertToDictionary()
-        delHangSX(params: params)
+        
+        
+        let alert = UIAlertController(title: "Bạn có chắc xoá hãng sản xuất này?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
+            self.dismiss(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
+            self.dismiss(animated: true)
+            let params = HangModel(maHang: Int(self.tfMaHang.text!)).convertToDictionary()
+            self.delHangSX(params: params)
+        }))
+        self.present(alert, animated: true)
+        
+       
     }
     
 }

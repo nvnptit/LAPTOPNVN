@@ -197,7 +197,7 @@ class DetailEmployeeViewController: UIViewController {
     
     @IBAction func tapDelete(_ sender: UIButton, forEvent event: UIEvent) {
         print("DELETE")
-        let alert = UIAlertController(title: "Bạn có chắc xoá nhân viên này", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Bạn có chắc xoá nhân viên này?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
             self.dismiss(animated: true)
         }))

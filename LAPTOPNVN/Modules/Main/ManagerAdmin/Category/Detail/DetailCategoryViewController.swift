@@ -60,15 +60,13 @@ class DetailCategoryViewController: UIViewController {
     var maHang: Int?
     var maLSP: Int?
     
-    var swNew: Bool?
-    var swPrice: Bool?
     var maNV: String = UserService.shared.maNV
-    
+    var giaCu:Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUploadAvatar()
         setupKeyboard()
-        
+        self.giaCu = category?.giamoi!
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
         view.addGestureRecognizer(gesture)
         mota.layer.borderWidth = 1
@@ -91,21 +89,9 @@ class DetailCategoryViewController: UIViewController {
     }
     
     @IBAction func tapNew(_ sender: UISwitch, forEvent event: UIEvent) {
-        if sender.isOn {
-            self.swNew = true
-        }else {
-            self.swNew = false
-        }
-        print(self.swNew)
     }
     
     @IBAction func tapPrice(_ sender: UISwitch, forEvent event: UIEvent) {
-        if sender.isOn {
-            self.swPrice = true
-        }else {
-            self.swPrice = false
-        }
-        print(self.swPrice)
     }
     
     override func viewDidAppear(_ animated: Bool = false) {
@@ -185,8 +171,8 @@ class DetailCategoryViewController: UIViewController {
             sw2.isOn = category.isgood!
             gia.text = "\(category.giamoi!)"
             soLuong.text = "\(category.soluong!)"
-            swNew = category.isnew!
-            swPrice = category.isgood!
+            sw1.isOn = category.isnew!
+            sw2.isOn = category.isgood!
         }
     }
     @IBAction func tapChange(_ sender: UIButton, forEvent event: UIEvent) {
@@ -209,14 +195,14 @@ class DetailCategoryViewController: UIViewController {
                                 if let url = base.message{
                                     self.picture = url
                                 }
-                                let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: self.picture, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: swNew, isgood: swPrice, giamoi: gia, manv: self.maNV).convertToDictionary()
+                                let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: self.picture, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: sw1.isOn, isgood: sw2.isOn, giamoi: gia, manv: self.maNV).convertToDictionary()
                                 print(params)
                                 self.addLSP(params: params)
                             }
                         }
                     }
                 }else {
-                    let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: "/images/noimage.jpg", mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: swNew, isgood: swPrice, giamoi: gia, manv: self.maNV).convertToDictionary()
+                    let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: "/images/noimage.jpg", mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: sw1.isOn, isgood: sw2.isOn, giamoi: gia, manv: self.maNV).convertToDictionary()
                     print(params)
                     self.addLSP(params: params)
                     //
@@ -237,7 +223,13 @@ class DetailCategoryViewController: UIViewController {
                 let disk = disk.text
                 let os = os.text
                 let mota = mota.text
-                let gia = Int(gia.text!)
+                var gia = Int(gia.text!)
+                
+                if (self.giaCu == gia){
+                    gia = -1
+                }else {
+                    self.giaCu = gia
+                }
                 
                 if (isUploadPicture){
                     APIService.uploadAvatar(with: .uploadAvatar, image: image) { [self] base, error in
@@ -246,14 +238,14 @@ class DetailCategoryViewController: UIViewController {
                                 if let url = base.message{
                                     self.picture = url
                                 }
-                                let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: self.picture, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: self.swNew, isgood: self.swPrice, giamoi: gia, manv: self.maNV).convertToDictionary()
+                                let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: self.picture, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: sw1.isOn, isgood: sw2.isOn, giamoi: gia, manv: self.maNV).convertToDictionary()
                                 print(params)
                                 self.updateLSP(params: params)
                             }
                         }
                     }
                 }else {
-                    let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: category?.anhlsp!, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: self.swNew, isgood: self.swPrice, giamoi: gia, manv: self.maNV).convertToDictionary()
+                    let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: category?.anhlsp!, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: sw1.isOn, isgood: sw2.isOn, giamoi: gia, manv: self.maNV).convertToDictionary()
                     print(params)
                     self.updateLSP(params: params)
                     //
@@ -264,9 +256,20 @@ class DetailCategoryViewController: UIViewController {
     
     @IBAction func tapDelete(_ sender: UIButton, forEvent event: UIEvent) {
         print("Delete")
-        let params = DeleteLSP(maLSP: category?.malsp!).convertToDictionary()
-        print(params)
-        delLSP(params: params)
+        
+        let alert = UIAlertController(title: "Bạn có chắc xoá loại sản phẩm này?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
+            self.dismiss(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
+            self.dismiss(animated: true)
+            let params = DeleteLSP(maLSP: self.category?.malsp!).convertToDictionary()
+            print(params)
+            self.delLSP(params: params)
+        }))
+        self.present(alert, animated: true)
+        
+        
     }
 }
 
@@ -509,6 +512,7 @@ extension DetailCategoryViewController{
                     self.dismiss(animated: true)
                     let vc = CategoryViewController()
                     vc.navigationItem.hidesBackButton = true
+                    vc.isAdded = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }))
                 self.present(alert, animated: true)

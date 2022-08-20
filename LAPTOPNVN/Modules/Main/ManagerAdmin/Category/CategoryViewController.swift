@@ -20,9 +20,7 @@ class CategoryViewController: UIViewController {
     var dataHang : [HangSX] = []
     
     func loadDataHang(){
-        DispatchQueue.init(label: "HangVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let self = self else { return }
-            
+        DispatchQueue.main.async {
             APIService.getHangSX(with: .getHangSX, params: nil, headers: nil, completion: { [weak self] base, error in
                 guard let self = self, let base = base else { return }
                 if base.success == true {
@@ -30,7 +28,6 @@ class CategoryViewController: UIViewController {
                 }
             })
         }
-        
     }
     
     var isAdded: Bool = false
@@ -149,6 +146,7 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
         let item = dataLSP[indexPath.item]
         let  vc = DetailCategoryViewController()
         vc.category = item
+        print(item)
         var data: [String] = []
             for i in dataHang{
                 data.append(i.tenhang ?? "")
