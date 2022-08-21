@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class HistoryOrder : Decodable{
+struct HistoryOrder : Decodable{
     
     let idgiohang: Int?
     let ngaylapgiohang: String?
@@ -31,7 +31,7 @@ class HistoryOrder : Decodable{
     let os: String?
 }
 
-class HistoryOrder1 : Decodable{
+struct HistoryOrder1 : Decodable{
     
     let idgiohang: Int?
     let ngaylapgiohang: String?
@@ -56,7 +56,7 @@ class HistoryOrder1 : Decodable{
 //    let os: String?
 }
 
-class HistoryOrder1Detail : Decodable{
+struct HistoryOrder1Detail : Decodable{
     let serial: String?
     let tenlsp: String?
     let anhlsp: String?

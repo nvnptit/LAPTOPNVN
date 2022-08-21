@@ -31,7 +31,7 @@ class OrderShipViewController: UIViewController {
     let datePicker1 = UIDatePicker()
     let datePicker2 = UIDatePicker()
     
-    var dataHistory: [HistoryOrder] = []
+    var dataHistory: [HistoryOrder1] = []
     
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false
@@ -278,7 +278,6 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
         detailOrderViewController.KEY = "SHIPPER"
         detailOrderViewController.order = item
         self.navigationController?.pushViewController(detailOrderViewController, animated: true)
-        
     }
 }
 

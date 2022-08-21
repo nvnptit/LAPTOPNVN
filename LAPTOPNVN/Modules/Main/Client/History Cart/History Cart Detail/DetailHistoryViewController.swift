@@ -27,7 +27,7 @@ class DetailHistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Chi tiết giỏ hàng \(self.id!)"
+        self.title = "Chi tiết giỏ hàng"
         setupAnimation()
         loadData()
         tableView.dataSource = self

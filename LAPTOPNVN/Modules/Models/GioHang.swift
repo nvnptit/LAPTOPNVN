@@ -97,3 +97,13 @@ struct GioHangResponse : Decodable{
 struct GioHangDel : Encodable{
     let idGioHang: Int?
 }
+
+// MARK: - ModelAddGH
+struct ModelAddGH: Encodable {
+    let idgiohang: Int?
+    let ngaylapgiohang, ngaydukien: String?
+    let tonggiatri, matrangthai: Int?
+    let cmnd, manvgiao, manvduyet, nguoinhan: String?
+    let diachi, sdt, email, malsp: String?
+    let dslsp: [LoaiSanPhamKM1]?
+}

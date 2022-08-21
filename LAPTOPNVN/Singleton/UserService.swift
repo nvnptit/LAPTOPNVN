@@ -19,7 +19,59 @@ class UserService {
     public var infoNV: ModelNVResponse?
     public var cmnd: String = ""
     public var maNV: String = ""
+    public var listGH: [GioHangL] = []
+    public var list: [LoaiSanPhamKM?] = []
+}
 
+struct GioHangL : Decodable{
+    let id: String
+    let malsp: String?
+    let tenlsp: String?
+    let soluong: Int?
+    let anhlsp: String?
+    let mota: String?
+    let cpu: String?
+    let ram: String?
+    let harddrive: String?
+    let cardscreen: String?
+    let os: String?
+    let mahang: Int?
+    let isnew: Bool?
+    let isgood: Bool?
+    let giamoi: Int?
+    let ptgg: Int?
+    let giagiam: Int?
+}
+
+extension UserService{
+    //Danh sach gio hang
+    
+     func addOrder(with data: LoaiSanPhamKM?){
+         guard let item = data else {return}
+         listGH.append(GioHangL(id: UUID().uuidString, malsp: item.malsp, tenlsp: item.tenlsp, soluong: item.soluong, anhlsp: item.anhlsp, mota: item.mota, cpu: item.cpu, ram: item.ram, harddrive: item.harddrive, cardscreen: item.cardscreen, os: item.os, mahang: item.mahang, isnew: item.isnew, isgood: item.isgood, giamoi: item.giamoi, ptgg: item.ptgg, giagiam: item.giagiam))
+     }
+    func removeOrder(with data: GioHangL){
+        self.listGH = self.listGH.filter { $0.id != data.id }
+    }
+    func getlistGH1() -> [LoaiSanPhamKM?]{
+        list.removeAll()
+            for item in listGH{
+                list.append(LoaiSanPhamKM(malsp: item.malsp, tenlsp: item.tenlsp, soluong: item.soluong, anhlsp: item.anhlsp, mota: item.mota, cpu: item.cpu, ram: item.ram, harddrive: item.harddrive, cardscreen: item.cardscreen, os: item.os, mahang: item.mahang, isnew: item.isnew, isgood: item.isgood, giamoi: item.giamoi, ptgg: item.ptgg, giagiam: item.giagiam))
+            }
+            return list
+        return []
+    }
+    func getlistGH() -> [GioHangL]{
+        return self.listGH
+    }
+    func removeAllGH() {
+        self.listGH.removeAll()
+    }
+}
+
+extension UserService{
+    //Khach Hang
+   
     func setInfo(with data: LoginResponse?){
         guard let info = data else {return}
         self.infoProfile = info
@@ -35,6 +87,7 @@ class UserService {
         self.cmnd = ""
     }
 }
+
 extension UserService{
     //Nhan vien
     

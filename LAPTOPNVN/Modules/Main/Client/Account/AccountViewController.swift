@@ -343,6 +343,9 @@ class AccountViewController: UIViewController {
     
     @IBAction func tapLogout(_ sender: UIButton, forEvent event: UIEvent) {
         UserService.shared.removeAll()
+        UserService.shared.removeAllGH()
+        UserService.shared.removeAllNV()
+        UserService.shared.removeAllQuyen()
         let vc = MainTabBarController()
         vc.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(vc, animated: true)
@@ -547,8 +550,6 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = dataHistory[indexPath.item]
         guard let cell = tableView.cellForRow(at: indexPath) as? HistoryOrderTableViewCell else { return }
-//        let vc = DetailSanPhamViewController()
-//        vc.order = item
         let vc = DetailHistoryViewController()
         vc.id = item.idgiohang
         self.navigationController?.pushViewController(vc, animated: true)

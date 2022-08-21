@@ -42,8 +42,32 @@ struct LoaiSanPhamKM : Decodable{
     let giamoi: Int?
     let ptgg: Int?
     let giagiam: Int?
+//      let serial: String?
+//      let idgiohang: Int?
 }
+
 
 struct DeleteLSP : Encodable{
     let maLSP: String?
+}
+
+struct LoaiSanPhamKM1 : Encodable{
+    let malsp: String?
+    let tenlsp: String?
+    let soluong: Int?
+    let anhlsp: String?
+    let mota: String?
+    let cpu: String?
+    let ram: String?
+    let harddrive: String?
+    let cardscreen: String?
+    let os: String?
+    let mahang: Int?
+    let isnew: Bool?
+    let isgood: Bool?
+    let giamoi: Int?
+    let ptgg: Int?
+    let giagiam: Int? 
+//      let serial: String?
+//      let idgiohang: Int?
 }

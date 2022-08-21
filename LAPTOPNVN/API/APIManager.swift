@@ -13,6 +13,7 @@ enum APIManager {
     case register
     case resetPass
     
+    case addGioHang1
     case getDetailHistory
     case getTyGia
     
@@ -78,7 +79,8 @@ extension APIManager {
             case .login: path = "/tai-khoan/login"
             case .register: path = "/tai-khoan"
             case .resetPass: path = "/tai-khoan/thay-matkhau"
-            
+                
+            case .addGioHang1: path = "/gio-hang/them-gh"
             case .getDetailHistory: path = "/gio-hang/history-detail-order"
             case .getTyGia: path = "/ty-gia"
                 
@@ -183,7 +185,8 @@ extension APIManager {
                 :
                 return .get
             case .login, .register, .resetPass, .addGioHang, .addUserKH, .uploadAvatar,
-                    .postHangSX, .postNV, .postLSP, .postSP
+                    .postHangSX, .postNV, .postLSP, .postSP,
+                    .addGioHang1
                 :
                 return .post
             case .updateGioHang, .updateUserKH,.updateGioHangAdmin, .putOrderShipper,

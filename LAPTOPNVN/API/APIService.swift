@@ -12,8 +12,8 @@ import Alamofire
 //typealias HangSXs = [HangSX]
 
 struct APIService {
-//    static let baseUrl: String = "http://192.168.1.12"
-    static let baseUrl: String = "http://192.168.2.19"
+    static let baseUrl: String = "http://192.168.1.12"
+//    static let baseUrl: String = "http://192.168.2.19"
 //    static let baseUrl: String = "http://192.168.2.21"
     
     public static func postLSP(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
@@ -105,8 +105,8 @@ struct APIService {
     
     
     //get -> fetch
-    public static func getOrderShipper(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HistoryOrder]>?, String?) -> ()) {
-        APIController.request(ResponseBase<[HistoryOrder]>.self, manager, params: params, headers: headers) { error, data in
+    public static func getOrderShipper(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HistoryOrder1]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[HistoryOrder1]>.self, manager, params: params, headers: headers) { error, data in
             if let dataLoaiSanPham = data {
                 completion(dataLoaiSanPham, nil)
                 return
@@ -319,6 +319,18 @@ struct APIService {
             completion(nil, error)
         }
     }
+    
+    //get -> fetch
+    public static func addGioHang1(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+        APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
+            if let dataGioHang = data {
+                completion(dataGioHang, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
     //get -> fetch
     public static func addGioHangC(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(GioHangResponse?, String?) -> ()) {
         APIController.request(GioHangResponse.self, manager, params: params, headers: headers) { error, data in

@@ -22,11 +22,12 @@ class InformationViewController: UIViewController {
     @IBOutlet weak var btnThanhToan: UIButton!
     @IBOutlet weak var lbDatePlan: UILabel!
     
-    var dataGioHang : [GioHangData] = []
+    var dataGioHang : [GioHangL] = []
     
+    public var list: [LoaiSanPhamKM1] = []
     
     let datePicker = UIDatePicker()
-
+    
     var braintreeClient: BTAPIClient!
     var tyGiaUSD: TyGiaResponse?
     
@@ -35,10 +36,10 @@ class InformationViewController: UIViewController {
         setupKeyboard()
         address.layer.shadowColor = UIColor.lightGray.cgColor
         address.layer.borderWidth = 0.2
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.getTyGia()
-            }
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.getTyGia()
+        }
         if #available(iOS 13.4, *) {
             createDatePicker()
         } else {
@@ -46,6 +47,7 @@ class InformationViewController: UIViewController {
         }
         
         loadInfo()
+        self.dataSend()
         self.braintreeClient = BTAPIClient(authorization: "sandbox_9qswqysc_7hsb2swzq3w35xrj")
         
     }
@@ -61,7 +63,7 @@ class InformationViewController: UIViewController {
               let phone = phone.text,
               let email = email.text,
               let address = address.text,
-                let datePlan = datePlan.text
+              let datePlan = datePlan.text
         else {
             return false
         }
@@ -94,12 +96,12 @@ class InformationViewController: UIViewController {
         let current = "\(currentDate)".prefix(10)
         
         if (!Date().checkDatePlan(start: datePlan, end: Date().convertDateSQLToView(String(current))) ){
-                let alert = UIAlertController(title: "Ngày giao mong muốn phải lớn hơn ngày hiện tại", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                    self.dismiss(animated: true)
-                }))
-                self.present(alert, animated: true)
-                return false
+            let alert = UIAlertController(title: "Ngày giao mong muốn phải lớn hơn ngày hiện tại", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
         }
         return true
     }
@@ -112,7 +114,7 @@ class InformationViewController: UIViewController {
             self.present(alert, animated: true)
             return
         }
-//        print(tyGiaUSD?.giatri)
+        //        print(tyGiaUSD?.giatri)
         var sum = 0
         if (checkFill()){
             for item in dataGioHang {
@@ -143,20 +145,33 @@ class InformationViewController: UIViewController {
                     let email = self.email.text
                     let address = self.address.text
                     let dayPlan = Date().convertDateViewToSQL(self.datePlan.text!)
-                    for item in self.dataGioHang{
-                        let params = GioHangEdit(idgiohang: item.idgiohang, ngaylapgiohang: nil,ngaydukien: dayPlan, tonggiatri: item.giagiam, matrangthai: 0, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email).convertToDictionary()
-                        self.updateGH(params: params)
-                    }
+                    let cmnd = UserService.shared.cmnd
                     
-                    
-                    let alert = UIAlertController(title: "Thanh toán thành công", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                        self.dismiss(animated: true)
-                        let vc = MainTabBarController()
-                        self.navigationController?.pushViewController(vc, animated: false)
-                    }))
-                    self.present(alert, animated: true)
-                    
+                    //                    for item in self.dataGioHang{
+                    //                        let params = GioHangEdit(idgiohang: item.idgiohang, ngaylapgiohang: nil,ngaydukien: dayPlan, tonggiatri: item.giagiam, matrangthai: 0, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email).convertToDictionary()
+                    //                        self.updateGH(params: params)
+                    //                    }
+                    //
+                    print("\n LIST\n ")
+                    print(self.list)
+                    print("\n -------LIST------\n ")
+                    let params = ModelAddGH(idgiohang: nil, ngaylapgiohang: nil, ngaydukien: dayPlan, tonggiatri: sum, matrangthai: 0, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email, malsp: nil, dslsp: self.list).convertToDictionary()
+//
+                        APIService.addGioHang1(with: .addGioHang1, params: params, headers: nil, completion:   { base, error in
+                            guard let base = base else { return }
+                            if base.success == true{
+                                let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                                    self.dismiss(animated: true)
+                                    for itemz in self.dataGioHang{
+                                        UserService.shared.removeOrder(with: itemz)
+                                    }
+                                    let vc = MainTabBarController()
+                                    self.navigationController?.pushViewController(vc, animated: false)
+                                }))
+                                self.present(alert, animated: true)
+                            }
+                        })
                 } else if let error = error {
                     // Handle error here...
                     print(error)
@@ -167,7 +182,7 @@ class InformationViewController: UIViewController {
                     self.present(alert, animated: true)
                 } else {
                     // Buyer canceled payment approval
-                    
+
                     let alert = UIAlertController(title: "Đơn hàng chưa được thanh toán", message: "", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                         self.dismiss(animated: true)
@@ -180,6 +195,12 @@ class InformationViewController: UIViewController {
     }
 }
 extension InformationViewController {
+    func dataSend(){
+        self.list.removeAll()
+        for item in self.dataGioHang{
+            list.append(LoaiSanPhamKM1(malsp: item.malsp, tenlsp: item.tenlsp, soluong: item.soluong, anhlsp: item.anhlsp, mota: item.mota, cpu: item.cpu, ram: item.ram, harddrive: item.harddrive, cardscreen: item.cardscreen, os: item.os, mahang: item.mahang, isnew: item.isnew, isgood: item.isgood, giamoi: item.giamoi, ptgg: item.ptgg, giagiam: item.giagiam))
+        }
+    }
     func updateGH(params: [String : Any]?){
         APIService.updateGioHang(with: .updateGioHang, params: params, headers: nil, completion: { base, error in
             guard let base = base else { return }
@@ -276,7 +297,7 @@ extension InformationViewController{
             guard let base = base else { return }
             if base.success == true {
                 self.tyGiaUSD = base.data?.filter({$0.matg == "USD"}).first
-//                print(self.tyGiaUSD)
+                //                print(self.tyGiaUSD)
             } else {
                 let alert = UIAlertController(title:"Lỗi get tỷ giá", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
@@ -289,7 +310,7 @@ extension InformationViewController{
     }
 }
 
-    // Chuyen doi tien te
+// Chuyen doi tien te
 //            let currencyConverter = CurrencyConverter()
 //            currencyConverter.updateExchangeRates(completion: {
 //                       let doubleResult = currencyConverter.convert(10, valueCurrency: .USD, outputCurrency: .EUR)

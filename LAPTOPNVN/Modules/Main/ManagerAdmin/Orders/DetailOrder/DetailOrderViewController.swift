@@ -42,7 +42,8 @@ class DetailOrderViewController: UIViewController {
     var maNVD: String = ""
     var maNVG: String = ""
     
-    var order: HistoryOrder?
+    var order: HistoryOrder1?
+//    var order1: HistoryOrder1?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +90,7 @@ class DetailOrderViewController: UIViewController {
             nvGiao.text = order.nvgiao ?? ""
             tongtien.text = "\(CurrencyVN.toVND(order.tonggiatri!))"
         }
+        
     }
     
     private func setupAnimation() {
@@ -121,8 +123,7 @@ class DetailOrderViewController: UIViewController {
             let alert = UIAlertController(title: "Duyệt đơn hàng thành công", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                 self.dismiss(animated: true)
-                let vc = OrderViewController()
-                self.navigationController?.pushViewController(vc, animated: false)
+                self.navigationController?.popViewController(animated: true)
             }))
             self.present(alert, animated: true)
             
@@ -134,8 +135,10 @@ class DetailOrderViewController: UIViewController {
             let alert = UIAlertController(title: "Giao hàng thành công", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                 self.dismiss(animated: true)
-                let vc = OrderShipViewController()
-                self.navigationController?.pushViewController(vc, animated: false)
+                
+                self.navigationController?.popViewController(animated: true)
+//                let vc = OrderShipViewController()
+//                self.navigationController?.pushViewController(vc, animated: false)
             }))
             self.present(alert, animated: true)
             
@@ -147,8 +150,7 @@ class DetailOrderViewController: UIViewController {
             let alert = UIAlertController(title: "Cập nhật nhân viên giao hàng thành công", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                 self.dismiss(animated: true)
-                let vc = OrderViewController()
-                self.navigationController?.pushViewController(vc, animated: false)
+                self.navigationController?.popViewController(animated: true)
             }))
             self.present(alert, animated: true)
             
@@ -169,8 +171,10 @@ class DetailOrderViewController: UIViewController {
     }
     
     @IBAction func tapDetail(_ sender: UIButton, forEvent event: UIEvent) {
-        let vc = DetailSanPhamViewController()
-        vc.order = self.order
+        let vc = DetailHistoryViewController()
+        if let order = order {
+            vc.id = order.idgiohang
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

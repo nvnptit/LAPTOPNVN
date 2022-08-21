@@ -23,8 +23,11 @@ class CartViewController: UIViewController {
     @IBOutlet weak var btnDatHang: UIButton!
     
     
-    var data : [GioHangData] = []
-    var dataChecked : [GioHangData] = []
+    var data: [GioHangL] = []
+    var dataChecked: [GioHangL] = []
+    
+    //    var data : [GioHangData] = []
+    //    var dataChecked : [GioHangData] = []
     
     let cmnd = UserService.shared.cmnd
     
@@ -47,7 +50,6 @@ class CartViewController: UIViewController {
         
         setupAnimation()
         loadData()
-        
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -93,31 +95,16 @@ class CartViewController: UIViewController {
     
     
     func loadData(){
+        
         loading.startAnimating()
-        DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let self = self , self.cmnd != "" else { return }
-            
-            let params = GioHangRequest(cmnd: self.cmnd).convertToDictionary()
-            
-            APIService.getGioHang(with: .getGioHang, params: params, headers: nil, completion: { [weak self] base, error in
-                guard let self = self, let base = base else { return }
-                if base.success == true {
-                    if let dataGioHang = base.data {
-                        self.data = dataGioHang
-                    }
-                } else {
-                    fatalError()
-                }
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.tableView.reloadData()
-                    self.loading.stopAnimating()
-                }
-            })
+        
+        self.data = UserService.shared.getlistGH()
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.tableView.reloadData()
+            self.loading.stopAnimating()
         }
-        
-        
-        
     }
 }
 
@@ -141,10 +128,11 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCartTableViewCell", for: indexPath) as! ItemCartTableViewCell
         let item = data[indexPath.item]
-        if let ten = item.tenlsp, let serial = item.serial, let price = item.giamoi, let newPrice = item.giagiam , let anhlsp = item.anhlsp, let gg = item.ptgg{
+        //let serial = item.serial,
+        if let ten = item.tenlsp,  let price = item.giamoi, let newPrice = item.giagiam , let anhlsp = item.anhlsp, let gg = item.ptgg{
             
             cell.imageLSP.loadFrom(URLAddress: APIService.baseUrl+anhlsp)
-            cell.nameLSP.text = ten + "\nSerial: "+serial
+            cell.nameLSP.text = ten //+ "\nSerial: "+serial
             cell.oldPrice.text = "\(CurrencyVN.toVND(price))"
             cell.newPrice.text = "\(CurrencyVN.toVND(newPrice))"
             if (gg > 0 ){
@@ -161,7 +149,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.selectionStyle = .none
         // Checked
-        if  dataChecked.contains(where: {$0.serial == item.serial }){
+        if  dataChecked.contains(where: {$0.id == item.id }){
             cell.isChecked = true
             cell.checkBox.image = UIImage(named: "check")
         }else {
@@ -185,55 +173,32 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             cell.isChecked=false
             self.sum = self.sum - item.giagiam!
             self.money.text = "\(CurrencyVN.toVND(sum))"
-            self.dataChecked = self.dataChecked.filter { $0.idgiohang != item.idgiohang }
+            self.dataChecked = self.dataChecked.filter { $0.id != item.id }
             cell.checkBox.image = UIImage(named: "uncheck")
         }
+        print("\n \(self.dataChecked)")
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        // delete
-//        
-//            let alert = UIAlertController(title: "Bạn muốn loại bỏ sản phẩm này", message: "", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Có", style: .cancel, handler:{ _ in
-//            self.dismiss(animated: true)
-//        }))
-//        alert.addAction(UIAlertAction(title: "Không", style: .cancel, handler:{ _ in
-//            self.dismiss(animated: true)
-//            return
-//        }))
-//            self.present(alert, animated: true)
-        
         let delete = UIContextualAction(style: .normal, title: "Xoá") { (action, view, completionHandler) in
-             print("Delete: \(indexPath.row + 1)")
-            
+            print("Delete: \(indexPath.row + 1)")
             
             let item = self.data[indexPath.item]
-            if  self.dataChecked.contains(where: {$0.serial == item.serial }){
+            if  self.dataChecked.contains(where: {$0.id == item.id }){
                 self.sum = self.sum - item.giagiam!
                 self.money.text = "\(CurrencyVN.toVND(self.sum))"
-                self.dataChecked = self.dataChecked.filter { $0.idgiohang != item.idgiohang }
+                self.dataChecked = self.dataChecked.filter { $0.id != item.id }
             }
-
+            
             self.data.remove(at: indexPath.row)
+            UserService.shared.removeOrder(with: item)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            // Xử lý API
-            let params = GioHangDel(idGioHang: item.idgiohang!).convertToDictionary()
-            APIService.deleteGioHang(with: .deleteGioHang, params: params, headers: nil, completion: {
-                 base, error in
-                    if let base = base {
-                        if (base.success == true){
-                        }else {
-                            print(base.message)
-                        }
-                    }
-            })
-             completionHandler(true)
-           }
+            
+        }
         delete.image = UIImage(systemName: "trash")
         delete.backgroundColor = .red
-           // swipe
-           let swipe = UISwipeActionsConfiguration(actions: [delete])
-           
-           return swipe
+        // swipe
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        return swipe
     }
     
 }

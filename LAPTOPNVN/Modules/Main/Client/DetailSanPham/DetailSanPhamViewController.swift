@@ -12,7 +12,7 @@ class DetailSanPhamViewController: UIViewController {
     
     var loaiSp: LoaiSanPhamKM?
     var order: HistoryOrder?
-
+    
     @IBOutlet weak var imageLSP: UIImageView!
     
     @IBOutlet weak var tfCPU: UILabel!
@@ -34,10 +34,17 @@ class DetailSanPhamViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let loaiSp = loaiSp, let sl = loaiSp.soluong {
+            if (sl>0){
+                btnAddCart.isEnabled = true
+            }else {
+                    btnAddCart.isEnabled = false
+            }
+        }
         if (order?.tentrangthai == "Chờ duyệt"){
             btnCancel.isHidden = false
         }else {
-             btnCancel.isHidden = true
+            btnCancel.isHidden = true
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         if let loaiSp = loaiSp {
@@ -71,32 +78,44 @@ class DetailSanPhamViewController: UIViewController {
             }
         }
     }
-
+    
     @IBAction func tapAddCart(_ sender: UIButton) {
         let cmnd = UserService.shared.cmnd
         if (cmnd != ""){
             if let loaiSp = loaiSp {
-                let params = GioHangModel(idgiohang: nil, ngaylapgiohang: nil,ngaydukien: nil, tonggiatri: 0, matrangthai: -1, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: nil, diachi: nil, sdt: nil, email: nil, malsp: loaiSp.malsp).convertToDictionary()
-                APIService.addGioHangC(with: .addGioHang, params: params, headers: nil, completion:   { base, error in
-                    guard let base = base else { return }
-                    var title = ""
-                    if base.success == true{
-                        title = "Thêm vào giỏ hàng thành công"
-                    } else {
-                        title = "Sản phẩm đang tạm thời hết hàng"
-                    }
-                    let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+                
+                UserService.shared.addOrder(with: loaiSp)
+                                    print(UserService.shared.getlistGH())
+                print("\n")
+                                    print(UserService.shared.getlistGH().count)
+                
+                let alert = UIAlertController(title: title, message: "Thêm vào giỏ hàng thành công", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
+                    self.navigationController?.popViewController(animated: true)
                 }))
-                    self.present(alert, animated: true)
-            })
+                self.present(alert, animated: true)
+                //                let params = GioHangModel(idgiohang: nil, ngaylapgiohang: nil,ngaydukien: nil, tonggiatri: 0, matrangthai: -1, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: nil, diachi: nil, sdt: nil, email: nil, malsp: loaiSp.malsp).convertToDictionary()
+                //                APIService.addGioHangC(with: .addGioHang, params: params, headers: nil, completion:   { base, error in
+                //                    guard let base = base else { return }
+                //                    var title = ""
+                //                    if base.success == true{
+                //                        title = "Thêm vào giỏ hàng thành công"
+                //                    } else {
+                //                        title = "Sản phẩm đang tạm thời hết hàng"
+                //                    }
+                //                    let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+                //                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                //                        self.dismiss(animated: true)
+                //                    }))
+                //                    self.present(alert, animated: true)
+                //                })
             }
-        }else {
-            
-                let loginVC = LoginViewController()
+        }
+        else {
+            let loginVC = LoginViewController()
             //        self.navigationController?.navigationItem.hidesBackButton = true
-                self.navigationController?.pushViewController(loginVC, animated: true)
+            self.navigationController?.pushViewController(loginVC, animated: true)
         }
     }
     
@@ -112,22 +131,21 @@ class DetailSanPhamViewController: UIViewController {
             self.updateGH(params: params)
         }))
         self.present(alert, animated: true)
-    
+        
     }
     
 }
 extension DetailSanPhamViewController{
-    
     func updateGH(params: [String : Any]?){
         APIService.updateGioHang(with: .updateGioHangAdmin, params: params, headers: nil, completion: { base, error in
             guard let base = base else { return }
             if base.success == true {
-                        let alert = UIAlertController(title: "Huỷ đơn hàng thành công", message: "", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                            self.dismiss(animated: true)
-                            self.navigationController?.popViewController(animated: true)
-                        }))
-                        self.present(alert, animated: true)
+                let alert = UIAlertController(title: "Huỷ đơn hàng thành công", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                    self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true)
             }
             else {
                 fatalError()

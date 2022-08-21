@@ -29,7 +29,7 @@ class OrderViewController: UIViewController {
     let datePicker1 = UIDatePicker()
     let datePicker2 = UIDatePicker()
     
-    var dataHistory: [HistoryOrder] = []
+    var dataHistory: [HistoryOrder1] = []
     
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +80,7 @@ class OrderViewController: UIViewController {
         let params = HistoryModel(status: self.maStatus, cmnd: nil, dateFrom: from, dateTo: to).convertToDictionary()
         print(params)
         DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            APIService.getHistoryOrder(with: .getHistoryOrder, params: params, headers: nil, completion: {
+            APIService.getHistoryOrder1(with: .getHistoryOrder, params: params, headers: nil, completion: {
                 [weak self] base, error in
                 guard let self = self, let base = base else { return }
                 if base.success == true {
@@ -285,7 +285,6 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
 //            let detailSPViewController = DetailSanPhamViewController()
 //            detailSPViewController.loaiSp = item
 //            self.navigationController?.pushViewController(detailSPViewController, animated: true)
-//
         let detailOrderViewController = DetailOrderViewController()
         detailOrderViewController.order = item
         self.navigationController?.pushViewController(detailOrderViewController, animated: true)
