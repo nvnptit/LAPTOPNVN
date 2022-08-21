@@ -58,7 +58,7 @@ class AccountViewController: UIViewController {
     
     let datePicker = UIDatePicker()
     
-    var dataHistory: [HistoryOrder] = []
+    var dataHistory: [HistoryOrder1] = []
     
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false
@@ -106,11 +106,6 @@ class AccountViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool = false) {
-//        if (isCancel){
-//       self.segment.selectedSegmentIndex = 1
-//            info.isHidden = true
-//            history.isHidden = false
-//        }
         self.navigationController?.isNavigationBarHidden = true
         loadDataHistory()
     }
@@ -130,7 +125,7 @@ class AccountViewController: UIViewController {
             guard let self = self , self.cmnd != "" else { return }
             print(params)
             
-            APIService.getHistoryOrder(with: .getHistoryOrder, params: params, headers: nil, completion: {
+            APIService.getHistoryOrder1(with: .getHistoryOrder, params: params, headers: nil, completion: {
                 [weak self] base, error in
                 guard let self = self, let base = base else { return }
                 if base.success == true {
@@ -552,8 +547,10 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = dataHistory[indexPath.item]
         guard let cell = tableView.cellForRow(at: indexPath) as? HistoryOrderTableViewCell else { return }
-        let vc = DetailSanPhamViewController()
-        vc.order = item
+//        let vc = DetailSanPhamViewController()
+//        vc.order = item
+        let vc = DetailHistoryViewController()
+        vc.id = item.idgiohang
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

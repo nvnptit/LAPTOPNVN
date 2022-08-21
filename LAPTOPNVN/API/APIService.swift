@@ -12,8 +12,8 @@ import Alamofire
 //typealias HangSXs = [HangSX]
 
 struct APIService {
-    static let baseUrl: String = "http://192.168.1.12"
-//    static let baseUrl: String = "http://192.168.2.19"
+//    static let baseUrl: String = "http://192.168.1.12"
+    static let baseUrl: String = "http://192.168.2.19"
 //    static let baseUrl: String = "http://192.168.2.21"
     
     public static func postLSP(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
@@ -159,6 +159,27 @@ struct APIService {
         }
     }
     
+    //get -> fetch
+    public static func getHistoryOrder1(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HistoryOrder1]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[HistoryOrder1]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    //get -> fetch
+    public static func getDetailHistoryOrder1(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HistoryOrder1Detail]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[HistoryOrder1Detail]>.self, manager, params: params, headers: headers) { error, data in
+            if let dataLoaiSanPham = data {
+                completion(dataLoaiSanPham, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
     //get -> fetch
     public static func getHistoryOrder(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HistoryOrder]>?, String?) -> ()) {
         APIController.request(ResponseBase<[HistoryOrder]>.self, manager, params: params, headers: headers) { error, data in

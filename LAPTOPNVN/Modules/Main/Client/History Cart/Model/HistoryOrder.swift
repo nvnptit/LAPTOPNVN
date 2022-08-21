@@ -30,3 +30,44 @@ class HistoryOrder : Decodable{
     let cardscreen: String?
     let os: String?
 }
+
+class HistoryOrder1 : Decodable{
+    
+    let idgiohang: Int?
+    let ngaylapgiohang: String?
+    let ngaydukien: String?
+    let tonggiatri: Int?
+    let tentrangthai: String?
+    let nvgiao: String?
+    let nvduyet: String?
+    let nguoinhan: String?
+    let diachi: String?
+    let sdt: String?
+    let email: String?
+    
+//    let serial: String?
+//    let tenlsp: String?
+//    let anhlsp: String?
+//    let mota: String?
+//    let cpu: String?
+//    let ram: String?
+//    let harddrive: String?
+//    let cardscreen: String?
+//    let os: String?
+}
+
+class HistoryOrder1Detail : Decodable{
+    let serial: String?
+    let tenlsp: String?
+    let anhlsp: String?
+    let mota: String?
+    let cpu: String?
+    let ram: String?
+    let harddrive: String?
+    let cardscreen: String?
+    let os: String?
+    let giaban: Int?
+}
+struct ModelDetailHistory: Encodable {
+    let idGioHang: Int?
+}

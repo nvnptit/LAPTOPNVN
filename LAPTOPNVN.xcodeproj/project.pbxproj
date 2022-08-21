@@ -65,6 +65,14 @@
 		7923193228A10A270017E370 /* ShipperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923193028A10A270017E370 /* ShipperModel.swift */; };
 		7923193328A10A270017E370 /* ShipperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923193028A10A270017E370 /* ShipperModel.swift */; };
 		7929A4DF28A7ABD70080FE45 /* TaiKhoan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7929A4DE28A7ABD70080FE45 /* TaiKhoan.swift */; };
+		792A293128B1EEC30075AD18 /* OrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792A292F28B1EEC30075AD18 /* OrderDetailTableViewCell.swift */; };
+		792A293228B1EEC30075AD18 /* OrderDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792A293028B1EEC30075AD18 /* OrderDetailTableViewCell.xib */; };
+		792A293628B1F9830075AD18 /* DetailHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792A293428B1F9830075AD18 /* DetailHistoryViewController.swift */; };
+		792A293728B1F9830075AD18 /* DetailHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792A293428B1F9830075AD18 /* DetailHistoryViewController.swift */; };
+		792A293828B1F9830075AD18 /* DetailHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792A293428B1F9830075AD18 /* DetailHistoryViewController.swift */; };
+		792A293928B1F9830075AD18 /* DetailHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792A293528B1F9830075AD18 /* DetailHistoryViewController.xib */; };
+		792A293A28B1F9830075AD18 /* DetailHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792A293528B1F9830075AD18 /* DetailHistoryViewController.xib */; };
+		792A293B28B1F9830075AD18 /* DetailHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792A293528B1F9830075AD18 /* DetailHistoryViewController.xib */; };
 		792DDAA4288F7DC8000ACAFC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DDAA3288F7DC8000ACAFC /* String.swift */; };
 		792DDAA728901785000ACAFC /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DDAA628901785000ACAFC /* Search.swift */; };
 		79475E142882438D005911E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79475E132882438D005911E3 /* AppDelegate.swift */; };
@@ -387,6 +395,10 @@
 		7923192828A0F8080017E370 /* OrderShipViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderShipViewController.xib; sourceTree = "<group>"; };
 		7923193028A10A270017E370 /* ShipperModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipperModel.swift; sourceTree = "<group>"; };
 		7929A4DE28A7ABD70080FE45 /* TaiKhoan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaiKhoan.swift; sourceTree = "<group>"; };
+		792A292F28B1EEC30075AD18 /* OrderDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailTableViewCell.swift; sourceTree = "<group>"; };
+		792A293028B1EEC30075AD18 /* OrderDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailTableViewCell.xib; sourceTree = "<group>"; };
+		792A293428B1F9830075AD18 /* DetailHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryViewController.swift; sourceTree = "<group>"; };
+		792A293528B1F9830075AD18 /* DetailHistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailHistoryViewController.xib; sourceTree = "<group>"; };
 		792DDAA3288F7DC8000ACAFC /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		792DDAA628901785000ACAFC /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		79475E102882438D005911E3 /* LAPTOPNVN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LAPTOPNVN.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -627,6 +639,25 @@
 				7923193028A10A270017E370 /* ShipperModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		792A292E28B1EE850075AD18 /* History Cart Detail */ = {
+			isa = PBXGroup;
+			children = (
+				792A293328B1F9130075AD18 /* Cell */,
+				792A293428B1F9830075AD18 /* DetailHistoryViewController.swift */,
+				792A293528B1F9830075AD18 /* DetailHistoryViewController.xib */,
+			);
+			path = "History Cart Detail";
+			sourceTree = "<group>";
+		};
+		792A293328B1F9130075AD18 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				792A292F28B1EEC30075AD18 /* OrderDetailTableViewCell.swift */,
+				792A293028B1EEC30075AD18 /* OrderDetailTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		79475E072882438D005911E3 = {
@@ -967,6 +998,7 @@
 		79998D8B2893FFB50006EF49 /* History Cart */ = {
 			isa = PBXGroup;
 			children = (
+				792A292E28B1EE850075AD18 /* History Cart Detail */,
 				7996271D28960F7200B6EDF9 /* Model */,
 				799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */,
 				799627122896066D00B6EDF9 /* HistoryOrderTableViewCell.xib */,
@@ -1308,6 +1340,7 @@
 				79475E202882438E005911E3 /* LaunchScreen.storyboard in Resources */,
 				79176FA2288392EC00CDA10E /* HangCollectionViewCell.xib in Resources */,
 				79F33D8328831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
+				792A293228B1EEC30075AD18 /* OrderDetailTableViewCell.xib in Resources */,
 				791BB921289E7013002B5871 /* StatisticViewController.xib in Resources */,
 				79AAC99928A73CBE00CD2E23 /* EmployeeTableViewCell.xib in Resources */,
 				7992976A288EF91100642885 /* ListLaptopViewController.xib in Resources */,
@@ -1325,6 +1358,7 @@
 				795EE8A7288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */,
 				799B916E289D92EA001F6B5F /* HomeAdminViewController.xib in Resources */,
 				79475E9C28824DBD005911E3 /* CartViewController.xib in Resources */,
+				792A293928B1F9830075AD18 /* DetailHistoryViewController.xib in Resources */,
 				791BB938289EC165002B5871 /* BrandViewController.xib in Resources */,
 				79C43FF5289DFD2F008EA789 /* OrderViewController.xib in Resources */,
 				795CAF7228867BC0008458F0 /* DetailSanPhamViewController.xib in Resources */,
@@ -1356,6 +1390,7 @@
 				79B3296728914345000E4197 /* NoLoginViewController.xib in Resources */,
 				79475E9328824D96005911E3 /* ExplorerViewController.xib in Resources */,
 				79AAC99A28A73CBE00CD2E23 /* EmployeeTableViewCell.xib in Resources */,
+				792A293A28B1F9830075AD18 /* DetailHistoryViewController.xib in Resources */,
 				799547FA28A8B597002760A7 /* SanPhamViewController.xib in Resources */,
 				795CAF7328867BC0008458F0 /* DetailSanPhamViewController.xib in Resources */,
 				7992976B288EF91100642885 /* ListLaptopViewController.xib in Resources */,
@@ -1399,6 +1434,7 @@
 				79B3296828914345000E4197 /* NoLoginViewController.xib in Resources */,
 				79475E9428824D96005911E3 /* ExplorerViewController.xib in Resources */,
 				79AAC99B28A73CBE00CD2E23 /* EmployeeTableViewCell.xib in Resources */,
+				792A293B28B1F9830075AD18 /* DetailHistoryViewController.xib in Resources */,
 				799547FB28A8B597002760A7 /* SanPhamViewController.xib in Resources */,
 				795CAF7428867BC0008458F0 /* DetailSanPhamViewController.xib in Resources */,
 				7992976C288EF91100642885 /* ListLaptopViewController.xib in Resources */,
@@ -1551,6 +1587,7 @@
 				79475E5228824822005911E3 /* LoginViewController.swift in Sources */,
 				79475E6B28824A93005911E3 /* Encodable.swift in Sources */,
 				791BB927289E729F002B5871 /* StatTableViewCell.swift in Sources */,
+				792A293628B1F9830075AD18 /* DetailHistoryViewController.swift in Sources */,
 				79475E162882438D005911E3 /* SceneDelegate.swift in Sources */,
 				7996271F2896133E00B6EDF9 /* HistoryModel.swift in Sources */,
 				7929A4DF28A7ABD70080FE45 /* TaiKhoan.swift in Sources */,
@@ -1580,6 +1617,7 @@
 				796DF2B428928A3000F34C82 /* User.swift in Sources */,
 				79AAC98D28A73C9300CD2E23 /* EmployeeViewController.swift in Sources */,
 				796DF2A92892703500F34C82 /* RegisterViewController.swift in Sources */,
+				792A293128B1EEC30075AD18 /* OrderDetailTableViewCell.swift in Sources */,
 				79475EA228824DD2005911E3 /* AccountViewController.swift in Sources */,
 				79AAC9AE28A7704D00CD2E23 /* MaSo.swift in Sources */,
 				79AAC99628A73CBE00CD2E23 /* EmployeeTableViewCell.swift in Sources */,
@@ -1619,6 +1657,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792A293728B1F9830075AD18 /* DetailHistoryViewController.swift in Sources */,
 				79F33D942883252100F7BB4C /* APIHeader.swift in Sources */,
 				7986294B28A8210100FC08AE /* DetailCategoryViewController.swift in Sources */,
 				79AAC99728A73CBE00CD2E23 /* EmployeeTableViewCell.swift in Sources */,
@@ -1710,6 +1749,7 @@
 				79F33D992883254600F7BB4C /* APIResponse.swift in Sources */,
 				79B3296E2891A5C4000E4197 /* InformationViewController.swift in Sources */,
 				79AAC9B428A77D2A00CD2E23 /* Quyen.swift in Sources */,
+				792A293828B1F9830075AD18 /* DetailHistoryViewController.swift in Sources */,
 				79475E8928824D7E005911E3 /* HomeViewController.swift in Sources */,
 				79475E5D28824939005911E3 /* UITextFieldX.swift in Sources */,
 				7923193328A10A270017E370 /* ShipperModel.swift in Sources */,
