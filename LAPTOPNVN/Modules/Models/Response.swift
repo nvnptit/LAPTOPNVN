@@ -15,3 +15,8 @@ struct Response : Decodable{
     let success: Bool?
     let message: String?
 }
+
+struct ResponseSL : Decodable{
+    let success: Bool?
+    let message: Int?
+}

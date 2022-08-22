@@ -22,7 +22,7 @@ class CartViewController: UIViewController {
     
     @IBOutlet weak var btnDatHang: UIButton!
     
-    
+    var isOK:Bool?
     var data: [GioHangL] = []
     var dataChecked: [GioHangL] = []
     
@@ -30,10 +30,8 @@ class CartViewController: UIViewController {
     //    var dataChecked : [GioHangData] = []
     
     let cmnd = UserService.shared.cmnd
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if (cmnd == ""){
             lbTongTien.isHidden = true
             money.isHidden = true
@@ -57,18 +55,17 @@ class CartViewController: UIViewController {
     }
     
     @IBAction func tapDatHang(_ sender: UIButton, forEvent event: UIEvent) {
-        if (!self.dataChecked.isEmpty){
-            let vc = InformationViewController()
-            vc.dataGioHang = self.dataChecked
-            self.navigationController?.pushViewController(vc, animated: true)
-        }else {
-            let alert = UIAlertController(title: "Bạn chưa chọn sản phẩm nào", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                self.dismiss(animated: true)
-            }))
-            self.present(alert, animated: true)
-        }
-        
+            if (!self.dataChecked.isEmpty){
+                let vc = InformationViewController()
+                vc.dataGioHang = self.dataChecked
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                let alert = UIAlertController(title: "Bạn chưa chọn sản phẩm nào", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+            }
     }
     override func viewDidAppear(_ animated: Bool = false) {
         self.navigationController?.isNavigationBarHidden = true
@@ -166,17 +163,17 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         if (!cell.isChecked){
             cell.isChecked=true
             self.sum = self.sum + item.giagiam!
-            self.money.text = "\(CurrencyVN.toVND(sum))"
+            self.money.text = "\(CurrencyVN.toVND(self.sum))"
             self.dataChecked.append(item)
             cell.checkBox.image = UIImage(named: "check")
         }else {
             cell.isChecked=false
             self.sum = self.sum - item.giagiam!
-            self.money.text = "\(CurrencyVN.toVND(sum))"
+            self.money.text = "\(CurrencyVN.toVND(self.sum))"
             self.dataChecked = self.dataChecked.filter { $0.id != item.id }
             cell.checkBox.image = UIImage(named: "uncheck")
         }
-        print("\n \(self.dataChecked)")
+        //        print("\n \(self.dataChecked)")
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "Xoá") { (action, view, completionHandler) in
@@ -200,5 +197,4 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         let swipe = UISwipeActionsConfiguration(actions: [delete])
         return swipe
     }
-    
 }

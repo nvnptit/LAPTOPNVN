@@ -80,7 +80,7 @@ class AccountViewController: UIViewController {
         setupStatus()
         let cmnd = UserService.shared.cmnd
         if (cmnd == ""){
-            let loginVC = LoginViewController()
+            let loginVC = NoLoginViewController()
             self.navigationController?.pushViewController(loginVC, animated: true)
             showhide(true)
         }else {

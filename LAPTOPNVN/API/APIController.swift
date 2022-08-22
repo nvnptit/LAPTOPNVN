@@ -26,4 +26,19 @@ struct APIController {
             }
         }
     }
+    
+    static func requestGET<T: Decodable>(_ responseType: T.Type,_ manager: APIManager, params: Parameters? = nil, completion: @escaping ResponseClosure<T>) {
+        print("URL REQUEST: \(manager.url)")
+        AF.request(manager.url, method: manager.method, parameters: params, encoding: manager.encoding).responseData { reponseData in
+            switch reponseData.result {
+            case .success(let data):
+                JSONDecoder.decode(responseType, from: data, completion: { (error, response) in
+                    completion(error, response)
+                })
+            case .failure(let error):
+                completion(error.localizedDescription, nil)
+                return
+            }
+        }
+    }
 }

@@ -44,6 +44,7 @@ enum APIManager {
     case putLSP
     case delLSP
     
+    case getSoLuongLSP(String)
     case getLoaiSanPhamFull
     case getLoaiSanPhamNew
     case getLoaiSanPhamKM
@@ -127,7 +128,8 @@ extension APIManager {
                 
              
                 
-                
+            case .getSoLuongLSP(let maLSP):
+                path = "/loai-san-pham/LSP?maLSP=\(maLSP)"
             case .getLoaiSanPhamFull:
                 path = "/loai-san-pham"
             case .getLoaiSanPhamNew:
@@ -181,7 +183,7 @@ extension APIManager {
                     .getHistoryOrder, .getNVGiao, .getNVDuyet , .getDoanhThu, .getOrderShipper,
                     .getHangSX, .getNV, .getSP,
                     .getMaSoNV, .getMaSoLSP, .getQuyen, .getTyGia,
-                    .getDetailHistory
+                    .getDetailHistory, .getSoLuongLSP
                 :
                 return .get
             case .login, .register, .resetPass, .addGioHang, .addUserKH, .uploadAvatar,

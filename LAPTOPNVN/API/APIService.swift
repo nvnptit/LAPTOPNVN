@@ -12,9 +12,22 @@ import Alamofire
 //typealias HangSXs = [HangSX]
 
 struct APIService {
-    static let baseUrl: String = "http://192.168.1.12"
-//    static let baseUrl: String = "http://192.168.2.19"
+//    static let baseUrl: String = "http://192.168.1.12"
+    static let baseUrl: String = "http://192.168.2.19"
 //    static let baseUrl: String = "http://192.168.2.21"
+    
+    
+    //Get with Param Method
+    static func getSLLSP(with maLSP: String, _ completion: @escaping(ResponseSL?, String?) -> ()) {
+        APIController.requestGET(ResponseSL.self, .getSoLuongLSP(maLSP)) { error, data in
+            if let data = data {
+                completion(data,nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
     
     public static func postLSP(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
         APIController.request(Response.self, manager, params: params, headers: headers) { error, data in

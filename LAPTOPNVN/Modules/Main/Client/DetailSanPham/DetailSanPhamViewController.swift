@@ -34,6 +34,9 @@ class DetailSanPhamViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+            DispatchQueue.main.async {
+                self.checkSLTon()
+            }
         if let loaiSp = loaiSp, let sl = loaiSp.soluong {
             if (sl>0){
                 btnAddCart.isEnabled = true
@@ -151,5 +154,52 @@ extension DetailSanPhamViewController{
                 fatalError()
             }
         })
+    }
+}
+extension DetailSanPhamViewController{
+    func checkSLTon(){
+        var dict: [String: Int] = [:]
+        let listData = UserService.shared.listGH
+        if (listData.isEmpty) {return}
+        for item in listData {
+            if let ma = item.malsp {
+                if (dict.contains(where: {$0.key == ma})){
+                    let value = dict[ma]!
+                    dict.updateValue(value + 1, forKey: ma)
+                }else {
+                    
+                    dict.updateValue(1, forKey: ma)
+                }
+            }
+        }
+        print(dict)
+        for (key,value) in dict {
+            //            let params = DeleteLSP(maLSP: key).convertToDictionary()
+            APIService.getSLLSP(with: key, { data, error in
+                guard let data = data else {
+                    return
+                }
+                if (data.success == true ){
+                    if let data = data.message {
+                        print("VALUE: \(value)| DATA: \(data)")
+                        if (value == data){
+                            if (self.loaiSp?.malsp == key){
+                                
+                                self.btnAddCart.isEnabled = false
+                            }
+//                            let name = listData.filter({$0.malsp == key})[0].tenlsp!
+//                            let alert = UIAlertController(title: "Số lượng tồn của \(name) không đủ\n Vui lòng cập nhật lại đơn hàng", message: "", preferredStyle: .alert)
+//                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+//                                self.dismiss(animated: true)
+                                //                                self.navigationController?.popViewController(animated: true)
+//                            }))
+//                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+                
+            })
+        }
+        
     }
 }

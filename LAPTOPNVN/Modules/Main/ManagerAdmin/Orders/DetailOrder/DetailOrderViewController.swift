@@ -83,7 +83,7 @@ class DetailOrderViewController: UIViewController {
             nguoiNhan.text = order.nguoinhan
             sdt.text = order.sdt
             ngayLapDon.text = Date().convertDateTimeSQLToView(date: order.ngaylapgiohang!, format: "dd-MM-yyyy HH:MM:ss")
-            ngayDuKien.text = Date().convertDateTimeSQLToView(date: order.ngaydukien!, format: "dd-MM-yyyy HH:MM:ss")
+            ngayDuKien.text = Date().convertDateTimeSQLToView(date: order.ngaydukien!, format: "dd-MM-yyyy")
             diaChi.text = order.diachi
             trangThai.text = order.tentrangthai
             nvDuyet.text = order.nvduyet ?? ""
