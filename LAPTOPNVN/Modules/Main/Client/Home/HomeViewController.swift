@@ -118,10 +118,10 @@ class HomeViewController: UIViewController {
                     self.homeCollectionView.reloadData()
                 }
             })
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.homeCollectionView.reloadData()
-            }
+//            DispatchQueue.main.async { [weak self] in
+//                guard let self = self else { return }
+//                self.homeCollectionView.reloadData()
+//            }
         }
     }
     
@@ -490,13 +490,14 @@ extension HomeViewController: UICollectionViewDelegate {
                             }
                             DispatchQueue.main.async { [weak self] in
                                 guard let self = self else { return }
-                                self.homeCollectionView.reloadData()
+                                self.homeCollectionView.reloadItems(at: [indexPath])
+                                //reload item brand
                             }
                         })
-                        DispatchQueue.main.async { [weak self] in
-                            guard let self = self else { return }
-                            self.homeCollectionView.reloadData()
-                        }
+//                        DispatchQueue.main.async { [weak self] in
+//                            guard let self = self else { return }
+//                            self.homeCollectionView.reloadData()
+//                        }
                     case .fail:
                         break
                 }

@@ -13,7 +13,8 @@ import Alamofire
 
 struct APIService {
 //    static let baseUrl: String = "http://192.168.1.12"
-    static let baseUrl: String = "http://192.168.2.19"
+//    static let baseUrl: String = "http://192.168.2.19"
+    static let baseUrl: String = "http://172.20.10.8"
 //    static let baseUrl: String = "http://192.168.2.21"
     
     
