@@ -11,9 +11,9 @@ import UIKit
 extension UITextField {
     fileprivate func setPasswordToggleImage(_ button: UIButton) {
         if(isSecureTextEntry){
-            button.setImage(UIImage(named: "closeEye")?.resizeImage(targetSize: CGSize(width: 25, height: 25)), for: .normal)
+            button.setImage(UIImage(named: "eye1")?.resizeImage(targetSize: CGSize(width: 25, height: 25)), for: .normal)
         }else{
-            button.setImage(UIImage(named: "openEye")?.resizeImage(targetSize: CGSize(width: 25, height: 25)), for: .normal)
+            button.setImage(UIImage(named: "eye0")?.resizeImage(targetSize: CGSize(width: 25, height: 25)), for: .normal)
         }
     }
     

@@ -48,7 +48,7 @@ class DetailEmployeeViewController: UIViewController {
     var maQuyen: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Cập nhật thông tin nhân viên"
+        tfMK.enablePasswordToggle()
         setupAnimation()
         setupKeyboard()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
@@ -67,11 +67,13 @@ class DetailEmployeeViewController: UIViewController {
             tfMK.isHidden = true
             loadData()
             self.maQuyen = employee?.maquyen
+            self.title = "Cập nhật thông tin nhân viên"
         }else {
             self.onFill()
             btnChange.setTitle("THÊM MỚI", for: .normal)
             btnDelete.isHidden = true
             getMaNV()
+            self.title = "Thêm mới nhân viên"
         }
         setupDropDown()
         setupStatus()

@@ -37,6 +37,7 @@ class RegisterViewController: UIViewController {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
         view.addGestureRecognizer(gesture)
         
+        tfPass.enablePasswordToggle()
         if #available(iOS 13.4, *) {
             createDatePicker()
         } else {

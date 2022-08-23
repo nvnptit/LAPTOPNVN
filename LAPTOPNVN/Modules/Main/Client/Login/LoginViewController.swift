@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
         view.addGestureRecognizer(gesture)
         
+        password.enablePasswordToggle()
     }
     
     @IBAction func didTapLogin(_ sender: UIButton, forEvent event: UIEvent) {
