@@ -487,10 +487,12 @@ extension DetailCategoryViewController{
                 let alert = UIAlertController(title: "Thêm mới thành công!", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
-                    let vc = CategoryViewController()
-                    vc.navigationItem.hidesBackButton = true
-                    vc.isAdded = true
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    
+                    self.navigationController?.popViewController(animated: true)
+//                    let vc = CategoryViewController()
+//                    vc.navigationItem.hidesBackButton = true
+//                    vc.isAdded = true
+//                    self.navigationController?.pushViewController(vc, animated: true)
                 }))
                 self.present(alert, animated: true)
             } else {
@@ -510,10 +512,12 @@ extension DetailCategoryViewController{
                 let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
-                    let vc = CategoryViewController()
-                    vc.navigationItem.hidesBackButton = true
-                    vc.isAdded = true
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    
+                    self.navigationController?.popViewController(animated: true)
+//                    let vc = CategoryViewController()
+//                    vc.navigationItem.hidesBackButton = true
+//                    vc.isAdded = true
+//                    self.navigationController?.pushViewController(vc, animated: true)
                 }))
                 self.present(alert, animated: true)
             } else {

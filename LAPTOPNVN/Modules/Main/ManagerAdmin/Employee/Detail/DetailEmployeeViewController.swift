@@ -133,10 +133,12 @@ class DetailEmployeeViewController: UIViewController {
                                     let alert = UIAlertController(title: "Thêm mới thành công!", message: "", preferredStyle: .alert)
                                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                                         self.dismiss(animated: true)
-                                        let vc = EmployeeViewController()
-                                        vc.navigationItem.hidesBackButton = true
-                                        vc.isAdded = true
-                                        self.navigationController?.pushViewController(vc, animated: true)
+                                        
+                                        self.navigationController?.popViewController(animated: true)
+//                                        let vc = EmployeeViewController()
+//                                        vc.navigationItem.hidesBackButton = true
+//                                        vc.isAdded = true
+//                                        self.navigationController?.pushViewController(vc, animated: true)
                                     }))
                                     self.present(alert, animated: true)
                                 } else {
@@ -474,9 +476,11 @@ extension DetailEmployeeViewController{
                 let alert = UIAlertController(title: "Xoá nhân viên thành công!", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
-                    let vc = EmployeeViewController()
-                    vc.navigationItem.hidesBackButton = true
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    
+                    self.navigationController?.popViewController(animated: true)
+//                    let vc = EmployeeViewController()
+//                    vc.navigationItem.hidesBackButton = true
+//                    self.navigationController?.pushViewController(vc, animated: true)
                 }))
                 self.present(alert, animated: true)
             } else {

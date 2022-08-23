@@ -330,11 +330,12 @@ extension DetailBrandViewController{
                 let alert = UIAlertController(title: "Thêm mới thành công!", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
+                    self.navigationController?.popViewController(animated: true)
+//                    let vc = BrandViewController()
+//                    vc.navigationItem.hidesBackButton = true
+//                    vc.isAdded = true
+//                    self.navigationController?.pushViewController(vc, animated: true)
                     
-                    let vc = BrandViewController()
-                    vc.navigationItem.hidesBackButton = true
-                    vc.isAdded = true
-                    self.navigationController?.pushViewController(vc, animated: true)
                 }))
                 self.present(alert, animated: true)
             } else {
@@ -354,9 +355,10 @@ extension DetailBrandViewController{
                 let alert = UIAlertController(title: "Xoá hãng thành công!", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
-                    let vc = BrandViewController()
-                    vc.navigationItem.hidesBackButton = true
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    self.navigationController?.popViewController(animated: true)
+//                    let vc = BrandViewController()
+//                    vc.navigationItem.hidesBackButton = true
+//                    self.navigationController?.pushViewController(vc, animated: true)
                 }))
                 self.present(alert, animated: true)
             } else {
