@@ -52,6 +52,7 @@ enum APIManager {
     case getLoaiSanPhamHang
     case searchLSP
     case delTK
+    case delTK1(String)
     
     case getNVDuyet
     case getNVGiao
@@ -157,6 +158,7 @@ extension APIManager {
             
             case .getHistoryOrder: path = "/gio-hang/history-order"
             case .delTK: path = "/tai-khoan"
+            case .delTK1(let tenDangNhap): path = "/tai-khoan?tenDangNhap=\(tenDangNhap)"
                 
             case .getNVDuyet:
                 path = "/nhan-vien/NV-Duyet"
@@ -196,7 +198,7 @@ extension APIManager {
                     .putQuyenKichHoat
                 :
                 return .put
-            case .deleteGioHang, .delTK,
+            case .deleteGioHang, .delTK, .delTK1,
                     .delHangSX, .delNV, .delLSP, .delSP:
                 return .delete
                 

@@ -11,3 +11,6 @@ struct TaiKhoanQuyenKichHoat: Encodable{
     let maquyen: Int?
     let kichhoat: Bool?
 }
+struct TaiKhoanDel: Encodable{
+    let tendangnhap: String?
+}

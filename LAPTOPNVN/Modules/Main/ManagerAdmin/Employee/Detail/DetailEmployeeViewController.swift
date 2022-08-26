@@ -43,7 +43,7 @@ class DetailEmployeeViewController: UIViewController {
     
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
-    var isNew: Bool = false 
+    var isNew: Bool = false
     var maNV: Int?
     var maQuyen: Int?
     override func viewDidLoad() {
@@ -137,25 +137,27 @@ class DetailEmployeeViewController: UIViewController {
                                         self.dismiss(animated: true)
                                         
                                         self.navigationController?.popViewController(animated: true)
-//                                        let vc = EmployeeViewController()
-//                                        vc.navigationItem.hidesBackButton = true
-//                                        vc.isAdded = true
-//                                        self.navigationController?.pushViewController(vc, animated: true)
                                     }))
                                     self.present(alert, animated: true)
                                 } else {
-                                        APIService.delTK(with: .delTK, params: ["tenDangNhap": tk], headers: nil, completion: {
-                                            base, error in
-                                            if let success = base?.success{
-                                                print("Response: \(success)")
+                                    
+                                    DispatchQueue.global().async {
+                                        // Xoá tài khoản
+                                        APIService.delTK1(with: tk, { data, error in
+                                            guard let data = data else {
+                                                return
+                                            }
+                                            if (data.success == true ){
+                                                print("success")
                                             }
                                         })
+                                    }
                                     let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
-                                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                                            self.dismiss(animated: true)
-                                        }))
-                                        self.present(alert, animated: true)
-                                        return
+                                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                                        self.dismiss(animated: true)
+                                    }))
+                                    self.present(alert, animated: true)
+                                    return
                                 }
                             })
                         }
@@ -207,12 +209,17 @@ class DetailEmployeeViewController: UIViewController {
         }))
         alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
             self.dismiss(animated: true)
+            if (UserService.shared.infoNV?.manv == self.tfMaNV.text){
+                let alert = UIAlertController(title: "Bạn không thể xoá chính mình", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+                return
+            }
+            
             let params = ModelNV(manv: self.tfMaNV.text!).convertToDictionary()
             self.delNV(params: params)
-            // Huỷ kích hoạt tài khoản
-            let paramQKH = TaiKhoanQuyenKichHoat(tendangnhap: self.employee?.tendangnhap!, maquyen: self.employee?.maquyen!, kichhoat: false).convertToDictionary()
-            print(paramQKH)
-            self.updateQuyenKichHoat(params: paramQKH)
             
         }))
         self.present(alert, animated: true)
@@ -387,7 +394,7 @@ extension DetailEmployeeViewController{
         guard
             var email = tfEmail.text,
             var name = tfTen.text,
-            var birthday = tfNgaySinh.text,
+            let birthday = tfNgaySinh.text,
             var phone = tfSDT.text
         else {
             return false
@@ -475,17 +482,30 @@ extension DetailEmployeeViewController{
             base, error in
             guard let base = base else { return }
             if base.success == true {
-                let alert = UIAlertController(title: "Xoá nhân viên thành công!", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                    self.dismiss(animated: true)
-                    
-                    self.navigationController?.popViewController(animated: true)
-//                    let vc = EmployeeViewController()
-//                    vc.navigationItem.hidesBackButton = true
-//                    self.navigationController?.pushViewController(vc, animated: true)
-                }))
-                self.present(alert, animated: true)
+                DispatchQueue.global().async {
+                    // Xoá tài khoản
+                    APIService.delTK1(with: (self.employee?.tendangnhap)!, { data, error in
+                        guard let data = data else {
+                            return
+                        }
+                        if (data.success == true ){
+                            let alert = UIAlertController(title: "Xoá nhân viên thành công!", message: "", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                                self.dismiss(animated: true)
+                                
+                                self.navigationController?.popViewController(animated: true)
+                            }))
+                            self.present(alert, animated: true)
+                        }
+                    })
+                }
             } else {
+                
+                // Huỷ kích hoạt tài khoản
+                let paramQKH = TaiKhoanQuyenKichHoat(tendangnhap: self.employee?.tendangnhap!, maquyen: self.employee?.maquyen!, kichhoat: false).convertToDictionary()
+                print(paramQKH)
+                self.updateQuyenKichHoat(params: paramQKH)
+                
                 let alert = UIAlertController(title: base.message! + "\n Đã huỷ kích hoạt tài khoản", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
@@ -517,11 +537,7 @@ extension DetailEmployeeViewController{
                 return
             }
             if base.success == true {
-                //                    let alert = UIAlertController(title: base.message , message: "", preferredStyle: .alert)
-                //                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                //                            self.dismiss(animated: true)
-                //                        }))
-                //                        self.present(alert, animated: true)
+                print("success")
             }else {
                 let alert = UIAlertController(title:"Đã có lỗi cập nhật quyền", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in

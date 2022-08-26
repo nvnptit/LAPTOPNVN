@@ -13,10 +13,19 @@ import Alamofire
 
 struct APIService {
     static let baseUrl: String = "http://192.168.1.21"
-//    static let baseUrl: String = "http://192.168.2.19"
-//    static let baseUrl: String = "http://172.20.10.8"
-//    static let baseUrl: String = "http://192.168.2.21"
+    //    static let baseUrl: String = "http://192.168.2.19"
+    //    static let baseUrl: String = "http://172.20.10.8"
+    //    static let baseUrl: String = "http://192.168.2.21"
     
+    
+    public static func delTK1(with tenDangNhap: String, _ completion: @escaping(Response?, String?) -> ()) {  APIController.requestGET(Response.self, .delTK1(tenDangNhap)) { error, data in
+        if let data = data {
+            completion(data,nil)
+            return
+        }
+        completion(nil, error)
+    }
+    }
     
     //Get with Param Method
     static func getSLLSP(with maLSP: String, _ completion: @escaping(ResponseSL?, String?) -> ()) {
@@ -216,8 +225,8 @@ struct APIService {
         }
     }
     
-    public static func postUserKH(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<User>?, String?) -> ()) {
-        APIController.request(ResponseBase<User>.self, manager, params: params, headers: headers) { error, data in
+    public static func postUserKH(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+        APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
             if let data = data {
                 completion(data, nil)
                 return
@@ -235,8 +244,18 @@ struct APIService {
             completion(nil, error)
         }
     }
+//
+//    public static func delTK(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+//        APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
+//            if let data = data {
+//                completion(data, nil)
+//                return
+//            }
+//            completion(nil, error)
+//        }
+//    }
     
-    public static func delTK(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+    public static func delTK2(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
         APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
             if let data = data {
                 completion(data, nil)
@@ -245,7 +264,6 @@ struct APIService {
             completion(nil, error)
         }
     }
-    
     
     public static func postLogin(with manager: APIManager, _ params: [String: Any], _ headers: HTTPHeaders?, completion: @escaping(ResponseBase<LoginRes>?, String?) -> ()) {
         APIController.request(ResponseBase<LoginRes>.self, manager, params: params, headers: headers) { error, data in

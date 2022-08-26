@@ -187,13 +187,6 @@ extension DetailSanPhamViewController{
                                 
                                 self.btnAddCart.isEnabled = false
                             }
-//                            let name = listData.filter({$0.malsp == key})[0].tenlsp!
-//                            let alert = UIAlertController(title: "Số lượng tồn của \(name) không đủ\n Vui lòng cập nhật lại đơn hàng", message: "", preferredStyle: .alert)
-//                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-//                                self.dismiss(animated: true)
-                                //                                self.navigationController?.popViewController(animated: true)
-//                            }))
-//                            self.present(alert, animated: true)
                         }
                     }
                 }
@@ -203,3 +196,11 @@ extension DetailSanPhamViewController{
         
     }
 }
+
+//                            let name = listData.filter({$0.malsp == key})[0].tenlsp!
+//                            let alert = UIAlertController(title: "Số lượng tồn của \(name) không đủ\n Vui lòng cập nhật lại đơn hàng", message: "", preferredStyle: .alert)
+//                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+//                                self.dismiss(animated: true)
+    //                                self.navigationController?.popViewController(animated: true)
+//                            }))
+//                            self.present(alert, animated: true)

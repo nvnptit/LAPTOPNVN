@@ -76,37 +76,33 @@ class RegisterViewController: UIViewController {
                 if let success = base?.success {
                     if (success){
                         self.isValidAccount = true;
-//
-//                        let dateFormatter = DateFormatter()
-//                        dateFormatter.dateFormat = "dd-MM-yyyy"
-//                        let dateFromString = dateFormatter.date(from: birthday)
-//
-//                        dateFormatter.dateFormat = "yyyy-MM-dd"
-//                        let dateSql = dateFormatter.string(from: dateFromString!)
-                        
                         let dateSql = Date().convertDateViewToSQL(birthday)
                         
                         let params2 = UserModel(cmnd: cmnd, email: email, ten: name, diachi: address, ngaysinh: dateSql, sdt: phone, tendangnhap: username).convertToDictionary()
                         APIService.postUserKH(with: .addUserKH, params: params2, headers: nil, completion: {
                             base, error in
                             if let base = base {
+                                print(base)
                                 if (base.success == true) {
-                                    let alert = UIAlertController(title: "Đăng ký tài khoản mới \n thành công", message: "", preferredStyle: .alert)
+                                    let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
                                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                                        self.dismiss(animated: false)
-                                        let vc = LoginViewController()
-                                        self.navigationController?.pushViewController(vc, animated: false)
-                                        vc.navigationItem.hidesBackButton = true
+                                        self.dismiss(animated: true)
+                                        self.navigationController?.popViewController(animated: true)
                                     }))
                                     self.present(alert, animated: true)
                                 }else {
-                                    APIService.delTK(with: .delTK, params: ["tenDangNhap": username], headers: nil, completion: {
-                                        base, error in
-                                        if let success = base?.success{
-                                            print("Response: \(success)")
-                                        }
-                                    })
-                                    let alert = UIAlertController(title: "Số chứng minh nhân dân \n đã tồn tại!", message: "", preferredStyle: .alert)
+                                    DispatchQueue.global().async {
+                                        // Xoá tài khoản
+                                        APIService.delTK1(with: username, { data, error in
+                                            guard let data = data else {
+                                                return
+                                            }
+                                            if (data.success == true ){
+                                                print("success")
+                                            }
+                                        })
+                                    }
+                                    let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
                                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                                         self.dismiss(animated: true)
                                     }))
