@@ -48,7 +48,7 @@ enum APIManager {
     case getLoaiSanPhamFull
     case getLoaiSanPhamNew
     case getLoaiSanPhamKM
-    case getLoaiSanPhamGood
+    case getLoaiSanPhamGoodHang
     case getLoaiSanPhamHang
     case searchLSP
     case delTK
@@ -137,10 +137,10 @@ extension APIManager {
                 path = "/loai-san-pham/get-new-lsp"
             case .getLoaiSanPhamKM:
                 path = "/loai-san-pham/get-km-lsp"
-            case .getLoaiSanPhamGood:
-                path = "/loai-san-pham/get-good-lsp"
-            case .getLoaiSanPhamHang:
+            case .getLoaiSanPhamGoodHang:
                 path = "/loai-san-pham/get-good-lsp-hang"
+            case .getLoaiSanPhamHang:
+                path = "/loai-san-pham/get-lsp-hang"
                 
             case .searchLSP:
                 path = "/loai-san-pham/search"
@@ -181,7 +181,7 @@ extension APIManager {
     var method: HTTPMethod {
         switch self {
             case   .getLoaiSanPhamFull, .getLoaiSanPhamNew,
-                    .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGood, .getLoaiSanPhamHang, .searchLSP,
+                    .getGioHang, .getLoaiSanPhamKM, .getLoaiSanPhamGoodHang, .getLoaiSanPhamHang, .searchLSP,
                     .getHistoryOrder, .getNVGiao, .getNVDuyet , .getDoanhThu, .getOrderShipper,
                     .getHangSX, .getNV, .getSP,
                     .getMaSoNV, .getMaSoLSP, .getQuyen, .getTyGia,

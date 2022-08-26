@@ -65,7 +65,7 @@ class ListLaptopViewController: UIViewController {
             }
         })
     }
-    func loadDataHang(){
+    func loadDataHang(){ 
         let params = HangModel(maHang: self.maHang).convertToDictionary()
         APIService.getLoaiSanPhamHang(with: .getLoaiSanPhamHang, params: params, headers: nil, completion: { [weak self] base, error in
             guard let self = self, let base = base else { return }

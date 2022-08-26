@@ -114,7 +114,7 @@ class HomeViewController: UIViewController {
             })
             
             let params = HangModel(maHang: self.maHang).convertToDictionary()
-            APIService.getLoaiSanPhamHang(with: .getLoaiSanPhamHang, params: params, headers: nil, completion: { [weak self] base, error in
+            APIService.getLoaiSanPhamHang(with: .getLoaiSanPhamGoodHang, params: params, headers: nil, completion: { [weak self] base, error in
                 guard let self = self, let base = base else { return }
                 if base.success == true {
                     self.homeData[4] = .hotItemsByBrand(.success(base.data ?? []))
@@ -492,7 +492,7 @@ extension HomeViewController: UICollectionViewDelegate {
                         }
                         
                         let params = HangModel(maHang: self.maHang).convertToDictionary()
-                        APIService.getLoaiSanPhamHang(with: .getLoaiSanPhamHang, params: params, headers: nil, completion: { [weak self] base, error in
+                        APIService.getLoaiSanPhamHang(with: .getLoaiSanPhamGoodHang, params: params, headers: nil, completion: { [weak self] base, error in
                             guard let self = self, let base = base else { return }
                             if base.success == true {
                                 self.homeData[4] = .hotItemsByBrand(.success(base.data ?? []))
