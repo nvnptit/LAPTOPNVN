@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7901D3D228B8D730007D2EE5 /* Encrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7901D3D128B8D730007D2EE5 /* Encrypt.swift */; };
 		79176F96288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79176F94288392D400CDA10E /* SanPhamCollectionViewCell.swift */; };
 		79176F97288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79176F94288392D400CDA10E /* SanPhamCollectionViewCell.swift */; };
 		79176F98288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79176F94288392D400CDA10E /* SanPhamCollectionViewCell.swift */; };
@@ -375,6 +376,7 @@
 		19AF03A2FC9BF7CEB7A6F89C /* Pods-LAPTOPNVN-LAPTOPNVNUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LAPTOPNVN-LAPTOPNVNUITests.release.xcconfig"; path = "Target Support Files/Pods-LAPTOPNVN-LAPTOPNVNUITests/Pods-LAPTOPNVN-LAPTOPNVNUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3931AB0807E4C01FA208DC42 /* Pods-LAPTOPNVN-LAPTOPNVNUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LAPTOPNVN-LAPTOPNVNUITests.debug.xcconfig"; path = "Target Support Files/Pods-LAPTOPNVN-LAPTOPNVNUITests/Pods-LAPTOPNVN-LAPTOPNVNUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7664A7E64251A803FD0E0A64 /* Pods_LAPTOPNVN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LAPTOPNVN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7901D3D128B8D730007D2EE5 /* Encrypt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encrypt.swift; sourceTree = "<group>"; };
 		79176F94288392D400CDA10E /* SanPhamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanPhamCollectionViewCell.swift; sourceTree = "<group>"; };
 		79176F95288392D400CDA10E /* SanPhamCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SanPhamCollectionViewCell.xib; sourceTree = "<group>"; };
 		79176F9D288392EC00CDA10E /* HangCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -751,6 +753,7 @@
 				792DDAA3288F7DC8000ACAFC /* String.swift */,
 				796F56522890C90A003F34EB /* Integer.swift */,
 				79998D892893D5A00006EF49 /* CurrencyConverter.swift */,
+				7901D3D128B8D730007D2EE5 /* Encrypt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1576,6 +1579,7 @@
 				79475E8128824C7E005911E3 /* MainTabBarController.swift in Sources */,
 				79475E7C28824C04005911E3 /* UserService.swift in Sources */,
 				7986294A28A8210100FC08AE /* DetailCategoryViewController.swift in Sources */,
+				7901D3D228B8D730007D2EE5 /* Encrypt.swift in Sources */,
 				79475E142882438D005911E3 /* AppDelegate.swift in Sources */,
 				79C43FF2289DFD2F008EA789 /* OrderViewController.swift in Sources */,
 				796DF2B02892850500F34C82 /* Response.swift in Sources */,

@@ -34,7 +34,12 @@ class LoginViewController: UIViewController {
             return
         }
         guard let user = username.text, let pass = password.text else {return}
-        let params = LoginModel(tenDangNhap: user, matKhau: pass).convertToDictionary()
+        let md5Pass = pass.md5
+//               if  md5Pass.uppercased() != HASHED{
+//                   return false
+//               }
+        print(md5Pass)
+        let params = LoginModel(tenDangNhap: user, matKhau: md5Pass).convertToDictionary()
         
         APIService.postLogin(with: .login, params, nil, completion: {
             [weak self] base,error in

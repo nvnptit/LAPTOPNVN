@@ -118,7 +118,11 @@ class DetailEmployeeViewController: UIViewController {
                 tfEmail.text = email
                 tfSDT.text = sdt
                 
-                let params1 = TaiKhoan(tendangnhap: tk, matkhau: mk, maquyen: self.maQuyen).convertToDictionary()
+                let md5Pass = mk.md5
+    //               if  md5_1.uppercased() != HASHED{
+    //                   return false
+    //               }
+                let params1 = TaiKhoan(tendangnhap: tk, matkhau: md5Pass, maquyen: self.maQuyen).convertToDictionary()
                 print(params1)
                 APIService.postRegisterKH(with: .register, params: params1, headers: nil, completion: {
                     base , error in

@@ -69,7 +69,11 @@ class RegisterViewController: UIViewController {
                 let phone = tfPhone.text,
                 let address = tfAddress.text
             else {return}
-            let params1 = TaiKhoan(tendangnhap: username, matkhau: password, maquyen: 7).convertToDictionary()
+            let md5Pass = password.md5
+//               if  md5Pass.uppercased() != HASHED{
+//                   return false
+//               }
+            let params1 = TaiKhoan(tendangnhap: username, matkhau: md5Pass, maquyen: 7).convertToDictionary()
             print(params1)
             APIService.postRegisterKH(with: .register, params: params1, headers: nil, completion: {
                 base , error in
