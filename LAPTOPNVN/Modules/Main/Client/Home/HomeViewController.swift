@@ -58,9 +58,9 @@ class HomeViewController: UIViewController {
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        DispatchQueue.init(label: "HomeVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.init(label: "HomeVC", qos: .utility).async { [weak self] in
             guard let self = self else { return }
             
             self.homeData [0] = .banner(
@@ -76,7 +76,10 @@ class HomeViewController: UIViewController {
                 }
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
-                    self.homeCollectionView.reloadData()
+                    
+                    let indexSet = IndexSet(integer: 1)
+                    self.homeCollectionView.reloadSections(indexSet)
+//                    self.homeCollectionView.reloadData()
                 }
             })
             APIService.getLoaiSanPhamKM(with: .getLoaiSanPhamKM, params: nil, headers: nil, completion: { [weak self] base, error in
@@ -88,7 +91,9 @@ class HomeViewController: UIViewController {
                 }
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
-                    self.homeCollectionView.reloadData()
+                    let indexSet = IndexSet(integer: 2)
+                    self.homeCollectionView.reloadSections(indexSet)
+//                    self.homeCollectionView.reloadData()
                 }
             })
             //DATA HANGSX
@@ -101,7 +106,10 @@ class HomeViewController: UIViewController {
                 }
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
-                    self.homeCollectionView.reloadData()
+                    
+                    let indexSet = IndexSet(integer: 3)
+                    self.homeCollectionView.reloadSections(indexSet)
+//                    self.homeCollectionView.reloadData()
                 }
             })
             
@@ -115,7 +123,10 @@ class HomeViewController: UIViewController {
                 }
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
-                    self.homeCollectionView.reloadData()
+                    
+                    let indexSet = IndexSet(integer: 4)
+                    self.homeCollectionView.reloadSections(indexSet)
+//                    self.homeCollectionView.reloadData()
                 }
             })
 //            DispatchQueue.main.async { [weak self] in
@@ -490,14 +501,14 @@ extension HomeViewController: UICollectionViewDelegate {
                             }
                             DispatchQueue.main.async { [weak self] in
                                 guard let self = self else { return }
-                                self.homeCollectionView.reloadItems(at: [indexPath])
+                                let indexSet = IndexSet(integer: 4)
+                                self.homeCollectionView.reloadSections(indexSet)
+                                
+//                                self.homeCollectionView.reloadData()
+//                                self.homeCollectionView.reloadItems(at: [indexPath])
                                 //reload item brand
                             }
                         })
-//                        DispatchQueue.main.async { [weak self] in
-//                            guard let self = self else { return }
-//                            self.homeCollectionView.reloadData()
-//                        }
                     case .fail:
                         break
                 }
