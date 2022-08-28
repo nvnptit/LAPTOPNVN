@@ -9,8 +9,7 @@ import Foundation
 
 // MARK: - TyGiaResponse
 struct TyGiaResponse: Decodable {
-    let matg: String?
+    let manv: String?
     let ngayapdung: String?
     let giatri: Int?
-    let manv: String?
 }

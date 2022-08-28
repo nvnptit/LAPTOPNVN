@@ -296,8 +296,8 @@ extension InformationViewController{
             base, error in
             guard let base = base else { return }
             if base.success == true {
-                self.tyGiaUSD = base.data?.filter({$0.matg == "USD"}).first
-                //                print(self.tyGiaUSD)
+                self.tyGiaUSD = base.data?.first
+                                print(self.tyGiaUSD)
             } else {
                 let alert = UIAlertController(title:"Lỗi get tỷ giá", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
