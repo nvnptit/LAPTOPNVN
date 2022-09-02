@@ -86,7 +86,7 @@ class StatisticViewController: UIViewController {
                     if let data = base.data {
                         print(data)
                       self.data = data
-                        
+                        self.sum = 0
                         for i in data {
                             if let money = i.doanhthu{
                                 self.sum = self.sum + money

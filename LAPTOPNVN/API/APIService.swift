@@ -13,9 +13,8 @@ import Alamofire
 
 struct APIService {
 //    static let baseUrl: String = "http://192.168.1.21"
-        static let baseUrl: String = "http://192.168.2.19"
-    //    static let baseUrl: String = "http://172.20.10.8"
-    //    static let baseUrl: String = "http://192.168.2.21"
+    static let baseUrl: String = "http://192.168.2.19"
+//    static let baseUrl: String = "http://172.20.10.8"
     
     
     public static func delTK1(with tenDangNhap: String, _ completion: @escaping(Response?, String?) -> ()) {  APIController.requestGET(Response.self, .delTK1(tenDangNhap)) { error, data in
