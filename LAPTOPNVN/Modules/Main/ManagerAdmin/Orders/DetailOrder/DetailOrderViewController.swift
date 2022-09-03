@@ -116,6 +116,14 @@ class DetailOrderViewController: UIViewController {
     
     @IBAction func tapDuyetDon(_ sender: UIButton, forEvent event: UIEvent) {
         if (btnDuyet.titleLabel?.text == "Duyệt đơn"){
+            if (self.maNVG == ""){
+                let alert = UIAlertController(title: "Bạn cần chọn nhân viên giao", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+                return;
+            }
             print("Duyệt")
             let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
             self.updateGH(params: params)
