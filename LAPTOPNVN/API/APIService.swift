@@ -8,8 +8,6 @@
 import Foundation
 import Alamofire
 
-//typealias LoaiSanPhams = [LoaiSanPham]
-//typealias HangSXs = [HangSX]
 
 struct APIService {
     static let baseUrl: String = "http://192.168.1.21"

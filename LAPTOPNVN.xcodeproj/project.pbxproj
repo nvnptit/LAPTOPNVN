@@ -886,13 +886,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		795CAF6028867B08008458F0 /* DetailSanPham */ = {
+		795CAF6028867B08008458F0 /* DetailProduct */ = {
 			isa = PBXGroup;
 			children = (
 				795CAF6D28867BC0008458F0 /* DetailSanPhamViewController.swift */,
 				795CAF6E28867BC0008458F0 /* DetailSanPhamViewController.xib */,
 			);
-			path = DetailSanPham;
+			path = DetailProduct;
 			sourceTree = "<group>";
 		};
 		795EE8A1288A5E8800C4313F /* ExploreItem */ = {
@@ -1046,7 +1046,7 @@
 				79998D8B2893FFB50006EF49 /* History Cart */,
 				796DF2A62892701100F34C82 /* Register */,
 				79A54403288D6F3C00179574 /* SearchBar */,
-				795CAF6028867B08008458F0 /* DetailSanPham */,
+				795CAF6028867B08008458F0 /* DetailProduct */,
 				79475E9F28824DC6005911E3 /* Account */,
 				79475E9628824DAF005911E3 /* Cart */,
 				79475E9528824DA0005911E3 /* Explorer */,
