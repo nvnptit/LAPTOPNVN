@@ -39,6 +39,7 @@ struct HistoryOrder1 : Decodable{
     let tonggiatri: Int?
     let tentrangthai: String?
     let nvgiao: String?
+    let sdtnvg: String?
     let nvduyet: String?
     let nguoinhan: String?
     let diachi: String?

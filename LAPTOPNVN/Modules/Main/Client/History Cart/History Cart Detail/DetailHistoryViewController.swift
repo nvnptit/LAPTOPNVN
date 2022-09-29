@@ -10,9 +10,11 @@ import NVActivityIndicatorView
 
 class DetailHistoryViewController: UIViewController {
 
+    @IBOutlet weak var shipper: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var dataHistory: [HistoryOrder1Detail] = []
     var id: Int?
+    var order: HistoryOrder1?
     
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
@@ -24,17 +26,38 @@ class DetailHistoryViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }
+    private func callNumber(phoneNumber: String) {
+        guard let url = URL(string: "telprompt://\(phoneNumber)"),
+            UIApplication.shared.canOpenURL(url) else {
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Chi tiết giỏ hàng"
+        if let nameShipper = order?.nvgiao, let sdtnvg = order?.sdtnvg {
+            self.shipper.text = "Nhân viên giao hàng\n\(nameShipper) - \(sdtnvg)☎"
+        } else {
+            self.shipper.isHidden = true
+        }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
+            shipper.isUserInteractionEnabled = true
+            shipper.addGestureRecognizer(tap)
+          
+        
         setupAnimation()
         loadData()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "OrderDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "OrderDetailTableViewCell")
     }
-
+    @IBAction func tapFunction(sender: UITapGestureRecognizer) {
+        if let sdt = order?.sdtnvg{
+            callNumber(phoneNumber: sdt)
+        }
+    }
 
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false

@@ -552,6 +552,7 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) as? HistoryOrderTableViewCell else { return }
         let vc = DetailHistoryViewController()
         vc.id = item.idgiohang
+        vc.order = item
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
