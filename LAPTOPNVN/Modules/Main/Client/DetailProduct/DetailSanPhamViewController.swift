@@ -86,38 +86,20 @@ class DetailSanPhamViewController: UIViewController {
         let cmnd = UserService.shared.cmnd
         if (cmnd != ""){
             if let loaiSp = loaiSp {
-                
-                UserService.shared.addOrder(with: loaiSp)
-                                    print(UserService.shared.getlistGH())
+                UserService.shared.addOrder2(with: loaiSp)
+                print(UserService.shared.getlistGH2())
                 print("\n")
-                                    print(UserService.shared.getlistGH().count)
-                
+
                 let alert = UIAlertController(title: title, message: "Thêm vào giỏ hàng thành công", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
                     self.navigationController?.popViewController(animated: true)
                 }))
                 self.present(alert, animated: true)
-                //                let params = GioHangModel(idgiohang: nil, ngaylapgiohang: nil,ngaydukien: nil, tonggiatri: 0, matrangthai: -1, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: nil, diachi: nil, sdt: nil, email: nil, malsp: loaiSp.malsp).convertToDictionary()
-                //                APIService.addGioHangC(with: .addGioHang, params: params, headers: nil, completion:   { base, error in
-                //                    guard let base = base else { return }
-                //                    var title = ""
-                //                    if base.success == true{
-                //                        title = "Thêm vào giỏ hàng thành công"
-                //                    } else {
-                //                        title = "Sản phẩm đang tạm thời hết hàng"
-                //                    }
-                //                    let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
-                //                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                //                        self.dismiss(animated: true)
-                //                    }))
-                //                    self.present(alert, animated: true)
-                //                })
             }
         }
         else {
             let loginVC = LoginViewController()
-            //        self.navigationController?.navigationItem.hidesBackButton = true
             self.navigationController?.pushViewController(loginVC, animated: true)
         }
     }
@@ -158,41 +140,29 @@ extension DetailSanPhamViewController{
 }
 extension DetailSanPhamViewController{
     func checkSLTon(){
-        var dict: [String: Int] = [:]
-        let listData = UserService.shared.listGH
+        let listData = UserService.shared.listGH2
         if (listData.isEmpty) {return}
-        for item in listData {
-            if let ma = item.malsp {
-                if (dict.contains(where: {$0.key == ma})){
-                    let value = dict[ma]!
-                    dict.updateValue(value + 1, forKey: ma)
-                }else {
-                    
-                    dict.updateValue(1, forKey: ma)
-                }
+        let element = listData.filter { $0.data?.malsp == loaiSp?.malsp}
+        if (element.isEmpty) {return}
+        
+        let key = element[0].data?.malsp
+        let value = element[0].sl
+        
+        APIService.getSLLSP(with: key!, { data, error in
+            guard let data = data else {
+                return
             }
-        }
-        print(dict)
-        for (key,value) in dict {
-            //            let params = DeleteLSP(maLSP: key).convertToDictionary()
-            APIService.getSLLSP(with: key, { data, error in
-                guard let data = data else {
-                    return
-                }
-                if (data.success == true ){
-                    if let data = data.message {
-                        print("VALUE: \(value)| DATA: \(data)")
-                        if (value == data){
-                            if (self.loaiSp?.malsp == key){
-                                
-                                self.btnAddCart.isEnabled = false
-                            }
-                        }
+            if (data.success == true ){
+                if let data = data.message {
+                    print("VALUE: \(value)| DATA: \(data)")
+                    if (value == data){
+                            self.btnAddCart.isEnabled = false
                     }
                 }
-                
-            })
-        }
+            }
+            
+        })
+        
         
     }
 }

@@ -343,7 +343,7 @@ class AccountViewController: UIViewController {
     
     @IBAction func tapLogout(_ sender: UIButton, forEvent event: UIEvent) {
         UserService.shared.removeAll()
-        UserService.shared.removeAllGH()
+        UserService.shared.removeAllGH2()
         UserService.shared.removeAllNV()
         UserService.shared.removeAllQuyen()
         let vc = MainTabBarController()

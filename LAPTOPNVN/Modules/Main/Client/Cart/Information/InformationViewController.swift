@@ -22,7 +22,7 @@ class InformationViewController: UIViewController {
     @IBOutlet weak var btnThanhToan: UIButton!
     @IBOutlet weak var lbDatePlan: UILabel!
     
-    var dataGioHang : [GioHangL] = []
+    var dataGioHang : [Orders] = []
     
     public var list: [LoaiSanPhamKM1] = []
     
@@ -93,7 +93,10 @@ class InformationViewController: UIViewController {
         }
         
         let currentDate = Date()
+        
         let current = "\(currentDate)".prefix(10)
+        print("Current:\(currentDate)")
+        print("datePlan:\(datePlan)")
         
         if (!Date().checkDatePlan(start: datePlan, end: Date().convertDateSQLToView(String(current))) ){
             let alert = UIAlertController(title: "Ngày giao mong muốn phải lớn hơn ngày hiện tại", message: "", preferredStyle: .alert)
@@ -118,9 +121,7 @@ class InformationViewController: UIViewController {
         var sum = 0
         if (checkFill()){
             for item in dataGioHang {
-                if let gia = item.giagiam{
-                    sum += gia
-                }
+                sum = sum + ((item.data?.giagiam)! * item.sl)
             }
             let total = Double(sum) / Double(usd)
             print(total.rounded(toPlaces: 2))
@@ -156,22 +157,24 @@ class InformationViewController: UIViewController {
                     print(self.list)
                     print("\n -------LIST------\n ")
                     let params = ModelAddGH(idgiohang: nil, ngaylapgiohang: nil, ngaydukien: dayPlan, tonggiatri: sum, matrangthai: 0, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email, malsp: nil, dslsp: self.list).convertToDictionary()
-//
-                        APIService.addGioHang1(with: .addGioHang1, params: params, headers: nil, completion:   { base, error in
-                            guard let base = base else { return }
-                            if base.success == true{
-                                let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
-                                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                                    self.dismiss(animated: true)
-                                    for itemz in self.dataGioHang{
-                                        UserService.shared.removeOrder(with: itemz)
-                                    }
-                                    let vc = MainTabBarController()
-                                    self.navigationController?.pushViewController(vc, animated: false)
-                                }))
-                                self.present(alert, animated: true)
-                            }
-                        })
+                    print(params)
+                    print("\n -------params------\n ")
+                    //
+                    APIService.addGioHang1(with: .addGioHang1, params: params, headers: nil, completion:   { base, error in
+                        guard let base = base else { return }
+                        if base.success == true{
+                            let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                                self.dismiss(animated: true)
+                                for itemz in self.dataGioHang{
+                                    UserService.shared.removeOrder2(with: itemz.data)
+                                }
+                                let vc = MainTabBarController()
+                                self.navigationController?.pushViewController(vc, animated: false)
+                            }))
+                            self.present(alert, animated: true)
+                        }
+                    })
                 } else if let error = error {
                     // Handle error here...
                     print(error)
@@ -182,7 +185,7 @@ class InformationViewController: UIViewController {
                     self.present(alert, animated: true)
                 } else {
                     // Buyer canceled payment approval
-
+                    
                     let alert = UIAlertController(title: "Đơn hàng chưa được thanh toán", message: "", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                         self.dismiss(animated: true)
@@ -197,33 +200,37 @@ class InformationViewController: UIViewController {
 extension InformationViewController {
     func dataSend(){
         self.list.removeAll()
-        for item in self.dataGioHang{
-            list.append(LoaiSanPhamKM1(malsp: item.malsp, tenlsp: item.tenlsp, soluong: item.soluong, anhlsp: item.anhlsp, mota: item.mota, cpu: item.cpu, ram: item.ram, harddrive: item.harddrive, cardscreen: item.cardscreen, os: item.os, mahang: item.mahang, isnew: item.isnew, isgood: item.isgood, giamoi: item.giamoi, ptgg: item.ptgg, giagiam: item.giagiam))
+        for dt in self.dataGioHang{
+            if let item = dt.data {
+                for _ in 0 ..< dt.sl{
+                    list.append(LoaiSanPhamKM1(malsp: item.malsp, tenlsp: item.tenlsp, soluong: item.soluong, anhlsp: item.anhlsp, mota: item.mota, cpu: item.cpu, ram: item.ram, harddrive: item.harddrive, cardscreen: item.cardscreen, os: item.os, mahang: item.mahang, isnew: item.isnew, isgood: item.isgood, giamoi: item.giamoi, ptgg: item.ptgg, giagiam: item.giagiam))
+                }
+            }
+    }
+}
+func updateGH(params: [String : Any]?){
+    APIService.updateGioHang(with: .updateGioHang, params: params, headers: nil, completion: { base, error in
+        guard let base = base else { return }
+        if base.success == true {
+            print(base)
         }
-    }
-    func updateGH(params: [String : Any]?){
-        APIService.updateGioHang(with: .updateGioHang, params: params, headers: nil, completion: { base, error in
-            guard let base = base else { return }
-            if base.success == true {
-                print(base)
-            }
-            else {
-                fatalError()
-            }
-        })
-    }
-    func isValidPhone(phone: String) -> Bool {
-        let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
-        let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
-        print(phoneTest.evaluate(with: phone))
-        return phoneTest.evaluate(with: phone)
-    }
-    func isValidEmail( email:String)->Bool{
-        let regexEmail = "^[\\w-\\.\\+]+@([\\w-]+\\.)+[\\w-]{2,4}$"
-        let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
-        print(passwordTest.evaluate(with:email))
-        return passwordTest.evaluate(with:email)
-    }
+        else {
+            fatalError()
+        }
+    })
+}
+func isValidPhone(phone: String) -> Bool {
+    let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
+    let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
+    print(phoneTest.evaluate(with: phone))
+    return phoneTest.evaluate(with: phone)
+}
+func isValidEmail( email:String)->Bool{
+    let regexEmail = "^[\\w-\\.\\+]+@([\\w-]+\\.)+[\\w-]{2,4}$"
+    let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
+    print(passwordTest.evaluate(with:email))
+    return passwordTest.evaluate(with:email)
+}
 }
 extension InformationViewController{
     //MARK: - Datepicker
@@ -297,7 +304,7 @@ extension InformationViewController{
             guard let base = base else { return }
             if base.success == true {
                 self.tyGiaUSD = base.data?.first
-                                print(self.tyGiaUSD)
+                print(self.tyGiaUSD)
             } else {
                 let alert = UIAlertController(title:"Lỗi get tỷ giá", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in

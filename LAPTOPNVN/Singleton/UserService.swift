@@ -10,7 +10,7 @@ import Foundation
 class UserService {
     
     static let shared = UserService()
-     
+    
     private init() { }
     public var listQuyen: [QuyenResponse]?
     public var listHang: [HangSX]?
@@ -21,6 +21,10 @@ class UserService {
     public var maNV: String = ""
     public var listGH: [GioHangL] = []
     public var list: [LoaiSanPhamKM?] = []
+    
+    public var listGH2: [Orders] = []
+    public var list2: [LoaiSanPhamKM] = []
+    
 }
 
 struct GioHangL : Decodable{
@@ -42,36 +46,74 @@ struct GioHangL : Decodable{
     let ptgg: Int?
     let giagiam: Int?
 }
+class Orders: Decodable{
+    init( data: LoaiSanPhamKM?,sl: Int) {
+        self.data = data
+        self.sl = sl
+    }
+    var data: LoaiSanPhamKM?
+    var sl: Int
+}
 
 extension UserService{
-    //Danh sach gio hang
-    
-     func addOrder(with data: LoaiSanPhamKM?){
-         guard let item = data else {return}
-         listGH.append(GioHangL(id: UUID().uuidString, malsp: item.malsp, tenlsp: item.tenlsp, soluong: item.soluong, anhlsp: item.anhlsp, mota: item.mota, cpu: item.cpu, ram: item.ram, harddrive: item.harddrive, cardscreen: item.cardscreen, os: item.os, mahang: item.mahang, isnew: item.isnew, isgood: item.isgood, giamoi: item.giamoi, ptgg: item.ptgg, giagiam: item.giagiam))
-     }
-    func removeOrder(with data: GioHangL){
-        self.listGH = self.listGH.filter { $0.id != data.id }
-    }
-    func getlistGH1() -> [LoaiSanPhamKM?]{
-        list.removeAll()
-            for item in listGH{
-                list.append(LoaiSanPhamKM(malsp: item.malsp, tenlsp: item.tenlsp, soluong: item.soluong, anhlsp: item.anhlsp, mota: item.mota, cpu: item.cpu, ram: item.ram, harddrive: item.harddrive, cardscreen: item.cardscreen, os: item.os, mahang: item.mahang, isnew: item.isnew, isgood: item.isgood, giamoi: item.giamoi, ptgg: item.ptgg, giagiam: item.giagiam))
+    //Danh sach gio hang 2
+    func addOrder2(with data: LoaiSanPhamKM?){
+        var k = true
+        for item in listGH2{
+            if (item.data?.malsp == data?.malsp){
+                item.sl += 1
+                k = false
             }
-            return list
-        return []
+        }
+        if (k) {
+            listGH2.append(Orders(data: data, sl: 1))
+        }
     }
-    func getlistGH() -> [GioHangL]{
-        return self.listGH
+    func putOrder2( order: Orders,k: Int){
+        for item in listGH2{
+            if (item.data?.malsp == order.data?.malsp){
+                if (k == 0){
+                    item.sl -= 1}
+                else {
+                    item.sl += 1
+                }
+            }
+        }
     }
-    func removeAllGH() {
-        self.listGH.removeAll()
+    func removeOrder2(with data:LoaiSanPhamKM?){
+        self.listGH2 = self.listGH2.filter { $0.data?.malsp != data?.malsp }
+    }
+    func getlistGH2(){
+        print("\n-------------")
+        for item in listGH2{
+            print(item.data)
+            print(item.sl)
+        }
+        print("\n-------------")
+    }
+    func getlistGH() -> [Orders]{
+        return self.listGH2
+    }
+    
+    func removeAllGH2() {
+        self.listGH2.removeAll()
+    }
+    func toListGH() -> [LoaiSanPhamKM]{
+        list2.removeAll()
+        for item in listGH2{
+            if let data = item.data {
+                for _ in 0 ..< item.sl{
+                    list2.append(data)
+                }
+            }
+        }
+        return list2
     }
 }
 
 extension UserService{
     //Khach Hang
-   
+    
     func setInfo(with data: LoginResponse?){
         guard let info = data else {return}
         self.infoProfile = info

@@ -15,6 +15,12 @@ class ItemCartTableViewCell: UITableViewCell {
     @IBOutlet weak var oldPrice: UILabel!
     @IBOutlet weak var newPrice: UILabel!
     
+    
+    @IBOutlet weak var viewOfPlus: UIView!
+    
+    @IBOutlet weak var viewOfMinus: UIView!
+    @IBOutlet weak var quantity: UILabel!
+    
     @IBOutlet weak var checkBox: UIImageView!
     var isChecked: Bool = false
     
