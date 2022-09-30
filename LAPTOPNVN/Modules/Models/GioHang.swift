@@ -106,4 +106,6 @@ struct ModelAddGH: Encodable {
     let cmnd, manvgiao, manvduyet, nguoinhan: String?
     let diachi, sdt, email, malsp: String?
     let dslsp: [LoaiSanPhamKM1]?
+    let ngaynhan: String?
+    let phuongthuc: String?
 }

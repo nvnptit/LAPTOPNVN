@@ -21,6 +21,9 @@ class HistoryOrderTableViewCell: UITableViewCell {
     
     @IBOutlet weak var phone: UILabel!
     
+    @IBOutlet weak var method: UILabel!
+    
+    @IBOutlet weak var dateReceive: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

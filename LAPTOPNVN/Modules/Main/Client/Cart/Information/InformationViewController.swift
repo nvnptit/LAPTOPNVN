@@ -6,11 +6,16 @@
 //
 
 import UIKit
-
+import DropDown
 import BraintreePayPal
 import BraintreeDataCollector
 
 class InformationViewController: UIViewController {
+    
+    var statusDrop = DropDown()
+    let statusValues: [String] = ["Thanh toán khi nhận hàng","Thanh toán qua Paypal"]
+    @IBOutlet weak var dropdownStatus: UIView!
+    @IBOutlet weak var status: UILabel!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var name: UITextField!
@@ -33,6 +38,10 @@ class InformationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // setup dropdown
+        setupDropDown()
+        setupStatus()
+        
         setupKeyboard()
         address.layer.shadowColor = UIColor.lightGray.cgColor
         address.layer.borderWidth = 0.2
@@ -63,7 +72,8 @@ class InformationViewController: UIViewController {
               let phone = phone.text,
               let email = email.text,
               let address = address.text,
-              let datePlan = datePlan.text
+              let datePlan = datePlan.text,
+              let status = status.text
         else {
             return false
         }
@@ -106,7 +116,48 @@ class InformationViewController: UIViewController {
             self.present(alert, animated: true)
             return false
         }
+        if (status.isEmpty){
+            let alert = UIAlertController(title: "Bạn cần chọn phương thức thanh toán", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
+        }
         return true
+    }
+    func addOrderDatabase(sum: Int, method: String){
+        // Xử lý db
+        let name = self.name.text
+        let phone = self.phone.text
+        let email = self.email.text
+        let address = self.address.text
+        let dayPlan = Date().convertDateViewToSQL(self.datePlan.text!)
+        let cmnd = UserService.shared.cmnd
+        
+        
+        print("\n LIST\n ")
+        print(self.list)
+        print("\n -------LIST------\n ")
+        let params = ModelAddGH(idgiohang: nil, ngaylapgiohang: nil, ngaydukien: dayPlan, tonggiatri: sum, matrangthai: 0, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email, malsp: nil, dslsp: self.list,ngaynhan: nil,phuongthuc: method).convertToDictionary()
+        print(params)
+        print("\n -------params------\n ")
+        //
+        APIService.addGioHang1(with: .addGioHang1, params: params, headers: nil, completion:   { base, error in
+            guard let base = base else { return }
+            if base.success == true{
+                let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                    for itemz in self.dataGioHang{
+                        UserService.shared.removeOrder2(with: itemz.data)
+                    }
+                    let vc = MainTabBarController()
+                    self.navigationController?.pushViewController(vc, animated: false)
+                }))
+                self.present(alert, animated: true)
+            }
+        })
     }
     @IBAction func tapThanhToan(_ sender: Any) {
         guard let usd = tyGiaUSD?.giatri else {
@@ -123,74 +174,50 @@ class InformationViewController: UIViewController {
             for item in dataGioHang {
                 sum = sum + ((item.data?.giagiam)! * item.sl)
             }
-            let total = Double(sum) / Double(usd)
-            print(total.rounded(toPlaces: 2))
-            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-            
-            let request = BTPayPalCheckoutRequest(amount: total.rounded(toPlaces: 2))
-            request.currencyCode = "USD"
-            
-            payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
-                if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-                    print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-                    // Access additional information
-                    let emailPP = tokenizedPayPalAccount.email
-                    let firstNamePP = tokenizedPayPalAccount.firstName
-                    let lastNamePP = tokenizedPayPalAccount.lastName
-                    let phonePP = tokenizedPayPalAccount.phone
-                    print("INFO: \(firstNamePP) |\(lastNamePP) |\(emailPP) |\(phonePP)")
-                    
-                    // Xử lý db
-                    let name = self.name.text
-                    let phone = self.phone.text
-                    let email = self.email.text
-                    let address = self.address.text
-                    let dayPlan = Date().convertDateViewToSQL(self.datePlan.text!)
-                    let cmnd = UserService.shared.cmnd
-                    
-                    //                    for item in self.dataGioHang{
-                    //                        let params = GioHangEdit(idgiohang: item.idgiohang, ngaylapgiohang: nil,ngaydukien: dayPlan, tonggiatri: item.giagiam, matrangthai: 0, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email).convertToDictionary()
-                    //                        self.updateGH(params: params)
-                    //                    }
-                    //
-                    print("\n LIST\n ")
-                    print(self.list)
-                    print("\n -------LIST------\n ")
-                    let params = ModelAddGH(idgiohang: nil, ngaylapgiohang: nil, ngaydukien: dayPlan, tonggiatri: sum, matrangthai: 0, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email, malsp: nil, dslsp: self.list).convertToDictionary()
-                    print(params)
-                    print("\n -------params------\n ")
-                    //
-                    APIService.addGioHang1(with: .addGioHang1, params: params, headers: nil, completion:   { base, error in
-                        guard let base = base else { return }
-                        if base.success == true{
-                            let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                                self.dismiss(animated: true)
-                                for itemz in self.dataGioHang{
-                                    UserService.shared.removeOrder2(with: itemz.data)
-                                }
-                                let vc = MainTabBarController()
-                                self.navigationController?.pushViewController(vc, animated: false)
-                            }))
-                            self.present(alert, animated: true)
-                        }
-                    })
-                } else if let error = error {
-                    // Handle error here...
-                    print(error)
-                    let alert = UIAlertController(title: "Đơn hàng chưa được thanh toán", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                        self.dismiss(animated: true)
-                    }))
-                    self.present(alert, animated: true)
-                } else {
-                    // Buyer canceled payment approval
-                    
-                    let alert = UIAlertController(title: "Đơn hàng chưa được thanh toán", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                        self.dismiss(animated: true)
-                    }))
-                    self.present(alert, animated: true)
+            if (self.status.text == "Thanh toán khi nhận hàng"){
+                
+                let alert = UIAlertController(title: "Xác nhận thanh toán COD?", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ _ in
+                    self.addOrderDatabase(sum: sum,method: "COD")
+                }))
+                alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+            } else {
+                let total = Double(sum) / Double(usd)
+                print(total.rounded(toPlaces: 2))
+                let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+                
+                let request = BTPayPalCheckoutRequest(amount: total.rounded(toPlaces: 2))
+                request.currencyCode = "USD"
+                
+                payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
+                    if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                        print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+                        // Access additional information
+                        let emailPP = tokenizedPayPalAccount.email
+                        let firstNamePP = tokenizedPayPalAccount.firstName
+                        let lastNamePP = tokenizedPayPalAccount.lastName
+                        let phonePP = tokenizedPayPalAccount.phone
+                        print("INFO: \(firstNamePP) |\(lastNamePP) |\(emailPP) |\(phonePP)")
+                        self.addOrderDatabase(sum: sum,method: "PAYPAL")
+                    } else if let error = error {
+                        // Handle error here...
+                        print(error)
+                        let alert = UIAlertController(title: "Đơn hàng chưa được thanh toán", message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                            self.dismiss(animated: true)
+                        }))
+                        self.present(alert, animated: true)
+                    } else {
+                        // Buyer canceled payment approval
+                        let alert = UIAlertController(title: "Đơn hàng chưa được thanh toán", message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                            self.dismiss(animated: true)
+                        }))
+                        self.present(alert, animated: true)
+                    }
                 }
             }
         }
@@ -206,31 +233,31 @@ extension InformationViewController {
                     list.append(LoaiSanPhamKM1(malsp: item.malsp, tenlsp: item.tenlsp, soluong: item.soluong, anhlsp: item.anhlsp, mota: item.mota, cpu: item.cpu, ram: item.ram, harddrive: item.harddrive, cardscreen: item.cardscreen, os: item.os, mahang: item.mahang, isnew: item.isnew, isgood: item.isgood, giamoi: item.giamoi, ptgg: item.ptgg, giagiam: item.giagiam))
                 }
             }
+        }
     }
-}
-func updateGH(params: [String : Any]?){
-    APIService.updateGioHang(with: .updateGioHang, params: params, headers: nil, completion: { base, error in
-        guard let base = base else { return }
-        if base.success == true {
-            print(base)
-        }
-        else {
-            fatalError()
-        }
-    })
-}
-func isValidPhone(phone: String) -> Bool {
-    let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
-    let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
-    print(phoneTest.evaluate(with: phone))
-    return phoneTest.evaluate(with: phone)
-}
-func isValidEmail( email:String)->Bool{
-    let regexEmail = "^[\\w-\\.\\+]+@([\\w-]+\\.)+[\\w-]{2,4}$"
-    let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
-    print(passwordTest.evaluate(with:email))
-    return passwordTest.evaluate(with:email)
-}
+    //func updateGH(params: [String : Any]?){
+    //    APIService.updateGioHang(with: .updateGioHang, params: params, headers: nil, completion: { base, error in
+    //        guard let base = base else { return }
+    //        if base.success == true {
+    //            print(base)
+    //        }
+    //        else {
+    //            fatalError()
+    //        }
+    //    })
+    //}
+    func isValidPhone(phone: String) -> Bool {
+        let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
+        let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
+        print(phoneTest.evaluate(with: phone))
+        return phoneTest.evaluate(with: phone)
+    }
+    func isValidEmail( email:String)->Bool{
+        let regexEmail = "^[\\w-\\.\\+]+@([\\w-]+\\.)+[\\w-]{2,4}$"
+        let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
+        print(passwordTest.evaluate(with:email))
+        return passwordTest.evaluate(with:email)
+    }
 }
 extension InformationViewController{
     //MARK: - Datepicker
@@ -270,7 +297,38 @@ extension InformationViewController{
         view.endEditing(true)
     }
 }
-
+extension InformationViewController{
+    //DropDown
+    
+    // BEGIN STATUS
+    private func setupStatus() {
+        statusDrop.anchorView = dropdownStatus
+        statusDrop.dataSource = statusValues
+        statusDrop.bottomOffset = CGPoint(x: 0, y:(statusDrop.anchorView?.plainView.bounds.height)! + 5)
+        statusDrop.direction = .bottom
+        statusDrop.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.status.text = item
+        }
+        
+        let gestureClock = UITapGestureRecognizer(target: self, action: #selector(didTapStatus))
+        dropdownStatus.addGestureRecognizer(gestureClock)
+        dropdownStatus.layer.borderWidth = 1
+        dropdownStatus.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    @objc func didTapStatus() {
+        statusDrop.show()
+    }
+    private func setupDropDown() {
+        DropDown.appearance().textColor = UIColor.black
+        DropDown.appearance().selectedTextColor = UIColor.black
+        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 15)
+        DropDown.appearance().backgroundColor = UIColor.white
+        DropDown.appearance().selectionBackgroundColor = UIColor.cyan
+        DropDown.appearance().cornerRadius = 8
+    }
+    // END STATUS
+    
+}
 extension InformationViewController{
     //MARK: - Setup keyboard, user
     private func setupKeyboard() {

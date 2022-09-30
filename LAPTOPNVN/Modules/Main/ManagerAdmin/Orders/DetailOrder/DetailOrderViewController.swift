@@ -31,6 +31,12 @@ class DetailOrderViewController: UIViewController {
     
     @IBOutlet weak var btnDuyet: UIButton!
     @IBOutlet weak var btnHuy: UIButton!
+    
+    @IBOutlet weak var lbTongTien: UILabel!
+    
+    @IBOutlet weak var method: UILabel!
+    
+    
     var data: [EmployeeModel] = []
     var KEY = ""
     var dropNVDuyet = DropDown()
@@ -78,7 +84,11 @@ class DetailOrderViewController: UIViewController {
     }
     
     func loadData(){
+        if (order?.phuongthuc == "COD") && (order?.tentrangthai == "Chờ duyệt" || order?.tentrangthai == "Đang giao hàng" ){
+            self.lbTongTien.text = "Tổng tiền cần thu:"
+        }
         if let order = order {
+            method.text = order.phuongthuc
             maDH.text = "\(order.idgiohang!)"
             nguoiNhan.text = order.nguoinhan
             sdt.text = order.sdt

@@ -16,7 +16,9 @@
                 <outlet property="dropDownNVDuyet" destination="hdE-EB-VKE" id="gg0-fX-TgY"/>
                 <outlet property="dropDownNVGiao" destination="Zpb-uH-WHh" id="3yK-f0-2ni"/>
                 <outlet property="lbNVGiao" destination="3ee-dn-pmT" id="auI-us-9c8"/>
+                <outlet property="lbTongTien" destination="Btb-UY-b1i" id="SZe-Dp-7xB"/>
                 <outlet property="maDH" destination="a8z-Ag-sNi" id="bI4-1t-ZdC"/>
+                <outlet property="method" destination="ASb-8D-143" id="Ov0-in-Ryn"/>
                 <outlet property="ngayDuKien" destination="Wj9-Rv-JJX" id="akF-YC-hPd"/>
                 <outlet property="ngayLapDon" destination="W9F-8o-ehe" id="GD8-Lv-tE4"/>
                 <outlet property="nguoiNhan" destination="rfe-b7-eBp" id="1Mh-FY-kNK"/>
@@ -150,6 +152,15 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phương thức thanh toán" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1J-nr-nlF">
+                                    <rect key="frame" x="31" y="20" width="99" height="41"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="99" id="0hR-IN-WbF"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đây là địa chỉ" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uR-lE-vvM">
                                     <rect key="frame" x="29" y="246.5" width="101.5" height="20.5"/>
                                     <constraints>
@@ -252,11 +263,21 @@
                                         <action selector="tapDetail:forEvent:" destination="-1" eventType="touchUpInside" id="70G-Ow-V8f"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASb-8D-143">
+                                    <rect key="frame" x="140" y="29" width="21" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="Red-FK-16N"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="T1e-as-ufn" firstAttribute="top" secondItem="pOm-AM-uor" secondAttribute="bottom" constant="8" id="0ib-97-J7e"/>
                                 <constraint firstItem="WpH-Jg-QTK" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="29" id="0yL-eV-T7U"/>
+                                <constraint firstItem="t1J-nr-nlF" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="31" id="1jT-dt-Z6u"/>
                                 <constraint firstItem="15a-19-EVn" firstAttribute="top" secondItem="T1e-as-ufn" secondAttribute="bottom" constant="8" id="6JX-jk-uHh"/>
                                 <constraint firstItem="LLS-3m-fOS" firstAttribute="top" secondItem="WaG-LW-CPj" secondAttribute="top" constant="22" id="7OQ-HM-hup"/>
                                 <constraint firstItem="a8z-Ag-sNi" firstAttribute="top" secondItem="WaG-LW-CPj" secondAttribute="top" constant="73" id="7n3-wo-LVh"/>
@@ -269,6 +290,7 @@
                                 <constraint firstItem="VgH-Z3-f44" firstAttribute="top" secondItem="15a-19-EVn" secondAttribute="bottom" constant="8" id="Kkp-ci-vqh"/>
                                 <constraint firstItem="Wj9-Rv-JJX" firstAttribute="leading" secondItem="15a-19-EVn" secondAttribute="trailing" constant="10" id="NQA-kG-Axa"/>
                                 <constraint firstItem="9uR-lE-vvM" firstAttribute="top" secondItem="VgH-Z3-f44" secondAttribute="bottom" constant="8" id="Nbj-YF-Dyy"/>
+                                <constraint firstItem="ASb-8D-143" firstAttribute="top" secondItem="WaG-LW-CPj" secondAttribute="top" constant="29" id="OSE-je-gR1"/>
                                 <constraint firstItem="AyL-3e-RZx" firstAttribute="centerX" secondItem="WaG-LW-CPj" secondAttribute="centerX" id="OsZ-nn-64E"/>
                                 <constraint firstItem="hdE-EB-VKE" firstAttribute="top" secondItem="lF2-Al-3Cx" secondAttribute="bottom" constant="8" id="P1e-O4-BAf"/>
                                 <constraint firstItem="ggu-Gg-zoo" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="29" id="SVa-c6-eoc"/>
@@ -296,11 +318,13 @@
                                 <constraint firstItem="0V1-3h-RfD" firstAttribute="leading" secondItem="pOm-AM-uor" secondAttribute="trailing" constant="28" id="rDP-zS-pcb"/>
                                 <constraint firstItem="3ee-dn-pmT" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="27" id="tnV-jd-BRz"/>
                                 <constraint firstItem="9uR-lE-vvM" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="29" id="tvD-1Q-TUs"/>
+                                <constraint firstItem="t1J-nr-nlF" firstAttribute="top" secondItem="WaG-LW-CPj" secondAttribute="top" constant="20" id="u5e-hk-qGZ"/>
                                 <constraint firstItem="AyL-3e-RZx" firstAttribute="top" secondItem="Zpb-uH-WHh" secondAttribute="bottom" constant="45" id="vlQ-Ie-Ca9"/>
                                 <constraint firstItem="Zpb-uH-WHh" firstAttribute="leading" secondItem="3ee-dn-pmT" secondAttribute="trailing" constant="21" id="wrz-cf-wwM"/>
                                 <constraint firstItem="H5m-al-f2r" firstAttribute="top" secondItem="WpH-Jg-QTK" secondAttribute="bottom" constant="8" id="x0j-u0-iRY"/>
                                 <constraint firstItem="0V1-3h-RfD" firstAttribute="top" secondItem="rfe-b7-eBp" secondAttribute="bottom" constant="8" id="xNR-ps-KwJ"/>
                                 <constraint firstItem="pOm-AM-uor" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="29" id="zDs-Fi-kkZ"/>
+                                <constraint firstItem="ASb-8D-143" firstAttribute="leading" secondItem="t1J-nr-nlF" secondAttribute="trailing" constant="10" id="zN4-Zu-CRM"/>
                                 <constraint firstItem="pOm-AM-uor" firstAttribute="top" secondItem="H5m-al-f2r" secondAttribute="bottom" constant="8" id="zb4-dv-xg3"/>
                             </constraints>
                         </view>

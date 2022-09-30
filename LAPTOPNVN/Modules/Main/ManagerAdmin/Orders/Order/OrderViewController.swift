@@ -237,7 +237,7 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 235
     }
     
     
@@ -245,6 +245,7 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderTableViewCell", for: indexPath) as! HistoryOrderTableViewCell
         let item = dataHistory[indexPath.item]
+        let dateReceive = item.ngaynhan ?? ""
         if let ngaylapgiohang = item.ngaylapgiohang,
            //            let tonggiatri = item.tonggiatri,
            let tentrangthai = item.tentrangthai,
@@ -254,7 +255,8 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
            let diachi = item.diachi,
            let sdt = item.sdt,
            let datePlan = item.ngaydukien,
-           let idGH = item.idgiohang
+           let idGH = item.idgiohang,
+           let method = item.phuongthuc
         
         //            let serial = item.serial,
         //            let tenlsp = item.tenlsp,
@@ -274,6 +276,11 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
             cell.phone.text = sdt
             cell.datePlan.text = Date().convertDateSQLToView(String(datePlan.prefix(10)))
             cell.idGH.text = "\(idGH)"
+            cell.method.text = "\(method)"
+            if dateReceive != "" {
+                cell.dateReceive.text = Date().convertDateTimeSQLToView(date: dateReceive, format: "dd-MM-yyyy HH:mm:ss")
+            }else {
+                cell.dateReceive.text = ""}
         }
         cell.selectionStyle = .none
         return cell

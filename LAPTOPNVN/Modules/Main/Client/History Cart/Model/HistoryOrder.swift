@@ -19,6 +19,8 @@ struct HistoryOrder : Decodable{
     let diachi: String?
     let sdt: String?
     let email: String?
+    let ngaynhan: String?
+    let phuongthuc: String?
     
     let serial: String?
     let tenlsp: String?
@@ -45,6 +47,8 @@ struct HistoryOrder1 : Decodable{
     let diachi: String?
     let sdt: String?
     let email: String?
+    let ngaynhan: String?
+    let phuongthuc: String?
     
 //    let serial: String?
 //    let tenlsp: String?
