@@ -61,4 +61,9 @@ class HomeAdminViewController: UIViewController {
         self.navigationController?.pushViewController(mainVC, animated: true)
     }
     
+  
+    @IBAction func tapSale(_ sender: UIButton, forEvent event: UIEvent) {
+        let mainVC = SaleViewController()
+        self.navigationController?.pushViewController(mainVC, animated: true)
+    }
 }

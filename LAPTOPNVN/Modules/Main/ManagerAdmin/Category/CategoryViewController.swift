@@ -80,7 +80,7 @@ class CategoryViewController: UIViewController {
     }
     
     @IBAction func tapThemMoi(_ sender: UIButton, forEvent event: UIEvent) {
-        let vc = DetailCategoryViewController()
+        let vc = DetailCategoryViewController() 
         var data: [String] = []
         for i in dataHang{
             data.append(i.tenhang ?? "")

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="66" id="KGk-i7-Jjw" customClass="DetailSaleTableViewCell" customModule="LAPTOPNVN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="389" height="66"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="389" height="66"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loại sản phẩm:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJV-QY-WHS">
+                        <rect key="frame" x="16" y="12" width="115" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loại sản phẩm:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oez-Mh-rkC">
+                        <rect key="frame" x="139" y="12" width="115" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phần trăm giảm:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqa-lK-1NH">
+                        <rect key="frame" x="16" y="37" width="124" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phần trăm giảm:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70p-ov-7Is">
+                        <rect key="frame" x="148" y="37" width="124" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="70p-ov-7Is" firstAttribute="leading" secondItem="lqa-lK-1NH" secondAttribute="trailing" constant="8" id="D9T-fW-ebL"/>
+                    <constraint firstItem="oez-Mh-rkC" firstAttribute="leading" secondItem="VJV-QY-WHS" secondAttribute="trailing" constant="8" id="JVZ-fS-Lw7"/>
+                    <constraint firstItem="lqa-lK-1NH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Mfk-ed-E3b"/>
+                    <constraint firstItem="oez-Mh-rkC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="Pfb-i5-DbQ"/>
+                    <constraint firstItem="70p-ov-7Is" firstAttribute="top" secondItem="oez-Mh-rkC" secondAttribute="bottom" constant="4" id="T95-n8-TKW"/>
+                    <constraint firstItem="lqa-lK-1NH" firstAttribute="top" secondItem="VJV-QY-WHS" secondAttribute="bottom" constant="4" id="dHZ-nM-mtU"/>
+                    <constraint firstItem="VJV-QY-WHS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="dNe-qD-KXE"/>
+                    <constraint firstItem="VJV-QY-WHS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="nX9-Ko-GN8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nameLSP" destination="oez-Mh-rkC" id="FWB-fy-Tga"/>
+                <outlet property="percentLSP" destination="70p-ov-7Is" id="g2g-0I-ps6"/>
+            </connections>
+            <point key="canvasLocation" x="181.8840579710145" y="72.321428571428569"/>
+        </tableViewCell>
+    </objects>
+</document>

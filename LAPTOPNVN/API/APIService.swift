@@ -14,6 +14,68 @@ struct APIService {
     static let baseUrl: String = "http://192.168.2.19"
 //    static let baseUrl: String = "http://172.20.10.8"
     
+    // Delete CTGG
+    public static func delCTGG(with maLSP:String ,maDot: String, _ completion: @escaping(Response?, String?) -> ()) {  APIController.requestGET(Response.self, .delDetailSale(maLSP, maDot) ) { error, data in
+        if let data = data {
+            completion(data,nil)
+            return
+        }
+        completion(nil, error)
+    }
+    }
+    
+    //Get with Param Method
+    static func getCTGG(with maDot: String, _ completion: @escaping(ResponseBase<[ResponseDetailSale]>?, String?) -> ()) {
+        APIController.requestGET(ResponseBase<[ResponseDetailSale]>.self, .getDetailSale(maDot)) {  error,base in
+            if let base = base {
+                completion(base,nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    
+    public static func postRequest(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+        APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    
+    public static func getDotGG(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[Sale]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[Sale]>.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    public static func getPhieuNhap(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[PhieuNhap]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[PhieuNhap]>.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    public static func getSLSeri(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[SLSERI]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[SLSERI]>.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
     
     public static func delTK1(with tenDangNhap: String, _ completion: @escaping(Response?, String?) -> ()) {  APIController.requestGET(Response.self, .delTK1(tenDangNhap)) { error, data in
         if let data = data {
