@@ -7,6 +7,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import JXReviewController
 
 class DetailHistoryViewController: UIViewController {
 
@@ -15,7 +16,6 @@ class DetailHistoryViewController: UIViewController {
     var dataHistory: [HistoryOrder1Detail] = []
     var id: Int?
     var order: HistoryOrder1?
-    
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
     
@@ -96,7 +96,7 @@ class DetailHistoryViewController: UIViewController {
 }
     
 
-extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegate {
+extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegate , UIGestureRecognizerDelegate{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -108,7 +108,7 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 168
+        return 190
     }
     
     
@@ -138,13 +138,82 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
             cell.gia.text =  "\(CurrencyVN.toVND(giaban))"
         }
         cell.selectionStyle = .none
+        if (UserService.shared.maNV.isEmpty){
+            cell.viewRate.isHidden = false
+        }
+        let gestureRate : UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tapRate(tapGesture:)))
+        gestureRate.delegate = self
+        gestureRate.numberOfTapsRequired = 1
+        cell.viewRate.isUserInteractionEnabled = true
+        cell.viewRate.tag = indexPath.row
+        cell.viewRate.addGestureRecognizer(gestureRate)
         return cell
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        let item = dataHistory[indexPath.item]
-//        guard let cell = tableView.cellForRow(at: indexPath) as? OrderDetailTableViewCell else { return }
-//
-//    }
     
+    @objc func tapRate(tapGesture:UITapGestureRecognizer){
+        print("Rate")
+        let indexPath = IndexPath(row: tapGesture.view!.tag, section: 0)
+//     let indexPath2 = NSIndexPath(row: tapGesture.view!.tag, section: 0)
+        guard let cell = tableView.cellForRow(at: indexPath as IndexPath) as? OrderDetailTableViewCell else { return }
+        let item = dataHistory[indexPath.item]
+        requestReview()
+    }
+    func requestReview() {
+        let reviewController = JXReviewController()
+        reviewController.image = UIImage(systemName: "heart.fill")
+        reviewController.title = "Bạn có hài lòng với chất lượng sản phẩm"
+//        reviewController.message = "Đánh giá"
+        reviewController.delegate = self
+        present(reviewController, animated: true)
 }
+}
+extension DetailHistoryViewController: JXReviewControllerDelegate {
+    
+    func reviewController(_ reviewController: JXReviewController, didSelectWith point: Int) {
+        print("Did select with \(point) point(s).")
+    }
+
+    func reviewController(_ reviewController: JXReviewController, didCancelWith point: Int) {
+        print("Did cancel with \(point) point(s).")
+    }
+
+    func reviewController(_ reviewController: JXReviewController, didSubmitWith point: Int) {
+        print("Did submit with \(point) point(s).")
+        let alert = UIAlertController(title: "Bình luận sản phẩm", message: nil, preferredStyle: .alert)
+        alert.addTextField{ text in
+            text.placeholder = "Nhập nội dung tại đây"
+            text.keyboardType = .default
+        }
+        alert.addAction(UIAlertAction(title: "Xác nhận", style: .default, handler:{ _ in
+                    self.dismiss(animated: true)
+                guard let value = alert.textFields, value.count > 0 else { return }
+            let message = value[0].text!
+            //point
+            // cach su ly khi ma da danh gia roi nhu the nao, viet api
+            
+            
+//            let params = DetailSaleModel(malsp: item.malsp, madotgg: item.madotgg, phantramgg: newValue).convertToDictionary()
+//            APIService.postRequest(with: .putDetailSale, params: params, headers: nil, completion: {base, error in
+//                guard let base = base else { return }
+//                let alert = UIAlertController(title:base.message!, message: "", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+//                        self.dismiss(animated: true)
+//                        self.reloadData()
+//                        self.percent.text = ""
+//                    }))
+//                    self.present(alert, animated: true)
+//            })
+        }))
+        self.present(alert, animated: true)
+    }
+}
+
+//        ac.addTextField()
+//        let submitAction = UIAlertAction(title: "Xác nhận", style: .default) { [unowned ac] _ in
+//            let answer = ac.textFields![0]
+//            // do something interesting with "answer" here
+//            print("HIHI: \(answer)")
+//        }
+//        ac.addAction(submitAction)
+//
+//        present(ac, animated: true)

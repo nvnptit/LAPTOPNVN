@@ -10,9 +10,9 @@ import Alamofire
 
 
 struct APIService {
-//    static let baseUrl: String = "http://192.168.1.21"
-    static let baseUrl: String = "http://192.168.2.19"
-//    static let baseUrl: String = "http://172.20.10.8"
+    static let baseUrl: String = "http://192.168.1.21"
+    //    static let baseUrl: String = "http://192.168.2.19"
+    //    static let baseUrl: String = "http://172.20.10.8"
     
     // Delete CTGG
     public static func delCTGG(with maLSP:String ,maDot: String, _ completion: @escaping(Response?, String?) -> ()) {  APIController.requestGET(Response.self, .delDetailSale(maLSP, maDot) ) { error, data in
@@ -303,16 +303,16 @@ struct APIService {
             completion(nil, error)
         }
     }
-//
-//    public static func delTK(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
-//        APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
-//            if let data = data {
-//                completion(data, nil)
-//                return
-//            }
-//            completion(nil, error)
-//        }
-//    }
+    //
+    //    public static func delTK(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
+    //        APIController.request(Response.self, manager, params: params, headers: headers) { error, data in
+    //            if let data = data {
+    //                completion(data, nil)
+    //                return
+    //            }
+    //            completion(nil, error)
+    //        }
+    //    }
     
     public static func delTK2(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(Response?, String?) -> ()) {
         APIController.request(Response.self, manager, params: params, headers: headers) { error, data in

@@ -12,6 +12,7 @@ target 'LAPTOPNVN' do
 	pod 'Cosmos'
 	pod 'NVActivityIndicatorView'
 	pod 'DropDown'
+	pod 'JXReviewController'
   #pod 'Braintree'
   
   

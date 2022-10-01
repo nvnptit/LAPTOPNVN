@@ -307,6 +307,12 @@
 		79B3296F2891A5C4000E4197 /* InformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B3296B2891A5C4000E4197 /* InformationViewController.xib */; };
 		79B329702891A5C4000E4197 /* InformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B3296B2891A5C4000E4197 /* InformationViewController.xib */; };
 		79B329712891A5C4000E4197 /* InformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B3296B2891A5C4000E4197 /* InformationViewController.xib */; };
+		79BE708D28E89F5E006B2B73 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BE708B28E89F5E006B2B73 /* RateViewController.swift */; };
+		79BE708E28E89F5E006B2B73 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BE708B28E89F5E006B2B73 /* RateViewController.swift */; };
+		79BE708F28E89F5E006B2B73 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BE708B28E89F5E006B2B73 /* RateViewController.swift */; };
+		79BE709028E89F5E006B2B73 /* RateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BE708C28E89F5E006B2B73 /* RateViewController.xib */; };
+		79BE709128E89F5E006B2B73 /* RateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BE708C28E89F5E006B2B73 /* RateViewController.xib */; };
+		79BE709228E89F5E006B2B73 /* RateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BE708C28E89F5E006B2B73 /* RateViewController.xib */; };
 		79BF62122891AAB70007FE0D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF62112891AAB70007FE0D /* CustomCell.swift */; };
 		79BF62132891AAB70007FE0D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF62112891AAB70007FE0D /* CustomCell.swift */; };
 		79BF62142891AAB70007FE0D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF62112891AAB70007FE0D /* CustomCell.swift */; };
@@ -527,6 +533,8 @@
 		79B3296228914345000E4197 /* NoLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoLoginViewController.xib; sourceTree = "<group>"; };
 		79B3296A2891A5C4000E4197 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		79B3296B2891A5C4000E4197 /* InformationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InformationViewController.xib; sourceTree = "<group>"; };
+		79BE708B28E89F5E006B2B73 /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
+		79BE708C28E89F5E006B2B73 /* RateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateViewController.xib; sourceTree = "<group>"; };
 		79BF62112891AAB70007FE0D /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		79BF621A2891BAB80007FE0D /* ItemCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCartTableViewCell.swift; sourceTree = "<group>"; };
 		79BF621B2891BAB80007FE0D /* ItemCartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCartTableViewCell.xib; sourceTree = "<group>"; };
@@ -687,14 +695,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		792A292E28B1EE850075AD18 /* History Cart Detail */ = {
+		792A292E28B1EE850075AD18 /* History Detail */ = {
 			isa = PBXGroup;
 			children = (
+				79BE708A28E89F47006B2B73 /* Rate */,
 				792A293328B1F9130075AD18 /* Cell */,
 				792A293428B1F9830075AD18 /* DetailHistoryViewController.swift */,
 				792A293528B1F9830075AD18 /* DetailHistoryViewController.xib */,
 			);
-			path = "History Cart Detail";
+			path = "History Detail";
 			sourceTree = "<group>";
 		};
 		792A293328B1F9130075AD18 /* Cell */ = {
@@ -1045,10 +1054,9 @@
 		79998D8B2893FFB50006EF49 /* History Cart */ = {
 			isa = PBXGroup;
 			children = (
-				792A292E28B1EE850075AD18 /* History Cart Detail */,
+				79BE709328E8A06C006B2B73 /* History Cell */,
+				792A292E28B1EE850075AD18 /* History Detail */,
 				7996271D28960F7200B6EDF9 /* Model */,
-				799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */,
-				799627122896066D00B6EDF9 /* HistoryOrderTableViewCell.xib */,
 			);
 			path = "History Cart";
 			sourceTree = "<group>";
@@ -1211,6 +1219,24 @@
 				79B3296B2891A5C4000E4197 /* InformationViewController.xib */,
 			);
 			path = Information;
+			sourceTree = "<group>";
+		};
+		79BE708A28E89F47006B2B73 /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				79BE708B28E89F5E006B2B73 /* RateViewController.swift */,
+				79BE708C28E89F5E006B2B73 /* RateViewController.xib */,
+			);
+			path = Rate;
+			sourceTree = "<group>";
+		};
+		79BE709328E8A06C006B2B73 /* History Cell */ = {
+			isa = PBXGroup;
+			children = (
+				799627112896066D00B6EDF9 /* HistoryOrderTableViewCell.swift */,
+				799627122896066D00B6EDF9 /* HistoryOrderTableViewCell.xib */,
+			);
+			path = "History Cell";
 			sourceTree = "<group>";
 		};
 		79BF62192891BA950007FE0D /* Cell */ = {
@@ -1446,6 +1472,7 @@
 				79D99EE328E758BF00954A12 /* SaleTableViewCell.xib in Resources */,
 				791BB914289E0F2A002B5871 /* DetailOrderViewController.xib in Resources */,
 				79475E202882438E005911E3 /* LaunchScreen.storyboard in Resources */,
+				79BE709028E89F5E006B2B73 /* RateViewController.xib in Resources */,
 				79A0364728E829A9002532FD /* DetailSaleTableViewCell.xib in Resources */,
 				79176FA2288392EC00CDA10E /* HangCollectionViewCell.xib in Resources */,
 				79F33D8328831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
@@ -1507,6 +1534,7 @@
 				7992976B288EF91100642885 /* ListLaptopViewController.xib in Resources */,
 				79A0364828E829A9002532FD /* DetailSaleTableViewCell.xib in Resources */,
 				79A5440E288D70C300179574 /* SearchViewController.xib in Resources */,
+				79BE709128E89F5E006B2B73 /* RateViewController.xib in Resources */,
 				79475E5628824822005911E3 /* LoginViewController.xib in Resources */,
 				799B916F289D92EA001F6B5F /* HomeAdminViewController.xib in Resources */,
 				79D99EE428E758BF00954A12 /* SaleTableViewCell.xib in Resources */,
@@ -1556,6 +1584,7 @@
 				7992976C288EF91100642885 /* ListLaptopViewController.xib in Resources */,
 				79A0364928E829A9002532FD /* DetailSaleTableViewCell.xib in Resources */,
 				79A5440F288D70C300179574 /* SearchViewController.xib in Resources */,
+				79BE709228E89F5E006B2B73 /* RateViewController.xib in Resources */,
 				79475E5728824822005911E3 /* LoginViewController.xib in Resources */,
 				799B9170289D92EA001F6B5F /* HomeAdminViewController.xib in Resources */,
 				79D99EE528E758BF00954A12 /* SaleTableViewCell.xib in Resources */,
@@ -1771,6 +1800,7 @@
 				79475E5F2882498E005911E3 /* UIImageView+UIImage.swift in Sources */,
 				799B916B289D92EA001F6B5F /* HomeAdminViewController.swift in Sources */,
 				79176F9F288392EC00CDA10E /* HangCollectionViewCell.swift in Sources */,
+				79BE708D28E89F5E006B2B73 /* RateViewController.swift in Sources */,
 				795CAF6F28867BC0008458F0 /* DetailSanPhamViewController.swift in Sources */,
 				79F33D8B288324EC00F7BB4C /* APIManager.swift in Sources */,
 				79F33D87288324B800F7BB4C /* APIService.swift in Sources */,
@@ -1803,6 +1833,7 @@
 				7986295328A8238600FC08AE /* DetailProductViewController.swift in Sources */,
 				79F33D982883254600F7BB4C /* APIResponse.swift in Sources */,
 				79F33D902883250400F7BB4C /* APIController.swift in Sources */,
+				79BE708E28E89F5E006B2B73 /* RateViewController.swift in Sources */,
 				79B3296428914345000E4197 /* NoLoginViewController.swift in Sources */,
 				7986294328A81FC500FC08AE /* ProductTableViewCell.swift in Sources */,
 				79AAC9B328A77D2A00CD2E23 /* Quyen.swift in Sources */,
@@ -1900,6 +1931,7 @@
 				791BB91A289E2A7F002B5871 /* EmployeeModel.swift in Sources */,
 				79A5440C288D70C300179574 /* SearchViewController.swift in Sources */,
 				7996271C28960F6D00B6EDF9 /* HistoryOrder.swift in Sources */,
+				79BE708F28E89F5E006B2B73 /* RateViewController.swift in Sources */,
 				799627212896133E00B6EDF9 /* HistoryModel.swift in Sources */,
 				799547F828A8B597002760A7 /* SanPhamViewController.swift in Sources */,
 				79BF62252891C3650007FE0D /* DatHang.swift in Sources */,

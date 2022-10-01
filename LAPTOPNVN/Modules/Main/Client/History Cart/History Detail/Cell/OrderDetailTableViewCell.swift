@@ -20,6 +20,8 @@ class OrderDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var tensp: UILabel!
     @IBOutlet weak var picture: UIImageView!
     
+    @IBOutlet weak var viewRate: UIView!
+    
     //    let serial: String?
 //    let tenlsp: String?
 //    let anhlsp: String?
@@ -32,6 +34,7 @@ class OrderDetailTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        viewRate.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
