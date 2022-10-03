@@ -180,6 +180,11 @@
 		796DF2B528928A3000F34C82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2B328928A3000F34C82 /* User.swift */; };
 		796DF2B628928A3000F34C82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2B328928A3000F34C82 /* User.swift */; };
 		796F56532890C90A003F34EB /* Integer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F56522890C90A003F34EB /* Integer.swift */; };
+		797767D628EB399E008643A7 /* StarRatingStackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 797767D328EB399E008643A7 /* StarRatingStackView.xib */; };
+		797767D728EB399E008643A7 /* JStarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797767D428EB399E008643A7 /* JStarRatingView.swift */; };
+		797767D828EB399E008643A7 /* StarRatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797767D528EB399E008643A7 /* StarRatingStackView.swift */; };
+		797767DD28EB3E7D008643A7 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797767DB28EB3E7D008643A7 /* CommentTableViewCell.swift */; };
+		797767DE28EB3E7D008643A7 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 797767DC28EB3E7D008643A7 /* CommentTableViewCell.xib */; };
 		7986292F28A8189000FC08AE /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7986292D28A8189000FC08AE /* CategoryViewController.swift */; };
 		7986293028A8189000FC08AE /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7986292D28A8189000FC08AE /* CategoryViewController.swift */; };
 		7986293128A8189000FC08AE /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7986292D28A8189000FC08AE /* CategoryViewController.swift */; };
@@ -485,6 +490,11 @@
 		796DF2AF2892850500F34C82 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		796DF2B328928A3000F34C82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		796F56522890C90A003F34EB /* Integer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Integer.swift; sourceTree = "<group>"; };
+		797767D328EB399E008643A7 /* StarRatingStackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StarRatingStackView.xib; sourceTree = "<group>"; };
+		797767D428EB399E008643A7 /* JStarRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JStarRatingView.swift; sourceTree = "<group>"; };
+		797767D528EB399E008643A7 /* StarRatingStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarRatingStackView.swift; sourceTree = "<group>"; };
+		797767DB28EB3E7D008643A7 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		797767DC28EB3E7D008643A7 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		7986292D28A8189000FC08AE /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		7986292E28A8189000FC08AE /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
 		7986293528A81D4500FC08AE /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -775,6 +785,7 @@
 		79475E432882455F005911E3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				797767D228EB3989008643A7 /* JStarView */,
 				79475E1E2882438E005911E3 /* LaunchScreen.storyboard */,
 			);
 			path = Common;
@@ -944,6 +955,7 @@
 		795CAF6028867B08008458F0 /* DetailProduct */ = {
 			isa = PBXGroup;
 			children = (
+				797767D928EB3E42008643A7 /* Comment */,
 				795CAF6D28867BC0008458F0 /* DetailSanPhamViewController.swift */,
 				795CAF6E28867BC0008458F0 /* DetailSanPhamViewController.xib */,
 			);
@@ -975,6 +987,33 @@
 				79D8CD342892ECAF00984EF3 /* PayPalViewController.xib */,
 			);
 			path = CheckOut;
+			sourceTree = "<group>";
+		};
+		797767D228EB3989008643A7 /* JStarView */ = {
+			isa = PBXGroup;
+			children = (
+				797767D428EB399E008643A7 /* JStarRatingView.swift */,
+				797767D528EB399E008643A7 /* StarRatingStackView.swift */,
+				797767D328EB399E008643A7 /* StarRatingStackView.xib */,
+			);
+			path = JStarView;
+			sourceTree = "<group>";
+		};
+		797767D928EB3E42008643A7 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				797767DA28EB3E68008643A7 /* Cell */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		797767DA28EB3E68008643A7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				797767DB28EB3E7D008643A7 /* CommentTableViewCell.swift */,
+				797767DC28EB3E7D008643A7 /* CommentTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		7986292A28A7F35200FC08AE /* Category */ = {
@@ -1477,6 +1516,7 @@
 				79176FA2288392EC00CDA10E /* HangCollectionViewCell.xib in Resources */,
 				79F33D8328831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
 				792A293228B1EEC30075AD18 /* OrderDetailTableViewCell.xib in Resources */,
+				797767D628EB399E008643A7 /* StarRatingStackView.xib in Resources */,
 				791BB921289E7013002B5871 /* StatisticViewController.xib in Resources */,
 				79AAC99928A73CBE00CD2E23 /* EmployeeTableViewCell.xib in Resources */,
 				7992976A288EF91100642885 /* ListLaptopViewController.xib in Resources */,
@@ -1488,6 +1528,7 @@
 				7923192C28A0F8080017E370 /* OrderShipViewController.xib in Resources */,
 				799627162896066D00B6EDF9 /* HistoryOrderTableViewCell.xib in Resources */,
 				7986293228A8189000FC08AE /* CategoryViewController.xib in Resources */,
+				797767DE28EB3E7D008643A7 /* CommentTableViewCell.xib in Resources */,
 				79475E5528824822005911E3 /* LoginViewController.xib in Resources */,
 				79A0363E28E826D9002532FD /* DetailSaleViewController.xib in Resources */,
 				7986294528A81FC500FC08AE /* ProductTableViewCell.xib in Resources */,
@@ -1748,6 +1789,7 @@
 				79AAC9A728A74ABA00CD2E23 /* DetailEmployeeViewController.swift in Sources */,
 				791BB91E289E7013002B5871 /* StatisticViewController.swift in Sources */,
 				79AAC9B228A77D2A00CD2E23 /* Quyen.swift in Sources */,
+				797767DD28EB3E7D008643A7 /* CommentTableViewCell.swift in Sources */,
 				795EE8A4288A5EAC00C4313F /* LaptopItemCollectionViewCell.swift in Sources */,
 				79BF62232891C3650007FE0D /* DatHang.swift in Sources */,
 				799B9166289D8B52001F6B5F /* ModelNV.swift in Sources */,
@@ -1776,6 +1818,7 @@
 				79AAC9AE28A7704D00CD2E23 /* MaSo.swift in Sources */,
 				79AAC99628A73CBE00CD2E23 /* EmployeeTableViewCell.swift in Sources */,
 				791BB93E289EE0CF002B5871 /* DetailBrandViewController.swift in Sources */,
+				797767D828EB399E008643A7 /* StarRatingStackView.swift in Sources */,
 				79A5440A288D70C300179574 /* SearchViewController.swift in Sources */,
 				792DDAA4288F7DC8000ACAFC /* String.swift in Sources */,
 				799547F628A8B597002760A7 /* SanPhamViewController.swift in Sources */,
@@ -1795,6 +1838,7 @@
 				79475EAE2882B7E1005911E3 /* LoaiSanPham.swift in Sources */,
 				79D99EE028E758BF00954A12 /* SaleTableViewCell.swift in Sources */,
 				79F33D9B28832F3C00F7BB4C /* LoginModel.swift in Sources */,
+				797767D728EB399E008643A7 /* JStarRatingView.swift in Sources */,
 				79475E9928824DBD005911E3 /* CartViewController.swift in Sources */,
 				79475E5F2882498E005911E3 /* UIImageView+UIImage.swift in Sources */,
 				799B916B289D92EA001F6B5F /* HomeAdminViewController.swift in Sources */,

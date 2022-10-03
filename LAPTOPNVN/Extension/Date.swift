@@ -179,9 +179,6 @@ extension Date {
         if (((components1.year!) - (components2.year!)) < 18){
             return false
         }
-        
-        
-        
         return true
     }
     

@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class DetailSanPhamViewController: UIViewController {
+class DetailSanPhamViewController: UIViewController{
     
     var loaiSp: LoaiSanPhamKM?
     var order: HistoryOrder?
@@ -28,32 +28,42 @@ class DetailSanPhamViewController: UIViewController {
     
     @IBOutlet weak var btnAddCart: UIButton!
     
-    @IBOutlet weak var btnCancel: UIButton!
+    @IBOutlet weak var viewStar: JStarRatingView!
+    
     var isCancel:Bool = false
     var listComment: [RateListResponse] = []
     
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ListComment()")
-        print(self.listComment)
-        print("---------------------------------")
-        
-        
-            DispatchQueue.main.async {
-                self.checkSLTon()
+        if !listComment.isEmpty{
+            var point = 0
+            for comment in listComment {
+                point += comment.diem!
             }
+            viewStar.rating = Float(point/listComment.capacity)
+        }
+        
+        //CommentTableViewCell
+        
+        tableView.layer.cornerRadius = 5
+        tableView.layer.masksToBounds = true
+        tableView.layer.borderColor = UIColor.systemGray.cgColor
+        tableView.layer.borderWidth = 1
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UINib(nibName: "CommentTableViewCell", bundle: nil), forCellReuseIdentifier: "CommentTableViewCell")
+        DispatchQueue.main.async {
+            self.checkSLTon()
+        }
         if let loaiSp = loaiSp, let sl = loaiSp.soluong {
             if (sl>0){
                 btnAddCart.isEnabled = true
             }else {
-                    btnAddCart.isEnabled = false
+                btnAddCart.isEnabled = false
             }
-        }
-        if (order?.tentrangthai == "Chờ duyệt"){
-            btnCancel.isHidden = false
-        }else {
-            btnCancel.isHidden = true
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         if let loaiSp = loaiSp {
@@ -95,7 +105,7 @@ class DetailSanPhamViewController: UIViewController {
                 UserService.shared.addOrder2(with: loaiSp)
                 print(UserService.shared.getlistGH2())
                 print("\n")
-
+                
                 let alert = UIAlertController(title: title, message: "Thêm vào giỏ hàng thành công", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
@@ -110,20 +120,7 @@ class DetailSanPhamViewController: UIViewController {
         }
     }
     
-    @IBAction func tapCancel(_ sender: UIButton, forEvent event: UIEvent) {
-        
-        let alert = UIAlertController(title: "Bạn có chắc huỷ đơn hàng này?", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
-            self.dismiss(animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
-            self.dismiss(animated: true)
-            let params = GioHangEdit(idgiohang: self.order?.idgiohang, ngaylapgiohang: self.order?.ngaylapgiohang,ngaydukien: self.order?.ngaydukien, tonggiatri: self.order?.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: self.order?.nguoinhan, diachi: self.order?.diachi, sdt: self.order?.sdt, email: self.order?.email).convertToDictionary()
-            self.updateGH(params: params)
-        }))
-        self.present(alert, animated: true)
-        
-    }
+    
     
 }
 extension DetailSanPhamViewController{
@@ -162,7 +159,7 @@ extension DetailSanPhamViewController{
                 if let data = data.message {
                     print("VALUE: \(value)| DATA: \(data)")
                     if (value == data){
-                            self.btnAddCart.isEnabled = false
+                        self.btnAddCart.isEnabled = false
                     }
                 }
             }
@@ -172,11 +169,23 @@ extension DetailSanPhamViewController{
         
     }
 }
-
-//                            let name = listData.filter({$0.malsp == key})[0].tenlsp!
-//                            let alert = UIAlertController(title: "Số lượng tồn của \(name) không đủ\n Vui lòng cập nhật lại đơn hàng", message: "", preferredStyle: .alert)
-//                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-//                                self.dismiss(animated: true)
-    //                                self.navigationController?.popViewController(animated: true)
-//                            }))
-//                            self.present(alert, animated: true)
+extension DetailSanPhamViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listComment.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = listComment[indexPath.item]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as! CommentTableViewCell
+        cell.name.text = item.ten!
+        cell.star.text = "đã đánh giá \(item.diem ?? 0) ⭐ "
+        cell.comment.text = "Nội dung: \(item.mota ?? "") \n\(item.ngaybinhluan!)"
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Do something
+    }
+}
