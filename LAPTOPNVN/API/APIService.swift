@@ -14,6 +14,16 @@ struct APIService {
         static let baseUrl: String = "http://192.168.2.19"
     //    static let baseUrl: String = "http://172.20.10.8"
     
+    //Get rate by RateList
+    public static func getRateList(with seri:String, _ completion: @escaping(ResponseBase<[RateListResponse]>?, String?) -> ()) {  APIController.requestGET(ResponseBase<[RateListResponse]>.self, .getListRate(seri) ) { error, data in
+        if let data = data {
+            completion(data,nil)
+            return
+        }
+        completion(nil, error)
+    }
+    }
+    
     //Get rate by serial
     public static func getRateBySerial(with seri:String, _ completion: @escaping(Response?, String?) -> ()) {  APIController.requestGET(Response.self, .getRateBySeri(seri) ) { error, data in
         if let data = data {

@@ -86,6 +86,7 @@ enum APIManager {
     
     case getRate
     case getRateBySeri(String)
+    case getListRate(String)
     case postRate
     case putRate
 }
@@ -221,6 +222,8 @@ extension APIManager {
                 path = "/binh-luan"
             case .putRate:
                 path = "/binh-luan"
+            case .getListRate(let maLSP):
+                path = "/binh-luan/SANPHAM?maLSP=\(maLSP)"
         }
         return baseURL + path
     }
@@ -235,7 +238,7 @@ extension APIManager {
                     .getMaSoNV, .getMaSoLSP, .getQuyen, .getTyGia,
                     .getDetailHistory, .getSoLuongLSP,
                     .getSLSeri, .getPhieuNhap,
-                    .getDotGG, .getMaSoDGG, .getDetailSale, .getRate, .getRateBySeri
+                    .getDotGG, .getMaSoDGG, .getDetailSale, .getRate, .getRateBySeri, .getListRate
                 :
                 return .get
             case .login, .register, .resetPass, .addGioHang, .addUserKH, .uploadAvatar,

@@ -17,3 +17,9 @@ struct RateResponse: Decodable {
     let diem: Int?
     let mota: String?
 }
+
+struct RateListResponse: Decodable {
+    let ten, ngaybinhluan: String?
+    let diem: Int?
+    let mota: String?
+}

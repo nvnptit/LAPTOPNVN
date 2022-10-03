@@ -163,18 +163,3 @@ extension UserService{
         self.listQuyen = nil
     }
 }
-//
-//extension UserService{
-//    //Hangsx
-//    
-//    func setListHang(with data: [HangSX]?){
-//        guard let data = data else {return}
-//        self.listHang = data
-//    }
-//    func getListHang() -> [HangSX]?{
-//        return self.listHang
-//    }
-//    func removeAllHang() {
-//        self.listQuyen = nil
-//    }
-//}

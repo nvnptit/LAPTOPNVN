@@ -288,10 +288,6 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = dataHistory[indexPath.item]
         
-//            let item = loaiSp[indexPath.item]
-//            let detailSPViewController = DetailSanPhamViewController()
-//            detailSPViewController.loaiSp = item
-//            self.navigationController?.pushViewController(detailSPViewController, animated: true)
         let detailOrderViewController = DetailOrderViewController()
         detailOrderViewController.order = item
         self.navigationController?.pushViewController(detailOrderViewController, animated: true)

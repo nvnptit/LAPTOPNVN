@@ -467,9 +467,11 @@ extension HomeViewController: UICollectionViewDelegate {
                 switch loaispWrap {
                     case .success(let loaiSp):
                         let item = loaiSp[indexPath.item]
-                        let detailSPViewController = DetailSanPhamViewController()
-                        detailSPViewController.loaiSp = item
-                        self.navigationController?.pushViewController(detailSPViewController, animated: true)
+//                        let detailSPViewController = DetailSanPhamViewController()
+//                        detailSPViewController.loaiSp = item
+//                        self.navigationController?.pushViewController(detailSPViewController, animated: true)
+                        
+                        self.fetchListComment(item: item)
                     case .fail:
                         break
                 }
@@ -477,9 +479,11 @@ extension HomeViewController: UICollectionViewDelegate {
                 switch laptops {
                     case .success(let loaiSp):
                         let item = loaiSp[indexPath.item]
-                        let detailSPViewController = DetailSanPhamViewController()
-                        detailSPViewController.loaiSp = item
-                        self.navigationController?.pushViewController(detailSPViewController, animated: true)
+//                        let detailSPViewController = DetailSanPhamViewController()
+//                        detailSPViewController.loaiSp = item
+//                        self.navigationController?.pushViewController(detailSPViewController, animated: true)
+                        
+                        self.fetchListComment(item: item)
                     case .fail:
                         break
                 }
@@ -516,9 +520,11 @@ extension HomeViewController: UICollectionViewDelegate {
                 switch laptops {
                     case .success(let loaiSp):
                         let item = loaiSp[indexPath.item]
-                        let detailSPViewController = DetailSanPhamViewController()
-                        detailSPViewController.loaiSp = item
-                        self.navigationController?.pushViewController(detailSPViewController, animated: true)
+//                        let detailSPViewController = DetailSanPhamViewController()
+//                        detailSPViewController.loaiSp = item
+//                        self.navigationController?.pushViewController(detailSPViewController, animated: true)
+                        
+                        self.fetchListComment(item: item)
                     case .fail:
                         break
                         
@@ -556,5 +562,22 @@ extension HomeViewController: UISearchBarDelegate{
         view.endEditing(true)
         let searchVC = SearchViewController()
         self.navigationController?.pushViewController(searchVC, animated: true)
+    }
+}
+
+extension HomeViewController{
+    //self.fetchListComment(item: item)
+    func fetchListComment(item: LoaiSanPhamKM){
+        let maLSP = item.malsp!
+        APIService.getRateList(with: maLSP, {
+            data, error in
+            guard let data = data else {return}
+            if (data.success == true){
+                let detailSPViewController = DetailSanPhamViewController()
+                detailSPViewController.loaiSp = item
+                detailSPViewController.listComment = data.data ?? []
+                self.navigationController?.pushViewController(detailSPViewController, animated: true)
+            }
+        })
     }
 }

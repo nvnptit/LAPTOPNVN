@@ -190,14 +190,27 @@ extension SearchViewController: UICollectionViewDataSource{
 extension SearchViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = data[indexPath.item]
-        let detailSPViewController = DetailSanPhamViewController()
-        detailSPViewController.loaiSp = item
-        self.navigationController?.pushViewController(detailSPViewController, animated: true)
-        
+        self.fetchListComment(item: item)
     }
 }
 
 extension SearchViewController {
+    
+    //self.fetchListComment(item: item)
+    func fetchListComment(item: LoaiSanPhamKM){
+        let maLSP = item.malsp!
+        APIService.getRateList(with: maLSP, {
+            data, error in
+            guard let data = data else {return}
+            if (data.success == true){
+                let detailSPViewController = DetailSanPhamViewController()
+                detailSPViewController.loaiSp = item
+                detailSPViewController.listComment = data.data ?? []
+                self.navigationController?.pushViewController(detailSPViewController, animated: true)
+            }
+        })
+    }
+    
     private func getDataSearch(){
         print("SEARCHNAME: \(searchBar.text)")
         let min = tfGiaMin.text?.count == 0 ? nil : Int(tfGiaMin.text!)

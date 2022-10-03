@@ -124,10 +124,23 @@ class ListLaptopViewController: UIViewController {
 extension ListLaptopViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = data[indexPath.item]
-        let detailSPViewController = DetailSanPhamViewController()
-        detailSPViewController.loaiSp = item
-        self.navigationController?.pushViewController(detailSPViewController, animated: true)
-        
+        self.fetchListComment(item: item)
+    }
+}
+extension ListLaptopViewController{
+    //self.fetchListComment(item: item)
+    func fetchListComment(item: LoaiSanPhamKM){
+        let maLSP = item.malsp!
+        APIService.getRateList(with: maLSP, {
+            data, error in
+            guard let data = data else {return}
+            if (data.success == true){
+                let detailSPViewController = DetailSanPhamViewController()
+                detailSPViewController.loaiSp = item
+                detailSPViewController.listComment = data.data ?? []
+                self.navigationController?.pushViewController(detailSPViewController, animated: true)
+            }
+        })
     }
 }
 extension ListLaptopViewController: UICollectionViewDataSource{

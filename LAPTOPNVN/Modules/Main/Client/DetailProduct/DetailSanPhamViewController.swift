@@ -30,10 +30,16 @@ class DetailSanPhamViewController: UIViewController {
     
     @IBOutlet weak var btnCancel: UIButton!
     var isCancel:Bool = false
+    var listComment: [RateListResponse] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("ListComment()")
+        print(self.listComment)
+        print("---------------------------------")
+        
+        
             DispatchQueue.main.async {
                 self.checkSLTon()
             }
