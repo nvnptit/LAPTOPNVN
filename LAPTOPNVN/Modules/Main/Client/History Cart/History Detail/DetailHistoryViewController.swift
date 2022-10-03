@@ -10,17 +10,18 @@ import NVActivityIndicatorView
 import JXReviewController
 
 class DetailHistoryViewController: UIViewController {
-
+    
     @IBOutlet weak var shipper: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var dataHistory: [HistoryOrder1Detail] = []
     var id: Int?
     var order: HistoryOrder1?
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
-    
+    var currentSerial: String?
+    var comment: String?
     
     override func viewDidAppear(_ animated: Bool = false) {
-//        self.navigationController?.isNavigationBarHidden = true
+        //        self.navigationController?.isNavigationBarHidden = true
         loadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -28,7 +29,7 @@ class DetailHistoryViewController: UIViewController {
     }
     private func callNumber(phoneNumber: String) {
         guard let url = URL(string: "telprompt://\(phoneNumber)"),
-            UIApplication.shared.canOpenURL(url) else {
+              UIApplication.shared.canOpenURL(url) else {
             return
         }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -43,9 +44,9 @@ class DetailHistoryViewController: UIViewController {
             self.shipper.isHidden = true
         }
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
-            shipper.isUserInteractionEnabled = true
-            shipper.addGestureRecognizer(tap)
-          
+        shipper.isUserInteractionEnabled = true
+        shipper.addGestureRecognizer(tap)
+        
         
         setupAnimation()
         loadData()
@@ -58,7 +59,7 @@ class DetailHistoryViewController: UIViewController {
             callNumber(phoneNumber: sdt)
         }
     }
-
+    
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loading)
@@ -94,7 +95,7 @@ class DetailHistoryViewController: UIViewController {
         }
     }
 }
-    
+
 
 extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegate , UIGestureRecognizerDelegate{
     
@@ -147,36 +148,76 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
         cell.viewRate.isUserInteractionEnabled = true
         cell.viewRate.tag = indexPath.row
         cell.viewRate.addGestureRecognizer(gestureRate)
+        
+        if let stt = order?.tentrangthai{
+            if (stt == "Đã giao hàng"){
+                cell.viewRate.isHidden = false
+            }else {
+                cell.viewRate.isHidden = true
+            }
+            
+        }
         return cell
     }
     
     @objc func tapRate(tapGesture:UITapGestureRecognizer){
         print("Rate")
         let indexPath = IndexPath(row: tapGesture.view!.tag, section: 0)
-//     let indexPath2 = NSIndexPath(row: tapGesture.view!.tag, section: 0)
-        guard let cell = tableView.cellForRow(at: indexPath as IndexPath) as? OrderDetailTableViewCell else { return }
+        //     let indexPath2 = NSIndexPath(row: tapGesture.view!.tag, section: 0)
+        //        guard let cell = tableView.cellForRow(at: indexPath as IndexPath) as? OrderDetailTableViewCell else { return }
         let item = dataHistory[indexPath.item]
-        requestReview()
+        self.currentSerial = item.serial
+        getComment(seri: self.currentSerial!)
+    }
+    func getComment(seri: String){
+        APIService.getRateBySerial(with: seri, {
+            data, error in
+            guard let data = data, let message = data.message else {
+                return
+            }
+            if data.success == true {
+                self.comment = message
+            }else {
+                self.comment = ""
+            }
+            self.requestReview()
+        })
     }
     func requestReview() {
-        let reviewController = JXReviewController()
-        reviewController.image = UIImage(systemName: "heart.fill")
-        reviewController.title = "Bạn có hài lòng với chất lượng sản phẩm"
-//        reviewController.message = "Đánh giá"
-        reviewController.delegate = self
-        present(reviewController, animated: true)
-}
+        if (comment != ""){
+            let alert = UIAlertController(title:"\(self.comment!)\n\nBạn có muốn đánh giá lại?", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Có", style: .default, handler:{ _ in
+                let reviewController = JXReviewController()
+                reviewController.image = UIImage(systemName: "heart.fill")
+                reviewController.title = "Bạn có hài lòng với chất lượng sản phẩm"
+                //        reviewController.message = "Đánh giá"
+                reviewController.delegate = self
+                self.present(reviewController, animated: true)
+            }))
+            alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+        }else{
+            let reviewController = JXReviewController()
+            reviewController.image = UIImage(systemName: "heart.fill")
+            reviewController.title = "Bạn có hài lòng với chất lượng sản phẩm"
+            //        reviewController.message = "Đánh giá"
+            reviewController.delegate = self
+            present(reviewController, animated: true)
+        }
+    }
 }
 extension DetailHistoryViewController: JXReviewControllerDelegate {
     
     func reviewController(_ reviewController: JXReviewController, didSelectWith point: Int) {
         print("Did select with \(point) point(s).")
     }
-
+    
     func reviewController(_ reviewController: JXReviewController, didCancelWith point: Int) {
         print("Did cancel with \(point) point(s).")
     }
-
+    
     func reviewController(_ reviewController: JXReviewController, didSubmitWith point: Int) {
         print("Did submit with \(point) point(s).")
         let alert = UIAlertController(title: "Bình luận sản phẩm", message: nil, preferredStyle: .alert)
@@ -185,24 +226,35 @@ extension DetailHistoryViewController: JXReviewControllerDelegate {
             text.keyboardType = .default
         }
         alert.addAction(UIAlertAction(title: "Xác nhận", style: .default, handler:{ _ in
-                    self.dismiss(animated: true)
-                guard let value = alert.textFields, value.count > 0 else { return }
+            self.dismiss(animated: true)
+            guard let value = alert.textFields, value.count > 0 else { return }
             let message = value[0].text!
             //point
             // cach su ly khi ma da danh gia roi nhu the nao, viet api
-            
-            
-//            let params = DetailSaleModel(malsp: item.malsp, madotgg: item.madotgg, phantramgg: newValue).convertToDictionary()
-//            APIService.postRequest(with: .putDetailSale, params: params, headers: nil, completion: {base, error in
-//                guard let base = base else { return }
-//                let alert = UIAlertController(title:base.message!, message: "", preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-//                        self.dismiss(animated: true)
-//                        self.reloadData()
-//                        self.percent.text = ""
-//                    }))
-//                    self.present(alert, animated: true)
-//            })
+            let params = RateModel(cmnd: UserService.shared.cmnd, serial: self.currentSerial, ngaybinhluan: nil, diem: point, mota: message).convertToDictionary()
+            if (self.comment == ""){
+                print("Post")
+                APIService.postRequest(with: .postRate, params: params, headers: nil, completion: {
+                    base, error in
+                    guard let base = base else {return}
+                    let alert = UIAlertController(title:base.message!, message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                        self.dismiss(animated: true)
+                    }))
+                    self.present(alert, animated: true)
+                })
+            }else {
+                print("Put")
+                APIService.postRequest(with: .putRate, params: params, headers: nil, completion: {
+                    base, error in
+                    guard let base = base else {return}
+                    let alert = UIAlertController(title:base.message!, message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                        self.dismiss(animated: true)
+                    }))
+                    self.present(alert, animated: true)
+                })
+            }
         }))
         self.present(alert, animated: true)
     }

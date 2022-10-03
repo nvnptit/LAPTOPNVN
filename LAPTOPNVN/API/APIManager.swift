@@ -84,6 +84,10 @@ enum APIManager {
     case getOrderShipper
     case putOrderShipper
     
+    case getRate
+    case getRateBySeri(String)
+    case postRate
+    case putRate
 }
 
 extension APIManager {
@@ -147,7 +151,7 @@ extension APIManager {
             case .delLSP:
                 path = "/loai-san-pham"
                 
-             
+                
                 
             case .getSoLuongLSP(let maLSP):
                 path = "/loai-san-pham/LSP?maLSP=\(maLSP)"
@@ -174,7 +178,7 @@ extension APIManager {
             case .addUserKH: path = "/khach-hang"
             case .updateUserKH: path = "/khach-hang"
                 
-            //MARK: - DOTGIAMGIA
+                //MARK: - DOTGIAMGIA
             case .getDotGG:
                 path = "/dot-gg"
             case .postDotGG:
@@ -189,7 +193,7 @@ extension APIManager {
             case .postDetailSale: path = "/dot-gg/CHI-TIET"
             case .putDetailSale: path = "/dot-gg/CHI-TIET"
             case .delDetailSale(let maLSP,let maDot): path = "/dot-gg/CHI-TIET?malsp=\(maLSP)&madotgg=\(maDot)"
-            
+                
             case .getHistoryOrder: path = "/gio-hang/history-order"
             case .delTK: path = "/tai-khoan"
             case .delTK1(let tenDangNhap): path = "/tai-khoan?tenDangNhap=\(tenDangNhap)"
@@ -207,6 +211,16 @@ extension APIManager {
                 path = "/gio-hang/order-shipper"
             case .putOrderShipper:
                 path = "/gio-hang/shipper"
+                
+                //MARK: - DOTGIAMGIA
+            case .getRate:
+                path = "/binh-luan"
+            case .getRateBySeri(let seri):
+                path = "/binh-luan?seri=\(seri)"
+            case .postRate:
+                path = "/binh-luan"
+            case .putRate:
+                path = "/binh-luan"
         }
         return baseURL + path
     }
@@ -221,19 +235,19 @@ extension APIManager {
                     .getMaSoNV, .getMaSoLSP, .getQuyen, .getTyGia,
                     .getDetailHistory, .getSoLuongLSP,
                     .getSLSeri, .getPhieuNhap,
-                    .getDotGG, .getMaSoDGG, .getDetailSale
+                    .getDotGG, .getMaSoDGG, .getDetailSale, .getRate, .getRateBySeri
                 :
                 return .get
             case .login, .register, .resetPass, .addGioHang, .addUserKH, .uploadAvatar,
                     .postHangSX, .postNV, .postLSP, .postSP,
                     .addGioHang1,
-                    .postDotGG, .postDetailSale
+                    .postDotGG, .postDetailSale, .postRate
                 :
                 return .post
             case .updateGioHang, .updateUserKH,.updateGioHangAdmin, .putOrderShipper,
                     .putHangSX, .putNV, .putLSP, .putSP,
                     .putQuyenKichHoat,
-                    .putDotGG, .putDetailSale
+                    .putDotGG, .putDetailSale, .putRate
                 :
                 return .put
             case .deleteGioHang, .delTK, .delTK1,

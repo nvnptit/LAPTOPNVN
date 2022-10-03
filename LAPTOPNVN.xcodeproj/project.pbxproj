@@ -82,6 +82,7 @@
 		7935B41628E7D579004AE3AD /* SaleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */; };
 		7935B41728E7D579004AE3AD /* SaleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */; };
 		7935B41828E7D579004AE3AD /* SaleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */; };
+		794610DF28EAD25700EDE177 /* RateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794610DE28EAD25700EDE177 /* RateModel.swift */; };
 		79475E142882438D005911E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79475E132882438D005911E3 /* AppDelegate.swift */; };
 		79475E162882438D005911E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79475E152882438D005911E3 /* SceneDelegate.swift */; };
 		79475E1D2882438E005911E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79475E1C2882438E005911E3 /* Assets.xcassets */; };
@@ -444,6 +445,7 @@
 		792DDAA628901785000ACAFC /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		7935B41128E7D579004AE3AD /* SaleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleDetailViewController.swift; sourceTree = "<group>"; };
 		7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaleDetailViewController.xib; sourceTree = "<group>"; };
+		794610DE28EAD25700EDE177 /* RateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateModel.swift; sourceTree = "<group>"; };
 		79475E102882438D005911E3 /* LAPTOPNVN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LAPTOPNVN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79475E132882438D005911E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79475E152882438D005911E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -713,6 +715,14 @@
 				792A293028B1EEC30075AD18 /* OrderDetailTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		794610DD28EAD23700EDE177 /* ModelRate */ = {
+			isa = PBXGroup;
+			children = (
+				794610DE28EAD25700EDE177 /* RateModel.swift */,
+			);
+			path = ModelRate;
 			sourceTree = "<group>";
 		};
 		79475E072882438D005911E3 = {
@@ -1224,6 +1234,7 @@
 		79BE708A28E89F47006B2B73 /* Rate */ = {
 			isa = PBXGroup;
 			children = (
+				794610DD28EAD23700EDE177 /* ModelRate */,
 				79BE708B28E89F5E006B2B73 /* RateViewController.swift */,
 				79BE708C28E89F5E006B2B73 /* RateViewController.xib */,
 			);
@@ -1724,6 +1735,7 @@
 				791BB918289E2A7F002B5871 /* EmployeeModel.swift in Sources */,
 				79475E4E28824776005911E3 /* CustomTabBar.swift in Sources */,
 				7986293728A81D4500FC08AE /* CategoryTableViewCell.swift in Sources */,
+				794610DF28EAD25700EDE177 /* RateModel.swift in Sources */,
 				79475E8128824C7E005911E3 /* MainTabBarController.swift in Sources */,
 				79475E7C28824C04005911E3 /* UserService.swift in Sources */,
 				7986294A28A8210100FC08AE /* DetailCategoryViewController.swift in Sources */,
