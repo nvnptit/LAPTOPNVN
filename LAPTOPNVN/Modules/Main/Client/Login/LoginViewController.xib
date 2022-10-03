@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="2yn-ih-1Ss">
@@ -91,7 +91,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuj-0B-yT4">
-                                    <rect key="frame" x="66" y="529.5" width="282" height="35"/>
+                                    <rect key="frame" x="66" y="520.5" width="282" height="35"/>
                                     <color key="tintColor" systemColor="systemBlueColor"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Chưa có tài khoản? Đăng ký ngay!">
@@ -110,12 +110,24 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGf-WY-gOX">
+                                    <rect key="frame" x="133" y="570.5" width="148" height="35"/>
+                                    <color key="tintColor" systemColor="systemBlueColor"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Quên mật khẩu?">
+                                        <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="tapForgotPassword:forEvent:" destination="-1" eventType="touchUpInside" id="ovt-Ix-ze4"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="nb4-kX-VQY" firstAttribute="top" secondItem="qnl-Xx-y2a" secondAttribute="bottom" constant="36" id="228-LN-efy"/>
                                 <constraint firstItem="N7E-I1-eGm" firstAttribute="top" secondItem="SMc-Bk-YEY" secondAttribute="bottom" constant="60" id="ESe-t7-BQZ"/>
                                 <constraint firstItem="nb4-kX-VQY" firstAttribute="centerX" secondItem="weF-EF-oFg" secondAttribute="centerX" id="JLL-HR-cbE"/>
+                                <constraint firstItem="oGf-WY-gOX" firstAttribute="centerX" secondItem="weF-EF-oFg" secondAttribute="centerX" id="K3B-nP-653"/>
                                 <constraint firstItem="poZ-lg-RTY" firstAttribute="top" secondItem="K9r-yc-0Z1" secondAttribute="bottom" constant="20" id="R8y-I8-fCU"/>
                                 <constraint firstItem="qnl-Xx-y2a" firstAttribute="top" secondItem="poZ-lg-RTY" secondAttribute="bottom" constant="12" id="SCx-pi-JxF"/>
                                 <constraint firstItem="SMc-Bk-YEY" firstAttribute="centerX" secondItem="weF-EF-oFg" secondAttribute="centerX" id="UHP-GX-RAs"/>
@@ -124,8 +136,9 @@
                                 <constraint firstItem="nuj-0B-yT4" firstAttribute="centerX" secondItem="weF-EF-oFg" secondAttribute="centerX" id="fto-Gl-zcA"/>
                                 <constraint firstItem="poZ-lg-RTY" firstAttribute="leading" secondItem="weF-EF-oFg" secondAttribute="leading" constant="40" id="gb8-9W-uxO"/>
                                 <constraint firstItem="SMc-Bk-YEY" firstAttribute="top" secondItem="weF-EF-oFg" secondAttribute="top" constant="48" id="mPz-sa-yf3"/>
-                                <constraint firstItem="nuj-0B-yT4" firstAttribute="top" secondItem="nb4-kX-VQY" secondAttribute="bottom" constant="24" id="qNK-y3-e5i"/>
+                                <constraint firstItem="nuj-0B-yT4" firstAttribute="top" secondItem="nb4-kX-VQY" secondAttribute="bottom" constant="15" id="qNK-y3-e5i"/>
                                 <constraint firstItem="K9r-yc-0Z1" firstAttribute="centerX" secondItem="weF-EF-oFg" secondAttribute="centerX" constant="-11" id="rIL-Ar-VMc"/>
+                                <constraint firstItem="oGf-WY-gOX" firstAttribute="top" secondItem="nuj-0B-yT4" secondAttribute="bottom" constant="15" id="zHh-lM-00a"/>
                                 <constraint firstItem="N7E-I1-eGm" firstAttribute="leading" secondItem="weF-EF-oFg" secondAttribute="leading" constant="40" id="zHr-KC-iNI"/>
                             </constraints>
                         </view>

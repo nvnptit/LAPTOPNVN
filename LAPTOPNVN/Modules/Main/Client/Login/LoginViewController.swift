@@ -24,6 +24,11 @@ class LoginViewController: UIViewController {
         password.enablePasswordToggle()
     }
     
+    @IBAction func tapForgotPassword(_ sender: UIButton, forEvent event: UIEvent) {
+        
+            let vc = ForgotPasswordViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+    }
     @IBAction func didTapLogin(_ sender: UIButton, forEvent event: UIEvent) {
         if (username.text == "" || password.text == "" ) {
             let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)

@@ -89,6 +89,8 @@ enum APIManager {
     case getListRate(String)
     case postRate
     case putRate
+    
+    case postForgotPassword
 }
 
 extension APIManager {
@@ -101,6 +103,7 @@ extension APIManager {
             case .login: path = "/tai-khoan/login"
             case .register: path = "/tai-khoan"
             case .resetPass: path = "/tai-khoan/thay-matkhau"
+            case .postForgotPassword: path = "/tai-khoan/forgot-pass"
                 
             case .addGioHang1: path = "/gio-hang/them-gh"
             case .getDetailHistory: path = "/gio-hang/history-detail-order"
@@ -244,7 +247,8 @@ extension APIManager {
             case .login, .register, .resetPass, .addGioHang, .addUserKH, .uploadAvatar,
                     .postHangSX, .postNV, .postLSP, .postSP,
                     .addGioHang1,
-                    .postDotGG, .postDetailSale, .postRate
+                    .postDotGG, .postDetailSale, .postRate,
+                    .postForgotPassword
                 :
                 return .post
             case .updateGioHang, .updateUserKH,.updateGioHangAdmin, .putOrderShipper,

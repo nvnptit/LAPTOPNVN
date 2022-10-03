@@ -11,3 +11,6 @@ struct LoginModel: Encodable{
     let tenDangNhap: String?
     let matKhau: String?
 }
+struct ForgotModel: Encodable {
+    let email: String?
+}
