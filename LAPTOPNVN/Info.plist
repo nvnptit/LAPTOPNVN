@@ -6,6 +6,10 @@
 	<string>Microphone Please</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Speech Please</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location Please</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location Please</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

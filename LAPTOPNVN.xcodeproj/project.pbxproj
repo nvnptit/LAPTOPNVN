@@ -173,6 +173,8 @@
 		795EE8A7288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */; };
 		795EE8A8288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */; };
 		795EE8A9288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */; };
+		796B61D428EF1B9500E44B95 /* TestMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796B61D228EF1B9500E44B95 /* TestMapsViewController.swift */; };
+		796B61D528EF1B9500E44B95 /* TestMapsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 796B61D328EF1B9500E44B95 /* TestMapsViewController.xib */; };
 		796DF2A92892703500F34C82 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2A72892703500F34C82 /* RegisterViewController.swift */; };
 		796DF2AA2892703500F34C82 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2A72892703500F34C82 /* RegisterViewController.swift */; };
 		796DF2AB2892703500F34C82 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DF2A72892703500F34C82 /* RegisterViewController.swift */; };
@@ -495,6 +497,8 @@
 		795CAF6E28867BC0008458F0 /* DetailSanPhamViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSanPhamViewController.xib; sourceTree = "<group>"; };
 		795EE8A2288A5EAC00C4313F /* LaptopItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaptopItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaptopItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		796B61D228EF1B9500E44B95 /* TestMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMapsViewController.swift; sourceTree = "<group>"; };
+		796B61D328EF1B9500E44B95 /* TestMapsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestMapsViewController.xib; sourceTree = "<group>"; };
 		796DF2A72892703500F34C82 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		796DF2A82892703500F34C82 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		796DF2AF2892850500F34C82 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
@@ -860,6 +864,7 @@
 		79475E482882465E005911E3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				796B61D128EF1B7600E44B95 /* Maps */,
 				797CC66128ED780C0049AFD4 /* TestMic */,
 				796DF2BA2892C6BE00F34C82 /* CheckOut */,
 				79176F902883927E00CDA10E /* Cells */,
@@ -991,6 +996,15 @@
 				795EE8A3288A5EAC00C4313F /* LaptopItemCollectionViewCell.xib */,
 			);
 			path = ExploreItem;
+			sourceTree = "<group>";
+		};
+		796B61D128EF1B7600E44B95 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				796B61D228EF1B9500E44B95 /* TestMapsViewController.swift */,
+				796B61D328EF1B9500E44B95 /* TestMapsViewController.xib */,
+			);
+			path = Maps;
 			sourceTree = "<group>";
 		};
 		796DF2A62892701100F34C82 /* Register */ = {
@@ -1577,6 +1591,7 @@
 				795CAF7228867BC0008458F0 /* DetailSanPhamViewController.xib in Resources */,
 				799547F928A8B597002760A7 /* SanPhamViewController.xib in Resources */,
 				79A5440D288D70C300179574 /* SearchViewController.xib in Resources */,
+				796B61D528EF1B9500E44B95 /* TestMapsViewController.xib in Resources */,
 				79475E8A28824D7E005911E3 /* HomeViewController.xib in Resources */,
 				79D8CD362892ECAF00984EF3 /* PayPalViewController.xib in Resources */,
 			);
@@ -1799,6 +1814,7 @@
 				791BB918289E2A7F002B5871 /* EmployeeModel.swift in Sources */,
 				79475E4E28824776005911E3 /* CustomTabBar.swift in Sources */,
 				7986293728A81D4500FC08AE /* CategoryTableViewCell.swift in Sources */,
+				796B61D428EF1B9500E44B95 /* TestMapsViewController.swift in Sources */,
 				794610DF28EAD25700EDE177 /* RateModel.swift in Sources */,
 				79475E8128824C7E005911E3 /* MainTabBarController.swift in Sources */,
 				79475E7C28824C04005911E3 /* UserService.swift in Sources */,
