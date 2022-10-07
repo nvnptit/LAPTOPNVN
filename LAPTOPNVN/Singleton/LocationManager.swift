@@ -19,7 +19,7 @@ final class LocationManager: NSObject {
     private var isUpdatingLocation = false
     
     static let shared = LocationManager()
-    
+    var myAdress = ""
     override init() {
         super.init()
         configLocation()
@@ -228,7 +228,6 @@ extension LocationManager: CLLocationManagerDelegate {
         center.longitude = Double("\(longitude)")!
         let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
         
-        
         ceo.reverseGeocodeLocation(loc, completionHandler: { (placemarks, error) in
             if (error != nil)
             {
@@ -243,13 +242,13 @@ extension LocationManager: CLLocationManagerDelegate {
                 let ward = pm.subLocality ?? ""
                 let city = pm.locality ?? ""
                 let country = pm.country ?? ""
-                let address = name + "," + street  + "," + ward   + "," + city  + "," + country
+                let address = "\(name),\(street),\(ward),\(city),\(country)"
                 print ("\(address)")
-                return
+                self.myAdress = address
             }
         })
         
-        return "Not found location"
+        return self.myAdress
     }
     
 }

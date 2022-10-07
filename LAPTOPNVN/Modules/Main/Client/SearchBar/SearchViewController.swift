@@ -41,6 +41,9 @@ class SearchViewController: UIViewController{
         
         collectionView.register(UINib(nibName: "SanPhamCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SanPhamCollectionViewCell")
         
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
+        view.addGestureRecognizer(gesture)
+        
     }
     
     

@@ -74,6 +74,10 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
+        view.addGestureRecognizer(gesture)
+        
         setupKeyboard()
         setupDropDown()
         self.status.text = "Chờ duyệt"

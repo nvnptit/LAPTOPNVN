@@ -2673,6 +2673,7 @@
 			baseConfigurationReference = A45F064E5F03354E5833022C3999383F /* JXReviewController.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/JXReviewController";
+				DEVELOPMENT_TEAM = 7Z5DWB469U;
 				IBSC_MODULE = JXReviewController;
 				INFOPLIST_FILE = "Target Support Files/JXReviewController/ResourceBundle-JXReviewController-JXReviewController-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -2969,6 +2970,7 @@
 			baseConfigurationReference = A45F064E5F03354E5833022C3999383F /* JXReviewController.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/JXReviewController";
+				DEVELOPMENT_TEAM = 7Z5DWB469U;
 				IBSC_MODULE = JXReviewController;
 				INFOPLIST_FILE = "Target Support Files/JXReviewController/ResourceBundle-JXReviewController-JXReviewController-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

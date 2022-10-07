@@ -63,8 +63,8 @@ class TestMapsViewController: UIViewController, CLLocationManagerDelegate, MKMap
         guard let first = locations.first  else {
             return
         }
-        print("\(first.coordinate.longitude):\(first.coordinate.latitude)")
-        LocationManager.shared.getAddressFromLatLon("\(first.coordinate.longitude)","\(first.coordinate.latitude)")
+        print("LONGITUDE:\(first.coordinate.longitude) LATITUDE:\(first.coordinate.latitude)\n")
+        print(LocationManager.shared.getAddressFromLatLon("\(first.coordinate.longitude)","\(first.coordinate.latitude)"))
         updateMyLocation(first.coordinate.latitude,first.coordinate.longitude)
     }
     
