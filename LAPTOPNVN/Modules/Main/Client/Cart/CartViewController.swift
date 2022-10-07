@@ -124,7 +124,15 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate, UIGest
         //let serial = item.serial,
         if let ten = item.tenlsp,  let price = item.giamoi, let newPrice = item.giagiam , let anhlsp = item.anhlsp, let gg = item.ptgg{
             
-            cell.imageLSP.loadFrom(URLAddress: APIService.baseUrl+anhlsp)
+//            cell.imageLSP.loadFrom(URLAddress: APIService.baseUrl+anhlsp)
+            
+            cell.imageLSP.getImage(url: APIService.baseUrl + anhlsp, completion: { img in
+                DispatchQueue.main.sync {
+                    cell.imageLSP.image = img
+                }
+            })
+            
+            
             cell.nameLSP.text = ten //+ "\nSerial: "+serial
             cell.oldPrice.text = "\(CurrencyVN.toVND(price))"
             cell.newPrice.text = "\(CurrencyVN.toVND(newPrice))"

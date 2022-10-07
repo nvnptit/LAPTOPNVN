@@ -135,7 +135,12 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
             cell.disk.text = harddrive
             cell.card.text = cardscreen
             cell.os.text = os
-            cell.picture.loadFrom(URLAddress: APIService.baseUrl + anhlsp)
+//            cell.picture.loadFrom(URLAddress: APIService.baseUrl + anhlsp)
+            cell.picture.getImage(url: APIService.baseUrl + anhlsp, completion: { img in
+                DispatchQueue.main.sync {
+                    cell.picture.image = img
+                }
+            })
             cell.gia.text =  "\(CurrencyVN.toVND(giaban))"
         }
         cell.selectionStyle = .none

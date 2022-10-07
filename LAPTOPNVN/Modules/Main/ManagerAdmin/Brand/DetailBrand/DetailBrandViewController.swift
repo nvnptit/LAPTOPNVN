@@ -60,7 +60,14 @@ class DetailBrandViewController: UIViewController {
             self.tfEmail.text = brand.email
             self.tfPhone.text = brand.sdt
             if let logo = brand.logo{
-                self.imagePicture.loadFrom(URLAddress: APIService.baseUrl+logo)
+//                self.imagePicture.loadFrom(URLAddress: APIService.baseUrl+logo)
+                
+                self.imagePicture.getImage(url: APIService.baseUrl + logo, completion: { img in
+                   
+                    DispatchQueue.main.sync {
+                        self.imagePicture.image = img
+                    }
+                })
             }
         }
     }

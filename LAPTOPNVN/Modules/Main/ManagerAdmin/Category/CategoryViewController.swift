@@ -136,7 +136,14 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
             cell.card.text = card
             cell.disk.text = harddisk
             cell.os.text = os
-            cell.imagePicture.loadFrom(URLAddress: APIService.baseUrl + img)
+//            cell.imagePicture.loadFrom(URLAddress: APIService.baseUrl + img)
+            
+            cell.imagePicture.getImage(url: APIService.baseUrl + img, completion: { img in
+               
+                DispatchQueue.main.sync {
+                    cell.imagePicture.image = img
+                }
+            })
             
         }
         cell.selectionStyle = .none

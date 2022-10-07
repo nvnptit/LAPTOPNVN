@@ -120,7 +120,13 @@ extension BrandViewController: UICollectionViewDataSource{
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HangCollectionViewCell", for: indexPath) as? HangCollectionViewCell else {fatalError()}
         let e = data[indexPath.item]
         if let logo = e.logo{
-            cell.logo.loadFrom(URLAddress: APIService.baseUrl+logo)
+//            cell.logo.loadFrom(URLAddress: APIService.baseUrl+logo)
+            cell.logo.getImage(url: APIService.baseUrl + logo, completion: { img in
+//                cell.logo.image = img
+                DispatchQueue.main.sync {
+                    cell.logo.image = img
+                }
+            })
         }
         return cell
     }

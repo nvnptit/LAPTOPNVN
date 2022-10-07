@@ -158,7 +158,16 @@ class DetailCategoryViewController: UIViewController {
     func loadData(){
         if let category = category {
             tfMaLSP.text = category.malsp
-            imagePicture.loadFrom(URLAddress: APIService.baseUrl + category.anhlsp!)
+//            imagePicture.loadFrom(URLAddress: APIService.baseUrl + category.anhlsp!)
+            
+            imagePicture.getImage(url: APIService.baseUrl + category.anhlsp!, completion: { img in
+                
+                DispatchQueue.main.sync {
+                    self.imagePicture.image = img
+                }
+            })
+            
+            
             name.text = category.tenlsp
             cpu.text = category.cpu
             ram.text = category.ram

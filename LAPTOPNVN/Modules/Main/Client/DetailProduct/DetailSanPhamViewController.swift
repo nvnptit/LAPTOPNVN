@@ -69,8 +69,16 @@ class DetailSanPhamViewController: UIViewController{
         if let loaiSp = loaiSp {
             // set du lieu vo
             if let anhlsp = loaiSp.anhlsp {
-                let url =  APIService.baseUrl + anhlsp
-                imageLSP.loadFrom(URLAddress: url)
+//                let url =  APIService.baseUrl + anhlsp
+//                imageLSP.loadFrom(URLAddress: url)
+                
+                imageLSP.getImage(url: APIService.baseUrl + anhlsp, completion: { img in
+                    DispatchQueue.main.sync {
+                        self.imageLSP.image = img
+                    }
+                })
+                
+
                 tfCPU.text = loaiSp.cpu
                 tfRam.text = loaiSp.ram
                 tfCard.text = loaiSp.cardscreen
@@ -84,8 +92,16 @@ class DetailSanPhamViewController: UIViewController{
         if let loaiSp = order {
             // set du lieu vo
             if let anhlsp = loaiSp.anhlsp {
-                let url =  APIService.baseUrl + anhlsp
-                imageLSP.loadFrom(URLAddress: url)
+//                let url =  APIService.baseUrl + anhlsp
+//                imageLSP.loadFrom(URLAddress: url)
+                
+                imageLSP.getImage(url: APIService.baseUrl + anhlsp, completion: { img in
+                   
+                    DispatchQueue.main.sync {
+                        self.imageLSP.image = img
+                    }
+                })
+                
                 tfCPU.text = loaiSp.cpu
                 tfRam.text = loaiSp.ram
                 tfCard.text = loaiSp.cardscreen

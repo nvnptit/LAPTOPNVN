@@ -344,7 +344,12 @@ extension HomeViewController: UICollectionViewDataSource {
                                 cell.oldPrice.text = ""
                                 cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
                             }
-                            cell.image.loadFrom(URLAddress: APIService.baseUrl + anh)
+//                            cell.image.loadFrom(URLAddress: APIService.baseUrl + anh)
+                            cell.image.getImage(url: APIService.baseUrl + anh, completion: { img in
+                                DispatchQueue.main.sync {
+                                    cell.image.image = img
+                                }
+                            })
                         }
                         return cell
                         
@@ -369,7 +374,13 @@ extension HomeViewController: UICollectionViewDataSource {
                                 cell.oldPrice.text = ""
                                 cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
                             }
-                            cell.image.loadFrom(URLAddress: APIService.baseUrl + anh)
+//                            cell.image.loadFrom(URLAddress: APIService.baseUrl + anh)
+                            
+                            cell.image.getImage(url: APIService.baseUrl + anh, completion: { img in
+                                DispatchQueue.main.sync {
+                                    cell.image.image = img
+                                }
+                            })
                         }
                         return cell
                         
@@ -385,7 +396,12 @@ extension HomeViewController: UICollectionViewDataSource {
                         let e = brands[indexPath.item]
 //                        cell.logo.sd_setImage(with: URL(string: e.logo ?? ""), placeholderImage: UIImage(named: "noimage"))
                         if let logo = e.logo{
-                            cell.logo.loadFrom(URLAddress: APIService.baseUrl+logo)
+//                            cell.logo.loadFrom(URLAddress: APIService.baseUrl+logo)
+                            cell.logo.getImage(url: APIService.baseUrl + logo, completion: { img in
+                                DispatchQueue.main.sync {
+                                    cell.logo.image = img
+                                }
+                            })
                         }
                         return cell
                     case .fail:
@@ -408,7 +424,13 @@ extension HomeViewController: UICollectionViewDataSource {
                                 cell.oldPrice.text = ""
                                 cell.newPrice.text =  "\(CurrencyVN.toVND(price))"
                             }
-                            cell.image.loadFrom(URLAddress: APIService.baseUrl + anh)
+//                            cell.image.loadFrom(URLAddress: APIService.baseUrl + anh)
+                            
+                            cell.image.getImage(url: APIService.baseUrl + anh, completion: { img in
+                                DispatchQueue.main.sync {
+                                    cell.image.image = img
+                                }
+                            })
                         }
                         return cell
                         
