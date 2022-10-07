@@ -137,7 +137,7 @@ class DetailOrderViewController: UIViewController {
             print("Duyệt")
             let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
             self.updateGH(params: params)
-            print(params)
+            
             let alert = UIAlertController(title: "Duyệt đơn hàng thành công", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                 self.dismiss(animated: true)
@@ -149,14 +149,12 @@ class DetailOrderViewController: UIViewController {
             print("Xác nhận")
             let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 2, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
             self.updateShipper(params: params)
-            print(params)
+            
             let alert = UIAlertController(title: "Giao hàng thành công", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                 self.dismiss(animated: true)
                 
                 self.navigationController?.popViewController(animated: true)
-//                let vc = OrderShipViewController()
-//                self.navigationController?.pushViewController(vc, animated: false)
             }))
             self.present(alert, animated: true)
             
@@ -164,7 +162,7 @@ class DetailOrderViewController: UIViewController {
             print("Lưu")
             let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
             self.updateGH(params: params)
-            print(params)
+            
             let alert = UIAlertController(title: "Cập nhật nhân viên giao hàng thành công", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                 self.dismiss(animated: true)
@@ -203,7 +201,7 @@ extension DetailOrderViewController {
         APIService.updateGioHang(with: .updateGioHangAdmin, params: params, headers: nil, completion: { base, error in
             guard let base = base else { return }
             if base.success == true {
-                print(base)
+                print("success updateGioHang")
             }
             else {
                 fatalError()
@@ -214,7 +212,7 @@ extension DetailOrderViewController {
         APIService.updateGioHang(with: .putOrderShipper, params: params, headers: nil, completion: { base, error in
             guard let base = base else { return }
             if base.success == true {
-                print(base)
+                print("success updateShipper")
             }
             else {
                 fatalError()

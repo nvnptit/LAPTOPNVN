@@ -75,7 +75,7 @@ class DetailCategoryViewController: UIViewController {
         self.offFill()
         
         if (!isNew){
-            print(hangValues)
+//            print(hangValues)
             loadData()
             self.maHang = category?.mahang
         }else {
@@ -205,14 +205,14 @@ class DetailCategoryViewController: UIViewController {
                                     self.picture = url
                                 }
                                 let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: self.picture, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: sw1.isOn, isgood: sw2.isOn, giamoi: gia, manv: self.maNV).convertToDictionary()
-                                print(params)
+                               
                                 self.addLSP(params: params)
                             }
                         }
                     }
                 }else {
                     let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: "/images/noimage.jpg", mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: sw1.isOn, isgood: sw2.isOn, giamoi: gia, manv: self.maNV).convertToDictionary()
-                    print(params)
+                    
                     self.addLSP(params: params)
                     //
                 }
@@ -248,14 +248,14 @@ class DetailCategoryViewController: UIViewController {
                                     self.picture = url
                                 }
                                 let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: self.picture, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: sw1.isOn, isgood: sw2.isOn, giamoi: gia, manv: self.maNV).convertToDictionary()
-                                print(params)
+                                
                                 self.updateLSP(params: params)
                             }
                         }
                     }
                 }else {
                     let params = LoaiSanPham(malsp: maLSP, tenlsp: name, soluong: Int(soLuong.text!), anhlsp: category?.anhlsp!, mota: mota, cpu: cpu, ram: ram, harddrive: disk, cardscreen: card, os: os, mahang: self.maHang, isnew: sw1.isOn, isgood: sw2.isOn, giamoi: gia, manv: self.maNV).convertToDictionary()
-                    print(params)
+                    
                     self.updateLSP(params: params)
                     //
                 }
@@ -264,8 +264,6 @@ class DetailCategoryViewController: UIViewController {
     }
     
     @IBAction func tapDelete(_ sender: UIButton, forEvent event: UIEvent) {
-        print("Delete")
-        
         let alert = UIAlertController(title: "Bạn có chắc xoá loại sản phẩm này?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
             self.dismiss(animated: true)
@@ -273,7 +271,7 @@ class DetailCategoryViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
             self.dismiss(animated: true)
             let params = DeleteLSP(maLSP: self.category?.malsp!).convertToDictionary()
-            print(params)
+            
             self.delLSP(params: params)
         }))
         self.present(alert, animated: true)
@@ -351,7 +349,6 @@ extension DetailCategoryViewController{
     func chuanHoa(_ s:String?) -> String {
         let s1 = s!.trimmingCharacters(in: .whitespaces);
         let kq = s1.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
-        print(kq)
         return kq;
     }
     func chuanHoaTF(){
@@ -491,17 +488,12 @@ extension DetailCategoryViewController{
         APIService.postLSP(with: .postLSP, params: params, headers: nil, completion: {
             base, error in
             guard let base = base else { return }
-            print(base)
             if base.success == true {
                 let alert = UIAlertController(title: "Thêm mới thành công!", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
                     
                     self.navigationController?.popViewController(animated: true)
-//                    let vc = CategoryViewController()
-//                    vc.navigationItem.hidesBackButton = true
-//                    vc.isAdded = true
-//                    self.navigationController?.pushViewController(vc, animated: true)
                 }))
                 self.present(alert, animated: true)
             } else {

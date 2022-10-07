@@ -153,7 +153,7 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
         let item = dataLSP[indexPath.item]
         let  vc = DetailCategoryViewController()
         vc.category = item
-        print(item)
+//        print(item)
         var data: [String] = []
             for i in dataHang{
                 data.append(i.tenhang ?? "")

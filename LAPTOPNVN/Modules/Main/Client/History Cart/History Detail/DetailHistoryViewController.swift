@@ -168,8 +168,6 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
     @objc func tapRate(tapGesture:UITapGestureRecognizer){
         print("Rate")
         let indexPath = IndexPath(row: tapGesture.view!.tag, section: 0)
-        //     let indexPath2 = NSIndexPath(row: tapGesture.view!.tag, section: 0)
-        //        guard let cell = tableView.cellForRow(at: indexPath as IndexPath) as? OrderDetailTableViewCell else { return }
         let item = dataHistory[indexPath.item]
         self.currentSerial = item.serial
         getComment(seri: self.currentSerial!)
@@ -238,7 +236,7 @@ extension DetailHistoryViewController: JXReviewControllerDelegate {
             // cach su ly khi ma da danh gia roi nhu the nao, viet api
             let params = RateModel(cmnd: UserService.shared.cmnd, serial: self.currentSerial, ngaybinhluan: nil, diem: point, mota: message).convertToDictionary()
             if (self.comment == ""){
-                print("Post")
+                print("POST")
                 APIService.postRequest(with: .postRate, params: params, headers: nil, completion: {
                     base, error in
                     guard let base = base else {return}
@@ -249,12 +247,13 @@ extension DetailHistoryViewController: JXReviewControllerDelegate {
                     self.present(alert, animated: true)
                 })
             }else {
-                print("Put")
+                print("PUT")
                 APIService.postRequest(with: .putRate, params: params, headers: nil, completion: {
                     base, error in
                     guard let base = base else {return}
                     let alert = UIAlertController(title:base.message!, message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ //[unowned alert]
+                        _ in
                         self.dismiss(animated: true)
                     }))
                     self.present(alert, animated: true)
@@ -265,12 +264,3 @@ extension DetailHistoryViewController: JXReviewControllerDelegate {
     }
 }
 
-//        ac.addTextField()
-//        let submitAction = UIAlertAction(title: "Xác nhận", style: .default) { [unowned ac] _ in
-//            let answer = ac.textFields![0]
-//            // do something interesting with "answer" here
-//            print("HIHI: \(answer)")
-//        }
-//        ac.addAction(submitAction)
-//
-//        present(ac, animated: true)

@@ -87,9 +87,7 @@ class OrderViewController: UIViewController {
                     if let data = base.data {
                         self.dataHistory = data
                     }
-                } else {
-                    print(base.success)
-                }
+                } 
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.tableView.reloadData()

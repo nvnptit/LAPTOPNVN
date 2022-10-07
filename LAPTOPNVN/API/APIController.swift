@@ -21,14 +21,14 @@ struct APIController {
                     completion(nil, reponse)
                 }
             case .failure(let error):
-                    print(error.localizedDescription)
+//                    print(error.localizedDescription)
                 completion(error.localizedDescription, nil)
             }
         }
     }
     
     static func requestGET<T: Decodable>(_ responseType: T.Type,_ manager: APIManager, params: Parameters? = nil, completion: @escaping ResponseClosure<T>) {
-        print("URL REQUEST: \(manager.url)")
+        print("REQUEST: \(manager.url)")
         AF.request(manager.url, method: manager.method, parameters: params, encoding: manager.encoding).responseData { reponseData in
             switch reponseData.result {
             case .success(let data):

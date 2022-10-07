@@ -49,7 +49,6 @@ class RegisterViewController: UIViewController {
     func chuanHoa(_ s:String?) -> String {
         let s1 = s!.trimmingCharacters(in: .whitespaces);
         let kq = s1.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
-        print(kq)
         return kq;
     }
     func isValidUsername(Input:String) -> Bool {
@@ -74,7 +73,6 @@ class RegisterViewController: UIViewController {
 //                   return false
 //               }
             let params1 = TaiKhoan(tendangnhap: username, matkhau: md5Pass, maquyen: 7).convertToDictionary()
-            print(params1)
             APIService.postRegisterKH(with: .register, params: params1, headers: nil, completion: {
                 base , error in
                 if let success = base?.success {
@@ -86,7 +84,6 @@ class RegisterViewController: UIViewController {
                         APIService.postUserKH(with: .addUserKH, params: params2, headers: nil, completion: {
                             base, error in
                             if let base = base {
-                                print(base)
                                 if (base.success == true) {
                                     let alert = UIAlertController(title: base.message!, message: "", preferredStyle: .alert)
                                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
@@ -102,7 +99,7 @@ class RegisterViewController: UIViewController {
                                                 return
                                             }
                                             if (data.success == true ){
-                                                print("success")
+                                                print("success delete new account")
                                             }
                                         })
                                     }
@@ -213,19 +210,18 @@ extension RegisterViewController {
         let cmndC1 = NSPredicate(format: "SELF MATCHES%@", regexC1)
         let cmndC2 = NSPredicate(format: "SELF MATCHES%@", regexC2)
         let rs = cmndC1.evaluate(with: cmnd) || cmndC2.evaluate(with: cmnd)
-        print(rs)
         return rs
     }
     func isValidPhone(phone: String) -> Bool {
         let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
         let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
-        print(phoneTest.evaluate(with: phone))
+//        print(phoneTest.evaluate(with: phone))
         return phoneTest.evaluate(with: phone)
     }
     func isValidEmail( email:String)->Bool{
         let regexEmail = "^[\\w-\\.\\+]+@([\\w-]+\\.)+[\\w-]{2,4}$"
         let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
-        print(passwordTest.evaluate(with:email))
+//        print(passwordTest.evaluate(with:email))
         return passwordTest.evaluate(with:email)
     }
     

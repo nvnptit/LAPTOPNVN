@@ -157,7 +157,7 @@ extension EmployeeViewController: UITableViewDataSource, UITableViewDelegate {
             for i in dataQuyen{
                 data.append(i.tenquyen ?? "")
             }
-        print(data)
+//        print(data)
         detailEmployeeViewController.statusValues = data
         self.navigationController?.pushViewController(detailEmployeeViewController, animated: true)
     }

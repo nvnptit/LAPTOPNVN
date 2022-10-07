@@ -123,7 +123,7 @@ class DetailEmployeeViewController: UIViewController {
     //                   return false
     //               }
                 let params1 = TaiKhoan(tendangnhap: tk, matkhau: md5Pass, maquyen: self.maQuyen).convertToDictionary()
-                print(params1)
+               
                 APIService.postRegisterKH(with: .register, params: params1, headers: nil, completion: {
                     base , error in
                     if let success = base?.success {
@@ -152,7 +152,7 @@ class DetailEmployeeViewController: UIViewController {
                                                 return
                                             }
                                             if (data.success == true ){
-                                                print("success")
+                                                print("success delete account")
                                             }
                                         })
                                     }
@@ -195,7 +195,7 @@ class DetailEmployeeViewController: UIViewController {
                 tfNgaySinh.text = dayE
                 tfSDT.text = phoneE
                 let paramQKH = TaiKhoanQuyenKichHoat(tendangnhap: employee?.tendangnhap!, maquyen: self.maQuyen, kichhoat: true).convertToDictionary()
-                print(paramQKH)
+                
                 updateQuyenKichHoat(params: paramQKH)
                 
                 let params = ModelNVEdit(manv: tfMaNV.text, email: emailE, ten: nameE, ngaysinh: dateSql, sdt: phoneE, tendangnhap: employee?.tendangnhap!).convertToDictionary()
@@ -206,7 +206,6 @@ class DetailEmployeeViewController: UIViewController {
     
     
     @IBAction func tapDelete(_ sender: UIButton, forEvent event: UIEvent) {
-        print("DELETE")
         let alert = UIAlertController(title: "Bạn có chắc xoá nhân viên này?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
             self.dismiss(animated: true)
@@ -377,20 +376,17 @@ extension DetailEmployeeViewController{
     func isValidPhone(phone: String) -> Bool {
         let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
         let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
-        print(phoneTest.evaluate(with: phone))
         return phoneTest.evaluate(with: phone)
     }
     func isValidEmail( email:String)->Bool{
         let regexEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
         let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
-        print(passwordTest.evaluate(with:email))
         return passwordTest.evaluate(with:email)
     }
     
     func chuanHoa(_ s:String?) -> String {
         let s1 = s!.trimmingCharacters(in: .whitespaces);
         let kq = s1.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
-        print(kq)
         return kq;
     }
     
@@ -507,7 +503,7 @@ extension DetailEmployeeViewController{
                 
                 // Huỷ kích hoạt tài khoản
                 let paramQKH = TaiKhoanQuyenKichHoat(tendangnhap: self.employee?.tendangnhap!, maquyen: self.employee?.maquyen!, kichhoat: false).convertToDictionary()
-                print(paramQKH)
+               
                 self.updateQuyenKichHoat(params: paramQKH)
                 
                 let alert = UIAlertController(title: base.message! + "\n Đã huỷ kích hoạt tài khoản", message: "", preferredStyle: .alert)
@@ -541,7 +537,7 @@ extension DetailEmployeeViewController{
                 return
             }
             if base.success == true {
-                print("success")
+                print("success updateQuyenKichHoat")
             }else {
                 let alert = UIAlertController(title:"Đã có lỗi cập nhật quyền", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in

@@ -76,7 +76,6 @@ class DetailBrandViewController: UIViewController {
     func chuanHoa(_ s:String?) -> String {
         let s1 = s!.trimmingCharacters(in: .whitespaces);
         let kq = s1.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
-        print(kq)
         return kq;
     }
     func checkInfo() -> Bool{
@@ -174,7 +173,7 @@ class DetailBrandViewController: UIViewController {
                     }
                 }else {
                     let params = HangSXModel(mahang: nil, tenhang: name, email: email, sdt: phone, logo: "/images/noimage.jpg").convertToDictionary()
-                    print(params)
+                    
                     self.addHangSX(params: params)
                 }
             }
@@ -212,7 +211,7 @@ class DetailBrandViewController: UIViewController {
                     }
                 }else {
                     let params = HangSXModel(mahang: maHang, tenhang: name, email: email, sdt: phone, logo: logoG).convertToDictionary()
-                    print(params)
+                    
                     self.updateHangSX(params: params)
                 }
             }
@@ -383,13 +382,11 @@ extension DetailBrandViewController{
     func isValidPhone(phone: String) -> Bool {
         let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
         let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
-        print(phoneTest.evaluate(with: phone))
         return phoneTest.evaluate(with: phone)
     }
     func isValidEmail( email:String)->Bool{
         let regexEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
         let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
-        print(passwordTest.evaluate(with:email))
         return passwordTest.evaluate(with:email)
     }
     

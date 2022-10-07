@@ -70,7 +70,7 @@ class StatisticViewController: UIViewController {
         
         var data1: [DoanhThuResponse] = []
         let params = DoanhThuModel(dateFrom: from, dateTo: to).convertToDictionary()
-        print(params)
+        
         DispatchQueue.init(label: "DoanhThuVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             APIService.getDoanhThu(with: .getDoanhThu, params: params, headers: nil, completion:
                  {  base, error in
@@ -79,12 +79,12 @@ class StatisticViewController: UIViewController {
                     if let dateStart = from , let dateEnd = to {
                         self.allDates = self.getMonthAndYearBetween(from: dateStart, to: dateEnd)
                     }
-                    print("ADD: \(self.allDates)")
+//                    print("ADD: \(self.allDates)")
                     for i in self.allDates {
                         data1.append(DoanhThuResponse(thang: Int(i.prefix(2)), nam: Int(i.suffix(4)) , doanhthu: 0))                    }
                     
                     if let data = base.data {
-                        print(data)
+//                        print(data)
                       self.data = data
                         self.sum = 0
                         for i in data {
@@ -93,7 +93,7 @@ class StatisticViewController: UIViewController {
                             }
                             data1 = data1.map {  $0.thang == i.thang && $0.nam == i.nam ? i : $0}
                         }
-                        print("\n\n\(data1)")
+//                        print("\n\n\(data1)")
                         self.data = data1
                     }
                     self.tongDoanhThu.text = CurrencyVN.toVND(self.sum)

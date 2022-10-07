@@ -222,7 +222,6 @@ extension SearchViewController {
         let min = tfGiaMin.text?.count == 0 ? nil : Int(tfGiaMin.text!)
         let max = tfGiaMax.text?.count == 0 ? nil : Int(tfGiaMax.text!)
         let params = SearchModel(tenLSP: searchBar.text, priceMin: min, priceMax: max, maHang: self.maHang).convertToDictionary()
-        print(params)
         APIService.searchLoaiSanPham(with: .searchLSP, params: params, headers: nil, completion: {
             [weak self] base, error in
             guard let self = self, let base = base else { return }

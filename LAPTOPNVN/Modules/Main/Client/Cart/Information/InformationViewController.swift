@@ -105,8 +105,8 @@ class InformationViewController: UIViewController {
         let currentDate = Date()
         
         let current = "\(currentDate)".prefix(10)
-        print("Current:\(currentDate)")
-        print("datePlan:\(datePlan)")
+//        print("Current:\(currentDate)")
+//        print("datePlan:\(datePlan)")
         
         if (!Date().checkDatePlan(start: datePlan, end: Date().convertDateSQLToView(String(current))) ){
             let alert = UIAlertController(title: "Ngày giao mong muốn phải lớn hơn ngày hiện tại", message: "", preferredStyle: .alert)
@@ -135,14 +135,12 @@ class InformationViewController: UIViewController {
         let dayPlan = Date().convertDateViewToSQL(self.datePlan.text!)
         let cmnd = UserService.shared.cmnd
         
-        
-        print("\n LIST\n ")
+        print("\n BEGIN LIST ORDER ADD DB\n ")
         print(self.list)
-        print("\n -------LIST------\n ")
+        print("\n -------END LIST ORDER ADD DB------\n ")
+        
         let params = ModelAddGH(idgiohang: nil, ngaylapgiohang: nil, ngaydukien: dayPlan, tonggiatri: sum, matrangthai: 0, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email, malsp: nil, dslsp: self.list,ngaynhan: nil,phuongthuc: method).convertToDictionary()
-        print(params)
-        print("\n -------params------\n ")
-        //
+       
         APIService.addGioHang1(with: .addGioHang1, params: params, headers: nil, completion:   { base, error in
             guard let base = base else { return }
             if base.success == true{
@@ -186,7 +184,7 @@ class InformationViewController: UIViewController {
                 self.present(alert, animated: true)
             } else {
                 let total = Double(sum) / Double(usd)
-                print(total.rounded(toPlaces: 2))
+//                print(total.rounded(toPlaces: 2))
                 let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
                 
                 let request = BTPayPalCheckoutRequest(amount: total.rounded(toPlaces: 2))
@@ -200,7 +198,7 @@ class InformationViewController: UIViewController {
                         let firstNamePP = tokenizedPayPalAccount.firstName
                         let lastNamePP = tokenizedPayPalAccount.lastName
                         let phonePP = tokenizedPayPalAccount.phone
-                        print("INFO: \(firstNamePP) |\(lastNamePP) |\(emailPP) |\(phonePP)")
+
                         self.addOrderDatabase(sum: sum,method: "PAYPAL")
                     } else if let error = error {
                         // Handle error here...
@@ -249,13 +247,13 @@ extension InformationViewController {
     func isValidPhone(phone: String) -> Bool {
         let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
         let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
-        print(phoneTest.evaluate(with: phone))
+//        print(phoneTest.evaluate(with: phone))
         return phoneTest.evaluate(with: phone)
     }
     func isValidEmail( email:String)->Bool{
         let regexEmail = "^[\\w-\\.\\+]+@([\\w-]+\\.)+[\\w-]{2,4}$"
         let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
-        print(passwordTest.evaluate(with:email))
+//        print(passwordTest.evaluate(with:email))
         return passwordTest.evaluate(with:email)
     }
 }
@@ -362,7 +360,7 @@ extension InformationViewController{
             guard let base = base else { return }
             if base.success == true {
                 self.tyGiaUSD = base.data?.first
-                print(self.tyGiaUSD)
+                print("\nTỷ giá hiện tại:\(self.tyGiaUSD)")
             } else {
                 let alert = UIAlertController(title:"Lỗi get tỷ giá", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in

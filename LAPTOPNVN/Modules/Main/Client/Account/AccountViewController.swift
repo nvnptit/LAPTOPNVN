@@ -120,10 +120,8 @@ class AccountViewController: UIViewController {
         
         
         let params = HistoryModel(status: self.maStatus, cmnd: UserService.shared.cmnd, dateFrom: from, dateTo: to).convertToDictionary()
-        print(params)
         DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self = self , self.cmnd != "" else { return }
-            print(params)
             
             APIService.getHistoryOrder1(with: .getHistoryOrder, params: params, headers: nil, completion: {
                 [weak self] base, error in
@@ -131,10 +129,7 @@ class AccountViewController: UIViewController {
                 if base.success == true {
                     if let data = base.data {
                         self.dataHistory = data
-                        print(data)
                     }
-                } else {
-                    print(base.success)
                 }
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
@@ -226,13 +221,13 @@ class AccountViewController: UIViewController {
     func isValidPhone(phone: String) -> Bool {
         let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
         let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
-        print(phoneTest.evaluate(with: phone))
+//        print(phoneTest.evaluate(with: phone))
         return phoneTest.evaluate(with: phone)
     }
     func isValidEmail( email:String)->Bool{
         let regexEmail = "^[\\w-\\.\\+]+@([\\w-]+\\.)+[\\w-]{2,4}$"
         let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
-        print(passwordTest.evaluate(with:email))
+//        print(passwordTest.evaluate(with:email))
         return passwordTest.evaluate(with:email)
     }
     
@@ -241,9 +236,7 @@ class AccountViewController: UIViewController {
         let emailE = chuanHoa(tfEmail.text)
         let nameE = chuanHoa(tfName.text)
         let addressE = chuanHoa(tfAddress.text)
-        
         let dayE = chuanHoa(tfBirthday.text)
-        
         let phoneE = chuanHoa(tfPhone.text)
         
         if (emailE.isEmpty || nameE.isEmpty || addressE.isEmpty || dayE.isEmpty || phoneE.isEmpty) {

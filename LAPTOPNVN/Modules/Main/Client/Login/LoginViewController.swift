@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
 //               if  md5Pass.uppercased() != HASHED{
 //                   return false
 //               }
-        print(md5Pass)
+//        print(md5Pass)
         let params = LoginModel(tenDangNhap: user, matKhau: md5Pass).convertToDictionary()
         
         APIService.postLogin(with: .login, params, nil, completion: {

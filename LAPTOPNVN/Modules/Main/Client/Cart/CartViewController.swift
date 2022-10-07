@@ -34,7 +34,7 @@ class CartViewController: UIViewController {
             money.isHidden = true
             btnDatHang.isHidden = true
             let noLoginVC = NoLoginViewController()
-            self.navigationController?.pushViewController(noLoginVC, animated: false)
+            self.navigationController?.pushViewController(noLoginVC, animated: true)
             return
         }else {
             lbTongTien.isHidden = false

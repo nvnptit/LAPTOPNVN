@@ -49,7 +49,7 @@ extension ForgotPasswordViewController{
     func isValidEmail( email:String)->Bool{
         let regexEmail = "^[\\w-\\.\\+]+@([\\w-]+\\.)+[\\w-]{2,4}$"
         let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
-        print(passwordTest.evaluate(with:email))
+     //   print(passwordTest.evaluate(with:email))
         return passwordTest.evaluate(with:email)
     }
     

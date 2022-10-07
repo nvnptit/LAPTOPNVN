@@ -47,11 +47,9 @@ class TestMapsViewController: UIViewController, CLLocationManagerDelegate, MKMap
             let myDestinationLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let distance = mySourceLocation.distance(from: myDestinationLocation)
             if (distance/1000>1){
-//                print("Khoảng cách 2 vị trí \(distance/1000)km")
                 print(String(format: "Khoảng cách 2 vị trí %.01f km", distance/1000))
             }
             else {
-//                print("Khoảng cách 2 vị trí \(distance.rounded(toPlaces: 0))m")
                 print(String(format: "Khoảng cách 2 vị trí %.0f m", distance))
             }
         }

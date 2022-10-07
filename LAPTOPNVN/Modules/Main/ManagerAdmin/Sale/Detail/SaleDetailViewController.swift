@@ -106,7 +106,7 @@ class SaleDetailViewController: UIViewController {
             }else {
                     guard let dateStart = dateStart.text, let dateEnd = dateEnd.text else {return}
                     let params = SaleModel(madotgg: id.text, ngaybatdau: Date().convertDateViewToSQL(dateStart), ngayketthuc: Date().convertDateViewToSQL(dateEnd), mota: describe.text, manv: UserService.shared.maNV).convertToDictionary()
-                print(params)
+                
                     APIService.postRequest(with: .putDotGG, params: params, headers: nil, completion: {base, error in
                         guard let base = base else { return }
                         let alert = UIAlertController(title:base.message!, message: "", preferredStyle: .alert)

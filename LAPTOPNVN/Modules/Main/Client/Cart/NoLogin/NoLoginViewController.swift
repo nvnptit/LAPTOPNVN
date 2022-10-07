@@ -12,12 +12,10 @@ class NoLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+//        super.viewWillDisappear(animated)
         if isMovingFromParent, transitionCoordinator?.isInteractive == false {
             let vc = MainTabBarController()
             self.navigationController?.pushViewController(vc, animated: false)
@@ -25,9 +23,7 @@ class NoLoginViewController: UIViewController {
     }
     
     @IBAction func didTapLogin(_ sender: UIButton, forEvent event: UIEvent) {
-        
         let loginVC = LoginViewController()
-        //        self.navigationController?.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(loginVC, animated: true)
         
     }
