@@ -8,8 +8,15 @@
 	<string>Speech Please</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Location Please</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location Usage</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location Please</string>
+	<string>Please</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

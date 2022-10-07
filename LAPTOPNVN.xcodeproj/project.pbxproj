@@ -250,6 +250,7 @@
 		799627202896133E00B6EDF9 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7996271E2896133E00B6EDF9 /* HistoryModel.swift */; };
 		799627212896133E00B6EDF9 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7996271E2896133E00B6EDF9 /* HistoryModel.swift */; };
 		79998D8A2893D5A00006EF49 /* CurrencyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79998D892893D5A00006EF49 /* CurrencyConverter.swift */; };
+		799A2E7928F00DF000D1FCD7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799A2E7828F00DF000D1FCD7 /* LocationManager.swift */; };
 		799B9166289D8B52001F6B5F /* ModelNV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799B9165289D8B52001F6B5F /* ModelNV.swift */; };
 		799B916B289D92EA001F6B5F /* HomeAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799B9169289D92EA001F6B5F /* HomeAdminViewController.swift */; };
 		799B916C289D92EA001F6B5F /* HomeAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799B9169289D92EA001F6B5F /* HomeAdminViewController.swift */; };
@@ -530,6 +531,7 @@
 		7996271928960F6D00B6EDF9 /* HistoryOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOrder.swift; sourceTree = "<group>"; };
 		7996271E2896133E00B6EDF9 /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
 		79998D892893D5A00006EF49 /* CurrencyConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
+		799A2E7828F00DF000D1FCD7 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		799B9165289D8B52001F6B5F /* ModelNV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelNV.swift; sourceTree = "<group>"; };
 		799B9169289D92EA001F6B5F /* HomeAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAdminViewController.swift; sourceTree = "<group>"; };
 		799B916A289D92EA001F6B5F /* HomeAdminViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAdminViewController.xib; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 			isa = PBXGroup;
 			children = (
 				79475E7B28824C04005911E3 /* UserService.swift */,
+				799A2E7828F00DF000D1FCD7 /* LocationManager.swift */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -1887,6 +1890,7 @@
 				7923192928A0F8080017E370 /* OrderShipViewController.swift in Sources */,
 				791BB911289E0F2A002B5871 /* DetailOrderViewController.swift in Sources */,
 				797CC66428ED78240049AFD4 /* TestMicViewController.swift in Sources */,
+				799A2E7928F00DF000D1FCD7 /* LocationManager.swift in Sources */,
 				79F33D972883254600F7BB4C /* APIResponse.swift in Sources */,
 				79176F96288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */,
 				79475EAE2882B7E1005911E3 /* LoaiSanPham.swift in Sources */,

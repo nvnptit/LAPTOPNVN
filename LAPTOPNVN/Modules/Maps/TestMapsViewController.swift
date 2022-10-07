@@ -15,7 +15,8 @@ class TestMapsViewController: UIViewController, CLLocationManagerDelegate, MKMap
     @IBOutlet var map: MKMapView!
     
     var locationManger = CLLocationManager()
-    
+    var long = 0.0
+    var lat = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManger.delegate = self
@@ -36,16 +37,37 @@ class TestMapsViewController: UIViewController, CLLocationManagerDelegate, MKMap
         geoCoder.geocodeAddressString(textFieldForAddress.text!){(placemarks,error)in
             guard let placemarks = placemarks, let location = placemarks.first?.location
             else {
-                print ("No Location Found")
+                print ("Not Found Location")
                 return
             }
             print (location)
             self.mapThis (destinationCord: location.coordinate)
+            
+            let mySourceLocation = CLLocation(latitude: self.lat, longitude: self.long)
+            let myDestinationLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let distance = mySourceLocation.distance(from: myDestinationLocation)
+            if (distance/1000>1){
+//                print("Khoảng cách 2 vị trí \(distance/1000)km")
+                print(String(format: "Khoảng cách 2 vị trí %.01f km", distance/1000))
+            }
+            else {
+//                print("Khoảng cách 2 vị trí \(distance.rounded(toPlaces: 0))m")
+                print(String(format: "Khoảng cách 2 vị trí %.0f m", distance))
+            }
         }
     }
-    
+    func updateMyLocation(_ lat: Double, _ long:Double){
+        self.lat = lat
+        self.long = long
+    }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print (locations)
+//        print (locations)
+        guard let first = locations.first  else {
+            return
+        }
+        print("\(first.coordinate.longitude):\(first.coordinate.latitude)")
+        LocationManager.shared.getAddressFromLatLon("\(first.coordinate.longitude)","\(first.coordinate.latitude)")
+        updateMyLocation(first.coordinate.latitude,first.coordinate.longitude)
     }
     
     func mapThis(destinationCord : CLLocationCoordinate2D) {
@@ -84,14 +106,14 @@ class TestMapsViewController: UIViewController, CLLocationManagerDelegate, MKMap
             annotation2.coordinate = destinationCord
             annotation2.title = "Vị trí nơi giao hàng"
             self.map.addAnnotation(annotation2)
+            
         }
         
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let render = MKPolylineRenderer (overlay: overlay as! MKPolyline)
-        render.strokeColor = .cyan
+        render.strokeColor = .systemBlue
         return render
     }
-    
 }
