@@ -20,6 +20,7 @@ class AccountViewController: UIViewController {
     var maStatus = 0
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var viewAccount: UIView!
     @IBOutlet weak var segment: UISegmentedControl!
     
     @IBOutlet weak var info: UIView!
@@ -76,7 +77,7 @@ class AccountViewController: UIViewController {
         super.viewDidLoad()
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
-        view.addGestureRecognizer(gesture)
+        viewAccount.addGestureRecognizer(gesture)
         
         setupKeyboard()
         setupDropDown()

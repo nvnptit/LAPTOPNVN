@@ -11,6 +11,7 @@ import SDWebImage
 import NVActivityIndicatorView
 
 class SearchViewController: UIViewController{
+    @IBOutlet weak var view1: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tfGiaMin: UITextField!
     @IBOutlet weak var tfGiaMax: UITextField!
@@ -42,8 +43,7 @@ class SearchViewController: UIViewController{
         collectionView.register(UINib(nibName: "SanPhamCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SanPhamCollectionViewCell")
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
-        view.addGestureRecognizer(gesture)
-        
+        view1.addGestureRecognizer(gesture)
     }
     
     
