@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailHistoryViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
+                <outlet property="btnCancel" destination="GIV-VL-VVF" id="dgs-u8-W61"/>
                 <outlet property="shipper" destination="Gyz-OA-b14" id="2ob-hy-MEa"/>
                 <outlet property="tableView" destination="2y7-dp-QnM" id="1Wl-Qy-O5F"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,11 +22,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2y7-dp-QnM">
-                    <rect key="frame" x="20" y="64" width="374" height="753"/>
+                    <rect key="frame" x="20" y="88.5" width="374" height="647.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyz-OA-b14" userLabel="Shipper">
-                    <rect key="frame" x="0.0" y="54" width="414" height="0.0"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXXXX" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyz-OA-b14" userLabel="Shipper">
+                    <rect key="frame" x="0.0" y="58" width="414" height="20.5"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="54" id="YTs-lZ-NrH"/>
                     </constraints>
@@ -33,15 +34,32 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIV-VL-VVF">
+                    <rect key="frame" x="125.5" y="762" width="163" height="50"/>
+                    <color key="backgroundColor" red="0.031372549020000001" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="163" id="AHE-XF-JMX"/>
+                        <constraint firstAttribute="height" constant="50" id="w3R-P0-ndk"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="HUỶ ĐƠN HÀNG">
+                        <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="tapCancel:forEvent:" destination="-1" eventType="touchUpInside" id="hWG-PM-Ukm"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="2y7-dp-QnM" firstAttribute="top" secondItem="Gyz-OA-b14" secondAttribute="bottom" priority="750" constant="10" id="2fT-sH-5bd"/>
                 <constraint firstItem="Gyz-OA-b14" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5IS-DM-NfG"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="2y7-dp-QnM" secondAttribute="bottom" constant="45" id="Cp1-tW-AWw"/>
+                <constraint firstItem="GIV-VL-VVF" firstAttribute="top" secondItem="2y7-dp-QnM" secondAttribute="bottom" constant="26" id="FLb-2N-ENf"/>
                 <constraint firstItem="2y7-dp-QnM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="JYs-oh-Q2W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2y7-dp-QnM" secondAttribute="trailing" constant="20" id="PWd-h4-1Kd"/>
+                <constraint firstItem="GIV-VL-VVF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RoX-Je-MXC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="GIV-VL-VVF" secondAttribute="bottom" constant="50" id="VC2-mA-I3y"/>
                 <constraint firstItem="Gyz-OA-b14" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VWp-cc-ZTc"/>
                 <constraint firstItem="Gyz-OA-b14" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" priority="750" constant="10" id="dF2-Ed-8gI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Gyz-OA-b14" secondAttribute="trailing" id="sd9-as-Leh"/>
