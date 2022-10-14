@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
 typealias LocationCompletion = (CLLocation) -> ()
 
@@ -20,6 +21,10 @@ final class LocationManager: NSObject {
     
     static let shared = LocationManager()
     var myAdress = ""
+    var long = 0.0
+    var lat = 0.0
+    var length = ""
+    
     override init() {
         super.init()
         configLocation()
@@ -30,8 +35,33 @@ final class LocationManager: NSObject {
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 10
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
-        
+    
+    func updateMyLocation(_ lat: Double, _ long:Double){
+        self.lat = lat
+        self.long = long
+    }
+    func forwardGeocoding (address: String, completion:@escaping (Bool, CLLocationCoordinate2D?) -> () ) {
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(address){
+            placemarks , error in
+            if error != nil {
+                print(error?.localizedDescription)
+                completion(false,nil)
+            } else {
+                if placemarks!.count > 0 {
+                    let placemark = placemarks![0] as CLPlacemark
+                    let location = placemark.location
+                    completion(true, location?.coordinate)
+                    
+                }
+            }
+        }
+    }
+    
     func getAuthorizationStatus() -> CLAuthorizationStatus {
             if #available(iOS 14.0, *) {
                 return locationManager.authorizationStatus
@@ -204,7 +234,9 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
               self.currentLocation = location
-              
+            //update long lat my location
+            updateMyLocation(location.coordinate.latitude,location.coordinate.longitude)
+            
               if let currentCompletion = currentLocationCompletion {
                   currentCompletion(location)
               }

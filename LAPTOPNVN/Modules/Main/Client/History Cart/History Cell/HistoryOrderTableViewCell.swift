@@ -24,6 +24,11 @@ class HistoryOrderTableViewCell: UITableViewCell {
     @IBOutlet weak var method: UILabel!
     
     @IBOutlet weak var dateReceive: UILabel!
+    
+    @IBOutlet weak var distance: UILabel!
+    
+    @IBOutlet weak var lbDistance: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

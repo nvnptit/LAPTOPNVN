@@ -8,6 +8,7 @@
 import UIKit
 import NVActivityIndicatorView
 import DropDown
+import CoreLocation
 
 class AccountViewController: UIViewController {
     
@@ -50,7 +51,6 @@ class AccountViewController: UIViewController {
     let statusValues: [String] = ["Chờ duyệt","Đang giao hàng","Đã giao hàng","Đã huỷ"]
     
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
-    
     
     let cmnd = UserService.shared.cmnd
     
@@ -514,10 +514,7 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         let item = dataHistory[indexPath.item]
         let dateReceive = item.ngaynhan ?? ""
         if let ngaylapgiohang = item.ngaylapgiohang,
-           //            let tonggiatri = item.tonggiatri,
            let tentrangthai = item.tentrangthai,
-           //            let nvgiao = item.nvgiao,
-           //            let nvduyet = item.nvduyet,
             let nguoinhan = item.nguoinhan,
            let diachi = item.diachi,
            let sdt = item.sdt,
@@ -525,15 +522,6 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
            let idGH = item.idgiohang,
             let method = item.phuongthuc
         
-        //            let serial = item.serial,
-        //            let tenlsp = item.tenlsp,
-        //            let anhlsp = item.anhlsp,
-        //            let mota = item.mota,
-        //            let cpu = item.cpu,
-        //            let ram = item.ram,
-        //            let harddrive = item.harddrive,
-        //            let cardscreen = item.cardscreen,
-        //            let os = item.os
         {
             cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss")
             cell.status.text = tentrangthai
@@ -547,7 +535,41 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
             if dateReceive != "" {
                 cell.dateReceive.text = Date().convertDateTimeSQLToView(date: dateReceive, format: "dd-MM-yyyy HH:mm:ss")
             }else {
-                cell.dateReceive.text = ""}
+                cell.dateReceive.text = ""
+            }
+            if (tentrangthai == "Chờ duyệt"){
+                    cell.lbDistance.isHidden = false
+                    cell.distance.isHidden = false
+            }
+                else{
+                cell.lbDistance.isHidden = true
+                cell.distance.isHidden = true
+            }
+           // Hien thi khoang cach
+            LocationManager.shared.forwardGeocoding(address: diachi.lowercased(), completion: {
+                success,coordinate in
+                if success {
+                    guard let lat = coordinate?.latitude,
+                          let long = coordinate?.longitude else {return}
+                         // Do sth with your coordinates
+                    
+                    let mySourceLocation = CLLocation(latitude: 10.8479111, longitude: 106.7869434)
+                    let myDestinationLocation = CLLocation(latitude: lat, longitude: long)
+                    let distance = mySourceLocation.distance(from: myDestinationLocation)
+                    if (distance/1000>1){
+                        cell.distance.text = String(format: "%.01f km", distance/1000)
+                    }
+                    else {
+                        
+                        cell.distance.text = String(format: "%.0f m", distance)
+                    }
+//                    //render
+//                    self.mapThis (destinationCord: coordinate!)
+                     } else {
+                         print("error sth went wrong")
+                     }
+            })
+            
         }
         cell.selectionStyle = .none
         return cell

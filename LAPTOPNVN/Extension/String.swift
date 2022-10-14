@@ -79,3 +79,11 @@ func strikeThrough(_ isStrikeThrough:Bool) {
     }
     }
 }
+extension String {
+
+       func unaccent() -> String {
+
+           return self.folding(options: .diacriticInsensitive, locale: .current)
+
+       }
+}

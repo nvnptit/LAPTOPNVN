@@ -24,12 +24,35 @@ class TestMapsViewController: UIViewController, CLLocationManagerDelegate, MKMap
         locationManger.requestAlwaysAuthorization()
         locationManger.requestWhenInUseAuthorization()
         locationManger.startUpdatingLocation()
-        
         map.delegate = self
     }
     
     @IBAction func getDirectionsTapped (_ sender: Any){
-        getAddress()
+        
+        guard let addr = self.textFieldForAddress.text else {return}
+        print("UC:    \(addr.unaccent())")
+        LocationManager.shared.forwardGeocoding(address: addr.unaccent(), completion: {
+            success,coordinate in
+            if success {
+                guard let lat = coordinate?.latitude,
+                      let long = coordinate?.longitude else {return}
+                     // Do sth with your coordinates
+                
+                let mySourceLocation = CLLocation(latitude: self.lat, longitude: self.long)
+                let myDestinationLocation = CLLocation(latitude: lat, longitude: long)
+                let distance = mySourceLocation.distance(from: myDestinationLocation)
+                if (distance/1000>1){
+                    print(String(format: "%.01f km", distance/1000))
+                }
+                else {
+                    print(String(format: "%.0f m", distance))
+                }
+                //render
+                self.mapThis (destinationCord: coordinate!)
+                 } else {
+                     print("error sth went wrong")
+                 }
+        })
     }
     
     func getAddress(){
