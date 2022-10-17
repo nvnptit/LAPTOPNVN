@@ -11,6 +11,7 @@ import NVActivityIndicatorView
 
 class DetailOrderViewController: UIViewController {
     
+    @IBOutlet weak var lbMap: UIButton!
     @IBOutlet weak var maDH: UILabel!
     
     @IBOutlet weak var nguoiNhan: UILabel!
@@ -57,6 +58,10 @@ class DetailOrderViewController: UIViewController {
         setupDropDown()
         setupKeyboard()
         loadData()
+        if  self.order?.tentrangthai == "Đang giao hàng" {
+            lbMap.isHidden = false
+        }else { lbMap.isHidden = true}
+        
         if let order = order {
             self.title = "Giỏ hàng \(order.idgiohang!)"
         }
@@ -114,6 +119,11 @@ class DetailOrderViewController: UIViewController {
         ])
     }
     
+    @IBAction func tapMap(_ sender: UIButton, forEvent event: UIEvent) {
+            let vc = MapsViewController()
+            vc.address = order?.diachi ?? ""
+            self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     private func setupDropDown() {
         DropDown.appearance().textColor = UIColor.black
@@ -147,16 +157,18 @@ class DetailOrderViewController: UIViewController {
             
         }else if (btnDuyet.titleLabel?.text == "Xác nhận đã giao hàng"){
             print("Xác nhận")
-            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 2, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
-            self.updateShipper(params: params)
             
-            let alert = UIAlertController(title: "Giao hàng thành công", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+            let alert = UIAlertController(title: "Xác nhận đã giao hàng?", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ [self] _ in
                 self.dismiss(animated: true)
-                
-                self.navigationController?.popViewController(animated: true)
+                let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 2, manvgiao: maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: self.order?.sdt, email: order?.email).convertToDictionary()
+                self.updateShipper(params: params)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
             }))
             self.present(alert, animated: true)
+            
             
         }else {
             print("Lưu")
@@ -212,7 +224,12 @@ extension DetailOrderViewController {
         APIService.updateGioHang(with: .putOrderShipper, params: params, headers: nil, completion: { base, error in
             guard let base = base else { return }
             if base.success == true {
-                print("success updateShipper")
+                let alert = UIAlertController(title: "Giao hàng thành công", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                    self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true)
             }
             else {
                 fatalError()

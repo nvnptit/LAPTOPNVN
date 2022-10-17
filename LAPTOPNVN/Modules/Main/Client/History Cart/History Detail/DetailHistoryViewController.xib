@@ -21,12 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2y7-dp-QnM">
-                    <rect key="frame" x="20" y="88.5" width="374" height="647.5"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXXXX" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyz-OA-b14" userLabel="Shipper">
-                    <rect key="frame" x="0.0" y="58" width="414" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXXXXY" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyz-OA-b14" userLabel="Shipper">
+                    <rect key="frame" x="0.0" y="59" width="414" height="20.5"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="54" id="YTs-lZ-NrH"/>
                     </constraints>
@@ -35,7 +31,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIV-VL-VVF">
-                    <rect key="frame" x="125.5" y="762" width="163" height="50"/>
+                    <rect key="frame" x="125.5" y="792" width="163" height="50"/>
                     <color key="backgroundColor" red="0.031372549020000001" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="163" id="AHE-XF-JMX"/>
@@ -49,19 +45,23 @@
                         <action selector="tapCancel:forEvent:" destination="-1" eventType="touchUpInside" id="hWG-PM-Ukm"/>
                     </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2y7-dp-QnM">
+                    <rect key="frame" x="20" y="101.5" width="374" height="664.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="2y7-dp-QnM" firstAttribute="top" secondItem="Gyz-OA-b14" secondAttribute="bottom" priority="750" constant="10" id="2fT-sH-5bd"/>
                 <constraint firstItem="Gyz-OA-b14" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5IS-DM-NfG"/>
                 <constraint firstItem="GIV-VL-VVF" firstAttribute="top" secondItem="2y7-dp-QnM" secondAttribute="bottom" constant="26" id="FLb-2N-ENf"/>
                 <constraint firstItem="2y7-dp-QnM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="JYs-oh-Q2W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2y7-dp-QnM" secondAttribute="trailing" constant="20" id="PWd-h4-1Kd"/>
                 <constraint firstItem="GIV-VL-VVF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RoX-Je-MXC"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="GIV-VL-VVF" secondAttribute="bottom" constant="50" id="VC2-mA-I3y"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="GIV-VL-VVF" secondAttribute="bottom" constant="20" id="VC2-mA-I3y"/>
                 <constraint firstItem="Gyz-OA-b14" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VWp-cc-ZTc"/>
-                <constraint firstItem="Gyz-OA-b14" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" priority="750" constant="10" id="dF2-Ed-8gI"/>
+                <constraint firstItem="2y7-dp-QnM" firstAttribute="top" secondItem="Gyz-OA-b14" secondAttribute="bottom" constant="22" id="aBE-d4-WZJ"/>
+                <constraint firstItem="Gyz-OA-b14" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" priority="750" constant="11" id="dF2-Ed-8gI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Gyz-OA-b14" secondAttribute="trailing" id="sd9-as-Leh"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="64.955357142857139"/>

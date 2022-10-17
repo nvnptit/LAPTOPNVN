@@ -8,7 +8,6 @@
 import UIKit
 import NVActivityIndicatorView
 import DropDown
-import CoreLocation
 
 class AccountViewController: UIViewController {
     
@@ -45,6 +44,8 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var tfCMND: UITextField!
     @IBOutlet weak var btnThayDoi: UIButton!
     @IBOutlet weak var btnDangXuat: UIButton!
+    
+    
     
     var isCancel:Bool = false
     var statusDrop = DropDown()
@@ -143,9 +144,9 @@ class AccountViewController: UIViewController {
                 }
             })
         }
-        
     }
     
+ 
     
     // BEGIN STATUS
     
@@ -537,39 +538,8 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
             }else {
                 cell.dateReceive.text = ""
             }
-            if (tentrangthai == "Chờ duyệt"){
-                    cell.lbDistance.isHidden = false
-                    cell.distance.isHidden = false
-            }
-                else{
-                cell.lbDistance.isHidden = true
-                cell.distance.isHidden = true
-            }
-           // Hien thi khoang cach
-            LocationManager.shared.forwardGeocoding(address: diachi.lowercased(), completion: {
-                success,coordinate in
-                if success {
-                    guard let lat = coordinate?.latitude,
-                          let long = coordinate?.longitude else {return}
-                         // Do sth with your coordinates
-                    
-                    let mySourceLocation = CLLocation(latitude: 10.8479111, longitude: 106.7869434)
-                    let myDestinationLocation = CLLocation(latitude: lat, longitude: long)
-                    let distance = mySourceLocation.distance(from: myDestinationLocation)
-                    if (distance/1000>1){
-                        cell.distance.text = String(format: "%.01f km", distance/1000)
-                    }
-                    else {
-                        
-                        cell.distance.text = String(format: "%.0f m", distance)
-                    }
-//                    //render
-//                    self.mapThis (destinationCord: coordinate!)
-                     } else {
-                         print("error sth went wrong")
-                     }
-            })
-            
+            cell.lbDistance.isHidden = true
+            cell.distance.isHidden = true
         }
         cell.selectionStyle = .none
         return cell

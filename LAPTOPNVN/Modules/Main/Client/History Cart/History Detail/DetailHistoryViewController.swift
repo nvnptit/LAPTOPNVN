@@ -38,9 +38,10 @@ class DetailHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Chi tiết giỏ hàng"
+        
         if  self.order?.tentrangthai == "Chờ duyệt"{
             btnCancel.isHidden = false
-        }else {  btnCancel.isHidden = true }
+        }else {  btnCancel.isHidden = true}
         if let nameShipper = order?.nvgiao, let sdtnvg = order?.sdtnvg {
             self.shipper.text = "Nhân viên giao hàng\n\(nameShipper) - \(sdtnvg)☎"
         } else {
@@ -49,7 +50,6 @@ class DetailHistoryViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         shipper.isUserInteractionEnabled = true
         shipper.addGestureRecognizer(tap)
-        
         
         setupAnimation()
         loadData()
@@ -138,7 +138,7 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
             cell.disk.text = harddrive
             cell.card.text = cardscreen
             cell.os.text = os
-//            cell.picture.loadFrom(URLAddress: APIService.baseUrl + anhlsp)
+            //            cell.picture.loadFrom(URLAddress: APIService.baseUrl + anhlsp)
             cell.picture.getImage(url: APIService.baseUrl + anhlsp, completion: { img in
                 DispatchQueue.main.sync {
                     cell.picture.image = img
@@ -216,17 +216,17 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
     
     @IBAction func tapCancel(_ sender: UIButton, forEvent event: UIEvent) {
         guard let order = self.order else {return}
-           let alert = UIAlertController(title: "Bạn có chắc huỷ đơn hàng này?", message: "", preferredStyle: .alert)
-           alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
-               self.dismiss(animated: true)
-           }))
-           alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
-               self.dismiss(animated: true)
-               let params = GioHangEdit(idgiohang: order.idgiohang, ngaylapgiohang: order.ngaylapgiohang,ngaydukien: order.ngaydukien, tonggiatri: order.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order.nguoinhan, diachi: order.diachi, sdt: order.sdt, email: order.email).convertToDictionary()
-               self.updateGH(params: params)
-           }))
-           self.present(alert, animated: true)
-       }
+        let alert = UIAlertController(title: "Bạn có chắc huỷ đơn hàng này?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
+            self.dismiss(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
+            self.dismiss(animated: true)
+            let params = GioHangEdit(idgiohang: order.idgiohang, ngaylapgiohang: order.ngaylapgiohang,ngaydukien: order.ngaydukien, tonggiatri: order.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order.nguoinhan, diachi: order.diachi, sdt: order.sdt, email: order.email).convertToDictionary()
+            self.updateGH(params: params)
+        }))
+        self.present(alert, animated: true)
+    }
 }
 
 extension DetailHistoryViewController{

@@ -120,11 +120,11 @@ final class LocationManager: NSObject {
         }
     
     func getCurrentLocation() -> CLLocation? {
-            let status = getAuthorizationStatus()
-            if status == .denied || status == .restricted || status == .notDetermined || !CLLocationManager.locationServicesEnabled() {
-                showAlertGotoSettings()
-                return nil
-            }
+//            let status = getAuthorizationStatus()
+//            if status == .denied || status == .restricted || status == .notDetermined || !CLLocationManager.locationServicesEnabled() {
+//                showAlertGotoSettings()
+//                return nil
+//            }
             return currentLocation
         }
     

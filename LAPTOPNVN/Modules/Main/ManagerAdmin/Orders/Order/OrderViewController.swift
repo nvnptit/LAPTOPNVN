@@ -255,16 +255,6 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
            let datePlan = item.ngaydukien,
            let idGH = item.idgiohang,
            let method = item.phuongthuc
-        
-        //            let serial = item.serial,
-        //            let tenlsp = item.tenlsp,
-        //            let anhlsp = item.anhlsp,
-        //            let mota = item.mota,
-        //            let cpu = item.cpu,
-        //            let ram = item.ram,
-        //            let harddrive = item.harddrive,
-        //            let cardscreen = item.cardscreen,
-        //            let os = item.os
         {
             cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss")
             cell.status.text = tentrangthai
@@ -279,6 +269,8 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.dateReceive.text = Date().convertDateTimeSQLToView(date: dateReceive, format: "dd-MM-yyyy HH:mm:ss")
             }else {
                 cell.dateReceive.text = ""}
+            cell.lbDistance.isHidden = true
+            cell.distance.isHidden = true
         }
         cell.selectionStyle = .none
         return cell

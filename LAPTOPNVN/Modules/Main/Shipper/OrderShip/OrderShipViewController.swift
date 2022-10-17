@@ -8,6 +8,7 @@
 import UIKit
 import DropDown
 import NVActivityIndicatorView
+import CoreLocation
 
 class OrderShipViewController: UIViewController {
     
@@ -21,6 +22,8 @@ class OrderShipViewController: UIViewController {
     
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var lbMap: UIButton!
     
     var maStatus = 1
     var statusDrop = DropDown()
@@ -50,6 +53,7 @@ class OrderShipViewController: UIViewController {
         if let name = UserService.shared.infoNV?.ten{
             lbWelcome.text = "Chào mừng bạn,\(name)"
         }
+        
         setupDropDown()
         setupStatus()
         if #available(iOS 13.4, *) {
@@ -79,6 +83,15 @@ class OrderShipViewController: UIViewController {
         vc.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+    
+    @IBAction func tapMap(_ sender: UIButton, forEvent event: UIEvent) {
+            let vc = MapsViewController()
+            vc.dataHistory = self.dataHistory
+            self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func loadDataHistory(){
         loading.startAnimating()
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
@@ -252,13 +265,13 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
         let dateReceive = item.ngaynhan ?? ""
         if let ngaylapgiohang = item.ngaylapgiohang,
            let tentrangthai = item.tentrangthai,
-           let nguoinhan = item.nguoinhan,
+            let nguoinhan = item.nguoinhan,
            let diachi = item.diachi,
            let sdt = item.sdt,
            let datePlan = item.ngaydukien,
            let idGH = item.idgiohang,
-           let method = item.phuongthuc
-            
+            let method = item.phuongthuc
+        
         {
             cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss")
             cell.status.text = tentrangthai
@@ -272,7 +285,42 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
             if dateReceive != "" {
                 cell.dateReceive.text = Date().convertDateTimeSQLToView(date: dateReceive, format: "dd-MM-yyyy HH:mm:ss")
             }else {
-                cell.dateReceive.text = ""}
+                cell.dateReceive.text = ""
+            }
+            if (tentrangthai == "Đang giao hàng"){
+                    cell.lbDistance.isHidden = false
+                    cell.distance.isHidden = false
+                lbMap.isHidden = false
+            }
+                else{
+                cell.lbDistance.isHidden = true
+                cell.distance.isHidden = true
+                    lbMap.isHidden = true
+            }
+           // Hien thi khoang cach
+            LocationManager.shared.forwardGeocoding(address: diachi.lowercased(), completion: {
+                success,coordinate in
+                if success {
+                    guard let lat = coordinate?.latitude,
+                          let long = coordinate?.longitude else {return}
+                         // Do sth with your coordinates
+                    
+                    let mySourceLocation = CLLocation(latitude: LocationManager.shared.lat, longitude: LocationManager.shared.long)
+                    let myDestinationLocation = CLLocation(latitude: lat, longitude: long)
+                    let distance = mySourceLocation.distance(from: myDestinationLocation)
+                    if (distance/1000>1){
+                        cell.distance.text = String(format: "%.01f km", distance/1000)
+                    }
+                    else {
+                        
+                        cell.distance.text = String(format: "%.0f m", distance)
+                    }
+//                    //render
+//                    self.mapThis (destinationCord: coordinate!)
+                     } else {
+                         print("error sth went wrong")
+                     }
+            })
         }
         cell.selectionStyle = .none
         return cell

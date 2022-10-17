@@ -54,10 +54,10 @@
                     </connections>
                 </segmentedControl>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJD-sh-hTA">
-                    <rect key="frame" x="0.0" y="91" width="414" height="683"/>
+                    <rect key="frame" x="0.0" y="91" width="414" height="721"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOC-It-qyF" userLabel="ViewAccount">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="763"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="801"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SỐ CMND" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vS5-Yh-eiQ">
                                     <rect key="frame" x="30" y="59" width="70" height="18"/>
@@ -132,7 +132,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t8x-8j-a8e">
-                                    <rect key="frame" x="85" y="402" width="244.5" height="40.5"/>
+                                    <rect key="frame" x="84.5" y="402" width="245" height="40.5"/>
                                     <color key="backgroundColor" red="0.043137254899999998" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="42" id="L00-jJ-XaP"/>
@@ -210,7 +210,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yzZ-RT-fo9" userLabel="ViewHistory">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="683"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="721"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thời gian từ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xjz-Jg-EDU">
                                     <rect key="frame" x="27" y="14" width="90" height="21"/>
@@ -241,7 +241,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QqE-Cc-LIY">
-                                    <rect key="frame" x="27" y="153" width="360" height="506"/>
+                                    <rect key="frame" x="27" y="153" width="360" height="563"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </tableView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4p-7L-sh2" userLabel="dropdownStatus">
@@ -264,11 +264,11 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="JQ9-2g-1TO" firstAttribute="leading" secondItem="yzZ-RT-fo9" secondAttribute="leading" constant="27" id="2fe-MC-xbu"/>
+                                <constraint firstAttribute="bottom" secondItem="QqE-Cc-LIY" secondAttribute="bottom" constant="5" id="2tM-oa-B5W"/>
                                 <constraint firstItem="b4p-7L-sh2" firstAttribute="leading" secondItem="Lrf-pP-k02" secondAttribute="trailing" constant="13.5" id="4t8-eS-UEn"/>
                                 <constraint firstItem="Xjz-Jg-EDU" firstAttribute="leading" secondItem="yzZ-RT-fo9" secondAttribute="leading" constant="27" id="53P-gS-Nqx"/>
                                 <constraint firstItem="JQ9-2g-1TO" firstAttribute="top" secondItem="Xjz-Jg-EDU" secondAttribute="bottom" constant="25" id="6tX-1F-vzO"/>
                                 <constraint firstItem="b4p-7L-sh2" firstAttribute="top" secondItem="JVO-KE-B9g" secondAttribute="bottom" constant="17" id="CNS-XT-1jb"/>
-                                <constraint firstAttribute="bottom" secondItem="QqE-Cc-LIY" secondAttribute="bottom" constant="24" id="Ckm-75-erb"/>
                                 <constraint firstItem="QqE-Cc-LIY" firstAttribute="leading" secondItem="yzZ-RT-fo9" secondAttribute="leading" constant="27" id="LNc-qR-T49"/>
                                 <constraint firstAttribute="trailing" secondItem="QqE-Cc-LIY" secondAttribute="trailing" constant="27" id="PRL-j2-c0G"/>
                                 <constraint firstItem="Xjz-Jg-EDU" firstAttribute="top" secondItem="yzZ-RT-fo9" secondAttribute="top" constant="14" id="RNY-DE-Jye"/>
@@ -303,7 +303,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yJD-sh-hTA" secondAttribute="bottom" constant="88" id="15F-2s-bwS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yJD-sh-hTA" secondAttribute="bottom" constant="50" id="15F-2s-bwS"/>
                 <constraint firstItem="zmG-Wf-cdC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="2" id="8YI-rM-Vph"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zmG-Wf-cdC" secondAttribute="trailing" id="Eu2-vf-cFa"/>
                 <constraint firstItem="yJD-sh-hTA" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="OLc-8j-hYq"/>
