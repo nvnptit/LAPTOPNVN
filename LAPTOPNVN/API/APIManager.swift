@@ -13,7 +13,6 @@ enum APIManager {
     case register
     case resetPass
     
-    case addGioHang1
     case getDetailHistory
     case getTyGia
     
@@ -72,7 +71,7 @@ enum APIManager {
     case getNVDuyet
     case getNVGiao
     
-    case addGioHang
+    case addGioHang1
     case getGioHang
     case updateGioHang
     case updateGioHangAdmin
@@ -174,7 +173,7 @@ extension APIManager {
                 path = "/loai-san-pham/search"
                 
             case .getGioHang: path = "/gio-hang/gio-hang-byKH"
-            case .addGioHang: path = "/gio-hang"
+//            case .addGioHang: path = "/gio-hang"
             case .updateGioHang: path = "/gio-hang"
             case .deleteGioHang: path = "/gio-hang"
             case .updateGioHangAdmin: path = "/gio-hang/admin"
@@ -244,7 +243,7 @@ extension APIManager {
                     .getDotGG, .getMaSoDGG, .getDetailSale, .getRate, .getRateBySeri, .getListRate
                 :
                 return .get
-            case .login, .register, .resetPass, .addGioHang, .addUserKH, .uploadAvatar,
+            case .login, .register, .resetPass, .addUserKH, .uploadAvatar,
                     .postHangSX, .postNV, .postLSP, .postSP,
                     .addGioHang1,
                     .postDotGG, .postDetailSale, .postRate,

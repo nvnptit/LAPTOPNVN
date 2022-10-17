@@ -145,7 +145,7 @@ class DetailOrderViewController: UIViewController {
                 return;
             }
             print("Duyệt")
-            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
+            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
             self.updateGH(params: params)
             
             let alert = UIAlertController(title: "Duyệt đơn hàng thành công", message: "", preferredStyle: .alert)
@@ -161,7 +161,7 @@ class DetailOrderViewController: UIViewController {
             let alert = UIAlertController(title: "Xác nhận đã giao hàng?", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ [self] _ in
                 self.dismiss(animated: true)
-                let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 2, manvgiao: maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: self.order?.sdt, email: order?.email).convertToDictionary()
+                let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: nil, tonggiatri: order?.tonggiatri, matrangthai: 2, manvgiao: maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: self.order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: true).convertToDictionary()
                 self.updateShipper(params: params)
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ _ in
@@ -172,7 +172,7 @@ class DetailOrderViewController: UIViewController {
             
         }else {
             print("Lưu")
-            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
+            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
             self.updateGH(params: params)
             
             let alert = UIAlertController(title: "Cập nhật nhân viên giao hàng thành công", message: "", preferredStyle: .alert)
@@ -186,7 +186,7 @@ class DetailOrderViewController: UIViewController {
     }
     
     @IBAction func tapHuyDon(_ sender: UIButton, forEvent event: UIEvent) {
-        let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email).convertToDictionary()
+        let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
         self.updateGH(params: params)
         
         let alert = UIAlertController(title: "Huỷ đơn hàng thành công", message: "", preferredStyle: .alert)
@@ -202,6 +202,8 @@ class DetailOrderViewController: UIViewController {
         let vc = DetailHistoryViewController()
         if let order = order {
             vc.id = order.idgiohang
+            vc.order = order
+            vc.isRate = false
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }

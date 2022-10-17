@@ -444,15 +444,15 @@ struct APIService {
     }
     
     //get -> fetch
-    public static func addGioHangC(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(GioHangResponse?, String?) -> ()) {
-        APIController.request(GioHangResponse.self, manager, params: params, headers: headers) { error, data in
-            if let dataLoaiSanPham = data {
-                completion(dataLoaiSanPham, nil)
-                return
-            }
-            completion(nil, error)
-        }
-    }
+//    public static func addGioHangC(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(GioHangResponse?, String?) -> ()) {
+//        APIController.request(GioHangResponse.self, manager, params: params, headers: headers) { error, data in
+//            if let dataLoaiSanPham = data {
+//                completion(dataLoaiSanPham, nil)
+//                return
+//            }
+//            completion(nil, error)
+//        }
+//    }
     
     //get -> fetch
     public static func updateGioHang(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(GioHangResponse?, String?) -> ()) {

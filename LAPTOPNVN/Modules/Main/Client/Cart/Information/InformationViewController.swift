@@ -134,12 +134,15 @@ class InformationViewController: UIViewController {
         let address = self.address.text
         let dayPlan = Date().convertDateViewToSQL(self.datePlan.text!)
         let cmnd = UserService.shared.cmnd
-        
+        var isPay = true
+        if method == "COD"{
+            isPay = false
+        }
         print("\n BEGIN LIST ORDER ADD DB\n ")
         print(self.list)
         print("\n -------END LIST ORDER ADD DB------\n ")
         
-        let params = ModelAddGH(idgiohang: nil, ngaylapgiohang: nil, ngaydukien: dayPlan, tonggiatri: sum, matrangthai: 0, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email, malsp: nil, dslsp: self.list,ngaynhan: nil,phuongthuc: method).convertToDictionary()
+        let params = ModelAddGH(idgiohang: nil, ngaylapgiohang: nil, ngaydukien: dayPlan, tonggiatri: sum, matrangthai: 0, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email, malsp: nil, dslsp: self.list,ngaynhan: nil,phuongthuc: method, thanhtoan: isPay).convertToDictionary()
        
         APIService.addGioHang1(with: .addGioHang1, params: params, headers: nil, completion:   { base, error in
             guard let base = base else { return }

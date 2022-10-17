@@ -38,6 +38,8 @@ struct GioHangEdit : Encodable{
     let diachi: String?
     let sdt: String?
     let email: String?
+    let phuongthuc: String?
+    let thanhtoan: Bool?
 }
 
 //struct GioHangData : Decodable{
@@ -108,4 +110,5 @@ struct ModelAddGH: Encodable {
     let dslsp: [LoaiSanPhamKM1]?
     let ngaynhan: String?
     let phuongthuc: String?
+    let thanhtoan: Bool?
 }

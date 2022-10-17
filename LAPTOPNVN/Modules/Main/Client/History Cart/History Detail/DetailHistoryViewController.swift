@@ -20,6 +20,7 @@ class DetailHistoryViewController: UIViewController {
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     var currentSerial: String?
     var comment: String?
+    var isRate = true
     
     override func viewDidAppear(_ animated: Bool = false) {
         loadData()
@@ -38,8 +39,7 @@ class DetailHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Chi tiết giỏ hàng"
-        
-        if  self.order?.tentrangthai == "Chờ duyệt"{
+        if  order?.tentrangthai == "Chờ duyệt"{
             btnCancel.isHidden = false
         }else {  btnCancel.isHidden = true}
         if let nameShipper = order?.nvgiao, let sdtnvg = order?.sdtnvg {
@@ -147,9 +147,7 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
             cell.gia.text =  "\(CurrencyVN.toVND(giaban))"
         }
         cell.selectionStyle = .none
-        if (UserService.shared.maNV.isEmpty){
-            cell.viewRate.isHidden = false
-        }
+        
         let gestureRate : UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tapRate(tapGesture:)))
         gestureRate.delegate = self
         gestureRate.numberOfTapsRequired = 1
@@ -158,7 +156,7 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
         cell.viewRate.addGestureRecognizer(gestureRate)
         
         if let stt = order?.tentrangthai{
-            if (stt == "Đã giao hàng"){
+            if (stt == "Đã giao hàng") && (UserService.shared.maNV == ""){
                 cell.viewRate.isHidden = false
             }else {
                 cell.viewRate.isHidden = true
@@ -222,7 +220,7 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
         }))
         alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
             self.dismiss(animated: true)
-            let params = GioHangEdit(idgiohang: order.idgiohang, ngaylapgiohang: order.ngaylapgiohang,ngaydukien: order.ngaydukien, tonggiatri: order.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order.nguoinhan, diachi: order.diachi, sdt: order.sdt, email: order.email).convertToDictionary()
+            let params = GioHangEdit(idgiohang: order.idgiohang, ngaylapgiohang: order.ngaylapgiohang,ngaydukien: order.ngaydukien, tonggiatri: order.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order.nguoinhan, diachi: order.diachi, sdt: order.sdt, email: order.email,phuongthuc: order.phuongthuc,thanhtoan: order.thanhtoan).convertToDictionary()
             self.updateGH(params: params)
         }))
         self.present(alert, animated: true)

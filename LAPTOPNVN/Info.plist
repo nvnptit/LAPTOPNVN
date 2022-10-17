@@ -11,7 +11,9 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location Usage</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Please</string>
+	<string>Location Please</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera Please</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
