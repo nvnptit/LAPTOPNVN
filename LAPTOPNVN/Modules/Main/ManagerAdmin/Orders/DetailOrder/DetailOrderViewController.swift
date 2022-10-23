@@ -11,13 +11,14 @@ import NVActivityIndicatorView
 
 class DetailOrderViewController: UIViewController {
     
+    @IBOutlet weak var datePlan: UITextField!
     @IBOutlet weak var lbMap: UIButton!
     @IBOutlet weak var maDH: UILabel!
     
     @IBOutlet weak var nguoiNhan: UILabel!
     @IBOutlet weak var sdt: UILabel!
     @IBOutlet weak var ngayLapDon: UILabel!
-    @IBOutlet weak var ngayDuKien: UILabel!
+    
     @IBOutlet weak var diaChi: UILabel!
     @IBOutlet weak var trangThai: UILabel!
     
@@ -52,11 +53,21 @@ class DetailOrderViewController: UIViewController {
     var order: HistoryOrder1?
 //    var order1: HistoryOrder1?
     
+    
+    let datePicker1 = UIDatePicker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAnimation()
         setupDropDown()
         setupKeyboard()
+        
+        if #available(iOS 13.4, *) {
+            createDatePicker()
+        } else {
+            // Fallback on earlier versions
+        }
+        
         loadData()
         if  self.order?.tentrangthai == "Đang giao hàng" {
             lbMap.isHidden = false
@@ -80,8 +91,10 @@ class DetailOrderViewController: UIViewController {
             btnHuy.isHidden = true
             btnDuyet.setTitle("Lưu thay đổi", for: .normal)
         }else if (order?.tentrangthai == "Đang giao hàng" && KEY == "SHIPPER") {
-            btnHuy.isHidden = true
+//            btnHuy.isHidden = true
             btnDuyet.setTitle("Xác nhận đã giao hàng", for: .normal)
+            // Cap nhat thoi gian nhan du kien
+            btnHuy.setTitle("Cập nhật thời gian dự kiến", for: .normal)
         }else {
             btnDuyet.isHidden = true
             btnHuy.isHidden = true
@@ -98,7 +111,7 @@ class DetailOrderViewController: UIViewController {
             nguoiNhan.text = order.nguoinhan
             sdt.text = order.sdt
             ngayLapDon.text = Date().convertDateTimeSQLToView(date: order.ngaylapgiohang!, format: "dd-MM-yyyy HH:MM:ss")
-            ngayDuKien.text = Date().convertDateTimeSQLToView(date: order.ngaydukien!, format: "dd-MM-yyyy")
+            datePlan.text = Date().convertDateTimeSQLToView(date: order.ngaydukien!, format: "dd-MM-yyyy")
             diaChi.text = order.diachi
             trangThai.text = order.tentrangthai
             nvDuyet.text = order.nvduyet ?? ""
@@ -186,16 +199,44 @@ class DetailOrderViewController: UIViewController {
     }
     
     @IBAction func tapHuyDon(_ sender: UIButton, forEvent event: UIEvent) {
-        let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
-        self.updateGH(params: params)
-        
-        let alert = UIAlertController(title: "Huỷ đơn hàng thành công", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-            self.dismiss(animated: true)
-            let vc = OrderViewController()
-            self.navigationController?.pushViewController(vc, animated: false)
-        }))
-        self.present(alert, animated: true)
+        if (btnHuy.titleLabel?.text == "Huỷ đơn"){
+            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
+            self.updateGH(params: params)
+            
+            let alert = UIAlertController(title: "Huỷ đơn hàng thành công", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+                let vc = OrderViewController()
+                self.navigationController?.pushViewController(vc, animated: false)
+            }))
+            self.present(alert, animated: true)
+        }else // Cap nhat thoi gian du kien
+        {
+            let currentDate = Date()
+            let current = "\(currentDate)".prefix(10)
+            guard let datePlan = datePlan.text else {return}
+            if (!Date().checkDatePlan(start: datePlan, end: Date().convertDateSQLToView(String(current))) ){
+                let alert = UIAlertController(title: "Ngày giao dự kiến mới cần sau ngày hiện tại", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+                return
+            }
+            
+            let newDatePlan = Date().convertDateViewToSQL(datePlan)
+            let alert = UIAlertController(title: "Bạn có chắc cập nhật ngày giao dự kiến mới?", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ [self] _ in
+                self.dismiss(animated: true)
+                let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: newDatePlan, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: self.order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: true).convertToDictionary()
+                self.updateShipper(params: params)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            
+        }
     }
     
     @IBAction func tapDetail(_ sender: UIButton, forEvent event: UIEvent) {
@@ -224,9 +265,9 @@ extension DetailOrderViewController {
     }
     func updateShipper(params: [String : Any]?){
         APIService.updateGioHang(with: .putOrderShipper, params: params, headers: nil, completion: { base, error in
-            guard let base = base else { return }
+            guard let base = base, let mess = base.message else { return }
             if base.success == true {
-                let alert = UIAlertController(title: "Giao hàng thành công", message: "", preferredStyle: .alert)
+                let alert = UIAlertController(title: mess, message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
                     self.navigationController?.popViewController(animated: true)
@@ -338,5 +379,44 @@ extension DetailOrderViewController{
                 self.setupNVGiao()
             }
         })
+    }
+}
+
+extension DetailOrderViewController{
+    //MARK: - Datepicker
+    private func createToolbar(_ datePickerView: UIDatePicker) -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapOnView))
+        switch (datePickerView){
+            case datePicker1:
+                let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donedatePicker1))
+                let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                toolbar.setItems([cancelButton,flexButton,doneButton], animated: true)
+            default: break
+                
+        }
+        
+        return toolbar
+    }
+    @available(iOS 13.4, *)
+    private func createDatePicker() {
+        datePicker1.preferredDatePickerStyle = .wheels
+        
+        if #available(iOS 14, *) {
+            datePicker1.preferredDatePickerStyle = .inline
+        }
+        
+        datePicker1.datePickerMode = .date
+        datePlan.inputView = datePicker1
+        datePlan.inputAccessoryView = createToolbar(datePicker1)
+        
+    }
+    
+    @objc func donedatePicker1() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        datePlan.text =  dateFormatter.string(from: datePicker1.date)
+        view.endEditing(true)
     }
 }
