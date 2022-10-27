@@ -51,16 +51,6 @@ struct HistoryOrder1 : Decodable{
     let ngaynhan: String?
     let phuongthuc: String?
     let thanhtoan: Bool?
-    
-//    let serial: String?
-//    let tenlsp: String?
-//    let anhlsp: String?
-//    let mota: String?
-//    let cpu: String?
-//    let ram: String?
-//    let harddrive: String?
-//    let cardscreen: String?
-//    let os: String?
 }
 
 struct HistoryOrder1Detail : Decodable{
@@ -77,4 +67,23 @@ struct HistoryOrder1Detail : Decodable{
 }
 struct ModelDetailHistory: Encodable {
     let idGioHang: Int?
+}
+
+struct HistoryOrderSorted : Decodable{
+    let idgiohang: Int?
+    let ngaylapgiohang: String?
+    let ngaydukien: String?
+    let tonggiatri: Int?
+    let tentrangthai: String?
+    let nvgiao: String?
+    let sdtnvg: String?
+    let nvduyet: String?
+    let nguoinhan: String?
+    let diachi: String?
+    let sdt: String?
+    let email: String?
+    let ngaynhan: String?
+    let phuongthuc: String?
+    let thanhtoan: Bool?
+    let km: Float?
 }

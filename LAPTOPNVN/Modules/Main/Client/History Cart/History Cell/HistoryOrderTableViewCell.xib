@@ -79,7 +79,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Khoảng cách:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGO-dx-UdQ">
-                        <rect key="frame" x="154.5" y="98" width="107" height="21"/>
+                        <rect key="frame" x="129.5" y="98" width="107" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="MRX-FU-Kzt"/>
                         </constraints>
@@ -190,8 +190,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nn-0H-Cb8">
-                        <rect key="frame" x="269.5" y="98" width="26" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nn-0H-Cb8">
+                        <rect key="frame" x="244.5" y="98" width="0.0" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="I4u-1n-tzU"/>
                         </constraints>
@@ -234,7 +234,7 @@
                     <constraint firstItem="l5W-4P-Bis" firstAttribute="top" secondItem="SWf-0N-dmf" secondAttribute="bottom" constant="5" id="k8T-kF-SFA"/>
                     <constraint firstItem="UQx-3P-SgZ" firstAttribute="top" secondItem="MTj-jo-u9S" secondAttribute="bottom" constant="2" id="kuR-LW-KJp"/>
                     <constraint firstItem="glC-Mh-kVm" firstAttribute="top" secondItem="MTj-jo-u9S" secondAttribute="bottom" constant="2" id="kzJ-P7-elU"/>
-                    <constraint firstItem="SGO-dx-UdQ" firstAttribute="leading" secondItem="zfB-eX-zfE" secondAttribute="trailing" constant="40" id="mJ5-Id-tFy"/>
+                    <constraint firstItem="SGO-dx-UdQ" firstAttribute="leading" secondItem="zfB-eX-zfE" secondAttribute="trailing" constant="15" id="mJ5-Id-tFy"/>
                     <constraint firstItem="MTj-jo-u9S" firstAttribute="top" secondItem="fcS-Ja-43E" secondAttribute="bottom" constant="2" id="nsz-BS-WmJ"/>
                     <constraint firstItem="9nn-0H-Cb8" firstAttribute="top" secondItem="T3g-Ec-jxX" secondAttribute="bottom" constant="49" id="oJr-cN-SlI"/>
                     <constraint firstItem="LcN-IV-LAU" firstAttribute="top" secondItem="rpn-fq-pE4" secondAttribute="bottom" constant="2" id="odc-xc-Wp6"/>

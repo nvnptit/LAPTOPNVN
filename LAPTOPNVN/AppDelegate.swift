@@ -7,13 +7,21 @@
 
 import UIKit
 import BraintreePayPal
+import FirebaseCore
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-       
+        
+        //Firebase
+        FirebaseApp.configure()
+        
+        
+        //APP
+        
         UIApplication.shared.windows.forEach { window in
             if #available(iOS 13.0, *) {
                 window.overrideUserInterfaceStyle = .light

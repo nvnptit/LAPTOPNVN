@@ -19,7 +19,6 @@ target 'LAPTOPNVN' do
   # Optionally include additional Pods
  #pod 'Braintree/DataCollector'
   #pod 'Braintree/Venmo'
-
   
   target 'LAPTOPNVNTests' do
     inherit! :search_paths

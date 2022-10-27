@@ -35,7 +35,40 @@ class OrderShipViewController: UIViewController {
     let datePicker2 = UIDatePicker()
     
     var dataHistory: [HistoryOrder1] = []
+    var dataSorted: [HistoryOrderSorted] = []
     
+    func addDataSorted(item: HistoryOrder1?, km: Float){
+        guard let item = item else {return}
+        dataSorted.append(HistoryOrderSorted(idgiohang: item.idgiohang, ngaylapgiohang: item.ngaylapgiohang, ngaydukien: item.ngaydukien, tonggiatri: item.tonggiatri, tentrangthai: item.tentrangthai, nvgiao: item.nvgiao, sdtnvg: item.sdtnvg, nvduyet: item.nvduyet, nguoinhan: item.nguoinhan, diachi: item.diachi, sdt: item.sdt, email: item.email, ngaynhan: item.ngaynhan, phuongthuc: item.phuongthuc, thanhtoan: item.thanhtoan, km: km))
+        dataSorted.sort{
+            ($0.km ?? 0 ) < ($1.km ?? 0)
+        }
+        dataSorted.sort{
+            let dateFormat = "dd-MM-yyyy"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = dateFormat
+            let currentDate = Date()
+            let current = "\(currentDate)".prefix(10)
+            let curr = dateFormatter.date(from: Date().convertDateSQLToView(String(current)))
+            let startDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $0.ngaydukien!, format: "dd-MM-yyyy"))
+            let endDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $1.ngaydukien!, format: "dd-MM-yyyy"))
+            
+            return (startDate == curr) || (endDate == curr)  || (startDate! < endDate!)
+        }
+        dataSorted.sort{
+            let dateFormat = "dd-MM-yyyy"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = dateFormat
+            let currentDate = Date()
+            let current = "\(currentDate)".prefix(10)
+            let curr = dateFormatter.date(from: Date().convertDateSQLToView(String(current)))
+            let startDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $0.ngaydukien!, format: "dd-MM-yyyy"))
+            let endDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $1.ngaydukien!, format: "dd-MM-yyyy"))
+            return
+            (startDate == curr) && (endDate == startDate)  && ($0.km ?? 0 ) < ($1.km ?? 0)
+        }
+        
+    }
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loading)
@@ -70,7 +103,6 @@ class OrderShipViewController: UIViewController {
     
     
     override func viewDidAppear(_ animated: Bool = false) {
-        //        self.navigationController?.isNavigationBarHidden = true
         loadDataHistory()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,12 +119,14 @@ class OrderShipViewController: UIViewController {
     
     
     @IBAction func tapMap(_ sender: UIButton, forEvent event: UIEvent) {
-            let vc = MapsViewController()
-            vc.dataHistory = self.dataHistory
-            self.navigationController?.pushViewController(vc, animated: true)
+        let vc = MapsViewController()
+        vc.dataHistory = self.dataHistory
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func loadDataHistory(){
+        
+        self.dataSorted.removeAll()
         loading.startAnimating()
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
         let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
@@ -105,14 +139,46 @@ class OrderShipViewController: UIViewController {
                 guard let self = self, let base = base else { return }
                 if base.success == true {
                     if let data = base.data {
-                        self.dataHistory = data
+                        if data.isEmpty{
+                            DispatchQueue.main.async { [weak self] in
+                                guard let self = self else { return }
+                                self.tableView.reloadData()
+                                self.loading.stopAnimating()
+                            }
+                        } else {
+                            self.dataHistory = data
+                            for  it in data{
+                                guard let diachi = it.diachi else {return}
+                                // Hien thi khoang cach
+                                LocationManager.shared.forwardGeocoding(address: diachi.lowercased(), completion: {
+                                    success,coordinate in
+                                    if success {
+                                        guard let lat = coordinate?.latitude,
+                                              let long = coordinate?.longitude else {return}
+                                        
+                                        let mySourceLocation = CLLocation(latitude: LocationManager.shared.lat, longitude: LocationManager.shared.long)
+                                        let myDestinationLocation = CLLocation(latitude: lat, longitude: long)
+                                        let distance = mySourceLocation.distance(from: myDestinationLocation)
+                                        self.addDataSorted(item: it, km: Float(String(format: "%.01f", distance)) ?? 0.0)
+                                    } else {
+                                        self.addDataSorted(item: it, km: -1)
+                                        print("error sth went wrong")
+                                    }
+                                    DispatchQueue.main.async { [weak self] in
+                                        guard let self = self else { return }
+                                        self.tableView.reloadData()
+                                        self.loading.stopAnimating()
+                                    }
+                                })
+                            }
+                        }
+                        
+                        
                     }
-                } 
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.tableView.reloadData()
-                    self.loading.stopAnimating()
+                    
                 }
+                
+                
             })
         }
         
@@ -249,7 +315,8 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataHistory.count
+        //        return dataHistory.count
+        return dataSorted.count
     }
     
     
@@ -261,17 +328,18 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderTableViewCell", for: indexPath) as! HistoryOrderTableViewCell
-        let item = dataHistory[indexPath.item]
+        
+        let item = dataSorted[indexPath.item]
         let dateReceive = item.ngaynhan ?? ""
         if let ngaylapgiohang = item.ngaylapgiohang,
            let tentrangthai = item.tentrangthai,
-            let nguoinhan = item.nguoinhan,
+           let nguoinhan = item.nguoinhan,
            let diachi = item.diachi,
            let sdt = item.sdt,
            let datePlan = item.ngaydukien,
            let idGH = item.idgiohang,
-            let method = item.phuongthuc
-        
+           let method = item.phuongthuc
+            
         {
             cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss")
             cell.status.text = tentrangthai
@@ -288,39 +356,49 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.dateReceive.text = ""
             }
             if (tentrangthai == "Đang giao hàng"){
-                    cell.lbDistance.isHidden = false
-                    cell.distance.isHidden = false
+                cell.lbDistance.isHidden = false
+                cell.distance.isHidden = false
                 lbMap.isHidden = false
             }
-                else{
+            else{
                 cell.lbDistance.isHidden = true
                 cell.distance.isHidden = true
-                    lbMap.isHidden = true
+                lbMap.isHidden = true
             }
-           // Hien thi khoang cach
-            LocationManager.shared.forwardGeocoding(address: diachi.lowercased(), completion: {
-                success,coordinate in
-                if success {
-                    guard let lat = coordinate?.latitude,
-                          let long = coordinate?.longitude else {return}
-                         // Do sth with your coordinates
-                    
-                    let mySourceLocation = CLLocation(latitude: LocationManager.shared.lat, longitude: LocationManager.shared.long)
-                    let myDestinationLocation = CLLocation(latitude: lat, longitude: long)
-                    let distance = mySourceLocation.distance(from: myDestinationLocation)
-                    if (distance/1000>1){
-                        cell.distance.text = String(format: "%.01f km", distance/1000)
-                    }
-                    else {
-                        
-                        cell.distance.text = String(format: "%.0f m", distance)
-                    }
-//                    //render
-//                    self.mapThis (destinationCord: coordinate!)
-                     } else {
-                         print("error sth went wrong")
-                     }
-            })
+            let distance = item.km ?? 0.0
+            if (distance == -1.0){
+                cell.distance.text = "Không xác định"
+            }else
+            if (distance/1000>1){
+                cell.distance.text = String(format: "%.01fkm", distance/1000)
+            }else {
+                cell.distance.text =  String(format: "%.0fm", distance)
+            }
+            
+            // Hien thi khoang cach
+            //            LocationManager.shared.forwardGeocoding(address: diachi.lowercased(), completion: {
+            //                success,coordinate in
+            //                if success {
+            //                    guard let lat = coordinate?.latitude,
+            //                          let long = coordinate?.longitude else {return}
+            //                         // Do sth with your coordinates
+            //
+            //                    let mySourceLocation = CLLocation(latitude: LocationManager.shared.lat, longitude: LocationManager.shared.long)
+            //                    let myDestinationLocation = CLLocation(latitude: lat, longitude: long)
+            //                    let distance = mySourceLocation.distance(from: myDestinationLocation)
+            //                    if (distance/1000>1){
+            //                        cell.distance.text = String(format: "%.01f km", distance/1000)
+            //                    }
+            //                    else {
+            //
+            //                        cell.distance.text = String(format: "%.0f m", distance)
+            //                    }
+            ////                    //render
+            ////                    self.mapThis (destinationCord: coordinate!)
+            //                     } else {
+            //                         print("error sth went wrong")
+            //                     }
+            //            })
         }
         cell.selectionStyle = .none
         return cell
@@ -333,6 +411,4 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
         self.navigationController?.pushViewController(detailOrderViewController, animated: true)
     }
 }
-
-
 
