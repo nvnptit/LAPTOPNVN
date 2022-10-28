@@ -16,6 +16,36 @@ struct APIService {
 //        static let baseUrl: String = "http://192.168.2.19"
     //    static let baseUrl: String = "http://172.20.10.8"
     
+    
+    //Get Ward
+    public static func getWards(with code: Int, _ completion: @escaping(Ward?, String?) -> ()) {  APIController.requestGET(Ward.self, .getWard(code) ) { error, data in
+        if let data = data {
+            completion(data,nil)
+            return
+        }
+        completion(nil, error)
+    }
+    }
+    //Get District
+    public static func getDistricts(with code: Int, _ completion: @escaping(District?, String?) -> ()) {  APIController.requestGET(District.self, .getDistrict(code) ) { error, data in
+        if let data = data {
+            completion(data,nil)
+            return
+        }
+        completion(nil, error)
+    }
+    }
+    
+    //Get Province
+    public static func getProvince(_ completion: @escaping([ProvinceElement]?, String?) -> ()) {  APIController.requestGET([ProvinceElement].self, .getProvince ) { error, data in
+        if let data = data {
+            completion(data,nil)
+            return
+        }
+        completion(nil, error)
+    }
+    }
+    
     //Get rate by RateList
     public static func getRateList(with seri:String, _ completion: @escaping(ResponseBase<[RateListResponse]>?, String?) -> ()) {  APIController.requestGET(ResponseBase<[RateListResponse]>.self, .getListRate(seri) ) { error, data in
         if let data = data {

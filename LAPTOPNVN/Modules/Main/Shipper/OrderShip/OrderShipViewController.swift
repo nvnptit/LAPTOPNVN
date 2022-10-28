@@ -19,8 +19,8 @@ class OrderShipViewController: UIViewController {
     @IBOutlet weak var tfTo: UITextField!
     
     @IBOutlet weak var dropdownStatus: UIView!
-    
     @IBOutlet weak var status: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var lbMap: UIButton!

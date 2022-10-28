@@ -88,6 +88,11 @@
 		7935B41628E7D579004AE3AD /* SaleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */; };
 		7935B41728E7D579004AE3AD /* SaleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */; };
 		7935B41828E7D579004AE3AD /* SaleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */; };
+		793FC379290BB2CB00F1D95D /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793FC378290BB2CB00F1D95D /* District.swift */; };
+		793FC37B290BB42100F1D95D /* Ward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793FC37A290BB42100F1D95D /* Ward.swift */; };
+		793FC37E290BB48300F1D95D /* TestAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793FC37C290BB48300F1D95D /* TestAddressViewController.swift */; };
+		793FC37F290BB48300F1D95D /* TestAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 793FC37D290BB48300F1D95D /* TestAddressViewController.xib */; };
+		793FC381290BCC0200F1D95D /* Province.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793FC380290BCC0200F1D95D /* Province.swift */; };
 		794610DF28EAD25700EDE177 /* RateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794610DE28EAD25700EDE177 /* RateModel.swift */; };
 		79475E142882438D005911E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79475E132882438D005911E3 /* AppDelegate.swift */; };
 		79475E162882438D005911E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79475E152882438D005911E3 /* SceneDelegate.swift */; };
@@ -296,7 +301,6 @@
 		79A5440E288D70C300179574 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A54409288D70C300179574 /* SearchViewController.xib */; };
 		79A5440F288D70C300179574 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A54409288D70C300179574 /* SearchViewController.xib */; };
 		79A729B4290851E600AD5A3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79A729B3290851E500AD5A3D /* GoogleService-Info.plist */; };
-		79A729B6290853A800AD5A3D /* TestMess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A729B5290853A800AD5A3D /* TestMess.swift */; };
 		79A729B9290854E900AD5A3D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79A729B8290854E900AD5A3D /* FirebaseAnalytics */; };
 		79A729BB290854E900AD5A3D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 79A729BA290854E900AD5A3D /* FirebaseAuth */; };
 		79A729BD290854E900AD5A3D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 79A729BC290854E900AD5A3D /* FirebaseMessaging */; };
@@ -381,7 +385,6 @@
 		79D99EE328E758BF00954A12 /* SaleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79D99EDF28E758BF00954A12 /* SaleTableViewCell.xib */; };
 		79D99EE428E758BF00954A12 /* SaleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79D99EDF28E758BF00954A12 /* SaleTableViewCell.xib */; };
 		79D99EE528E758BF00954A12 /* SaleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79D99EDF28E758BF00954A12 /* SaleTableViewCell.xib */; };
-		79DA1DEF28FA8BDB00F0520F /* DistrictElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DA1DEE28FA8BDB00F0520F /* DistrictElement.swift */; };
 		79DA1DF228FA97DC00F0520F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DA1DF128FA97DC00F0520F /* Color.swift */; };
 		79ECC22628850C460002E81D /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */; };
 		79ECC22728850C460002E81D /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */; };
@@ -474,6 +477,11 @@
 		792DDAA628901785000ACAFC /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		7935B41128E7D579004AE3AD /* SaleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleDetailViewController.swift; sourceTree = "<group>"; };
 		7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaleDetailViewController.xib; sourceTree = "<group>"; };
+		793FC378290BB2CB00F1D95D /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
+		793FC37A290BB42100F1D95D /* Ward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ward.swift; sourceTree = "<group>"; };
+		793FC37C290BB48300F1D95D /* TestAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAddressViewController.swift; sourceTree = "<group>"; };
+		793FC37D290BB48300F1D95D /* TestAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestAddressViewController.xib; sourceTree = "<group>"; };
+		793FC380290BCC0200F1D95D /* Province.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Province.swift; sourceTree = "<group>"; };
 		794610DE28EAD25700EDE177 /* RateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateModel.swift; sourceTree = "<group>"; };
 		79475E102882438D005911E3 /* LAPTOPNVN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LAPTOPNVN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79475E132882438D005911E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -566,7 +574,6 @@
 		79A54408288D70C300179574 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		79A54409288D70C300179574 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		79A729B3290851E500AD5A3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		79A729B5290853A800AD5A3D /* TestMess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMess.swift; sourceTree = "<group>"; };
 		79AAC98B28A73C9300CD2E23 /* EmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeViewController.swift; sourceTree = "<group>"; };
 		79AAC98C28A73C9300CD2E23 /* EmployeeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeViewController.xib; sourceTree = "<group>"; };
 		79AAC99428A73CBE00CD2E23 /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
@@ -593,7 +600,6 @@
 		79D99ED728E7589400954A12 /* SaleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaleViewController.xib; sourceTree = "<group>"; };
 		79D99EDE28E758BF00954A12 /* SaleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleTableViewCell.swift; sourceTree = "<group>"; };
 		79D99EDF28E758BF00954A12 /* SaleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaleTableViewCell.xib; sourceTree = "<group>"; };
-		79DA1DEE28FA8BDB00F0520F /* DistrictElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictElement.swift; sourceTree = "<group>"; };
 		79DA1DF128FA97DC00F0520F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1050,7 +1056,8 @@
 			children = (
 				796B61D228EF1B9500E44B95 /* TestMapsViewController.swift */,
 				796B61D328EF1B9500E44B95 /* TestMapsViewController.xib */,
-				79A729B5290853A800AD5A3D /* TestMess.swift */,
+				793FC37C290BB48300F1D95D /* TestAddressViewController.swift */,
+				793FC37D290BB48300F1D95D /* TestAddressViewController.xib */,
 			);
 			path = Maps;
 			sourceTree = "<group>";
@@ -1442,7 +1449,9 @@
 		79DA1DED28FA8BC800F0520F /* DataMaps */ = {
 			isa = PBXGroup;
 			children = (
-				79DA1DEE28FA8BDB00F0520F /* DistrictElement.swift */,
+				793FC378290BB2CB00F1D95D /* District.swift */,
+				793FC37A290BB42100F1D95D /* Ward.swift */,
+				793FC380290BCC0200F1D95D /* Province.swift */,
 			);
 			path = DataMaps;
 			sourceTree = "<group>";
@@ -1659,6 +1668,7 @@
 				796B61D528EF1B9500E44B95 /* TestMapsViewController.xib in Resources */,
 				79475E8A28824D7E005911E3 /* HomeViewController.xib in Resources */,
 				79D8CD362892ECAF00984EF3 /* PayPalViewController.xib in Resources */,
+				793FC37F290BB48300F1D95D /* TestAddressViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1883,6 +1893,7 @@
 				7986293728A81D4500FC08AE /* CategoryTableViewCell.swift in Sources */,
 				796B61D428EF1B9500E44B95 /* TestMapsViewController.swift in Sources */,
 				794610DF28EAD25700EDE177 /* RateModel.swift in Sources */,
+				793FC381290BCC0200F1D95D /* Province.swift in Sources */,
 				79475E8128824C7E005911E3 /* MainTabBarController.swift in Sources */,
 				79475E7C28824C04005911E3 /* UserService.swift in Sources */,
 				7986294A28A8210100FC08AE /* DetailCategoryViewController.swift in Sources */,
@@ -1901,10 +1912,11 @@
 				79A0364428E829A9002532FD /* DetailSaleTableViewCell.swift in Sources */,
 				791BB927289E729F002B5871 /* StatTableViewCell.swift in Sources */,
 				792A293628B1F9830075AD18 /* DetailHistoryViewController.swift in Sources */,
+				793FC37E290BB48300F1D95D /* TestAddressViewController.swift in Sources */,
+				793FC37B290BB42100F1D95D /* Ward.swift in Sources */,
 				79475E162882438D005911E3 /* SceneDelegate.swift in Sources */,
 				791DE89728EB4926007C2D22 /* ForgotPasswordViewController.swift in Sources */,
 				7996271F2896133E00B6EDF9 /* HistoryModel.swift in Sources */,
-				79A729B6290853A800AD5A3D /* TestMess.swift in Sources */,
 				7929A4DF28A7ABD70080FE45 /* TaiKhoan.swift in Sources */,
 				79CF9BCB288AFB5800709A26 /* GioHang.swift in Sources */,
 				792DDAA728901785000ACAFC /* Search.swift in Sources */,
@@ -1929,11 +1941,11 @@
 				791BB92F289EA93C002B5871 /* DoanhThuModel.swift in Sources */,
 				79BF62122891AAB70007FE0D /* CustomCell.swift in Sources */,
 				79A394C028886C4200CB3325 /* CartItemCollectionViewCell.swift in Sources */,
-				79DA1DEF28FA8BDB00F0520F /* DistrictElement.swift in Sources */,
 				7986294228A81FC500FC08AE /* ProductTableViewCell.swift in Sources */,
 				7953E7FD28F98D05000BF741 /* MapsViewController.swift in Sources */,
 				79B3296C2891A5C4000E4197 /* InformationViewController.swift in Sources */,
 				79D99ECB28E7573900954A12 /* Sale.swift in Sources */,
+				793FC379290BB2CB00F1D95D /* District.swift in Sources */,
 				796DF2B428928A3000F34C82 /* User.swift in Sources */,
 				79AAC98D28A73C9300CD2E23 /* EmployeeViewController.swift in Sources */,
 				796DF2A92892703500F34C82 /* RegisterViewController.swift in Sources */,

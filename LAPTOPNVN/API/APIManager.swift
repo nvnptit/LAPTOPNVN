@@ -90,6 +90,9 @@ enum APIManager {
     case putRate
     
     case postForgotPassword
+    case getProvince
+    case getDistrict(Int)
+    case getWard(Int)
 }
 
 extension APIManager {
@@ -226,6 +229,21 @@ extension APIManager {
                 path = "/binh-luan"
             case .getListRate(let maLSP):
                 path = "/binh-luan/SANPHAM?maLSP=\(maLSP)"
+            case .getProvince:
+                do {
+                    path = "https://provinces.open-api.vn/api/p"
+                    return path
+                }
+            case .getDistrict(let code):
+                do {
+                    path = "https://provinces.open-api.vn/api/p/\(code)?depth=2"
+                    return path
+                }
+            case .getWard(let code):
+                do {
+                    path = "https://provinces.open-api.vn/api/d/\(code)?depth=2"
+                    return path
+                }
         }
         return baseURL + path
     }
@@ -240,7 +258,8 @@ extension APIManager {
                     .getMaSoNV, .getMaSoLSP, .getQuyen, .getTyGia,
                     .getDetailHistory, .getSoLuongLSP,
                     .getSLSeri, .getPhieuNhap,
-                    .getDotGG, .getMaSoDGG, .getDetailSale, .getRate, .getRateBySeri, .getListRate
+                    .getDotGG, .getMaSoDGG, .getDetailSale, .getRate, .getRateBySeri, .getListRate,
+                    .getProvince, .getWard, .getDistrict
                 :
                 return .get
             case .login, .register, .resetPass, .addUserKH, .uploadAvatar,
