@@ -161,12 +161,12 @@ class DetailOrderViewController: UIViewController {
             let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
             self.updateGH(params: params)
             
-            let alert = UIAlertController(title: "Duyệt đơn hàng thành công", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                self.dismiss(animated: true)
-                self.navigationController?.popViewController(animated: true)
-            }))
-            self.present(alert, animated: true)
+//            let alert = UIAlertController(title: "Duyệt đơn hàng thành công", message: "", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+//                self.dismiss(animated: true)
+//                self.navigationController?.popViewController(animated: true)
+//            }))
+//            self.present(alert, animated: true)
             
         }else if (btnDuyet.titleLabel?.text == "Xác nhận đã giao hàng"){
             print("Xác nhận")
@@ -187,29 +187,38 @@ class DetailOrderViewController: UIViewController {
             print("Lưu")
             let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
             self.updateGH(params: params)
-            
-            let alert = UIAlertController(title: "Cập nhật nhân viên giao hàng thành công", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                self.dismiss(animated: true)
-                self.navigationController?.popViewController(animated: true)
-            }))
-            self.present(alert, animated: true)
+//
+//            let alert = UIAlertController(title: "Cập nhật nhân viên giao hàng thành công", message: "", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+//                self.dismiss(animated: true)
+//                self.navigationController?.popViewController(animated: true)
+//            }))
+//            self.present(alert, animated: true)
             
         }
     }
     
     @IBAction func tapHuyDon(_ sender: UIButton, forEvent event: UIEvent) {
         if (btnHuy.titleLabel?.text == "Huỷ đơn"){
-            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
-            self.updateGH(params: params)
-            
-            let alert = UIAlertController(title: "Huỷ đơn hàng thành công", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+            guard let order = self.order else {return}
+            let alert = UIAlertController(title: "Bạn có chắc huỷ đơn hàng này?", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
                 self.dismiss(animated: true)
-                let vc = OrderViewController()
-                self.navigationController?.pushViewController(vc, animated: false)
+            }))
+            alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
+                self.dismiss(animated: true)
+                let params = GioHangEdit(idgiohang: order.idgiohang, ngaylapgiohang: order.ngaylapgiohang,ngaydukien: order.ngaydukien, tonggiatri: order.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order.nguoinhan, diachi: order.diachi, sdt: order.sdt, email: order.email,phuongthuc: order.phuongthuc,thanhtoan: order.thanhtoan).convertToDictionary()
+                self.updateGH(params: params)
             }))
             self.present(alert, animated: true)
+            
+//            let alert = UIAlertController(title: "Huỷ đơn hàng thành công", message: "", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+//                self.dismiss(animated: true)
+//                let vc = OrderViewController()
+//                self.navigationController?.pushViewController(vc, animated: false)
+//            }))
+//            self.present(alert, animated: true)
         }else // Cap nhat thoi gian du kien
         {
             let currentDate = Date()
@@ -256,10 +265,20 @@ extension DetailOrderViewController {
         APIService.updateGioHang(with: .updateGioHangAdmin, params: params, headers: nil, completion: { base, error in
             guard let base = base else { return }
             if base.success == true {
-                print("success updateGioHang")
+                let alert = UIAlertController(title: "Cập nhật thông tin đơn hàng thành công!", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                        self.dismiss(animated: true)
+                        self.navigationController?.popViewController(animated: true)
+                    }))
+                    self.present(alert, animated: true)
             }
             else {
-                fatalError()
+                    let alert = UIAlertController(title: "Đã có lỗi xảy ra!", message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                            self.dismiss(animated: true)
+                            self.navigationController?.popViewController(animated: true)
+                        }))
+                        self.present(alert, animated: true)
             }
         })
     }
