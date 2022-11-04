@@ -88,6 +88,12 @@
 		7935B41628E7D579004AE3AD /* SaleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */; };
 		7935B41728E7D579004AE3AD /* SaleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */; };
 		7935B41828E7D579004AE3AD /* SaleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */; };
+		793E99392915425800D081FA /* ChatBotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E99372915425800D081FA /* ChatBotViewController.swift */; };
+		793E993A2915425800D081FA /* ChatBotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E99372915425800D081FA /* ChatBotViewController.swift */; };
+		793E993B2915425800D081FA /* ChatBotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793E99372915425800D081FA /* ChatBotViewController.swift */; };
+		793E993C2915425800D081FA /* ChatBotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 793E99382915425800D081FA /* ChatBotViewController.xib */; };
+		793E993D2915425800D081FA /* ChatBotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 793E99382915425800D081FA /* ChatBotViewController.xib */; };
+		793E993E2915425800D081FA /* ChatBotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 793E99382915425800D081FA /* ChatBotViewController.xib */; };
 		793FC379290BB2CB00F1D95D /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793FC378290BB2CB00F1D95D /* District.swift */; };
 		793FC37B290BB42100F1D95D /* Ward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793FC37A290BB42100F1D95D /* Ward.swift */; };
 		793FC37E290BB48300F1D95D /* TestAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793FC37C290BB48300F1D95D /* TestAddressViewController.swift */; };
@@ -270,6 +276,12 @@
 		799B916E289D92EA001F6B5F /* HomeAdminViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799B916A289D92EA001F6B5F /* HomeAdminViewController.xib */; };
 		799B916F289D92EA001F6B5F /* HomeAdminViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799B916A289D92EA001F6B5F /* HomeAdminViewController.xib */; };
 		799B9170289D92EA001F6B5F /* HomeAdminViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799B916A289D92EA001F6B5F /* HomeAdminViewController.xib */; };
+		799E50932914EC55007A173E /* ChatBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E50922914EC55007A173E /* ChatBot.swift */; };
+		799E50942914EC55007A173E /* ChatBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E50922914EC55007A173E /* ChatBot.swift */; };
+		799E50952914EC55007A173E /* ChatBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E50922914EC55007A173E /* ChatBot.swift */; };
+		799E5097291518D7007A173E /* BotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E5096291518D7007A173E /* BotResponse.swift */; };
+		799E5098291518D7007A173E /* BotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E5096291518D7007A173E /* BotResponse.swift */; };
+		799E5099291518D7007A173E /* BotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E5096291518D7007A173E /* BotResponse.swift */; };
 		799F3CFB28AB814F0019D3F6 /* TyGia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F3CFA28AB814F0019D3F6 /* TyGia.swift */; };
 		799F3CFC28AB814F0019D3F6 /* TyGia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F3CFA28AB814F0019D3F6 /* TyGia.swift */; };
 		799F3CFD28AB814F0019D3F6 /* TyGia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F3CFA28AB814F0019D3F6 /* TyGia.swift */; };
@@ -301,12 +313,6 @@
 		79A5440E288D70C300179574 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A54409288D70C300179574 /* SearchViewController.xib */; };
 		79A5440F288D70C300179574 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A54409288D70C300179574 /* SearchViewController.xib */; };
 		79A729B4290851E600AD5A3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79A729B3290851E500AD5A3D /* GoogleService-Info.plist */; };
-		79A729B9290854E900AD5A3D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79A729B8290854E900AD5A3D /* FirebaseAnalytics */; };
-		79A729BB290854E900AD5A3D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 79A729BA290854E900AD5A3D /* FirebaseAuth */; };
-		79A729BD290854E900AD5A3D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 79A729BC290854E900AD5A3D /* FirebaseMessaging */; };
-		79A729BF290854E900AD5A3D /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 79A729BE290854E900AD5A3D /* FirebaseRemoteConfig */; };
-		79A729C1290854E900AD5A3D /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 79A729C0290854E900AD5A3D /* FirebaseRemoteConfigSwift */; };
-		79A729C3290854E900AD5A3D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 79A729C2290854E900AD5A3D /* FirebaseStorage */; };
 		79AAC98D28A73C9300CD2E23 /* EmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AAC98B28A73C9300CD2E23 /* EmployeeViewController.swift */; };
 		79AAC98E28A73C9300CD2E23 /* EmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AAC98B28A73C9300CD2E23 /* EmployeeViewController.swift */; };
 		79AAC98F28A73C9400CD2E23 /* EmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AAC98B28A73C9300CD2E23 /* EmployeeViewController.swift */; };
@@ -355,6 +361,9 @@
 		79BF62232891C3650007FE0D /* DatHang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF62222891C3650007FE0D /* DatHang.swift */; };
 		79BF62242891C3650007FE0D /* DatHang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF62222891C3650007FE0D /* DatHang.swift */; };
 		79BF62252891C3650007FE0D /* DatHang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF62222891C3650007FE0D /* DatHang.swift */; };
+		79BFB0DA2915765C0030B192 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BFB0D92915765C0030B192 /* Message.swift */; };
+		79BFB0DD29157A980030B192 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BFB0DB29157A980030B192 /* MessageCell.swift */; };
+		79BFB0DE29157A980030B192 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BFB0DC29157A980030B192 /* MessageCell.xib */; };
 		79C43FF2289DFD2F008EA789 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C43FF0289DFD2F008EA789 /* OrderViewController.swift */; };
 		79C43FF3289DFD2F008EA789 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C43FF0289DFD2F008EA789 /* OrderViewController.swift */; };
 		79C43FF4289DFD2F008EA789 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C43FF0289DFD2F008EA789 /* OrderViewController.swift */; };
@@ -477,6 +486,8 @@
 		792DDAA628901785000ACAFC /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		7935B41128E7D579004AE3AD /* SaleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleDetailViewController.swift; sourceTree = "<group>"; };
 		7935B41228E7D579004AE3AD /* SaleDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaleDetailViewController.xib; sourceTree = "<group>"; };
+		793E99372915425800D081FA /* ChatBotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBotViewController.swift; sourceTree = "<group>"; };
+		793E99382915425800D081FA /* ChatBotViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatBotViewController.xib; sourceTree = "<group>"; };
 		793FC378290BB2CB00F1D95D /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
 		793FC37A290BB42100F1D95D /* Ward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ward.swift; sourceTree = "<group>"; };
 		793FC37C290BB48300F1D95D /* TestAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAddressViewController.swift; sourceTree = "<group>"; };
@@ -563,6 +574,8 @@
 		799B9165289D8B52001F6B5F /* ModelNV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelNV.swift; sourceTree = "<group>"; };
 		799B9169289D92EA001F6B5F /* HomeAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAdminViewController.swift; sourceTree = "<group>"; };
 		799B916A289D92EA001F6B5F /* HomeAdminViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAdminViewController.xib; sourceTree = "<group>"; };
+		799E50922914EC55007A173E /* ChatBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBot.swift; sourceTree = "<group>"; };
+		799E5096291518D7007A173E /* BotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotResponse.swift; sourceTree = "<group>"; };
 		799F3CFA28AB814F0019D3F6 /* TyGia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TyGia.swift; sourceTree = "<group>"; };
 		799F3CFE28AB8C7A0019D3F6 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		79A0363928E826D9002532FD /* DetailSaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSaleViewController.swift; sourceTree = "<group>"; };
@@ -590,6 +603,9 @@
 		79BF621A2891BAB80007FE0D /* ItemCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCartTableViewCell.swift; sourceTree = "<group>"; };
 		79BF621B2891BAB80007FE0D /* ItemCartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCartTableViewCell.xib; sourceTree = "<group>"; };
 		79BF62222891C3650007FE0D /* DatHang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatHang.swift; sourceTree = "<group>"; };
+		79BFB0D92915765C0030B192 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		79BFB0DB29157A980030B192 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		79BFB0DC29157A980030B192 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		79C43FF0289DFD2F008EA789 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		79C43FF1289DFD2F008EA789 /* OrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderViewController.xib; sourceTree = "<group>"; };
 		79CF9BCA288AFB5800709A26 /* GioHang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GioHang.swift; sourceTree = "<group>"; };
@@ -624,17 +640,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79A729BF290854E900AD5A3D /* FirebaseRemoteConfig in Frameworks */,
 				79D8CD262892E87C00984EF3 /* BraintreeCore in Frameworks */,
 				B626DD0607C9AFDE93ED9D8B /* Pods_LAPTOPNVN.framework in Frameworks */,
-				79A729BD290854E900AD5A3D /* FirebaseMessaging in Frameworks */,
-				79A729B9290854E900AD5A3D /* FirebaseAnalytics in Frameworks */,
 				79D8CD2A2892E87C00984EF3 /* BraintreePayPal in Frameworks */,
-				79A729BB290854E900AD5A3D /* FirebaseAuth in Frameworks */,
 				79D8CD242892E87C00984EF3 /* BraintreeCard in Frameworks */,
-				79A729C3290854E900AD5A3D /* FirebaseStorage in Frameworks */,
 				79D8CD2C2892E87C00984EF3 /* BraintreePaymentFlow in Frameworks */,
-				79A729C1290854E900AD5A3D /* FirebaseRemoteConfigSwift in Frameworks */,
 				79D8CD282892E87C00984EF3 /* BraintreeDataCollector in Frameworks */,
 				79D8CD2E2892E87C00984EF3 /* PayPalDataCollector in Frameworks */,
 			);
@@ -782,6 +792,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		793E9936291541B600D081FA /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				799E50922914EC55007A173E /* ChatBot.swift */,
+				799E5096291518D7007A173E /* BotResponse.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		794610DD28EAD23700EDE177 /* ModelRate */ = {
 			isa = PBXGroup;
 			children = (
@@ -906,10 +925,11 @@
 		79475E482882465E005911E3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				799E50912914EAD5007A173E /* Chatbot */,
 				79DA1DED28FA8BC800F0520F /* DataMaps */,
-				796B61D128EF1B7600E44B95 /* Maps */,
+				796B61D128EF1B7600E44B95 /* MapDemo */,
 				797CC66128ED780C0049AFD4 /* TestMic */,
-				796DF2BA2892C6BE00F34C82 /* CheckOut */,
+				796DF2BA2892C6BE00F34C82 /* CheckOutDemo */,
 				79176F902883927E00CDA10E /* Cells */,
 				79475E4928824733005911E3 /* Custom */,
 				79475EA82882B63D005911E3 /* Models */,
@@ -1051,7 +1071,7 @@
 			path = ExploreItem;
 			sourceTree = "<group>";
 		};
-		796B61D128EF1B7600E44B95 /* Maps */ = {
+		796B61D128EF1B7600E44B95 /* MapDemo */ = {
 			isa = PBXGroup;
 			children = (
 				796B61D228EF1B9500E44B95 /* TestMapsViewController.swift */,
@@ -1059,7 +1079,7 @@
 				793FC37C290BB48300F1D95D /* TestAddressViewController.swift */,
 				793FC37D290BB48300F1D95D /* TestAddressViewController.xib */,
 			);
-			path = Maps;
+			path = MapDemo;
 			sourceTree = "<group>";
 		};
 		796DF2A62892701100F34C82 /* Register */ = {
@@ -1071,13 +1091,13 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
-		796DF2BA2892C6BE00F34C82 /* CheckOut */ = {
+		796DF2BA2892C6BE00F34C82 /* CheckOutDemo */ = {
 			isa = PBXGroup;
 			children = (
 				79D8CD332892ECAF00984EF3 /* PayPalViewController.swift */,
 				79D8CD342892ECAF00984EF3 /* PayPalViewController.xib */,
 			);
-			path = CheckOut;
+			path = CheckOutDemo;
 			sourceTree = "<group>";
 		};
 		797767D228EB3989008643A7 /* JStarView */ = {
@@ -1261,6 +1281,17 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		799E50912914EAD5007A173E /* Chatbot */ = {
+			isa = PBXGroup;
+			children = (
+				79BFB0D8291576370030B192 /* Model */,
+				79BFB0D3291565400030B192 /* Cell */,
+				79BFB0D2291565310030B192 /* Main */,
+				793E9936291541B600D081FA /* SwiftUI */,
+			);
+			path = Chatbot;
+			sourceTree = "<group>";
+		};
 		79A0363828E826AB002532FD /* DetailSale */ = {
 			isa = PBXGroup;
 			children = (
@@ -1389,6 +1420,32 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		79BFB0D2291565310030B192 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				793E99372915425800D081FA /* ChatBotViewController.swift */,
+				793E99382915425800D081FA /* ChatBotViewController.xib */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		79BFB0D3291565400030B192 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				79BFB0DB29157A980030B192 /* MessageCell.swift */,
+				79BFB0DC29157A980030B192 /* MessageCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		79BFB0D8291576370030B192 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				79BFB0D92915765C0030B192 /* Message.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		79C43FEF289DFD10008EA789 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
@@ -1513,12 +1570,6 @@
 				79D8CD292892E87C00984EF3 /* BraintreePayPal */,
 				79D8CD2B2892E87C00984EF3 /* BraintreePaymentFlow */,
 				79D8CD2D2892E87C00984EF3 /* PayPalDataCollector */,
-				79A729B8290854E900AD5A3D /* FirebaseAnalytics */,
-				79A729BA290854E900AD5A3D /* FirebaseAuth */,
-				79A729BC290854E900AD5A3D /* FirebaseMessaging */,
-				79A729BE290854E900AD5A3D /* FirebaseRemoteConfig */,
-				79A729C0290854E900AD5A3D /* FirebaseRemoteConfigSwift */,
-				79A729C2290854E900AD5A3D /* FirebaseStorage */,
 			);
 			productName = LAPTOPNVN;
 			productReference = 79475E102882438D005911E3 /* LAPTOPNVN.app */;
@@ -1597,7 +1648,6 @@
 			mainGroup = 79475E072882438D005911E3;
 			packageReferences = (
 				79D8CD222892E87C00984EF3 /* XCRemoteSwiftPackageReference "braintree_ios" */,
-				79A729B7290854E900AD5A3D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 79475E112882438D005911E3 /* Products */;
 			projectDirPath = "";
@@ -1620,6 +1670,7 @@
 				79AAC9AA28A74ABA00CD2E23 /* DetailEmployeeViewController.xib in Resources */,
 				79475EA528824DD2005911E3 /* AccountViewController.xib in Resources */,
 				79A394C328886C4200CB3325 /* CartItemCollectionViewCell.xib in Resources */,
+				79BFB0DE29157A980030B192 /* MessageCell.xib in Resources */,
 				79AAC99028A73C9400CD2E23 /* EmployeeViewController.xib in Resources */,
 				797CC66528ED78240049AFD4 /* TestMicViewController.xib in Resources */,
 				79B3296628914345000E4197 /* NoLoginViewController.xib in Resources */,
@@ -1640,6 +1691,7 @@
 				792A293228B1EEC30075AD18 /* OrderDetailTableViewCell.xib in Resources */,
 				797767D628EB399E008643A7 /* StarRatingStackView.xib in Resources */,
 				791BB921289E7013002B5871 /* StatisticViewController.xib in Resources */,
+				793E993C2915425800D081FA /* ChatBotViewController.xib in Resources */,
 				79AAC99928A73CBE00CD2E23 /* EmployeeTableViewCell.xib in Resources */,
 				7992976A288EF91100642885 /* ListLaptopViewController.xib in Resources */,
 				79D99EDB28E7589400954A12 /* SaleViewController.xib in Resources */,
@@ -1696,6 +1748,7 @@
 				792A293A28B1F9830075AD18 /* DetailHistoryViewController.xib in Resources */,
 				799547FA28A8B597002760A7 /* SanPhamViewController.xib in Resources */,
 				795CAF7328867BC0008458F0 /* DetailSanPhamViewController.xib in Resources */,
+				793E993D2915425800D081FA /* ChatBotViewController.xib in Resources */,
 				7992976B288EF91100642885 /* ListLaptopViewController.xib in Resources */,
 				79A0364828E829A9002532FD /* DetailSaleTableViewCell.xib in Resources */,
 				79A5440E288D70C300179574 /* SearchViewController.xib in Resources */,
@@ -1747,6 +1800,7 @@
 				792A293B28B1F9830075AD18 /* DetailHistoryViewController.xib in Resources */,
 				799547FB28A8B597002760A7 /* SanPhamViewController.xib in Resources */,
 				795CAF7428867BC0008458F0 /* DetailSanPhamViewController.xib in Resources */,
+				793E993E2915425800D081FA /* ChatBotViewController.xib in Resources */,
 				7992976C288EF91100642885 /* ListLaptopViewController.xib in Resources */,
 				79A0364928E829A9002532FD /* DetailSaleTableViewCell.xib in Resources */,
 				79A5440F288D70C300179574 /* SearchViewController.xib in Resources */,
@@ -1895,12 +1949,14 @@
 				794610DF28EAD25700EDE177 /* RateModel.swift in Sources */,
 				793FC381290BCC0200F1D95D /* Province.swift in Sources */,
 				79475E8128824C7E005911E3 /* MainTabBarController.swift in Sources */,
+				79BFB0DD29157A980030B192 /* MessageCell.swift in Sources */,
 				79475E7C28824C04005911E3 /* UserService.swift in Sources */,
 				7986294A28A8210100FC08AE /* DetailCategoryViewController.swift in Sources */,
 				7901D3D228B8D730007D2EE5 /* Encrypt.swift in Sources */,
 				79475E142882438D005911E3 /* AppDelegate.swift in Sources */,
 				79C43FF2289DFD2F008EA789 /* OrderViewController.swift in Sources */,
 				796DF2B02892850500F34C82 /* Response.swift in Sources */,
+				79BFB0DA2915765C0030B192 /* Message.swift in Sources */,
 				79475E4C28824765005911E3 /* TabItems.swift in Sources */,
 				799627132896066D00B6EDF9 /* HistoryOrderTableViewCell.swift in Sources */,
 				79F33D932883252100F7BB4C /* APIHeader.swift in Sources */,
@@ -1946,6 +2002,7 @@
 				79B3296C2891A5C4000E4197 /* InformationViewController.swift in Sources */,
 				79D99ECB28E7573900954A12 /* Sale.swift in Sources */,
 				793FC379290BB2CB00F1D95D /* District.swift in Sources */,
+				799E50932914EC55007A173E /* ChatBot.swift in Sources */,
 				796DF2B428928A3000F34C82 /* User.swift in Sources */,
 				79AAC98D28A73C9300CD2E23 /* EmployeeViewController.swift in Sources */,
 				796DF2A92892703500F34C82 /* RegisterViewController.swift in Sources */,
@@ -1961,6 +2018,7 @@
 				79475EB02882B7EF005911E3 /* HangSX.swift in Sources */,
 				79475E8728824D7E005911E3 /* HomeViewController.swift in Sources */,
 				7996271A28960F6D00B6EDF9 /* HistoryOrder.swift in Sources */,
+				793E99392915425800D081FA /* ChatBotViewController.swift in Sources */,
 				7935B41328E7D579004AE3AD /* SaleDetailViewController.swift in Sources */,
 				79F33D8F2883250400F7BB4C /* APIController.swift in Sources */,
 				79475E6728824A3E005911E3 /* TogglePassword.swift in Sources */,
@@ -1977,6 +2035,7 @@
 				79D99EE028E758BF00954A12 /* SaleTableViewCell.swift in Sources */,
 				79F33D9B28832F3C00F7BB4C /* LoginModel.swift in Sources */,
 				79DA1DF228FA97DC00F0520F /* Color.swift in Sources */,
+				799E5097291518D7007A173E /* BotResponse.swift in Sources */,
 				797767D728EB399E008643A7 /* JStarRatingView.swift in Sources */,
 				79475E9928824DBD005911E3 /* CartViewController.swift in Sources */,
 				79475E5F2882498E005911E3 /* UIImageView+UIImage.swift in Sources */,
@@ -2052,7 +2111,9 @@
 				79176F97288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */,
 				796DF2B528928A3000F34C82 /* User.swift in Sources */,
 				7923192A28A0F8080017E370 /* OrderShipViewController.swift in Sources */,
+				793E993A2915425800D081FA /* ChatBotViewController.swift in Sources */,
 				79ECC22728850C460002E81D /* BannerCollectionViewCell.swift in Sources */,
+				799E50942914EC55007A173E /* ChatBot.swift in Sources */,
 				79AAC98E28A73C9300CD2E23 /* EmployeeViewController.swift in Sources */,
 				79475E7028824AE5005911E3 /* UINavigationBar.swift in Sources */,
 				7935B41428E7D579004AE3AD /* SaleDetailViewController.swift in Sources */,
@@ -2063,6 +2124,7 @@
 				79475E6828824A3E005911E3 /* TogglePassword.swift in Sources */,
 				79A0364528E829A9002532FD /* DetailSaleTableViewCell.swift in Sources */,
 				79475E8828824D7E005911E3 /* HomeViewController.swift in Sources */,
+				799E5098291518D7007A173E /* BotResponse.swift in Sources */,
 				7923193228A10A270017E370 /* ShipperModel.swift in Sources */,
 				79F33D88288324B800F7BB4C /* APIService.swift in Sources */,
 				79D99ED928E7589400954A12 /* SaleViewController.swift in Sources */,
@@ -2105,6 +2167,7 @@
 				79475E8928824D7E005911E3 /* HomeViewController.swift in Sources */,
 				79475E5D28824939005911E3 /* UITextFieldX.swift in Sources */,
 				7923193328A10A270017E370 /* ShipperModel.swift in Sources */,
+				799E50952914EC55007A173E /* ChatBot.swift in Sources */,
 				79ECC22828850C460002E81D /* BannerCollectionViewCell.swift in Sources */,
 				79A0363D28E826D9002532FD /* DetailSaleViewController.swift in Sources */,
 				79F33D952883252100F7BB4C /* APIHeader.swift in Sources */,
@@ -2120,6 +2183,7 @@
 				791BB931289EA93C002B5871 /* DoanhThuModel.swift in Sources */,
 				79475EA428824DD2005911E3 /* AccountViewController.swift in Sources */,
 				791BB920289E7013002B5871 /* StatisticViewController.swift in Sources */,
+				793E993B2915425800D081FA /* ChatBotViewController.swift in Sources */,
 				799F3D0128AB8C7A0019D3F6 /* Double.swift in Sources */,
 				799627152896066D00B6EDF9 /* HistoryOrderTableViewCell.swift in Sources */,
 				796DF2B628928A3000F34C82 /* User.swift in Sources */,
@@ -2147,6 +2211,7 @@
 				7953E7FF28F98D05000BF741 /* MapsViewController.swift in Sources */,
 				79475E7128824AE5005911E3 /* UINavigationBar.swift in Sources */,
 				79475E9B28824DBD005911E3 /* CartViewController.swift in Sources */,
+				799E5099291518D7007A173E /* BotResponse.swift in Sources */,
 				7986293928A81D4500FC08AE /* CategoryTableViewCell.swift in Sources */,
 				795CAF7128867BC0008458F0 /* DetailSanPhamViewController.swift in Sources */,
 				79475E7928824B41005911E3 /* Date.swift in Sources */,
@@ -2484,14 +2549,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		79A729B7290854E900AD5A3D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 		79D8CD222892E87C00984EF3 /* XCRemoteSwiftPackageReference "braintree_ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/braintree/braintree_ios";
@@ -2503,36 +2560,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		79A729B8290854E900AD5A3D /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 79A729B7290854E900AD5A3D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		79A729BA290854E900AD5A3D /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 79A729B7290854E900AD5A3D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		79A729BC290854E900AD5A3D /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 79A729B7290854E900AD5A3D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
-		};
-		79A729BE290854E900AD5A3D /* FirebaseRemoteConfig */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 79A729B7290854E900AD5A3D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseRemoteConfig;
-		};
-		79A729C0290854E900AD5A3D /* FirebaseRemoteConfigSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 79A729B7290854E900AD5A3D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseRemoteConfigSwift;
-		};
-		79A729C2290854E900AD5A3D /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 79A729B7290854E900AD5A3D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
 		79D8CD232892E87C00984EF3 /* BraintreeCard */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 79D8CD222892E87C00984EF3 /* XCRemoteSwiftPackageReference "braintree_ios" */;
