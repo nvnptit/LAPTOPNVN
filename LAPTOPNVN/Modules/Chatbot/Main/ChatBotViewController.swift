@@ -19,19 +19,13 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var messageViewBottomConstraints: NSLayoutConstraint!
     
     var messages: [Message] = []
-    //------------------------------------------------------------------------------
-    // MARK:-
-    // MARK:- Variables
-    //------------------------------------------------------------------------------
-    
-//    var timerz = Timer()
-//    var time = 5
-//    var isTimeOut = false
     
     let speechRecognizer        = SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
     var recognitionRequest      : SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask         : SFSpeechRecognitionTask?
     let audioEngine             = AVAudioEngine()
+    
+    
     
     @IBAction func btnMicSpeechToText(_ sender: UIButton, forEvent event: UIEvent) {
         if audioEngine.isRunning {
@@ -42,21 +36,6 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         } else {
             self.startRecording()
             self.mic.setTitle("Stop Recording", for: .normal)
-//            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
-//                 if self.time > 0 {
-//                     print ("\(self.time) seconds")
-//                     self.time -= 1
-//                 } else {
-//                     self.audioEngine.stop()
-//
-//                     self.recognitionRequest = nil
-//                     self.mic.setTitle("Start Recording", for: .normal)
-//                     self.recognitionTask?.cancel()
-//                     self.recognitionTask = nil
-//                     self.mic.isEnabled = true
-//                     Timer.invalidate()
-//                 }
-//             }
         }
     }
     
@@ -156,18 +135,9 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             print("audioEngine couldn't start because of an error.")
         }
 
-        self.messageTextfield.text = "Say something, I'm listening!"
+        self.messageTextfield.text = "Mời nói, Tôi đang lắng nghe..."
     }
 
-
-    //------------------------------------------------------------------------------
-    // MARK:-
-    // MARK:- View Life Cycle Methods
-    //------------------------------------------------------------------------------
-
-
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboard()
@@ -178,7 +148,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         
         tableView.dataSource = self
         title = K.appName
-        navigationItem.hidesBackButton = true
+//        navigationItem.hidesBackButton = true
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         let newMessage = Message(sender: "BOT", body: "Xin chào các bạn")
         self.messages.append(newMessage)
@@ -270,7 +240,6 @@ extension ChatBotViewController{
 }
 
 extension ChatBotViewController: SFSpeechRecognizerDelegate {
-
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
             self.mic.isEnabled = true

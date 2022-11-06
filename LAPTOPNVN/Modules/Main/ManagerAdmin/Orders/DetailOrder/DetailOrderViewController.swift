@@ -90,6 +90,7 @@ class DetailOrderViewController: UIViewController {
             getDataNVGiao()
             btnHuy.isHidden = true
             btnDuyet.setTitle("Lưu thay đổi", for: .normal)
+                btnDuyet.isEnabled = false
         }else if (order?.tentrangthai == "Đang giao hàng" && KEY == "SHIPPER") {
 //            btnHuy.isHidden = true
             btnDuyet.setTitle("Xác nhận đã giao hàng", for: .normal)
@@ -118,7 +119,6 @@ class DetailOrderViewController: UIViewController {
             nvGiao.text = order.nvgiao ?? ""
             tongtien.text = "\(CurrencyVN.toVND(order.tonggiatri!))"
         }
-        
     }
     
     private func setupAnimation() {
@@ -134,7 +134,9 @@ class DetailOrderViewController: UIViewController {
     
     @IBAction func tapMap(_ sender: UIButton, forEvent event: UIEvent) {
             let vc = MapsViewController()
-            vc.address = order?.diachi ?? ""
+        vc.address = order?.diachi ?? ""
+        vc.totalz = order?.tonggiatri ?? 0
+        vc.isPay = order?.thanhtoan ?? false
             self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -158,7 +160,8 @@ class DetailOrderViewController: UIViewController {
                 return;
             }
             print("Duyệt")
-            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
+            guard let datePlan = self.datePlan.text else {return}
+            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: Date().convertDateViewToSQL(datePlan), tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
             self.updateGH(params: params)
             
 //            let alert = UIAlertController(title: "Duyệt đơn hàng thành công", message: "", preferredStyle: .alert)
@@ -185,7 +188,8 @@ class DetailOrderViewController: UIViewController {
             
         }else {
             print("Lưu")
-            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: order?.ngaydukien, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
+            guard let datePlan = self.datePlan.text else {return}
+            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: Date().convertDateViewToSQL(datePlan), tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
             self.updateGH(params: params)
 //
 //            let alert = UIAlertController(title: "Cập nhật nhân viên giao hàng thành công", message: "", preferredStyle: .alert)
@@ -374,6 +378,15 @@ extension DetailOrderViewController{
             let name = items[0]
             self.nvGiao.text = name
             self.maNVG = items[1]
+            
+            guard let nvgiao1 = order?.nvgiao else {return}
+            let nvgiao2 = nvGiao.text
+                if (nvgiao2 != nvgiao1){
+                    btnDuyet.isEnabled = true
+                }else {
+                    btnDuyet.isEnabled = false
+                }
+            
         }
         
         let gestureClock = UITapGestureRecognizer(target: self, action: #selector(didTapNVGiao))
@@ -436,6 +449,15 @@ extension DetailOrderViewController{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         datePlan.text =  dateFormatter.string(from: datePicker1.date)
+        guard var date1 = order?.ngaydukien else {return}
+        date1 = Date().convertDateTimeSQLToView(date: date1, format: "dd-MM-yyyy")
+        let date2 = self.datePlan.text
+            if (date2 != date1 ){
+                btnDuyet.isEnabled = true
+            }else {
+                btnDuyet.isEnabled = false
+            }
+        
         view.endEditing(true)
     }
 }

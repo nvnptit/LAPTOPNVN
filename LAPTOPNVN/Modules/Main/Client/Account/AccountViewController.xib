@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="btnDangXuat" destination="qYb-TX-zcG" id="uh4-Vn-KlH"/>
                 <outlet property="btnThayDoi" destination="t8x-8j-a8e" id="7a4-dc-Uqj"/>
+                <outlet property="chatBot" destination="evY-1v-fwC" id="CCs-WH-m3w"/>
                 <outlet property="dropdownStatus" destination="b4p-7L-sh2" id="D0z-6R-MkM"/>
                 <outlet property="history" destination="yzZ-RT-fo9" id="Hkk-7I-No2"/>
                 <outlet property="info" destination="EOC-It-qyF" id="2Xd-KZ-YCx"/>
@@ -147,7 +148,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYb-TX-zcG">
-                                    <rect key="frame" x="126" y="462.5" width="162" height="41"/>
+                                    <rect key="frame" x="130" y="462.5" width="162" height="41"/>
                                     <color key="backgroundColor" red="0.043137254899999998" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="42" id="1k3-II-lbY"/>
@@ -168,6 +169,18 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evY-1v-fwC">
+                                    <rect key="frame" x="300" y="477" width="99" height="128"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="128" id="VCm-24-d4p"/>
+                                        <constraint firstAttribute="width" constant="99" id="z1J-BV-ttL"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="ChatBot" title=" "/>
+                                    <connections>
+                                        <action selector="tapChatBot:forEvent:" destination="-1" eventType="touchUpInside" id="nrV-v9-fZU"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
@@ -191,9 +204,10 @@
                                 <constraint firstItem="igk-pa-KkL" firstAttribute="leading" secondItem="EOC-It-qyF" secondAttribute="leading" constant="30" id="S72-rK-qoI"/>
                                 <constraint firstAttribute="trailing" secondItem="04Y-7a-cKq" secondAttribute="trailing" constant="30" id="Tl3-tX-d6O"/>
                                 <constraint firstAttribute="trailing" secondItem="Qx2-Yx-YLx" secondAttribute="trailing" constant="30" id="V8m-JJ-Pf6"/>
-                                <constraint firstItem="qYb-TX-zcG" firstAttribute="centerX" secondItem="EOC-It-qyF" secondAttribute="centerX" id="Vbk-ly-TEM"/>
+                                <constraint firstItem="qYb-TX-zcG" firstAttribute="centerX" secondItem="EOC-It-qyF" secondAttribute="centerX" constant="4" id="Vbk-ly-TEM"/>
                                 <constraint firstItem="EiA-zn-6ra" firstAttribute="leading" secondItem="EOC-It-qyF" secondAttribute="leading" constant="30" id="Ved-vX-2Si"/>
                                 <constraint firstItem="QAR-D5-KLC" firstAttribute="top" secondItem="igk-pa-KkL" secondAttribute="bottom" constant="33" id="WN0-SF-pyY"/>
+                                <constraint firstAttribute="trailing" secondItem="evY-1v-fwC" secondAttribute="trailing" constant="15" id="XEI-sY-kLP"/>
                                 <constraint firstAttribute="trailing" secondItem="TvS-u4-BG9" secondAttribute="trailing" constant="30" id="ZeW-qu-tMe"/>
                                 <constraint firstItem="EiA-zn-6ra" firstAttribute="top" secondItem="QEA-2a-Yqc" secondAttribute="bottom" constant="35" id="bsd-GJ-eXE"/>
                                 <constraint firstAttribute="trailing" secondItem="Aqh-ul-1eX" secondAttribute="trailing" constant="30" id="g7p-oz-UF3"/>
@@ -203,6 +217,7 @@
                                 <constraint firstItem="bNb-bE-NT7" firstAttribute="top" secondItem="TvS-u4-BG9" secondAttribute="bottom" constant="17" id="ox1-Qs-2Fb"/>
                                 <constraint firstItem="04Y-7a-cKq" firstAttribute="top" secondItem="bNb-bE-NT7" secondAttribute="bottom" constant="19" id="q1q-Q7-TtT"/>
                                 <constraint firstItem="igk-pa-KkL" firstAttribute="top" secondItem="vS5-Yh-eiQ" secondAttribute="bottom" constant="33" id="trM-Pr-qgp"/>
+                                <constraint firstItem="evY-1v-fwC" firstAttribute="top" secondItem="t8x-8j-a8e" secondAttribute="bottom" constant="34.5" id="tvy-Qz-baW"/>
                                 <constraint firstItem="O0c-8p-yhf" firstAttribute="top" secondItem="QAR-D5-KLC" secondAttribute="bottom" constant="35" id="vYT-ge-VR6"/>
                                 <constraint firstItem="Qx2-Yx-YLx" firstAttribute="leading" secondItem="QEA-2a-Yqc" secondAttribute="trailing" constant="11" id="xPo-7s-JBs"/>
                                 <constraint firstItem="QEA-2a-Yqc" firstAttribute="top" secondItem="O0c-8p-yhf" secondAttribute="bottom" constant="37" id="xbC-E9-o3z"/>
@@ -241,7 +256,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QqE-Cc-LIY">
-                                    <rect key="frame" x="27" y="153" width="360" height="563"/>
+                                    <rect key="frame" x="27" y="153" width="360" height="845"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </tableView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4p-7L-sh2" userLabel="dropdownStatus">
@@ -264,7 +279,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="JQ9-2g-1TO" firstAttribute="leading" secondItem="yzZ-RT-fo9" secondAttribute="leading" constant="27" id="2fe-MC-xbu"/>
-                                <constraint firstAttribute="bottom" secondItem="QqE-Cc-LIY" secondAttribute="bottom" constant="5" id="2tM-oa-B5W"/>
+                                <constraint firstAttribute="bottom" secondItem="QqE-Cc-LIY" secondAttribute="bottom" constant="-277" id="2tM-oa-B5W"/>
                                 <constraint firstItem="b4p-7L-sh2" firstAttribute="leading" secondItem="Lrf-pP-k02" secondAttribute="trailing" constant="13.5" id="4t8-eS-UEn"/>
                                 <constraint firstItem="Xjz-Jg-EDU" firstAttribute="leading" secondItem="yzZ-RT-fo9" secondAttribute="leading" constant="27" id="53P-gS-Nqx"/>
                                 <constraint firstItem="JQ9-2g-1TO" firstAttribute="top" secondItem="Xjz-Jg-EDU" secondAttribute="bottom" constant="25" id="6tX-1F-vzO"/>
@@ -316,6 +331,7 @@
         </view>
     </objects>
     <resources>
+        <image name="ChatBot" width="125" height="125"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

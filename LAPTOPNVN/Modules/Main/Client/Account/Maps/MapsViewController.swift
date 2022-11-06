@@ -15,6 +15,8 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     var coordinate: CLLocationCoordinate2D?
     var dataHistory: [HistoryOrder1] = []
     var address = ""
+    var totalz = -1  // Check tổng tiền
+    var isPay = false // Check thanh toán
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -27,12 +29,16 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     }
     func loadFulLMap(){
         for item in dataHistory {
-            guard let address = item.diachi, let id = item.idgiohang else {return }
+            guard let address = item.diachi, let id = item.idgiohang, let total = item.tonggiatri , let isPaid = item.thanhtoan else {return }
             LocationManager.shared.forwardGeocoding(address: address.lowercased(), completion: {
                     success,coordinate in
                     if success {
                         guard let co = coordinate else {return}
-                        self.mapThis (destinationCord: co,address: "\(id)")
+                        if isPaid == true {
+                            self.mapThis (destinationCord: co,address: "\(id)",total: 0)
+                        }else {
+                                self.mapThis (destinationCord: co,address: "\(id)",total: total)
+                        }
                     } else {
                         print("error sth went wrong")
                     }
@@ -44,13 +50,17 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             success,coordinate in
             if success {
                 guard let co = coordinate else {return}
-                self.mapThis (destinationCord: co,address: "")
+                if self.isPay == true {
+                    self.mapThis (destinationCord: co,address: "",total: 0)
+                }else {
+                    self.mapThis (destinationCord: co,address: "",total: self.totalz)
+                }
             } else {
                 print("error sth went wrong")
             }
         })
     }
-    func mapThis(destinationCord: CLLocationCoordinate2D, address: String) {
+    func mapThis(destinationCord: CLLocationCoordinate2D, address: String, total: Int) {
         if let souceCordinate = LocationManager.shared.getCurrentLocation()?.coordinate {
             let soucePlaceMark = MKPlacemark (coordinate: souceCordinate)
             let destPlaceMark = MKPlacemark (coordinate: destinationCord)
@@ -85,8 +95,10 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 annotation2.coordinate = destinationCord
                 if (address != ""){
                     annotation2.title = "Vị trí giao đơn hàng \(address)"
+                    annotation2.subtitle = "Số tiền cần thu: \(CurrencyVN.toVND(total))"
                 }else {
                     annotation2.title = "Vị trí nơi giao hàng"
+                    annotation2.subtitle = "Số tiền cần thu: \(CurrencyVN.toVND(total))"
                 }
                 self.mapView.addAnnotation(annotation2)
             }

@@ -11,6 +11,8 @@ import DropDown
 
 class AccountViewController: UIViewController {
     
+    @IBOutlet weak var chatBot: UIButton!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tfFrom: UITextField!
     @IBOutlet weak var tfTo: UITextField!
@@ -358,6 +360,11 @@ class AccountViewController: UIViewController {
             info.isHidden = true
         }
     }
+    @IBAction func tapChatBot(_ sender: UIButton, forEvent event: UIEvent) {
+        let vc = ChatBotViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
 } 
 
