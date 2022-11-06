@@ -188,8 +188,20 @@ class DetailOrderViewController: UIViewController {
             
         }else {
             print("Lưu")
+            let currentDate = Date()
+            let current = "\(currentDate)".prefix(10)
             guard let datePlan = self.datePlan.text else {return}
+            if (!Date().checkDatePlan(start: datePlan, end: Date().convertDateSQLToView(String(current))) ){
+                let alert = UIAlertController(title: "Ngày giao dự kiến mới cần sau ngày hiện tại", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+                return
+            }
+            
             let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: Date().convertDateViewToSQL(datePlan), tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
+            print(params)
             self.updateGH(params: params)
 //
 //            let alert = UIAlertController(title: "Cập nhật nhân viên giao hàng thành công", message: "", preferredStyle: .alert)
@@ -267,6 +279,8 @@ class DetailOrderViewController: UIViewController {
 extension DetailOrderViewController {
     func updateGH(params: [String : Any]?){
         APIService.updateGioHang(with: .updateGioHangAdmin, params: params, headers: nil, completion: { base, error in
+            print("OKKKS")
+            print(base)
             guard let base = base else { return }
             if base.success == true {
                 let alert = UIAlertController(title: "Cập nhật thông tin đơn hàng thành công!", message: "", preferredStyle: .alert)
@@ -386,9 +400,7 @@ extension DetailOrderViewController{
                 }else {
                     btnDuyet.isEnabled = false
                 }
-            
         }
-        
         let gestureClock = UITapGestureRecognizer(target: self, action: #selector(didTapNVGiao))
         dropDownNVGiao.addGestureRecognizer(gestureClock)
         dropDownNVGiao.layer.borderWidth = 1
@@ -407,6 +419,9 @@ extension DetailOrderViewController{
                 self.data = base.data ?? []
                 for item in self.data{
                     self.nvGiaoValues.append("\(item.ten!)|\(item.manv!)")
+                    if item.ten == self.nvGiao.text {
+                        self.maNVG  = item.manv!
+                    }
                 }
                 self.setupNVGiao()
             }
