@@ -78,6 +78,7 @@ enum APIManager {
     case deleteGioHang
     
     case getHistoryOrder
+    case getHistoryOrderCMND
     case getDoanhThu
     case uploadAvatar
     case getOrderShipper
@@ -201,6 +202,7 @@ extension APIManager {
             case .delDetailSale(let maLSP,let maDot): path = "/dot-gg/CHI-TIET?malsp=\(maLSP)&madotgg=\(maDot)"
                 
             case .getHistoryOrder: path = "/gio-hang/history-order"
+            case .getHistoryOrderCMND: path = "/gio-hang/history-order-cmnd"
             case .delTK: path = "/tai-khoan"
             case .delTK1(let tenDangNhap): path = "/tai-khoan?tenDangNhap=\(tenDangNhap)"
                 
@@ -259,7 +261,8 @@ extension APIManager {
                     .getDetailHistory, .getSoLuongLSP,
                     .getSLSeri, .getPhieuNhap,
                     .getDotGG, .getMaSoDGG, .getDetailSale, .getRate, .getRateBySeri, .getListRate,
-                    .getProvince, .getWard, .getDistrict
+                    .getProvince, .getWard, .getDistrict,
+                    .getHistoryOrderCMND
                 :
                 return .get
             case .login, .register, .resetPass, .addUserKH, .uploadAvatar,

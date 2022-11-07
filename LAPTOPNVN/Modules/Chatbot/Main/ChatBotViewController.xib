@@ -11,6 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatBotViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
                 <outlet property="btnSend" destination="dMK-r2-Dx3" id="fdy-Ta-bCO"/>
+                <outlet property="langEn" destination="JPG-Lo-cGT" id="Fie-YH-anb"/>
+                <outlet property="langVi" destination="o1M-ai-Ogv" id="YN3-J9-X60"/>
                 <outlet property="messageTextfield" destination="pkI-46-2Td" id="Hge-ha-6ai"/>
                 <outlet property="messageViewBottomConstraints" destination="sWE-PA-vWn" id="NST-ZT-oyD"/>
                 <outlet property="mic" destination="Llk-w1-Hcy" id="v2T-Kx-wFi"/>
@@ -27,7 +29,7 @@
                     <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fKS-If-F16">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
+                            <rect key="frame" x="0.0" y="50" width="414" height="704"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YnR-oL-7c5" userLabel="Message View">
@@ -82,16 +84,45 @@
                                 <constraint firstItem="pkI-46-2Td" firstAttribute="centerY" secondItem="YnR-oL-7c5" secondAttribute="centerY" id="tTK-dn-kvf"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1M-ai-Ogv" userLabel="VietNam">
+                            <rect key="frame" x="284" y="1" width="47" height="35"/>
+                            <color key="backgroundColor" red="0.16078431369999999" green="0.78133606909999997" blue="0.19693207739999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="🇻🇳"/>
+                            <connections>
+                                <action selector="tapLangVi:forEvent:" destination="-1" eventType="touchUpInside" id="fQs-SR-O1A"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPG-Lo-cGT" userLabel="English">
+                            <rect key="frame" x="346" y="1" width="47" height="35"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="🇺🇸"/>
+                            <connections>
+                                <action selector="tapLangEn:forEvent:" destination="-1" eventType="touchUpInside" id="tjh-cb-fdT"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ngôn ngữ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVE-cj-lz7">
+                            <rect key="frame" x="187" y="7" width="77" height="21"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="o1M-ai-Ogv" firstAttribute="top" secondItem="xmu-ve-bhG" secondAttribute="top" constant="1" id="2GJ-3r-AG5"/>
+                        <constraint firstItem="MVE-cj-lz7" firstAttribute="top" secondItem="xmu-ve-bhG" secondAttribute="top" constant="7" id="8C2-nv-AIU"/>
                         <constraint firstAttribute="trailing" secondItem="YnR-oL-7c5" secondAttribute="trailing" id="D8a-Pn-00A"/>
                         <constraint firstItem="YnR-oL-7c5" firstAttribute="leading" secondItem="xmu-ve-bhG" secondAttribute="leading" id="KgZ-Ul-7Y6"/>
                         <constraint firstAttribute="trailing" secondItem="fKS-If-F16" secondAttribute="trailing" id="PYN-EW-fDw"/>
+                        <constraint firstItem="JPG-Lo-cGT" firstAttribute="top" secondItem="xmu-ve-bhG" secondAttribute="top" constant="1" id="QPy-wI-6xq"/>
                         <constraint firstItem="fKS-If-F16" firstAttribute="leading" secondItem="xmu-ve-bhG" secondAttribute="leading" id="Rr7-XG-EQI"/>
+                        <constraint firstAttribute="trailing" secondItem="JPG-Lo-cGT" secondAttribute="trailing" constant="21" id="Vod-c6-10G"/>
+                        <constraint firstItem="JPG-Lo-cGT" firstAttribute="leading" secondItem="o1M-ai-Ogv" secondAttribute="trailing" constant="15" id="WFu-dh-aCw"/>
                         <constraint firstItem="YnR-oL-7c5" firstAttribute="top" secondItem="fKS-If-F16" secondAttribute="bottom" id="for-bW-wBr"/>
                         <constraint firstAttribute="bottom" secondItem="YnR-oL-7c5" secondAttribute="bottom" id="sWE-PA-vWn"/>
-                        <constraint firstItem="fKS-If-F16" firstAttribute="top" secondItem="xmu-ve-bhG" secondAttribute="top" id="saz-xG-e0X"/>
+                        <constraint firstItem="fKS-If-F16" firstAttribute="top" secondItem="xmu-ve-bhG" secondAttribute="top" constant="50" id="saz-xG-e0X"/>
+                        <constraint firstItem="o1M-ai-Ogv" firstAttribute="leading" secondItem="MVE-cj-lz7" secondAttribute="trailing" constant="20" id="vfU-7y-UU8"/>
                     </constraints>
                 </view>
             </subviews>

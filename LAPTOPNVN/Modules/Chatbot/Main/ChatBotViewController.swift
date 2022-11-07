@@ -10,10 +10,12 @@ import Speech
 import AVKit
 
 protocol BotResponseDelegate: NSObjectProtocol {
+    func welcomeReply()
+    func meReply()
     func defaultReply()
     func dataCart()
     func historyCart(status: Int)
-    func detailHistoryCart()
+    func detailHistoryCart(idGH: Int)
     func searchByManufacturer()
 }
 class ChatResponse {
@@ -23,6 +25,9 @@ class ChatResponse {
 }
 class ChatBotViewController: UIViewController, UITableViewDelegate {
     
+    @IBOutlet weak var langVi: UIButton!
+    
+    @IBOutlet weak var langEn: UIButton!
     var result = ""
     @IBOutlet weak var mic: UIButton!
     @IBOutlet weak var btnSend: UIButton!
@@ -33,6 +38,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var messageViewBottomConstraints: NSLayoutConstraint!
     
     var messages: [Message] = []
+    var dataHistory: [HistoryOrderCMND] = []
     
     var speechRecognizer:  SFSpeechRecognizer?
     //        = SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
@@ -88,7 +94,22 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     }
     
     //------------------------------------------------------------------------------
-    
+    func converNumberToText(data1: String) -> String{
+        var data = data1
+        data = data.replacingOccurrences(of: "một", with: "1")
+        data = data.replacingOccurrences(of: "hai", with: "2")
+        data = data.replacingOccurrences(of: "ba", with: "3")
+        data = data.replacingOccurrences(of: "bốn", with: "4")
+        data = data.replacingOccurrences(of: "năm", with: "5")
+        data = data.replacingOccurrences(of: "sáu", with: "6")
+        data = data.replacingOccurrences(of: "bảy", with: "7")
+        data = data.replacingOccurrences(of: "bẩy", with: "7")
+        data = data.replacingOccurrences(of: "tám", with: "8")
+        data = data.replacingOccurrences(of: "chín", with: "9")
+        data = data.replacingOccurrences(of: "mừ", with: "10")
+//        data = data.replaceCharacters(characters: "một", toSeparator: "1")
+        return data
+    }
     func startRecording() {
         
         // Clear all previous session data and cancel task
@@ -121,7 +142,9 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             var isFinal = false
             if result != nil {
                 self.messageTextfield.text = result?.bestTranscription.formattedString
+                self.messageTextfield.text = self.converNumberToText(data1: self.messageTextfield.text ?? "")
                 isFinal = (result?.isFinal)!
+                
             }
             
             if error != nil || isFinal { // || self.time == 0
@@ -152,25 +175,42 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         self.messageTextfield.text = "Mời nói, Tôi đang lắng nghe..."
     }
     
+    @IBAction func tapLangVi(_ sender: UIButton, forEvent event: UIEvent) {
+        langVi.backgroundColor = .green
+        langEn.backgroundColor = .white
+            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+    }
+    
+    @IBAction func tapLangEn(_ sender: UIButton, forEvent event: UIEvent) {
+        langEn.backgroundColor = .green
+        langVi.backgroundColor = .white
+            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboard()
-        let alert = UIAlertController(title: "Mời bạn chọn ngôn ngữ", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Tiếng Anh 🇺🇸", style: .cancel, handler:{ _ in
-            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
-            self.dismiss(animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: "Tiếng Việt 🇻🇳", style: .default, handler:{ _ in
-            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
-            self.dismiss(animated: true)
-        }))
-        self.present(alert, animated: true)
+        self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+//        let alert = UIAlertController(title: "Mời bạn chọn ngôn ngữ", message: "", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Tiếng Anh 🇺🇸", style: .cancel, handler:{ _ in
+//            self.dismiss(animated: true)
+//        }))
+//        alert.addAction(UIAlertAction(title: "Tiếng Việt 🇻🇳", style: .default, handler:{ _ in
+//            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+//            self.dismiss(animated: true)
+//        }))
+//        self.present(alert, animated: true)
         
         self.setupSpeech()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
         view.addGestureRecognizer(gesture)
         
         tableView.dataSource = self
+        
+        tableView.layer.borderColor = UIColor.black.cgColor
+        tableView.layer.borderWidth = 0.5
+        
+        
         title = K.appName
         //        navigationItem.hidesBackButton = true
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
@@ -182,6 +222,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
         }
         sendAction.delegate = self
+        loadOrderCMND()
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
@@ -216,20 +257,33 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             Intent(tag: "ship", patterns: ["Đã giao","hoàn tất","Đã nhận"], responses:  3))
         dataIntent.append(
             Intent(tag: "cancel", patterns: ["Đã huỷ","bị huỷ"], responses:  4))
+        dataIntent.append(
+            Intent(tag: "welcome", patterns: ["xin chào","hello"], responses:  5))
+        dataIntent.append(
+            Intent(tag: "me", patterns: ["là ai","bạn là","who"], responses:  6))
+        dataIntent.append(
+            Intent(tag: "detailOrder", patterns: ["chi tiết đơn hàng","detail order"], responses:  7))
+        dataIntent.append(
+            Intent(tag: "manufacturer", patterns: ["dell","asus","acer","hp","msi","lenovo"], responses:  8))
         
         for item in dataIntent {
             let c =  item.patterns?.filter({ mess.lowercased().contains($0.lowercased())})
+            
             if c?.capacity ?? 0 > 0 {
-                actionResponse(item.responses ?? -1 )
+                if (item.responses == 7){
+                    let words = mess.components(separatedBy: " ")
+                    actionResponse(7, idGH: Int(words.last ?? "-1") ?? -1)
+                    return
+                }
+                actionResponse(item.responses ?? -1 ,idGH: -1)
+                return
             }
         }
-        //        if  (mess.lowercased().contains("giỏ hàng") || mess.lowercased().contains("my cart") ){
-        //            sendAction.delegate?.dataCart()
-        //        }
+        sendAction.delegate?.defaultReply()
     }
     //END SUPERVIEW
     
-    func actionResponse(_ id: Int) {
+    func actionResponse(_ id: Int, idGH: Int) {
         switch id {
             case 0:
                 sendAction.delegate?.dataCart()
@@ -242,6 +296,12 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             case 4:
                 sendAction.delegate?.historyCart(status: 3 ) // Huỷ
             case 5:
+                sendAction.delegate?.welcomeReply()
+            case 6:
+                sendAction.delegate?.meReply()
+            case 7:
+                sendAction.delegate?.detailHistoryCart(idGH: idGH)
+            case 8:
                 sendAction.delegate?.searchByManufacturer()
             default:
                 sendAction.delegate?.defaultReply()
@@ -317,6 +377,24 @@ extension ChatBotViewController: SFSpeechRecognizerDelegate {
 }
 
 extension ChatBotViewController: BotResponseDelegate{
+    func welcomeReply(){
+        let newMessage = Message(sender: "BOT", body: "Xin chào, rất vui khi được hỗ trợ bạn")
+        self.messages.append(newMessage)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+        }
+    }
+    func meReply() {
+        let newMessage = Message(sender: "BOT", body: "Tôi là trợ lý sẽ hỗ trợ bạn")
+        self.messages.append(newMessage)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+        }
+    }
     func defaultReply(){
         let newMessage = Message(sender: "BOT", body: "Tôi chưa hiểu, mong bạn nói lại")
         self.messages.append(newMessage)
@@ -340,8 +418,20 @@ extension ChatBotViewController: BotResponseDelegate{
         self.loadHistoryCart(status: status)
     }
     
-    func detailHistoryCart() {
-        //
+    func detailHistoryCart(idGH: Int) {
+        let a = dataHistory.filter({$0.idgiohang == idGH})
+        print(dataHistory)
+        if a.capacity > 0 {
+            self.loadDetailOrder(idGH: idGH)
+        }else {
+            let newMessage = Message(sender: "BOT", body: "Đơn hàng của bạn không tồn tại!")
+            self.messages.append(newMessage)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            }
+        }
     }
     
     func searchByManufacturer() {
@@ -350,6 +440,7 @@ extension ChatBotViewController: BotResponseDelegate{
     
 }
 extension ChatBotViewController{
+    //MARK: - Load History Cart
     func loadHistoryCart(status: Int){
         let params = HistoryModel(status: status, cmnd: UserService.shared.cmnd, dateFrom: nil, dateTo: nil).convertToDictionary()
         DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
@@ -373,7 +464,6 @@ extension ChatBotViewController{
                                let phuongthuc = item.phuongthuc,
                                let tinhtrang = item.thanhtoan
                             {
-                                //(Date().convertDateSQLToView(item.ngaydukien ?? "1970-01-01"))
                                 result = result + """
                             Mã đơn hàng: \(idgiohang)
                             Ngày lập: \( Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss"))
@@ -397,6 +487,80 @@ extension ChatBotViewController{
                             self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
                         }
                     }
+                }
+            })
+        }
+    }
+    //MARK: - Load Detail Order
+    func loadDetailOrder(idGH: Int){
+        if (idGH == -1){
+            sendAction.delegate?.defaultReply()
+            return
+        }
+        print(idGH)
+        DispatchQueue.init(label: "DetailOrder", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else { return }
+            let params = ModelDetailHistory(idGioHang: idGH).convertToDictionary()
+            
+            APIService.getDetailHistoryOrder1(with: .getDetailHistory, params: params, headers: nil, completion: { [weak self] base, error in
+                guard let self = self, let base = base else { return }
+                if base.success == true {
+                    var result = ""
+                    if let data = base.data {
+                        for item in data {
+                            if let tenlsp = item.tenlsp,
+                                let cardscreen = item.cardscreen,
+                                let cpu = item.cpu,
+                                let giaban = item.giaban,
+                                let harddrive = item.harddrive,
+                                let mota = item.mota,
+                                let os = item.os,
+                                let ram = item.ram,
+                                let serial = item.serial
+                            {
+                                result = result + """
+                            Sản phẩm: \(tenlsp)
+                            Serial: \(serial)
+                            Card: \(cardscreen)
+                            Cpu: \(cpu)
+                            Harddrive: \(harddrive)
+                            Ram: \(ram)
+                            OS: \(os)
+                            Mô tả: \(mota)
+                            ------------------------------\n
+                            """
+                            }
+                        }
+                        let newMessage = Message(sender: "BOT", body: "        Thông tin chi tiết đơn hàng \(idGH)     \n     -------------------------------\n"+result)
+                        self.messages.append(newMessage)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                        }
+                    }
+                    
+                } else {
+                    fatalError()
+                }
+                
+            })
+        }
+    }
+    //MARK: - Load data All Order CMND
+    func loadOrderCMND(){
+        
+        let params = GioHangRequest(cmnd: UserService.shared.cmnd).convertToDictionary()
+        DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self , UserService.shared.cmnd != "" else { return }
+            
+            APIService.getHistoryOrderCMND(with: .getHistoryOrderCMND, params: params, headers: nil, completion: {
+                [weak self] base, error in
+                guard let self = self, let base = base else { return }
+                if base.success == true {
+                    if let data = base.data {
+                         self.dataHistory = data
+                        }
                 }
             })
         }

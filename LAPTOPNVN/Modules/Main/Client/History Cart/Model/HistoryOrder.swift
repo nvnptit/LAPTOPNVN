@@ -87,3 +87,15 @@ struct HistoryOrderSorted : Decodable{
     let thanhtoan: Bool?
     let km: Float?
 }
+struct HistoryOrderCMND: Decodable{
+        let idgiohang: Int?
+        let ngaylapgiohang, ngaydukien: String?
+        let tonggiatri, matrangthai: Int?
+        let cmnd: String?
+        let manvgiao: String?
+        let manvduyet: String?
+        let nguoinhan, diachi, sdt, email: String?
+        let ngaynhan: String?
+        let phuongthuc: String?
+        let thanhtoan: Bool?
+}

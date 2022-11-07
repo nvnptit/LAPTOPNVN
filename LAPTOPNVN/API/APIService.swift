@@ -17,6 +17,18 @@ struct APIService {
     //    static let baseUrl: String = "http://172.20.10.8"
     
     
+    //Get Order By CMND
+    //get -> fetch
+    public static func getHistoryOrderCMND(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[HistoryOrderCMND]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[HistoryOrderCMND]>.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
     //Get Ward
     public static func getWards(with code: Int, _ completion: @escaping(Ward?, String?) -> ()) {  APIController.requestGET(Ward.self, .getWard(code) ) { error, data in
         if let data = data {
