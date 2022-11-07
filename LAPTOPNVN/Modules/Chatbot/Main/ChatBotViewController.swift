@@ -16,7 +16,7 @@ protocol BotResponseDelegate: NSObjectProtocol {
     func dataCart()
     func historyCart(status: Int)
     func detailHistoryCart(idGH: Int)
-    func searchByManufacturer()
+    func searchByManufacturer(name: String)
 }
 class ChatResponse {
     var delegate: BotResponseDelegate?
@@ -39,6 +39,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     
     var messages: [Message] = []
     var dataHistory: [HistoryOrderCMND] = []
+    var dataManufacture: [HangSX] = []
     
     var speechRecognizer:  SFSpeechRecognizer?
     //        = SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
@@ -176,30 +177,37 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     }
     
     @IBAction func tapLangVi(_ sender: UIButton, forEvent event: UIEvent) {
-        langVi.backgroundColor = .green
-        langEn.backgroundColor = .white
-            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+//        langVi.backgroundColor = .green
+//        langEn.backgroundColor = .white
+//            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+//        self.setupSpeech()
     }
     
     @IBAction func tapLangEn(_ sender: UIButton, forEvent event: UIEvent) {
-        langEn.backgroundColor = .green
-        langVi.backgroundColor = .white
-            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
+//        langEn.backgroundColor = .green
+//        langVi.backgroundColor = .white
+//            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
+//        self.setupSpeech()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboard()
-        self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
-//        let alert = UIAlertController(title: "Mời bạn chọn ngôn ngữ", message: "", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Tiếng Anh 🇺🇸", style: .cancel, handler:{ _ in
-//            self.dismiss(animated: true)
-//        }))
-//        alert.addAction(UIAlertAction(title: "Tiếng Việt 🇻🇳", style: .default, handler:{ _ in
-//            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
-//            self.dismiss(animated: true)
-//        }))
-//        self.present(alert, animated: true)
+//        self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+        let alert = UIAlertController(title: "Mời bạn chọn ngôn ngữ", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tiếng Anh 🇺🇸", style: .cancel, handler:{ _ in
+            self.dismiss(animated: true)
+            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
+            self.langEn.backgroundColor = .green
+            self.langVi.backgroundColor = .white
+        }))
+        alert.addAction(UIAlertAction(title: "Tiếng Việt 🇻🇳", style: .default, handler:{ _ in
+            self.langVi.backgroundColor = .green
+            self.langEn.backgroundColor = .white
+            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+            self.dismiss(animated: true)
+        }))
+        self.present(alert, animated: true)
         
         self.setupSpeech()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
@@ -223,6 +231,14 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         }
         sendAction.delegate = self
         loadOrderCMND()
+        loadDataManufacture()
+    }
+    
+    
+    func chuanHoa(_ s:String?) -> String {
+        let s1 = s!.trimmingCharacters(in: .whitespaces);
+        let kq = s1.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+        return kq;
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
@@ -233,7 +249,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         self.recognitionTask = nil
         self.mic.isEnabled = true
         
-        guard let mess = messageTextfield.text else {return}
+        guard var mess = messageTextfield.text else {return}
         
         let newMessage = Message(sender: "ME", body: mess)
         self.messages.append(newMessage)
@@ -264,18 +280,25 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         dataIntent.append(
             Intent(tag: "detailOrder", patterns: ["chi tiết đơn hàng","detail order"], responses:  7))
         dataIntent.append(
-            Intent(tag: "manufacturer", patterns: ["dell","asus","acer","hp","msi","lenovo"], responses:  8))
+            Intent(tag: "manufacturer", patterns: ["Máy tính dell","dell","asus","acer","hp","msi","lenovo"], responses:  8))
         
+        mess = chuanHoa(mess).lowercased()
+        print(mess)
         for item in dataIntent {
             let c =  item.patterns?.filter({ mess.lowercased().contains($0.lowercased())})
             
             if c?.capacity ?? 0 > 0 {
                 if (item.responses == 7){
                     let words = mess.components(separatedBy: " ")
-                    actionResponse(7, idGH: Int(words.last ?? "-1") ?? -1)
+                    actionResponse(7, idGH: Int(words.last ?? "-1") ?? -1, name: "")
                     return
                 }
-                actionResponse(item.responses ?? -1 ,idGH: -1)
+                if (item.responses == 8){
+                    let words = mess.components(separatedBy: " ")
+                    actionResponse(8, idGH: -1, name: words.last ?? "" )
+                    return
+                }
+                actionResponse(item.responses ?? -1 ,idGH: -1, name: "")
                 return
             }
         }
@@ -283,7 +306,8 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     }
     //END SUPERVIEW
     
-    func actionResponse(_ id: Int, idGH: Int) {
+    
+    func actionResponse(_ id: Int, idGH: Int,name: String) {
         switch id {
             case 0:
                 sendAction.delegate?.dataCart()
@@ -302,7 +326,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             case 7:
                 sendAction.delegate?.detailHistoryCart(idGH: idGH)
             case 8:
-                sendAction.delegate?.searchByManufacturer()
+                sendAction.delegate?.searchByManufacturer(name: name)
             default:
                 sendAction.delegate?.defaultReply()
         }
@@ -377,6 +401,8 @@ extension ChatBotViewController: SFSpeechRecognizerDelegate {
 }
 
 extension ChatBotViewController: BotResponseDelegate{
+   
+    
     func welcomeReply(){
         let newMessage = Message(sender: "BOT", body: "Xin chào, rất vui khi được hỗ trợ bạn")
         self.messages.append(newMessage)
@@ -433,9 +459,18 @@ extension ChatBotViewController: BotResponseDelegate{
             }
         }
     }
-    
-    func searchByManufacturer() {
-        //
+        
+    func searchByManufacturer(name:String) {
+        for item in dataManufacture{
+            if let nameManu = item.tenhang , let idManu = item.mahang{
+                if nameManu.lowercased().contains(name){
+                    let vc = ListLaptopViewController()
+                    vc.typeHome = "Brand"
+                    vc.maHang = idManu
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        }
     }
     
 }
@@ -565,4 +600,20 @@ extension ChatBotViewController{
             })
         }
     }
+    //MARK: - Load data Manufacturer
+    
+    func loadDataManufacture(){
+        DispatchQueue.init(label: "Manufacture", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else { return }
+            
+            APIService.getHangSX(with: .getHangSX, params: nil, headers: nil, completion: { [weak self] base, error in
+                guard let self = self, let base = base else { return }
+                if base.success == true {
+                    self.dataManufacture = (base.data ?? [])
+                }
+            })
+        }
+        
+    }
+    
 }
