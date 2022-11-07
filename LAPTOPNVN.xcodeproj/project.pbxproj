@@ -179,6 +179,7 @@
 		7953E80028F98D05000BF741 /* MapsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7953E7FC28F98D05000BF741 /* MapsViewController.xib */; };
 		7953E80128F98D05000BF741 /* MapsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7953E7FC28F98D05000BF741 /* MapsViewController.xib */; };
 		7953E80228F98D05000BF741 /* MapsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7953E7FC28F98D05000BF741 /* MapsViewController.xib */; };
+		795858472918FDA900E50214 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795858462918FDA900E50214 /* Tag.swift */; };
 		795CAF6F28867BC0008458F0 /* DetailSanPhamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795CAF6D28867BC0008458F0 /* DetailSanPhamViewController.swift */; };
 		795CAF7028867BC0008458F0 /* DetailSanPhamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795CAF6D28867BC0008458F0 /* DetailSanPhamViewController.swift */; };
 		795CAF7128867BC0008458F0 /* DetailSanPhamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795CAF6D28867BC0008458F0 /* DetailSanPhamViewController.swift */; };
@@ -533,6 +534,7 @@
 		7949889028FA4EAA00E5B65D /* MapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit.swift; sourceTree = "<group>"; };
 		7953E7FB28F98D05000BF741 /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		7953E7FC28F98D05000BF741 /* MapsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapsViewController.xib; sourceTree = "<group>"; };
+		795858462918FDA900E50214 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		795CAF6D28867BC0008458F0 /* DetailSanPhamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSanPhamViewController.swift; sourceTree = "<group>"; };
 		795CAF6E28867BC0008458F0 /* DetailSanPhamViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSanPhamViewController.xib; sourceTree = "<group>"; };
 		795EE8A2288A5EAC00C4313F /* LaptopItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaptopItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1052,6 +1054,14 @@
 			path = Maps;
 			sourceTree = "<group>";
 		};
+		795858452918FD9E00E50214 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				795858462918FDA900E50214 /* Tag.swift */,
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
 		795CAF6028867B08008458F0 /* DetailProduct */ = {
 			isa = PBXGroup;
 			children = (
@@ -1284,6 +1294,7 @@
 		799E50912914EAD5007A173E /* Chatbot */ = {
 			isa = PBXGroup;
 			children = (
+				795858452918FD9E00E50214 /* Tag */,
 				79BFB0D8291576370030B192 /* Model */,
 				79BFB0D3291565400030B192 /* Cell */,
 				79BFB0D2291565310030B192 /* Main */,
@@ -2013,6 +2024,7 @@
 				791BB93E289EE0CF002B5871 /* DetailBrandViewController.swift in Sources */,
 				797767D828EB399E008643A7 /* StarRatingStackView.swift in Sources */,
 				79A5440A288D70C300179574 /* SearchViewController.swift in Sources */,
+				795858472918FDA900E50214 /* Tag.swift in Sources */,
 				792DDAA4288F7DC8000ACAFC /* String.swift in Sources */,
 				799547F628A8B597002760A7 /* SanPhamViewController.swift in Sources */,
 				79475EB02882B7EF005911E3 /* HangSX.swift in Sources */,

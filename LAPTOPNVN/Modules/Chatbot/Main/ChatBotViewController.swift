@@ -10,18 +10,20 @@ import Speech
 import AVKit
 
 protocol BotResponseDelegate: NSObjectProtocol {
+    func defaultReply()
     func dataCart()
-    func historyCart(status: String)
+    func historyCart(status: Int)
     func detailHistoryCart()
     func searchByManufacturer()
 }
 class ChatResponse {
-     var delegate: BotResponseDelegate?
+    var delegate: BotResponseDelegate?
     init(){  }
     
 }
 class ChatBotViewController: UIViewController, UITableViewDelegate {
     
+    var result = ""
     @IBOutlet weak var mic: UIButton!
     @IBOutlet weak var btnSend: UIButton!
     
@@ -52,49 +54,49 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     }
     
     func setupSpeech() {
-
+        
         self.mic.isEnabled = false
         self.speechRecognizer?.delegate = self
-
+        
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
-
+            
             var isButtonEnabled = false
-
+            
             switch authStatus {
-            case .authorized:
-                isButtonEnabled = true
-
-            case .denied:
-                isButtonEnabled = false
-                print("User denied access to speech recognition")
-
-            case .restricted:
-                isButtonEnabled = false
-                print("Speech recognition restricted on this device")
-
-            case .notDetermined:
-                isButtonEnabled = false
-                print("Speech recognition not yet authorized")
+                case .authorized:
+                    isButtonEnabled = true
+                    
+                case .denied:
+                    isButtonEnabled = false
+                    print("User denied access to speech recognition")
+                    
+                case .restricted:
+                    isButtonEnabled = false
+                    print("Speech recognition restricted on this device")
+                    
+                case .notDetermined:
+                    isButtonEnabled = false
+                    print("Speech recognition not yet authorized")
                 @unknown default:
                     fatalError()
             }
-
+            
             OperationQueue.main.addOperation() {
                 self.mic.isEnabled = isButtonEnabled
             }
         }
     }
-
+    
     //------------------------------------------------------------------------------
-   
+    
     func startRecording() {
-
+        
         // Clear all previous session data and cancel task
         if recognitionTask != nil {
             recognitionTask?.cancel()
             recognitionTask = nil
         }
-
+        
         // Create instance of audio session to record voice
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -103,25 +105,25 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         } catch {
             print("audioSession properties weren't set because of an error.")
         }
-
+        
         self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-
+        
         let inputNode = audioEngine.inputNode
-
+        
         guard let recognitionRequest = recognitionRequest else {
             fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
         }
-
+        
         recognitionRequest.shouldReportPartialResults = true
-
+        
         self.recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
-
+            
             var isFinal = false
             if result != nil {
                 self.messageTextfield.text = result?.bestTranscription.formattedString
                 isFinal = (result?.isFinal)!
             }
-
+            
             if error != nil || isFinal { // || self.time == 0
                 print("KẾT THÚC")
                 self.audioEngine.stop()
@@ -133,23 +135,23 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
                 self.mic.isEnabled = true
             }
         })
-
+        
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
             self.recognitionRequest?.append(buffer)
         }
-
+        
         self.audioEngine.prepare()
-
+        
         do {
             try self.audioEngine.start()
         } catch {
             print("audioEngine couldn't start because of an error.")
         }
-
+        
         self.messageTextfield.text = "Mời nói, Tôi đang lắng nghe..."
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboard()
@@ -170,7 +172,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         
         tableView.dataSource = self
         title = K.appName
-//        navigationItem.hidesBackButton = true
+        //        navigationItem.hidesBackButton = true
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         let newMessage = Message(sender: "BOT", body: "Xin chào các bạn")
         self.messages.append(newMessage)
@@ -183,12 +185,12 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
-            self.audioEngine.stop()
-            self.recognitionRequest = nil
-            self.mic.setTitle("", for: .normal)
-            self.recognitionTask?.cancel()
-            self.recognitionTask = nil
-            self.mic.isEnabled = true
+        self.audioEngine.stop()
+        self.recognitionRequest = nil
+        self.mic.setTitle("", for: .normal)
+        self.recognitionTask?.cancel()
+        self.recognitionTask = nil
+        self.mic.isEnabled = true
         
         guard let mess = messageTextfield.text else {return}
         
@@ -203,13 +205,50 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
         }
-        if  (mess.lowercased().contains("giỏ hàng") || mess.lowercased().contains("my cart") ){
-            sendAction.delegate?.dataCart()
+        var dataIntent: [Intent] = []
+        dataIntent.append(
+            Intent(tag: "cart", patterns: ["giỏ hàng","my cart"], responses:  0))
+        dataIntent.append(
+            Intent(tag: "order", patterns: ["Chờ","chờ duyệt"], responses:  1))
+        dataIntent.append(
+            Intent(tag: "pending", patterns: ["đã duyệt","đang giao","sắp giao"], responses:  2))
+        dataIntent.append(
+            Intent(tag: "ship", patterns: ["Đã giao","hoàn tất","Đã nhận"], responses:  3))
+        dataIntent.append(
+            Intent(tag: "cancel", patterns: ["Đã huỷ","bị huỷ"], responses:  4))
+        
+        for item in dataIntent {
+            let c =  item.patterns?.filter({ mess.lowercased().contains($0.lowercased())})
+            if c?.capacity ?? 0 > 0 {
+                actionResponse(item.responses ?? -1 )
+            }
+        }
+        //        if  (mess.lowercased().contains("giỏ hàng") || mess.lowercased().contains("my cart") ){
+        //            sendAction.delegate?.dataCart()
+        //        }
+    }
+    //END SUPERVIEW
+    
+    func actionResponse(_ id: Int) {
+        switch id {
+            case 0:
+                sendAction.delegate?.dataCart()
+            case 1:
+                sendAction.delegate?.historyCart(status: 0 ) // Duyệt
+            case 2:
+                sendAction.delegate?.historyCart(status: 1 ) // Giao
+            case 3:
+                sendAction.delegate?.historyCart(status: 2 ) // Đã giao
+            case 4:
+                sendAction.delegate?.historyCart(status: 3 ) // Huỷ
+            case 5:
+                sendAction.delegate?.searchByManufacturer()
+            default:
+                sendAction.delegate?.defaultReply()
         }
     }
-   //END SUPERVIEW
+    
 }
-
 extension ChatBotViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -251,19 +290,20 @@ extension ChatBotViewController{
     
     @objc func keyboardWillShow(notification:NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-               if messageViewBottomConstraints.constant == 0 {
-                   messageViewBottomConstraints.constant = keyboardSize.height
-                   tableView.setContentOffset(.init(x: 0, y: tableView.contentOffset.y + keyboardSize.height), animated: true)
-               }
-           }
+            if messageViewBottomConstraints.constant == 0 {
+                messageViewBottomConstraints.constant = keyboardSize.height
+                tableView.setContentOffset(.init(x: 0, y: tableView.contentOffset.y + keyboardSize.height), animated: true)
+            }
+        }
     }
     @objc func keyboardWillHide(notification:NSNotification) {
         if messageViewBottomConstraints.constant != 0 {
             messageViewBottomConstraints.constant = 0
             tableView.setContentOffset(.init(x: 0, y: tableView.contentSize.height), animated: true)
-           }
+        }
     }
     //MARK: - End Setup keyboard
+    
 }
 
 extension ChatBotViewController: SFSpeechRecognizerDelegate {
@@ -277,8 +317,16 @@ extension ChatBotViewController: SFSpeechRecognizerDelegate {
 }
 
 extension ChatBotViewController: BotResponseDelegate{
+    func defaultReply(){
+        let newMessage = Message(sender: "BOT", body: "Tôi chưa hiểu, mong bạn nói lại")
+        self.messages.append(newMessage)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+        }
+    }
     func dataCart() {
-        
         let newMessage = Message(sender: "BOT", body: "        Thông tin giỏ hàng của bạn      \n     -------------------------------\n"+UserService.shared.getlistGH2())
         self.messages.append(newMessage)
         DispatchQueue.main.async {
@@ -288,8 +336,8 @@ extension ChatBotViewController: BotResponseDelegate{
         }
     }
     
-    func historyCart(status: String) {
-        //
+    func historyCart(status: Int) {
+        self.loadHistoryCart(status: status)
     }
     
     func detailHistoryCart() {
@@ -300,4 +348,57 @@ extension ChatBotViewController: BotResponseDelegate{
         //
     }
     
+}
+extension ChatBotViewController{
+    func loadHistoryCart(status: Int){
+        let params = HistoryModel(status: status, cmnd: UserService.shared.cmnd, dateFrom: nil, dateTo: nil).convertToDictionary()
+        DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self , UserService.shared.cmnd != "" else { return }
+            
+            APIService.getHistoryOrder1(with: .getHistoryOrder, params: params, headers: nil, completion: {
+                [weak self] base, error in
+                guard let self = self, let base = base else { return }
+                if base.success == true {
+                    if let data = base.data {
+                        // self.dataHistory = data
+                        var result = ""
+                        for item in data {
+                            if let idgiohang = item.idgiohang,
+                               let ngaylapgiohang = item.ngaylapgiohang,
+                               let nguoinhan = item.nguoinhan,
+                               let diachi = item.diachi,
+                               let sdt = item.sdt,
+                               let ngaydukien = item.ngaydukien,
+                               let tonggiatri = item.tonggiatri,
+                               let phuongthuc = item.phuongthuc,
+                               let tinhtrang = item.thanhtoan
+                            {
+                                //(Date().convertDateSQLToView(item.ngaydukien ?? "1970-01-01"))
+                                result = result + """
+                            Mã đơn hàng: \(idgiohang)
+                            Ngày lập: \( Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss"))
+                            Ngày nhận dự kiến: \( Date().convertDateTimeSQLToView(date: ngaydukien, format: "dd-MM-yyyy"))
+                            Tổng giá trị: \(CurrencyVN.toVND(tonggiatri))
+                            Người nhận: \(nguoinhan)
+                            Địa chỉ: \(diachi)
+                            Số điện thoại: \(sdt)
+                            Phương thức thanh toán: \(phuongthuc)
+                            Tình trạng: \(tinhtrang == true ? "Đã thanh toán": "Chưa thanh toán")
+                            ------------------------------\n
+                            """
+                            }
+                        }
+                        
+                        let newMessage = Message(sender: "BOT", body: "        Thông tin giỏ hàng của bạn      \n     -------------------------------\n"+result)
+                        self.messages.append(newMessage)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                        }
+                    }
+                }
+            })
+        }
+    }
 }
