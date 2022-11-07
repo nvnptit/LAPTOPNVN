@@ -163,13 +163,7 @@ class DetailOrderViewController: UIViewController {
             guard let datePlan = self.datePlan.text else {return}
             let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: Date().convertDateViewToSQL(datePlan), tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
             self.updateGH(params: params)
-            
-//            let alert = UIAlertController(title: "Duyệt đơn hàng thành công", message: "", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-//                self.dismiss(animated: true)
-//                self.navigationController?.popViewController(animated: true)
-//            }))
-//            self.present(alert, animated: true)
+
             
         }else if (btnDuyet.titleLabel?.text == "Xác nhận đã giao hàng"){
             print("Xác nhận")
@@ -203,13 +197,6 @@ class DetailOrderViewController: UIViewController {
             let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: Date().convertDateViewToSQL(datePlan), tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
             print(params)
             self.updateGH(params: params)
-//
-//            let alert = UIAlertController(title: "Cập nhật nhân viên giao hàng thành công", message: "", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-//                self.dismiss(animated: true)
-//                self.navigationController?.popViewController(animated: true)
-//            }))
-//            self.present(alert, animated: true)
             
         }
     }
@@ -228,13 +215,6 @@ class DetailOrderViewController: UIViewController {
             }))
             self.present(alert, animated: true)
             
-//            let alert = UIAlertController(title: "Huỷ đơn hàng thành công", message: "", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-//                self.dismiss(animated: true)
-//                let vc = OrderViewController()
-//                self.navigationController?.pushViewController(vc, animated: false)
-//            }))
-//            self.present(alert, animated: true)
         }else // Cap nhat thoi gian du kien
         {
             let currentDate = Date()

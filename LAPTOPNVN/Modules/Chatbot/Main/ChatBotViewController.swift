@@ -9,22 +9,34 @@ import UIKit
 import Speech
 import AVKit
 
-
+protocol BotResponseDelegate: NSObjectProtocol {
+    func dataCart()
+    func historyCart(status: String)
+    func detailHistoryCart()
+    func searchByManufacturer()
+}
+class ChatResponse {
+     var delegate: BotResponseDelegate?
+    init(){  }
+    
+}
 class ChatBotViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var mic: UIButton!
+    @IBOutlet weak var btnSend: UIButton!
     
+    private var sendAction = ChatResponse()
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     @IBOutlet weak var messageViewBottomConstraints: NSLayoutConstraint!
     
     var messages: [Message] = []
     
-    let speechRecognizer        = SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+    var speechRecognizer:  SFSpeechRecognizer?
+    //        = SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
     var recognitionRequest      : SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask         : SFSpeechRecognitionTask?
     let audioEngine             = AVAudioEngine()
-    
     
     
     @IBAction func btnMicSpeechToText(_ sender: UIButton, forEvent event: UIEvent) {
@@ -141,8 +153,18 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboard()
-        self.setupSpeech()
+        let alert = UIAlertController(title: "Mời bạn chọn ngôn ngữ", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tiếng Anh 🇺🇸", style: .cancel, handler:{ _ in
+            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
+            self.dismiss(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Tiếng Việt 🇻🇳", style: .default, handler:{ _ in
+            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+            self.dismiss(animated: true)
+        }))
+        self.present(alert, animated: true)
         
+        self.setupSpeech()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
         view.addGestureRecognizer(gesture)
         
@@ -157,6 +179,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
         }
+        sendAction.delegate = self
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
@@ -168,6 +191,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             self.mic.isEnabled = true
         
         guard let mess = messageTextfield.text else {return}
+        
         let newMessage = Message(sender: "ME", body: mess)
         self.messages.append(newMessage)
         DispatchQueue.main.async {
@@ -179,8 +203,11 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
         }
+        if  (mess.lowercased().contains("giỏ hàng") || mess.lowercased().contains("my cart") ){
+            sendAction.delegate?.dataCart()
+        }
     }
-    
+   //END SUPERVIEW
 }
 
 extension ChatBotViewController: UITableViewDataSource {
@@ -247,4 +274,30 @@ extension ChatBotViewController: SFSpeechRecognizerDelegate {
             self.mic.isEnabled = false
         }
     }
+}
+
+extension ChatBotViewController: BotResponseDelegate{
+    func dataCart() {
+        
+        let newMessage = Message(sender: "BOT", body: "        Thông tin giỏ hàng của bạn      \n     -------------------------------\n"+UserService.shared.getlistGH2())
+        self.messages.append(newMessage)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+        }
+    }
+    
+    func historyCart(status: String) {
+        //
+    }
+    
+    func detailHistoryCart() {
+        //
+    }
+    
+    func searchByManufacturer() {
+        //
+    }
+    
 }

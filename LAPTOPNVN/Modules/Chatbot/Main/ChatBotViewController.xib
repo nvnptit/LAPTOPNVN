@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatBotViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
+                <outlet property="btnSend" destination="dMK-r2-Dx3" id="fdy-Ta-bCO"/>
                 <outlet property="messageTextfield" destination="pkI-46-2Td" id="Hge-ha-6ai"/>
                 <outlet property="messageViewBottomConstraints" destination="sWE-PA-vWn" id="NST-ZT-oyD"/>
                 <outlet property="mic" destination="Llk-w1-Hcy" id="v2T-Kx-wFi"/>

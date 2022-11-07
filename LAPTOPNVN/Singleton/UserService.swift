@@ -83,13 +83,24 @@ extension UserService{
     func removeOrder2(with data:LoaiSanPhamKM?){
         self.listGH2 = self.listGH2.filter { $0.data?.malsp != data?.malsp }
     }
-    func getlistGH2(){
+    func getlistGH2() -> String{
+        var result = ""
         print("\n-------------")
-        for item in listGH2{
-            print(item.data)
-            print(item.sl)
+        if listGH2.count == 0 {
+            return "Giỏ hàng của bạn đang trống!"
+        }
+        for it in listGH2{
+                result = result + """
+                Tên sản phẩm: \(String(describing: it.data?.tenlsp ?? ""))
+                Số lượng: \(it.sl)
+                Giá gốc: \(CurrencyVN.toVND(it.data?.giamoi ?? 0))
+                Giảm giá: \(String(describing: it.data?.ptgg ?? 0))%
+                Giá mua: \(CurrencyVN.toVND(it.data?.giagiam ?? 0))
+                -------------------------------\n
+                """
         }
         print("\n-------------")
+        return result
     }
     func getlistGH() -> [Orders]{
         return self.listGH2

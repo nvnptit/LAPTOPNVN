@@ -119,9 +119,6 @@ class DetailSanPhamViewController: UIViewController{
         if (cmnd != ""){
             if let loaiSp = loaiSp {
                 UserService.shared.addOrder2(with: loaiSp)
-//                print(UserService.shared.getlistGH2())
-//                print("\n")
-                
                 let alert = UIAlertController(title: title, message: "Thêm vào giỏ hàng thành công", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
                     self.dismiss(animated: true)
