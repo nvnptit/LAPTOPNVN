@@ -56,6 +56,19 @@ class Orders: Decodable{
 }
 
 extension UserService{
+    
+    func addOrderChatBot(with data: LoaiSanPhamKM?,sl: Int){
+        var k = true
+        for item in listGH2{
+            if (item.data?.malsp == data?.malsp){
+                item.sl += sl
+                k = false
+            }
+        }
+        if (k) {
+            listGH2.append(Orders(data: data, sl: sl))
+        }
+    }
     //Danh sach gio hang 2
     func addOrder2(with data: LoaiSanPhamKM?){
         var k = true

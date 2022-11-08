@@ -25,6 +25,8 @@ class ChatResponse {
 }
 class ChatBotViewController: UIViewController, UITableViewDelegate {
     
+    var checkOrder = false
+    var kt = false
     @IBOutlet weak var langVi: UIButton!
     
     @IBOutlet weak var langEn: UIButton!
@@ -40,6 +42,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     var messages: [Message] = []
     var dataHistory: [HistoryOrderCMND] = []
     var dataManufacture: [HangSX] = []
+    var dataLSP : [LoaiSanPhamKM] = []
     
     var speechRecognizer:  SFSpeechRecognizer?
     //        = SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
@@ -108,7 +111,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         data = data.replacingOccurrences(of: "tám", with: "8")
         data = data.replacingOccurrences(of: "chín", with: "9")
         data = data.replacingOccurrences(of: "mừ", with: "10")
-//        data = data.replaceCharacters(characters: "một", toSeparator: "1")
+        //        data = data.replaceCharacters(characters: "một", toSeparator: "1")
         return data
     }
     func startRecording() {
@@ -177,23 +180,23 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     }
     
     @IBAction func tapLangVi(_ sender: UIButton, forEvent event: UIEvent) {
-//        langVi.backgroundColor = .green
-//        langEn.backgroundColor = .white
-//            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
-//        self.setupSpeech()
+        //        langVi.backgroundColor = .green
+        //        langEn.backgroundColor = .white
+        //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+        //        self.setupSpeech()
     }
     
     @IBAction func tapLangEn(_ sender: UIButton, forEvent event: UIEvent) {
-//        langEn.backgroundColor = .green
-//        langVi.backgroundColor = .white
-//            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
-//        self.setupSpeech()
+        //        langEn.backgroundColor = .green
+        //        langVi.backgroundColor = .white
+        //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
+        //        self.setupSpeech()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboard()
-//        self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+        //        self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
         let alert = UIAlertController(title: "Mời bạn chọn ngôn ngữ", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Tiếng Anh 🇺🇸", style: .cancel, handler:{ _ in
             self.dismiss(animated: true)
@@ -232,6 +235,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         sendAction.delegate = self
         loadOrderCMND()
         loadDataManufacture()
+        getListLSP()
     }
     
     
@@ -262,6 +266,105 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
         }
+        
+        mess = chuanHoa(mess).lowercased()
+        print(mess)
+        
+        // Đặt hàng
+        if (mess.contains("thêm vào giỏ hàng")){
+            checkOrder = true
+        }
+        
+        if checkOrder == true {
+            var t1 = false
+            if (mess.contains("thêm vào giỏ hàng")){
+                replyText(message: "Nhập tên sản phẩm và số lượng")
+                t1 = true
+                return
+            }
+            if (t1 == false && (mess.contains("huỷ thao tác") || mess.contains("cancel order"))){
+                checkOrder = false
+                t1 = true
+                replyText(message: "Đã ngừng đặt hàng")
+                return
+            } // số lượng 2
+            if (t1 == false ){
+                mess = mess.replacingOccurrences(of: " số lượng", with: "")
+                mess = mess.replacingOccurrences(of: " amount", with: "")
+                var words = mess.components(separatedBy: " ")
+                let sl = Int(words.last ?? "-1") ?? -1
+                
+                if sl > 0{
+                    words = words.filter({$0 != "\(sl)"})
+                    let name = chuanHoa(words.joined(separator: " ")+"")
+                    print(name)
+                    // FOR 1
+                    for item in dataLSP {
+                        if  let nameLSP = item.tenlsp?.lowercased(){
+                            
+                            if name.contains(nameLSP){
+                                kt = true
+                                break;
+                            }
+                        }
+                    }
+                    if (kt == false){
+                            self.replyText(message: "Không tìm thấy tên sản phẩm")
+                    }else {
+                        //FOR 2
+                        for item in dataLSP {
+                            if  let nameLSP = item.tenlsp?.lowercased(){
+                                kt = true
+                                if name.contains(nameLSP){
+                                    var value = 0
+                                    var value1 = 0
+                                    var key = item.malsp ?? ""
+                                    let listData = UserService.shared.listGH2
+                                    let element = listData.filter { $0.data?.malsp == item.malsp}
+                                    if (!element.isEmpty){
+                                        key = element[0].data?.malsp ?? ""
+                                        value1 = element[0].sl
+                                    }
+                                    value = value + value1
+                                    APIService.getSLLSP(with: key, { data, error in
+                                        guard let data = data else {
+                                            return
+                                        }
+                                        if (data.success == true ){
+                                            if let data = data.message {
+                                                if ((value + sl) > data){
+                                                    self.replyText(message: "Số lượng đã vượt quá số lượng tồn")
+                                                    return
+                                                }
+                                                else
+                                                // Xử lý thêm vào giỏ hàng
+                                                {
+                                                    UserService.shared.addOrderChatBot(with: item,sl: sl)
+                                                    self.replyText(message: "Thêm vào giỏ hàng thành công")
+                                                    self.checkOrder = false
+                                                    t1 = true
+                                                    return
+                                                }
+                                            }
+                                        }// HP Zenbook số lượng 2
+                                        
+                                    })
+                                    
+                                }
+                            }
+                           
+                        }
+                        
+                    }
+                }else {
+                    replyText(message: "Tên sản phẩm hoặc số lượng không hợp lệ.\n Bạn vui lòng nhập lại")
+                    return
+                }
+            }
+            return
+        }
+        
+        
         var dataIntent: [Intent] = []
         dataIntent.append(
             Intent(tag: "cart", patterns: ["giỏ hàng","my cart"], responses:  0))
@@ -282,8 +385,6 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         dataIntent.append(
             Intent(tag: "manufacturer", patterns: ["Máy tính dell","dell","asus","acer","hp","msi","lenovo"], responses:  8))
         
-        mess = chuanHoa(mess).lowercased()
-        print(mess)
         for item in dataIntent {
             let c =  item.patterns?.filter({ mess.lowercased().contains($0.lowercased())})
             
@@ -306,6 +407,15 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     }
     //END SUPERVIEW
     
+    func replyText(message: String){
+        let newMessage = Message(sender: "BOT", body: message)
+        self.messages.append(newMessage)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+        }
+    }
     
     func actionResponse(_ id: Int, idGH: Int,name: String) {
         switch id {
@@ -401,7 +511,7 @@ extension ChatBotViewController: SFSpeechRecognizerDelegate {
 }
 
 extension ChatBotViewController: BotResponseDelegate{
-   
+    
     
     func welcomeReply(){
         let newMessage = Message(sender: "BOT", body: "Xin chào, rất vui khi được hỗ trợ bạn")
@@ -459,7 +569,7 @@ extension ChatBotViewController: BotResponseDelegate{
             }
         }
     }
-        
+    
     func searchByManufacturer(name:String) {
         for item in dataManufacture{
             if let nameManu = item.tenhang , let idManu = item.mahang{
@@ -544,14 +654,14 @@ extension ChatBotViewController{
                     if let data = base.data {
                         for item in data {
                             if let tenlsp = item.tenlsp,
-                                let cardscreen = item.cardscreen,
-                                let cpu = item.cpu,
-                                let giaban = item.giaban,
-                                let harddrive = item.harddrive,
-                                let mota = item.mota,
-                                let os = item.os,
-                                let ram = item.ram,
-                                let serial = item.serial
+                               let cardscreen = item.cardscreen,
+                               let cpu = item.cpu,
+                               let giaban = item.giaban,
+                               let harddrive = item.harddrive,
+                               let mota = item.mota,
+                               let os = item.os,
+                               let ram = item.ram,
+                               let serial = item.serial
                             {
                                 result = result + """
                             Sản phẩm: \(tenlsp)
@@ -594,8 +704,8 @@ extension ChatBotViewController{
                 guard let self = self, let base = base else { return }
                 if base.success == true {
                     if let data = base.data {
-                         self.dataHistory = data
-                        }
+                        self.dataHistory = data
+                    }
                 }
             })
         }
@@ -615,5 +725,16 @@ extension ChatBotViewController{
         }
         
     }
+    //MARK: - Load Full LSP
+    
+    func getListLSP(){
+        APIService.getLoaiSanPhamFull(with: .getLoaiSanPhamFull, params: nil, headers: nil, completion: { [weak self] base, error in
+            guard let self = self, let base = base else { return }
+            if base.success == true {
+                self.dataLSP = base.data ?? []
+            }
+        })
+    }
+    //MARK: - Check So luong ton LSP
     
 }
