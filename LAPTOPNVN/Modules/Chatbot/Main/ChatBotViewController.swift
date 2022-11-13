@@ -27,9 +27,11 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     
     var checkOrder = false
     var kt = false
-    @IBOutlet weak var langVi: UIButton!
     
+    var isVN = true
+    @IBOutlet weak var langVi: UIButton!
     @IBOutlet weak var langEn: UIButton!
+    
     var result = ""
     @IBOutlet weak var mic: UIButton!
     @IBOutlet weak var btnSend: UIButton!
@@ -44,29 +46,41 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     var dataManufacture: [HangSX] = []
     var dataLSP : [LoaiSanPhamKM] = []
     
-    var speechRecognizer:  SFSpeechRecognizer?
-    //        = SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+    var speechVN = SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+    var speechUS = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+    
     var recognitionRequest      : SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask         : SFSpeechRecognitionTask?
     let audioEngine             = AVAudioEngine()
     
     
     @IBAction func btnMicSpeechToText(_ sender: UIButton, forEvent event: UIEvent) {
+        
+        // Disable Language
+        self.langVi.isUserInteractionEnabled = false
+        self.langEn.isUserInteractionEnabled = false
+        
         if audioEngine.isRunning {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
             self.mic.isEnabled = false
             self.mic.setTitle("", for: .normal)
         } else {
-            self.startRecording()
-            self.mic.setTitle("Stop Recording", for: .normal)
+            if (isVN == true){
+                self.startRecordingVN()
+                self.mic.setTitle("Stop Recording", for: .normal)
+            }else {
+                self.startRecordingUS()
+                self.mic.setTitle("Stop Recording", for: .normal)
+            }
         }
     }
     
     func setupSpeech() {
-        
         self.mic.isEnabled = false
-        self.speechRecognizer?.delegate = self
+        
+        self.speechVN?.delegate = self
+        self.speechUS?.delegate = self
         
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
             
@@ -114,7 +128,8 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         //        data = data.replaceCharacters(characters: "một", toSeparator: "1")
         return data
     }
-    func startRecording() {
+    
+    func startRecordingVN() {
         
         // Clear all previous session data and cancel task
         if recognitionTask != nil {
@@ -141,7 +156,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         
         recognitionRequest.shouldReportPartialResults = true
         
-        self.recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
+        self.recognitionTask = speechVN?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
             var isFinal = false
             if result != nil {
@@ -153,6 +168,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             
             if error != nil || isFinal { // || self.time == 0
                 print("KẾT THÚC")
+                
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
                 self.recognitionRequest = nil
@@ -160,6 +176,10 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
                 self.recognitionTask?.cancel()
                 self.recognitionTask = nil
                 self.mic.isEnabled = true
+                
+                // Enable Language
+                self.langVi.isUserInteractionEnabled = true
+                self.langEn.isUserInteractionEnabled = true
             }
         })
         
@@ -178,17 +198,90 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         
         self.messageTextfield.text = "Mời nói, Tôi đang lắng nghe..."
     }
+    func startRecordingUS() {
+        
+        // Clear all previous session data and cancel task
+        if recognitionTask != nil {
+            recognitionTask?.cancel()
+            recognitionTask = nil
+        }
+        
+        // Create instance of audio session to record voice
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.record, mode: AVAudioSession.Mode.measurement, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print("audioSession properties weren't set because of an error.")
+        }
+        
+        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        
+        let inputNode = audioEngine.inputNode
+        
+        guard let recognitionRequest = recognitionRequest else {
+            fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
+        }
+        
+        recognitionRequest.shouldReportPartialResults = true
+        
+        self.recognitionTask = speechUS?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
+            
+            var isFinal = false
+            if result != nil {
+                self.messageTextfield.text = result?.bestTranscription.formattedString
+                self.messageTextfield.text = self.converNumberToText(data1: self.messageTextfield.text ?? "")
+                isFinal = (result?.isFinal)!
+                
+            }
+            
+            if error != nil || isFinal { // || self.time == 0
+                print("KẾT THÚC")
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                self.recognitionRequest = nil
+                self.mic.setTitle("", for: .normal)
+                self.recognitionTask?.cancel()
+                self.recognitionTask = nil
+                self.mic.isEnabled = true
+                
+                // Enable Language
+                self.langVi.isUserInteractionEnabled = true
+                self.langEn.isUserInteractionEnabled = true
+                
+            }
+        })
+        
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
+            self.recognitionRequest?.append(buffer)
+        }
+        
+        self.audioEngine.prepare()
+        
+        do {
+            try self.audioEngine.start()
+        } catch {
+            print("audioEngine couldn't start because of an error.")
+        }
+        
+        self.messageTextfield.text = "Listening..."
+    }
+    
+    
     
     @IBAction func tapLangVi(_ sender: UIButton, forEvent event: UIEvent) {
-        //        langVi.backgroundColor = .green
-        //        langEn.backgroundColor = .white
+        langVi.backgroundColor = .green
+        langEn.backgroundColor = .white
+        isVN = true
         //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
         //        self.setupSpeech()
     }
     
     @IBAction func tapLangEn(_ sender: UIButton, forEvent event: UIEvent) {
-        //        langEn.backgroundColor = .green
-        //        langVi.backgroundColor = .white
+        langEn.backgroundColor = .green
+        langVi.backgroundColor = .white
+        isVN = false
         //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
         //        self.setupSpeech()
     }
@@ -196,21 +289,22 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboard()
-        //        self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
-        let alert = UIAlertController(title: "Mời bạn chọn ngôn ngữ", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Tiếng Anh 🇺🇸", style: .cancel, handler:{ _ in
-            self.dismiss(animated: true)
-            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
-            self.langEn.backgroundColor = .green
-            self.langVi.backgroundColor = .white
-        }))
-        alert.addAction(UIAlertAction(title: "Tiếng Việt 🇻🇳", style: .default, handler:{ _ in
-            self.langVi.backgroundColor = .green
-            self.langEn.backgroundColor = .white
-            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
-            self.dismiss(animated: true)
-        }))
-        self.present(alert, animated: true)
+        self.langVi.backgroundColor = .green
+        self.langEn.backgroundColor = .white
+        //        let alert = UIAlertController(title: "Mời bạn chọn ngôn ngữ", message: "", preferredStyle: .alert)
+        //        alert.addAction(UIAlertAction(title: "Tiếng Anh 🇺🇸", style: .cancel, handler:{ _ in
+        //            self.dismiss(animated: true)
+        //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
+        //            self.langEn.backgroundColor = .green
+        //            self.langVi.backgroundColor = .white
+        //        }))
+        //        alert.addAction(UIAlertAction(title: "Tiếng Việt 🇻🇳", style: .default, handler:{ _ in
+        //            self.langVi.backgroundColor = .green
+        //            self.langEn.backgroundColor = .white
+        //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+        //            self.dismiss(animated: true)
+        //        }))
+        //        self.present(alert, animated: true)
         
         self.setupSpeech()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
@@ -309,7 +403,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
                         }
                     }
                     if (kt == false){
-                            self.replyText(message: "Không tìm thấy tên sản phẩm")
+                        self.replyText(message: "Không tìm thấy tên sản phẩm")
                     }else {
                         //FOR 2
                         for item in dataLSP {
@@ -352,7 +446,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
                                     
                                 }
                             }
-                           
+                            
                         }
                         
                     }

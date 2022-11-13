@@ -148,11 +148,11 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYb-TX-zcG">
-                                    <rect key="frame" x="130" y="462.5" width="162" height="41"/>
+                                    <rect key="frame" x="148.5" y="462.5" width="125" height="41"/>
                                     <color key="backgroundColor" red="0.043137254899999998" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="42" id="1k3-II-lbY"/>
-                                        <constraint firstAttribute="width" constant="162" id="P65-xb-Kwg"/>
+                                        <constraint firstAttribute="width" constant="125" id="P65-xb-Kwg"/>
                                     </constraints>
                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Button"/>

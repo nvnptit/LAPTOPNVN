@@ -9,8 +9,18 @@ import UIKit
 import DropDown
 import SDWebImage
 import NVActivityIndicatorView
+import Speech
+import AVKit
 
-class SearchViewController: UIViewController{
+class SearchViewController: UIViewController, SFSpeechRecognizerDelegate{
+    
+    
+    var isVN = true
+    @IBOutlet weak var langVi: UIButton!
+    @IBOutlet weak var langEn: UIButton!
+    
+    @IBOutlet weak var mic: UIButton!
+    
     @IBOutlet weak var view1: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tfGiaMin: UITextField!
@@ -29,10 +39,263 @@ class SearchViewController: UIViewController{
     var brandValues: [String] = ["All"]
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
+    //MARK: - MICRO
+//    var speechRecognizer:  SFSpeechRecognizer?
+    
+    
+    var speechVN = SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+    var speechUS = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+    
+    var recognitionRequest      : SFSpeechAudioBufferRecognitionRequest?
+    var recognitionTask         : SFSpeechRecognitionTask?
+    let audioEngine             = AVAudioEngine()
+    
+    @IBAction func btnMicSpeechToText(_ sender: UIButton, forEvent event: UIEvent) {
+        // Disable Language
+        self.langVi.isUserInteractionEnabled = false
+        self.langEn.isUserInteractionEnabled = false
+        
+        if audioEngine.isRunning {
+            self.audioEngine.stop()
+            self.recognitionRequest?.endAudio()
+            self.mic.isEnabled = false
+            self.mic.setTitle("", for: .normal)
+        } else {
+            if (isVN == true){
+                self.startRecordingVN()
+                self.mic.setTitle("Stop Recording", for: .normal)
+            }else {
+                self.startRecordingUS()
+                self.mic.setTitle("Stop Recording", for: .normal)
+            }
+        }
+    }
+    
+    func setupSpeech() {
+        self.mic.isEnabled = false
+        
+        self.speechVN?.delegate = self
+        self.speechUS?.delegate = self
+        
+        SFSpeechRecognizer.requestAuthorization { (authStatus) in
+            
+            var isButtonEnabled = false
+            
+            switch authStatus {
+                case .authorized:
+                    isButtonEnabled = true
+                    
+                case .denied:
+                    isButtonEnabled = false
+                    print("User denied access to speech recognition")
+                    
+                case .restricted:
+                    isButtonEnabled = false
+                    print("Speech recognition restricted on this device")
+                    
+                case .notDetermined:
+                    isButtonEnabled = false
+                    print("Speech recognition not yet authorized")
+                @unknown default:
+                    fatalError()
+            }
+            
+            OperationQueue.main.addOperation() {
+                self.mic.isEnabled = isButtonEnabled
+            }
+        }
+    }
+    
+    //------------------------------------------------------------------------------
+    func converNumberToText(data1: String) -> String{
+        var data = data1
+        data = data.replacingOccurrences(of: "một", with: "1")
+        data = data.replacingOccurrences(of: "hai", with: "2")
+        data = data.replacingOccurrences(of: "ba", with: "3")
+        data = data.replacingOccurrences(of: "bốn", with: "4")
+        data = data.replacingOccurrences(of: "năm", with: "5")
+        data = data.replacingOccurrences(of: "sáu", with: "6")
+        data = data.replacingOccurrences(of: "bảy", with: "7")
+        data = data.replacingOccurrences(of: "bẩy", with: "7")
+        data = data.replacingOccurrences(of: "tám", with: "8")
+        data = data.replacingOccurrences(of: "chín", with: "9")
+        data = data.replacingOccurrences(of: "mừ", with: "10")
+        //        data = data.replaceCharacters(characters: "một", toSeparator: "1")
+        return data
+    }
+    
+    func startRecordingVN() {
+        
+        // Clear all previous session data and cancel task
+        if recognitionTask != nil {
+            recognitionTask?.cancel()
+            recognitionTask = nil
+        }
+        
+        // Create instance of audio session to record voice
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.record, mode: AVAudioSession.Mode.measurement, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print("audioSession properties weren't set because of an error.")
+        }
+        
+        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        
+        let inputNode = audioEngine.inputNode
+        
+        guard let recognitionRequest = recognitionRequest else {
+            fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
+        }
+        
+        recognitionRequest.shouldReportPartialResults = true
+        
+        self.recognitionTask = speechVN?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
+            
+            var isFinal = false
+            if result != nil {
+                self.searchBar.text = result?.bestTranscription.formattedString
+                self.searchBar.text = self.converNumberToText(data1: self.searchBar.text ?? "")
+                isFinal = (result?.isFinal)!
+                self.getDataSearch()
+            }
+            
+            if error != nil || isFinal { // || self.time == 0
+                print("KẾT THÚC")
+                
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                self.recognitionRequest = nil
+                self.mic.setTitle("", for: .normal)
+                self.recognitionTask?.cancel()
+                self.recognitionTask = nil
+                self.mic.isEnabled = true
+                
+                // Enable Language
+                self.langVi.isUserInteractionEnabled = true
+                self.langEn.isUserInteractionEnabled = true
+            }
+        })
+        
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
+            self.recognitionRequest?.append(buffer)
+        }
+        
+        self.audioEngine.prepare()
+        
+        do {
+            try self.audioEngine.start()
+        } catch {
+            print("audioEngine couldn't start because of an error.")
+        }
+        
+        self.searchBar.text = "Tôi đang lắng nghe..."
+    }
+    func startRecordingUS() {
+        
+        // Clear all previous session data and cancel task
+        if recognitionTask != nil {
+            recognitionTask?.cancel()
+            recognitionTask = nil
+        }
+        
+        // Create instance of audio session to record voice
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.record, mode: AVAudioSession.Mode.measurement, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print("audioSession properties weren't set because of an error.")
+        }
+        
+        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        
+        let inputNode = audioEngine.inputNode
+        
+        guard let recognitionRequest = recognitionRequest else {
+            fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
+        }
+        
+        recognitionRequest.shouldReportPartialResults = true
+        
+        self.recognitionTask = speechUS?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
+            
+            var isFinal = false
+            if result != nil {
+                self.searchBar.text = result?.bestTranscription.formattedString
+                self.searchBar.text = self.converNumberToText(data1: self.searchBar.text ?? "")
+                isFinal = (result?.isFinal)!
+                self.getDataSearch()
+            }
+            
+            if error != nil || isFinal { // || self.time == 0
+                print("KẾT THÚC")
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                self.recognitionRequest = nil
+                self.mic.setTitle("", for: .normal)
+                self.recognitionTask?.cancel()
+                self.recognitionTask = nil
+                self.mic.isEnabled = true
+                
+                // Enable Language
+                self.langVi.isUserInteractionEnabled = true
+                self.langEn.isUserInteractionEnabled = true
+                
+            }
+        })
+        
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
+            self.recognitionRequest?.append(buffer)
+        }
+        
+        self.audioEngine.prepare()
+        
+        do {
+            try self.audioEngine.start()
+        } catch {
+            print("audioEngine couldn't start because of an error.")
+        }
+        
+        self.searchBar.text = "Listening..."
+    }
+    
+    
+    
+    @IBAction func tapLangVi(_ sender: UIButton, forEvent event: UIEvent) {
+        langVi.backgroundColor = .green
+        langEn.backgroundColor = .white
+        isVN = true
+        //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
+        //        self.setupSpeech()
+    }
+    
+    @IBAction func tapLangEn(_ sender: UIButton, forEvent event: UIEvent) {
+        langEn.backgroundColor = .green
+        langVi.backgroundColor = .white
+        isVN = false
+        //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
+        //        self.setupSpeech()
+    }
+    
+    
+    //MARK: - END SETUP MICRO
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Tìm kiếm sản phẩm"
+        
+            langVi.backgroundColor = .green
+            langEn.backgroundColor = .white
         setupDropDown()
         setupKeyboard()
+        setupSpeech()
         
         searchBar.delegate = self
         tfGiaMin.delegate = self
@@ -145,7 +408,7 @@ class SearchViewController: UIViewController{
         section.interGroupSpacing = 10
         return section
     }
-    
+  
 }
 extension SearchViewController: UISearchBarDelegate{
 
