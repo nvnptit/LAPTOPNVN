@@ -49,7 +49,7 @@
                                         <action selector="btnMicSpeechToText:forEvent:" destination="-1" eventType="touchUpInside" id="9wI-C5-TJK"/>
                                     </connections>
                                 </button>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pkI-46-2Td">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pkI-46-2Td">
                                     <rect key="frame" x="67" y="10" width="280" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="280" id="eTf-VC-azL"/>

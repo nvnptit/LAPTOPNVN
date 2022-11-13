@@ -65,7 +65,7 @@ class CartViewController: UIViewController {
         }
     }
     override func viewDidAppear(_ animated: Bool = false) {
-        self.navigationController?.isNavigationBarHidden = true
+//        self.navigationController?.isNavigationBarHidden = true
         loadData()
         if (data.isEmpty){
             self.money.text = "0 VNĐ"

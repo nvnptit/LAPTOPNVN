@@ -17,6 +17,8 @@ protocol BotResponseDelegate: NSObjectProtocol {
     func historyCart(status: Int)
     func detailHistoryCart(idGH: Int)
     func searchByManufacturer(name: String)
+    
+    func paymentReply()
 }
 class ChatResponse {
     var delegate: BotResponseDelegate?
@@ -274,6 +276,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         langVi.backgroundColor = .green
         langEn.backgroundColor = .white
         isVN = true
+        messageTextfield.placeholder = "Nhập tin nhắn..."
         //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
         //        self.setupSpeech()
     }
@@ -282,6 +285,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         langEn.backgroundColor = .green
         langVi.backgroundColor = .white
         isVN = false
+        messageTextfield.placeholder = "Write a message..."
         //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
         //        self.setupSpeech()
     }
@@ -291,6 +295,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         setupKeyboard()
         self.langVi.backgroundColor = .green
         self.langEn.backgroundColor = .white
+        messageTextfield.placeholder = "Nhập tin nhắn..."
         //        let alert = UIAlertController(title: "Mời bạn chọn ngôn ngữ", message: "", preferredStyle: .alert)
         //        alert.addAction(UIAlertAction(title: "Tiếng Anh 🇺🇸", style: .cancel, handler:{ _ in
         //            self.dismiss(animated: true)
@@ -317,7 +322,6 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         
         
         title = K.appName
-        //        navigationItem.hidesBackButton = true
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         let newMessage = Message(sender: "BOT", body: "Xin chào các bạn")
         self.messages.append(newMessage)
@@ -478,6 +482,8 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             Intent(tag: "detailOrder", patterns: ["chi tiết đơn hàng","detail order"], responses:  7))
         dataIntent.append(
             Intent(tag: "manufacturer", patterns: ["Máy tính dell","dell","asus","acer","hp","msi","lenovo"], responses:  8))
+        dataIntent.append(
+            Intent(tag: "pay", patterns: ["thanh toán","pay"], responses:  9))
         
         for item in dataIntent {
             let c =  item.patterns?.filter({ mess.lowercased().contains($0.lowercased())})
@@ -531,6 +537,8 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
                 sendAction.delegate?.detailHistoryCart(idGH: idGH)
             case 8:
                 sendAction.delegate?.searchByManufacturer(name: name)
+            case 9:
+                sendAction.delegate?.paymentReply()
             default:
                 sendAction.delegate?.defaultReply()
         }
@@ -605,6 +613,15 @@ extension ChatBotViewController: SFSpeechRecognizerDelegate {
 }
 
 extension ChatBotViewController: BotResponseDelegate{
+    func paymentReply() {
+        if (UserService.shared.getlistGH().isEmpty){
+            replyText(message: "Bạn chưa có sản phẩm nào trong giỏ hàng!")
+            return
+        }else {
+            let vc = CartViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
     
     func welcomeReply(){

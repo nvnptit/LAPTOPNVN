@@ -263,8 +263,6 @@ class SearchViewController: UIViewController, SFSpeechRecognizerDelegate{
         self.searchBar.text = "Listening..."
     }
     
-    
-    
     @IBAction func tapLangVi(_ sender: UIButton, forEvent event: UIEvent) {
         langVi.backgroundColor = .green
         langEn.backgroundColor = .white
