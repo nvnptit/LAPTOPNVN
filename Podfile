@@ -16,7 +16,8 @@ target 'LAPTOPNVN' do
 	pod 'MessageKit'
   #pod 'Braintree'
   
-  
+  #pod 'GoogleMLKit/TextRecognition'
+
   # Optionally include additional Pods
  #pod 'Braintree/DataCollector'
   #pod 'Braintree/Venmo'

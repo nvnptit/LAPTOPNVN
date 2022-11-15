@@ -11,9 +11,12 @@ import SDWebImage
 import NVActivityIndicatorView
 import Speech
 import AVKit
+import Vision
 
-class SearchViewController: UIViewController, SFSpeechRecognizerDelegate{
+class SearchViewController: UIViewController, SFSpeechRecognizerDelegate, UINavigationControllerDelegate{
     
+    @IBOutlet weak var camera: UIButton!
+    var recognizedText = ""
     
     var isVN = true
     @IBOutlet weak var langVi: UIButton!
@@ -39,9 +42,21 @@ class SearchViewController: UIViewController, SFSpeechRecognizerDelegate{
     var brandValues: [String] = ["All"]
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
+    
+    @IBAction func takingPicture(_ sender: Any) {
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.searchBar.text = ""
+                self.recognizedText = ""
+                let vc = UIImagePickerController()
+                vc.sourceType = .camera
+                vc.allowsEditing = true
+                vc.delegate = self
+                present(vc, animated: true)
+            }
+        }
+
     //MARK: - MICRO
 //    var speechRecognizer:  SFSpeechRecognizer?
-    
     
     var speechVN = SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
     var speechUS = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
@@ -525,4 +540,37 @@ extension SearchViewController{
         //        scrollView.contentInset = contentInset
     }
     //MARK: - End Setup keyboard
+}
+
+extension SearchViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+
+        guard let image = info[.editedImage] as? UIImage else {
+            print("No image found")
+            return
+        }
+//        self.imageView.image = image
+        let textRecognitionRequest = VNRecognizeTextRequest(completionHandler: { (request, error) in
+            if let results = request.results, !results.isEmpty {
+                if let requestResults = request.results as? [VNRecognizedTextObservation] {
+                    for observation in requestResults {
+                        guard let candidate = observation.topCandidates(1).first else { return }
+                        self.recognizedText += candidate.string
+                        self.recognizedText += "\n"
+                    }
+                    self.searchBar.text = self.recognizedText
+                }
+            }
+        })
+        textRecognitionRequest.recognitionLanguages = ["vi-VN"]
+        let handler = VNImageRequestHandler(cgImage: image.cgImage!, options: [:])
+        do {
+            try handler.perform([textRecognitionRequest])
+            getDataSearch()
+        } catch {
+            print(error)
+        }
+    }
+
 }

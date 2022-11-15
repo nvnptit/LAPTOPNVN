@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 enum APIManager {
+    case findImageText
     case login
     case register
     case resetPass
@@ -246,6 +247,11 @@ extension APIManager {
                     path = "https://provinces.open-api.vn/api/d/\(code)?depth=2"
                     return path
                 }
+            case .findImageText :
+                do {
+                    path = "https://api.apilayer.com/image_to_text/url?url="
+                    return path
+                }
         }
         return baseURL + path
     }
@@ -262,7 +268,7 @@ extension APIManager {
                     .getSLSeri, .getPhieuNhap,
                     .getDotGG, .getMaSoDGG, .getDetailSale, .getRate, .getRateBySeri, .getListRate,
                     .getProvince, .getWard, .getDistrict,
-                    .getHistoryOrderCMND
+                    .getHistoryOrderCMND, .findImageText
                 :
                 return .get
             case .login, .register, .resetPass, .addUserKH, .uploadAvatar,

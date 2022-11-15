@@ -296,20 +296,6 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         self.langVi.backgroundColor = .green
         self.langEn.backgroundColor = .white
         messageTextfield.placeholder = "Nhập tin nhắn..."
-        //        let alert = UIAlertController(title: "Mời bạn chọn ngôn ngữ", message: "", preferredStyle: .alert)
-        //        alert.addAction(UIAlertAction(title: "Tiếng Anh 🇺🇸", style: .cancel, handler:{ _ in
-        //            self.dismiss(animated: true)
-        //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "en-GB"))
-        //            self.langEn.backgroundColor = .green
-        //            self.langVi.backgroundColor = .white
-        //        }))
-        //        alert.addAction(UIAlertAction(title: "Tiếng Việt 🇻🇳", style: .default, handler:{ _ in
-        //            self.langVi.backgroundColor = .green
-        //            self.langEn.backgroundColor = .white
-        //            self.speechRecognizer =  SFSpeechRecognizer(locale: Locale(identifier: "vi-VN"))
-        //            self.dismiss(animated: true)
-        //        }))
-        //        self.present(alert, animated: true)
         
         self.setupSpeech()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
