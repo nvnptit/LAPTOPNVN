@@ -306,10 +306,9 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         tableView.layer.borderColor = UIColor.black.cgColor
         tableView.layer.borderWidth = 0.5
         
-        
-        title = K.appName
+//        title = K.appName // ChatbotVN
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
-        let newMessage = Message(sender: "BOT", body: "Xin chào các bạn")
+        let newMessage = Message(sender: "BOT", body: "Xin chào bạn, mình rất vui khi được hỗ trợ bạn!")
         self.messages.append(newMessage)
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -542,19 +541,20 @@ extension ChatBotViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCell
         cell.label.text = message.body
-        
+        cell.messageBubble.sizeToFit()
         if message.sender != "BOT" {
             cell.leftImageView.isHidden = true
             cell.rightImageView.isHidden = false
-            cell.messageBubble.backgroundColor = .cyan //UIColor(named: K.BrandColors.lightPurple)
-            cell.label.textColor = UIColor(named: K.BrandColors.purple)
+            cell.messageBubble.backgroundColor = UIColor.systemBlue //UIColor(named: K.BrandColors.lightPurple)
+            cell.label.textColor = .white //UIColor(named: K.BrandColors.purple)
         }
         //This is a message from another sender.
         else {
             cell.leftImageView.isHidden = false
             cell.rightImageView.isHidden = true
-            cell.messageBubble.backgroundColor = .lightGray//UIColor(named: K.BrandColors.purple)
-            cell.label.textColor = UIColor(named: K.BrandColors.lightPurple)
+            cell.messageBubble.backgroundColor = .darkGray//UIColor(named: K.BrandColors.purple)
+            cell.label.textColor = .white//UIColor(named: K.BrandColors.lightPurple)
+            
         }
         return cell
     }

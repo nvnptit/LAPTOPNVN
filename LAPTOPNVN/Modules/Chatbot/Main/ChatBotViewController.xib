@@ -100,8 +100,8 @@
                                 <action selector="tapLangEn:forEvent:" destination="-1" eventType="touchUpInside" id="tjh-cb-fdT"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ngôn ngữ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVE-cj-lz7">
-                            <rect key="frame" x="187" y="7" width="77" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHATBOTVN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVE-cj-lz7">
+                            <rect key="frame" x="100" y="8" width="103" height="21"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -110,7 +110,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="o1M-ai-Ogv" firstAttribute="top" secondItem="xmu-ve-bhG" secondAttribute="top" constant="1" id="2GJ-3r-AG5"/>
-                        <constraint firstItem="MVE-cj-lz7" firstAttribute="top" secondItem="xmu-ve-bhG" secondAttribute="top" constant="7" id="8C2-nv-AIU"/>
+                        <constraint firstItem="MVE-cj-lz7" firstAttribute="top" secondItem="xmu-ve-bhG" secondAttribute="top" constant="8" id="8C2-nv-AIU"/>
                         <constraint firstAttribute="trailing" secondItem="YnR-oL-7c5" secondAttribute="trailing" id="D8a-Pn-00A"/>
                         <constraint firstItem="YnR-oL-7c5" firstAttribute="leading" secondItem="xmu-ve-bhG" secondAttribute="leading" id="KgZ-Ul-7Y6"/>
                         <constraint firstAttribute="trailing" secondItem="fKS-If-F16" secondAttribute="trailing" id="PYN-EW-fDw"/>
@@ -118,10 +118,10 @@
                         <constraint firstItem="fKS-If-F16" firstAttribute="leading" secondItem="xmu-ve-bhG" secondAttribute="leading" id="Rr7-XG-EQI"/>
                         <constraint firstAttribute="trailing" secondItem="JPG-Lo-cGT" secondAttribute="trailing" constant="21" id="Vod-c6-10G"/>
                         <constraint firstItem="JPG-Lo-cGT" firstAttribute="leading" secondItem="o1M-ai-Ogv" secondAttribute="trailing" constant="15" id="WFu-dh-aCw"/>
+                        <constraint firstItem="MVE-cj-lz7" firstAttribute="leading" secondItem="xmu-ve-bhG" secondAttribute="leading" constant="100" id="YG9-Cf-Fh5"/>
                         <constraint firstItem="YnR-oL-7c5" firstAttribute="top" secondItem="fKS-If-F16" secondAttribute="bottom" id="for-bW-wBr"/>
                         <constraint firstAttribute="bottom" secondItem="YnR-oL-7c5" secondAttribute="bottom" id="sWE-PA-vWn"/>
                         <constraint firstItem="fKS-If-F16" firstAttribute="top" secondItem="xmu-ve-bhG" secondAttribute="top" constant="50" id="saz-xG-e0X"/>
-                        <constraint firstItem="o1M-ai-Ogv" firstAttribute="leading" secondItem="MVE-cj-lz7" secondAttribute="trailing" constant="20" id="vfU-7y-UU8"/>
                     </constraints>
                 </view>
             </subviews>
