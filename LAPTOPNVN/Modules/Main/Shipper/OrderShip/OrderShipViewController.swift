@@ -12,6 +12,7 @@ import CoreLocation
 
 class OrderShipViewController: UIViewController {
     
+    @IBOutlet weak var btnLogout: UIButton!
     @IBOutlet weak var lbWelcome: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tfFrom: UITextField!
@@ -80,9 +81,16 @@ class OrderShipViewController: UIViewController {
         ])
     }
     
+    func changeCorner(_ btn: UIButton!){
+        btn.layer.borderColor = UIColor.lightGray.cgColor
+        btn.layer.borderWidth = 1
+        btn.layer.cornerRadius = 8
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeCorner(btnLogout)
+        changeCorner(lbMap)
         if let name = UserService.shared.infoNV?.ten{
             lbWelcome.text = "Chào mừng bạn,\(name)"
         }
@@ -195,6 +203,9 @@ class OrderShipViewController: UIViewController {
         statusDrop.selectionAction = { [unowned self] (index: Int, item: String) in
             self.status.text = item
             self.maStatus = index+1
+            if (item == "Đang giao hàng"){
+                lbMap.isHidden = false
+            }
             loadDataHistory()
         }
         
@@ -311,25 +322,42 @@ extension OrderShipViewController{
 extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+//        return 1
+        return dataSorted.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //        return dataHistory.count
-        return dataSorted.count
+//        return dataSorted.count
+        return 1
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 235
     }
-    
+    // Space devide row
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 3
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderTableViewCell", for: indexPath) as! HistoryOrderTableViewCell
         
-        let item = dataSorted[indexPath.item]
+        cell.backgroundColor = UIColor.white
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+//        cell.clipsToBounds = false
+        
+//        let item = dataSorted[indexPath.item]
+        let item = dataSorted[indexPath.section]
         let dateReceive = item.ngaynhan ?? ""
         if let ngaylapgiohang = item.ngaylapgiohang,
            let tentrangthai = item.tentrangthai,
@@ -404,7 +432,8 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = dataHistory[indexPath.item]
+//        let item = dataHistory[indexPath.item]
+        let item = dataHistory[indexPath.section]
         let detailOrderViewController = DetailOrderViewController()
         detailOrderViewController.KEY = "SHIPPER"
         detailOrderViewController.order = item

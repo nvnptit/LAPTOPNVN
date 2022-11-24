@@ -29,6 +29,11 @@ class CartViewController: UIViewController {
     let cmnd = UserService.shared.cmnd
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        btnDatHang.layer.borderColor = UIColor.lightGray.cgColor
+        btnDatHang.layer.borderWidth = 1
+        btnDatHang.layer.cornerRadius = 8
+        
         if (cmnd == ""){
             lbTongTien.isHidden = true
             money.isHidden = true

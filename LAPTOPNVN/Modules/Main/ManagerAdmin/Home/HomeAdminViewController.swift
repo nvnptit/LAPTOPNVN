@@ -9,6 +9,7 @@ import UIKit
 
 class HomeAdminViewController: UIViewController {
     
+    @IBOutlet weak var btnLogout: UIButton!
     @IBOutlet weak var welcome: UILabel!
     let info = UserService.shared.infoNV
     override func viewDidLoad() {

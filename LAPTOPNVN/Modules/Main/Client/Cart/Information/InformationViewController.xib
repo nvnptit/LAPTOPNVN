@@ -84,11 +84,11 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKQ-K6-N8l">
-                                    <rect key="frame" x="142.5" y="580" width="129" height="44"/>
+                                    <rect key="frame" x="132" y="580" width="150" height="50"/>
                                     <color key="backgroundColor" red="0.043137254899999998" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="129" id="L2s-jC-7hM"/>
-                                        <constraint firstAttribute="height" constant="44" id="YtD-6e-S9l"/>
+                                        <constraint firstAttribute="width" constant="150" id="L2s-jC-7hM"/>
+                                        <constraint firstAttribute="height" constant="50" id="YtD-6e-S9l"/>
                                     </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>

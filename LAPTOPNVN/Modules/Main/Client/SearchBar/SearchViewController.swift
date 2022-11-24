@@ -418,7 +418,7 @@ class SearchViewController: UIViewController, SFSpeechRecognizerDelegate, UINavi
             ),
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
+        section.interGroupSpacing = 5
         return section
     }
   

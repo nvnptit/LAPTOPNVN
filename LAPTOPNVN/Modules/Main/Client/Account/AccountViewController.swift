@@ -75,9 +75,15 @@ class AccountViewController: UIViewController {
         ])
     }
     
-    
+    func changeCorner(_ btn: UIButton!){
+        btn.layer.borderColor = UIColor.lightGray.cgColor
+        btn.layer.borderWidth = 1
+        btn.layer.cornerRadius = 8
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeCorner(btnThayDoi)
+        changeCorner(btnDangXuat)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
         viewAccount.addGestureRecognizer(gesture)
@@ -147,7 +153,7 @@ class AccountViewController: UIViewController {
         }
     }
     
- 
+    
     
     // BEGIN STATUS
     
@@ -204,6 +210,8 @@ class AccountViewController: UIViewController {
         tfAddress.isHidden  = sh
         tfCMND.isHidden = sh
         segment.isHidden = sh
+        
+        chatBot.isHidden = sh
     }
     func loadData(){
         guard let info =  UserService.shared.infoProfile else {return}
@@ -228,13 +236,13 @@ class AccountViewController: UIViewController {
     func isValidPhone(phone: String) -> Bool {
         let regexPhone =  "(84|0){1}(3|5|7|8|9){1}+([0-9]{8})"
         let phoneTest = NSPredicate(format: "SELF MATCHES%@", regexPhone)
-//        print(phoneTest.evaluate(with: phone))
+        //        print(phoneTest.evaluate(with: phone))
         return phoneTest.evaluate(with: phone)
     }
     func isValidEmail( email:String)->Bool{
         let regexEmail = "^[\\w-\\.\\+]+@([\\w-]+\\.)+[\\w-]{2,4}$"
         let passwordTest=NSPredicate(format:"SELF MATCHES%@",regexEmail)
-//        print(passwordTest.evaluate(with:email))
+        //        print(passwordTest.evaluate(with:email))
         return passwordTest.evaluate(with:email)
     }
     
@@ -499,11 +507,13 @@ extension AccountViewController {
 extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+//        return 1
+        return dataHistory.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataHistory.count
+//        return dataHistory.count
+        return 1
     }
     
     
@@ -513,22 +523,37 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, widthForRowAt indexPath: IndexPath) -> CGFloat {
         return 497
     }
-    
-    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 3
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderTableViewCell", for: indexPath) as! HistoryOrderTableViewCell
-        let item = dataHistory[indexPath.item]
+        
+        cell.backgroundColor = UIColor.white
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        cell.clipsToBounds = false
+        
+        
+//        let item = dataHistory[indexPath.item]
+        let item = dataHistory[indexPath.section]
         let dateReceive = item.ngaynhan ?? ""
         if let ngaylapgiohang = item.ngaylapgiohang,
            let tentrangthai = item.tentrangthai,
-            let nguoinhan = item.nguoinhan,
+           let nguoinhan = item.nguoinhan,
            let diachi = item.diachi,
            let sdt = item.sdt,
            let datePlan = item.ngaydukien,
            let idGH = item.idgiohang,
-            let method = item.phuongthuc
-        
+           let method = item.phuongthuc
+            
         {
             cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss")
             cell.status.text = tentrangthai
@@ -551,8 +576,9 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = dataHistory[indexPath.item]
-        guard let cell = tableView.cellForRow(at: indexPath) as? HistoryOrderTableViewCell else { return }
+//        let item = dataHistory[indexPath.item]
+        let item = dataHistory[indexPath.section]
+//        guard let cell = tableView.cellForRow(at: indexPath) as? HistoryOrderTableViewCell else { return }
         let vc = DetailHistoryViewController()
         vc.id = item.idgiohang
         vc.order = item

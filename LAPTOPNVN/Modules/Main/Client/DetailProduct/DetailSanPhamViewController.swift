@@ -35,8 +35,15 @@ class DetailSanPhamViewController: UIViewController{
     
     @IBOutlet weak var tableView: UITableView!
     
+    func changeCorner(_ btn: UIButton!){
+        btn.layer.borderColor = UIColor.lightGray.cgColor
+        btn.layer.borderWidth = 1
+        btn.layer.cornerRadius = 8
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeCorner(btnAddCart)
         if !listComment.isEmpty{
             var point = 0
             for comment in listComment {

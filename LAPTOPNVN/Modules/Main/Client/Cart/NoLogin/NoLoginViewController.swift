@@ -12,6 +12,10 @@ class NoLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        btnLogin.layer.borderColor = UIColor.lightGray.cgColor
+        btnLogin.layer.borderWidth = 1
+        btnLogin.layer.cornerRadius = 8
     }
     
     override func viewWillDisappear(_ animated: Bool) {

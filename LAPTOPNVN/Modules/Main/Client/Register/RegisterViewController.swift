@@ -9,6 +9,7 @@ import UIKit
 
 class RegisterViewController: UIViewController {
     
+    @IBOutlet weak var viewReg: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tfUser: UITextField!
     @IBOutlet weak var tfPass: UITextField!
@@ -33,6 +34,18 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewReg.backgroundColor = UIColor.white
+        viewReg.layer.borderColor = UIColor.black.cgColor
+        viewReg.layer.borderWidth = 1
+        viewReg.layer.cornerRadius = 10
+        viewReg.clipsToBounds = false
+        
+        
+        btnRegister.layer.borderColor = UIColor.lightGray.cgColor
+        btnRegister.layer.borderWidth = 1
+        btnRegister.layer.cornerRadius = 8
+        
         setupKeyboard()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
         view.addGestureRecognizer(gesture)

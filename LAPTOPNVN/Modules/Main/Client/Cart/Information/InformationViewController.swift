@@ -75,6 +75,9 @@ class InformationViewController: UIViewController {
         dropProvince.isUserInteractionEnabled = false
         loadDataDistrict(code: 79)
         //MARK: - End Adrress
+        btnThanhToan.layer.borderColor = UIColor.lightGray.cgColor
+        btnThanhToan.layer.borderWidth = 1
+        btnThanhToan.layer.cornerRadius = 8
         
         setupStatus()
         
