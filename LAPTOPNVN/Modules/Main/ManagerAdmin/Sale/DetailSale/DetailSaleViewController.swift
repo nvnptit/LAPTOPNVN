@@ -188,6 +188,11 @@ extension DetailSaleViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailSaleTableViewCell", for: indexPath) as! DetailSaleTableViewCell
+        
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        
         let item = dataDetail[indexPath.item]
         
         if let maLSP = item.malsp,
@@ -208,8 +213,18 @@ extension DetailSaleViewController: UITableViewDataSource, UITableViewDelegate {
             text.keyboardType = .numberPad
         }
         alert.addAction(UIAlertAction(title: "Có", style: .default, handler:{ _ in
+            if let t = alert.textFields {
+                if (t[0].text == ""){
+                        let alert = UIAlertController(title: "Giá trị không được để trống!", message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                            self.dismiss(animated: true)
+                        }))
+                        self.present(alert, animated: true)
+                    return
+                }
+            }
                     self.dismiss(animated: true)
-                guard let value = alert.textFields, value.count > 0 else { return }
+                guard let value = alert.textFields, value.count > 0 else {  return }
             let newValue = Int(value[0].text!)
             
             let params = DetailSaleModel(malsp: item.malsp, madotgg: item.madotgg, phantramgg: newValue).convertToDictionary()

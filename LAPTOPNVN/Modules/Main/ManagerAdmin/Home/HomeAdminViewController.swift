@@ -20,9 +20,6 @@ class HomeAdminViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func loadData(){
-        
-    }
     @IBAction func tapLogout(_ sender: UIButton, forEvent event: UIEvent) {
         
         UserService.shared.removeAllNV()
@@ -47,11 +44,6 @@ class HomeAdminViewController: UIViewController {
         
     }
     
-    @IBAction func tapProduct(_ sender: UIButton, forEvent event: UIEvent) {
-            let mainVC = SanPhamViewController()
-            self.navigationController?.pushViewController(mainVC, animated: true)
-    }
-    
     @IBAction func updateOrder(_ sender: UIButton, forEvent event: UIEvent) {
         let mainVC = OrderViewController()
         self.navigationController?.pushViewController(mainVC, animated: true)
@@ -67,4 +59,9 @@ class HomeAdminViewController: UIViewController {
         let mainVC = SaleViewController()
         self.navigationController?.pushViewController(mainVC, animated: true)
     }
+    
+//    @IBAction func tapProduct(_ sender: UIButton, forEvent event: UIEvent) {
+//            let mainVC = SanPhamViewController()
+//            self.navigationController?.pushViewController(mainVC, animated: true)
+//    }
 }

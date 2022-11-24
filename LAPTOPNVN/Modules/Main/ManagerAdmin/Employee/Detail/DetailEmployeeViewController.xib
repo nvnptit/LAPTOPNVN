@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,10 +33,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dup-2w-CTs">
-                    <rect key="frame" x="0.0" y="44" width="414" height="730"/>
+                    <rect key="frame" x="0.0" y="48" width="414" height="726"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPs-Bx-uKL">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="810"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="806"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mã nhân viên" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sad-pP-lNF">
                                     <rect key="frame" x="30" y="156" width="91" height="18"/>
@@ -214,7 +214,7 @@
                                 <constraint firstItem="dAb-Wb-wXC" firstAttribute="centerX" secondItem="DPs-Bx-uKL" secondAttribute="centerX" id="SYr-2A-ul2"/>
                                 <constraint firstItem="gD5-ns-ZXN" firstAttribute="top" secondItem="DO0-xd-nhK" secondAttribute="bottom" constant="34" id="SjC-1X-vdW"/>
                                 <constraint firstItem="iAr-M2-rtA" firstAttribute="leading" secondItem="sad-pP-lNF" secondAttribute="trailing" constant="12" id="TF1-nW-eaY"/>
-                                <constraint firstItem="iAr-M2-rtA" firstAttribute="top" secondItem="JnP-Vi-dVW" secondAttribute="bottom" constant="18" id="XE6-2Z-MQT"/>
+                                <constraint firstItem="iAr-M2-rtA" firstAttribute="top" secondItem="JnP-Vi-dVW" secondAttribute="bottom" priority="250" constant="18" id="XE6-2Z-MQT"/>
                                 <constraint firstItem="arT-0W-Nv3" firstAttribute="leading" secondItem="Ffu-lt-zws" secondAttribute="trailing" constant="12" id="YLR-zT-WhM"/>
                                 <constraint firstItem="Ffu-lt-zws" firstAttribute="top" secondItem="DPs-Bx-uKL" secondAttribute="top" constant="52" id="aK1-T8-LjS"/>
                                 <constraint firstItem="bKh-Z9-Sve" firstAttribute="top" secondItem="RQv-ZP-SYX" secondAttribute="bottom" constant="18" id="bHL-bz-rFT"/>

@@ -41,6 +41,7 @@ class StatisticViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Thống kê doanh thu"
         setupAnimation()
         
         if #available(iOS 13.4, *) {
@@ -160,17 +161,16 @@ extension StatisticViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "StatTableViewCell", for: indexPath) as! StatTableViewCell
+        
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        
         let item = data[indexPath.item]
         cell.date.text = "\(item.thang!)-\(item.nam!)"
         cell.money.text = "\(CurrencyVN.toVND(item.doanhthu!))"
         cell.selectionStyle = .none
         return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let item = dataHistory[indexPath.item]
-        //        let detailStatisticViewController = DetailStatisticViewController()
-        //        detailStatisticViewController.order = item
-        //        self.navigationController?.pushViewController(detailStatisticViewController, animated: true)
     }
 }
 

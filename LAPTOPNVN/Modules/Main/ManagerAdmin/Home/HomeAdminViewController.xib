@@ -20,130 +20,13 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chào mừng bạn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amf-6R-jgC">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chào mừng bạn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amf-6R-jgC">
                     <rect key="frame" x="138.5" y="105" width="137.5" height="23"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="QUẢN LÝ NHẬP LIỆU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfV-Gn-VH2">
-                    <rect key="frame" x="0.0" y="396" width="414" height="21"/>
-                    <color key="backgroundColor" systemColor="linkColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2i-Qd-dQl">
-                    <rect key="frame" x="45" y="454" width="140" height="131"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="QUẢN LÝ HÃNG SẢN XUẤT">
-                                <attributes>
-                                    <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <font key="NSFont" size="12" name="Arial-BoldMT"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="tapBrand:forEvent:" destination="-1" eventType="touchUpInside" id="O28-wi-MEl"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7J-if-TT2">
-                    <rect key="frame" x="229" y="452" width="140" height="131"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="QUẢN LÝ NHÂN VIÊN">
-                                <attributes>
-                                    <font key="NSFont" size="12" name="Arial-BoldMT"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="tapEmployee:forEvent:" destination="-1" eventType="touchUpInside" id="XRW-xM-nK5"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQr-CJ-Olg">
-                    <rect key="frame" x="45" y="597" width="140" height="131"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="QUẢN LÝ LOẠI SẢN PHẨM">
-                                <attributes>
-                                    <font key="NSFont" size="12" name="Arial-BoldMT"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="tapCategory:" destination="-1" eventType="touchUpInside" id="N90-Pl-VQO"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="QUẢN LÝ ĐƠN HÀNG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxy-WR-wiL">
-                    <rect key="frame" x="0.0" y="144" width="414" height="21"/>
-                    <color key="backgroundColor" systemColor="linkColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vc1-vO-B5E">
-                    <rect key="frame" x="45" y="199" width="140" height="131"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.16078431372549018" green="0.51745345744680848" blue="0.19693207740783691" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="QUẢN LÝ DUYỆT ĐƠN HÀNG">
-                                <attributes>
-                                    <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <font key="NSFont" size="12" name="Arial-BoldMT"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="updateOrder:forEvent:" destination="-1" eventType="touchUpInside" id="om5-5E-oof"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29U-va-3Gg">
-                    <rect key="frame" x="229" y="199" width="140" height="131"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemPinkColor"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="THỐNG KÊ DOANH THU">
-                                <attributes>
-                                    <font key="NSFont" size="12" name="Arial-BoldMT"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="tapStatistics:forEvent:" destination="-1" eventType="touchUpInside" id="ggL-Ew-l2o"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1V-pG-hbI">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1V-pG-hbI">
                     <rect key="frame" x="309" y="64" width="95" height="30"/>
                     <color key="backgroundColor" systemColor="systemRedColor"/>
                     <constraints>
@@ -158,68 +41,87 @@
                         <action selector="tapLogout:forEvent:" destination="-1" eventType="touchUpInside" id="ZdQ-94-TF3"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsc-IG-lNP">
-                    <rect key="frame" x="229" y="597" width="140" height="131"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="QUẢN LÝ ĐỢT GIẢM GIÁ">
-                                <attributes>
-                                    <font key="NSFont" size="12" name="Arial-BoldMT"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </buttonConfiguration>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y44-gz-IWK">
+                    <rect key="frame" x="30" y="158" width="150" height="175"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="1">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
-                        <action selector="tapSale:forEvent:" destination="-1" eventType="touchUpInside" id="BRu-cQ-xac"/>
+                        <action selector="updateOrder:forEvent:" destination="-1" eventType="touchUpInside" id="7zh-Km-lgD"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImH-Aj-svI">
-                    <rect key="frame" x="150" y="826" width="115" height="35.5"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="SẢN PHẨM">
-                                <attributes>
-                                    <font key="NSFont" metaFont="system" size="18"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </buttonConfiguration>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIV-I6-67m">
+                    <rect key="frame" x="234" y="158" width="150" height="175"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="2"/>
                     <connections>
-                        <action selector="tapProduct:forEvent:" destination="-1" eventType="touchUpInside" id="f2H-0g-GFP"/>
+                        <action selector="tapStatistics:forEvent:" destination="-1" eventType="touchUpInside" id="Oc6-eq-tTJ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaA-YH-iFk">
+                    <rect key="frame" x="30" y="347" width="150" height="175"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="3"/>
+                    <connections>
+                        <action selector="tapEmployee:forEvent:" destination="-1" eventType="touchUpInside" id="2v6-2d-Kej"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYx-j3-1vw">
+                    <rect key="frame" x="234" y="347" width="150" height="175"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="4"/>
+                    <connections>
+                        <action selector="tapBrand:forEvent:" destination="-1" eventType="touchUpInside" id="TGN-DV-Pbe"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M1c-Dj-Ahe">
+                    <rect key="frame" x="30" y="536" width="150" height="175"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="5"/>
+                    <connections>
+                        <action selector="tapCategory:" destination="-1" eventType="touchUpInside" id="VWH-bY-lXt"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dho-UB-1wA">
+                    <rect key="frame" x="234" y="536" width="150" height="175"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="6"/>
+                    <connections>
+                        <action selector="tapSale:forEvent:" destination="-1" eventType="touchUpInside" id="rQz-ga-V3a"/>
                     </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oxy-WR-wiL" secondAttribute="trailing" id="E0v-jc-pYa"/>
-                <constraint firstItem="oxy-WR-wiL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="F4A-dX-djG"/>
-                <constraint firstItem="dfV-Gn-VH2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="LTL-it-Epq"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dfV-Gn-VH2" secondAttribute="trailing" id="UuJ-hq-qzR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wYx-j3-1vw" secondAttribute="trailing" constant="30" id="0rL-Zx-Kdm"/>
+                <constraint firstItem="MaA-YH-iFk" firstAttribute="top" secondItem="Y44-gz-IWK" secondAttribute="bottom" constant="14" id="1ar-Me-6pP"/>
+                <constraint firstItem="p1V-pG-hbI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="1he-Vv-HDz"/>
+                <constraint firstItem="MaA-YH-iFk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="2bC-dO-QQM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Dho-UB-1wA" secondAttribute="trailing" constant="30" id="9ol-0g-UhV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="p1V-pG-hbI" secondAttribute="trailing" constant="10" id="Apu-pD-XMQ"/>
+                <constraint firstItem="Y44-gz-IWK" firstAttribute="top" secondItem="amf-6R-jgC" secondAttribute="bottom" constant="30" id="FGN-fJ-x1I"/>
+                <constraint firstItem="M1c-Dj-Ahe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="GPO-8b-sCV"/>
+                <constraint firstItem="amf-6R-jgC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IwP-XO-oeR"/>
+                <constraint firstItem="amf-6R-jgC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="57" id="QHr-Rx-4WV"/>
+                <constraint firstItem="UIV-I6-67m" firstAttribute="top" secondItem="amf-6R-jgC" secondAttribute="bottom" constant="30" id="ZvR-al-aLs"/>
+                <constraint firstItem="M1c-Dj-Ahe" firstAttribute="top" secondItem="MaA-YH-iFk" secondAttribute="bottom" constant="14" id="dAP-3t-wvb"/>
+                <constraint firstItem="wYx-j3-1vw" firstAttribute="top" secondItem="UIV-I6-67m" secondAttribute="bottom" constant="14" id="fr8-nZ-WHn"/>
+                <constraint firstItem="Y44-gz-IWK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="iul-ip-6yy"/>
+                <constraint firstItem="Dho-UB-1wA" firstAttribute="top" secondItem="wYx-j3-1vw" secondAttribute="bottom" constant="14" id="lR9-mi-v5c"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UIV-I6-67m" secondAttribute="trailing" constant="30" id="pV9-AT-Aly"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="62.946428571428569"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="1" width="150" height="175"/>
+        <image name="2" width="150" height="175"/>
+        <image name="3" width="150" height="175"/>
+        <image name="4" width="150" height="175"/>
+        <image name="5" width="150" height="175"/>
+        <image name="6" width="150" height="175"/>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

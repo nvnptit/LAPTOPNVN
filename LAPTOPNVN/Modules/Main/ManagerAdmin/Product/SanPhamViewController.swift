@@ -95,11 +95,13 @@ class SanPhamViewController: UIViewController {
 extension SanPhamViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+//        return 1
+        return dataSP.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSP.count
+//        return dataSP.count
+        return 1
     }
     
     
@@ -107,11 +109,26 @@ extension SanPhamViewController: UITableViewDataSource, UITableViewDelegate {
         return 100
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 2
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell", for: indexPath) as! ProductTableViewCell
-        let item = dataSP[indexPath.item]
+        
+        cell.backgroundColor = UIColor.white
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        cell.clipsToBounds = false
+        
+        let item = dataSP[indexPath.section]
         if  let lsp = item.malsp,
             let serial = item.serial
             
@@ -124,7 +141,8 @@ extension SanPhamViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = dataSP[indexPath.item]
+//        let item = dataSP[indexPath.item]
+        let item = dataSP[indexPath.section]
         let  vc = DetailProductViewController()
         vc.product = item
 //        var data: [String] = []

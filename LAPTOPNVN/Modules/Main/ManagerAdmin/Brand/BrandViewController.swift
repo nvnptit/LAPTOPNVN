@@ -113,11 +113,12 @@ extension BrandViewController: UICollectionViewDataSource{
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        data.count
+        return data.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HangCollectionViewCell", for: indexPath) as? HangCollectionViewCell else {fatalError()}
+        
         let e = data[indexPath.item]
         if let logo = e.logo{
 //            cell.logo.loadFrom(URLAddress: APIService.baseUrl+logo)

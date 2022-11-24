@@ -104,23 +104,39 @@ class CategoryViewController: UIViewController {
 extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+//        return 1
+        return dataLSP.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataLSP.count
+//        return dataLSP.count
+        return 1
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 123
     }
-    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 2
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
-        let item = dataLSP[indexPath.item]
+        
+        cell.backgroundColor = UIColor.white
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        
+//        let item = dataLSP[indexPath.item]
+        let item = dataLSP[indexPath.section]
         if  let name = item.tenlsp,
             let cpu = item.cpu,
             let ram = item.ram,
@@ -150,7 +166,8 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = dataLSP[indexPath.item]
+//        let item = dataLSP[indexPath.item]
+        let item = dataLSP[indexPath.section]
         let  vc = DetailCategoryViewController()
         vc.category = item
 //        print(item)

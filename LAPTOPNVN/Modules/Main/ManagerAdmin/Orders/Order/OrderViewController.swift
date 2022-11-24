@@ -225,11 +225,13 @@ extension OrderViewController{
 extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+//        return 1
+        return dataHistory.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataHistory.count
+//        return dataHistory.count
+        return 1
     }
     
     
@@ -237,11 +239,25 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
         return 235
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 2
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryOrderTableViewCell", for: indexPath) as! HistoryOrderTableViewCell
-        let item = dataHistory[indexPath.item]
+//        let item = dataHistory[indexPath.item]
+        
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        
+        let item = dataHistory[indexPath.section]
         let dateReceive = item.ngaynhan ?? ""
         if let ngaylapgiohang = item.ngaylapgiohang,
            //            let tonggiatri = item.tonggiatri,
@@ -275,7 +291,8 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = dataHistory[indexPath.item]
+//        let item = dataHistory[indexPath.item]
+        let item = dataHistory[indexPath.section]
         
         let detailOrderViewController = DetailOrderViewController()
         detailOrderViewController.order = item
