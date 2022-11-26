@@ -337,7 +337,9 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         self.mic.isEnabled = true
         
         guard var mess = messageTextfield.text else {return}
-        
+        if mess.isEmpty {
+            return
+        }
         let newMessage = Message(sender: "ME", body: mess)
         self.messages.append(newMessage)
         DispatchQueue.main.async {
@@ -354,13 +356,13 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         print(mess)
         
         // Đặt hàng
-        if (mess.contains("thêm vào giỏ hàng")){
+        if (mess.contains("thêm vào giỏ hàng") || mess.contains("thêm sản phẩm")){
             checkOrder = true
         }
         
         if checkOrder == true {
             var t1 = false
-            if (mess.contains("thêm vào giỏ hàng")){
+            if (mess.contains("thêm vào giỏ hàng") || mess.contains("thêm sản phẩm") ){
                 replyText(message: "Nhập tên sản phẩm và số lượng")
                 t1 = true
                 return
@@ -704,7 +706,8 @@ extension ChatBotViewController{
                                let ngaydukien = item.ngaydukien,
                                let tonggiatri = item.tonggiatri,
                                let phuongthuc = item.phuongthuc,
-                               let tinhtrang = item.thanhtoan
+                               let tinhtrang = item.thanhtoan,
+                               let tinhtrangdh = item.tentrangthai
                             {
                                 result = result + """
                             Mã đơn hàng: \(idgiohang)
@@ -716,12 +719,13 @@ extension ChatBotViewController{
                             Số điện thoại: \(sdt)
                             Phương thức thanh toán: \(phuongthuc)
                             Tình trạng: \(tinhtrang == true ? "Đã thanh toán": "Chưa thanh toán")
-                            ------------------------------\n
+                            Trạng thái: \(tinhtrangdh)
+                                   ------------------------------\n
                             """
                             }
                         }
                         
-                        let newMessage = Message(sender: "BOT", body: "        Thông tin giỏ hàng của bạn      \n     -------------------------------\n"+result)
+                        let newMessage = Message(sender: "BOT", body: "        Thông tin đơn hàng đang giao      \n       -------------------------------\n"+result)
                         self.messages.append(newMessage)
                         DispatchQueue.main.async {
                             self.tableView.reloadData()

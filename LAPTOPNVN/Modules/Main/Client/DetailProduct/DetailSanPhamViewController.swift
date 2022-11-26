@@ -72,9 +72,14 @@ class DetailSanPhamViewController: UIViewController{
             if (sl>0){
                 btnAddCart.isEnabled = true
                 btnBuyNow.isEnabled = true
+                btnBuyNow.setTitle("Mua ngay", for: .normal)
+                btnAddCart.isHidden = false
             }else {
                 btnAddCart.isEnabled = false
                 btnBuyNow.isEnabled = false
+                
+                btnBuyNow.setTitle("Đã hết hàng", for: .normal)
+                btnAddCart.isHidden = true
             }
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -201,6 +206,12 @@ extension DetailSanPhamViewController{
                     if (value == data){
                         self.btnAddCart.isEnabled = false
                         self.btnBuyNow.isEnabled = false
+                        
+                        self.btnBuyNow.setTitle("Đã hết hàng", for: .normal)
+                        self.btnAddCart.isHidden = true
+                    }else {
+                        self.btnBuyNow.setTitle("Mua ngay", for: .normal)
+                        self.btnAddCart.isHidden = false
                     }
                 }
             }
