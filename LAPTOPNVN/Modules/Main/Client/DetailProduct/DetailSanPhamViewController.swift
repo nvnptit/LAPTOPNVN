@@ -186,6 +186,7 @@ extension DetailSanPhamViewController{
         })
     }
 }
+
 extension DetailSanPhamViewController{
     func checkSLTon(){
         let listData = UserService.shared.listGH2

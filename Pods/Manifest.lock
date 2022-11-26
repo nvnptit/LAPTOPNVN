@@ -1,5 +1,9 @@
 PODS:
   - Alamofire (5.6.2)
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
   - Cosmos (23.0.0)
   - DropDown (2.3.13)
   - InputBarAccessoryView (5.5.0):
@@ -17,10 +21,12 @@ PODS:
     - SDWebImage/Core (= 5.13.2)
   - SDWebImage/Core (5.13.2)
   - SnapKit (5.6.0)
+  - SwiftAlgorithms (1.0.0)
   - UIButtonSetBackgroundColorForState (0.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.6.1)
+  - Charts
   - Cosmos
   - DropDown
   - JXReviewController
@@ -31,6 +37,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Charts
     - Cosmos
     - DropDown
     - InputBarAccessoryView
@@ -39,10 +46,12 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - SDWebImage
     - SnapKit
+    - SwiftAlgorithms
     - UIButtonSetBackgroundColorForState
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
@@ -51,8 +60,9 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   UIButtonSetBackgroundColorForState: 53e57d766d62f19e564b62bf31b64236902f852c
 
-PODFILE CHECKSUM: 98b6d9d11dd33eea3747ebbc6af242de599d086d
+PODFILE CHECKSUM: 84ed3c1214ce4705a2818d399a33f9527cee2f06
 
 COCOAPODS: 1.8.4

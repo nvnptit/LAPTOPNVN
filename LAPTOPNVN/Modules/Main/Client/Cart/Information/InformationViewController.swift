@@ -12,6 +12,7 @@ import BraintreeDataCollector
 
 class InformationViewController: UIViewController {
     
+    var checkValidAmount = true
     //MARK: - Start params Address
     
     @IBOutlet weak var dropProvince: UIView!
@@ -95,7 +96,9 @@ class InformationViewController: UIViewController {
         loadInfo()
         self.dataSend()
         self.braintreeClient = BTAPIClient(authorization: "sandbox_9qswqysc_7hsb2swzq3w35xrj")
-        
+            
+                self.checkSLTon()
+
     }
     func loadInfo(){
         guard let user = UserService.shared.infoProfile else {return}
@@ -206,7 +209,12 @@ class InformationViewController: UIViewController {
                 }))
                 self.present(alert, animated: true)
             } else {
-                print("ERROR: \(base)" )
+                let alert = UIAlertController(title: "Đã có lỗi xảy ra!", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                        self.dismiss(animated: true)
+                    }))
+                    self.present(alert, animated: true)
+                    return
             }
         })
     }
@@ -251,7 +259,6 @@ class InformationViewController: UIViewController {
                         let firstNamePP = tokenizedPayPalAccount.firstName
                         let lastNamePP = tokenizedPayPalAccount.lastName
                         let phonePP = tokenizedPayPalAccount.phone
-
                         self.addOrderDatabase(sum: sum,method: "PAYPAL")
                     } else if let error = error {
                         // Handle error here...
@@ -568,6 +575,41 @@ extension InformationViewController {
             }
             self.setupWard()
         })
+    }
+}
+
+extension InformationViewController{
+    func checkSLTon(){
+        let listData = UserService.shared.listGH2
+        if (listData.isEmpty) {return}
+        
+        for item in listData{
+            guard let ele = item.data else {return}
+            let key = ele.malsp
+            let value = item.sl
+            
+            APIService.getSLLSP(with: key!, { data, error in
+                guard let data = data else {
+                    return
+                }
+                if (data.success == true ){
+                    if let data = data.message {
+                        if (value > data){
+//                            self.checkValidAmount = false
+                            let alert = UIAlertController(title: "Số lượng tồn sản phẩm không đủ\nVui lòng cập nhật lại giỏ hàng!", message: "", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                                self.dismiss(animated: true)
+                                self.navigationController?.popViewController(animated: true)
+                            }))
+                            self.present(alert, animated: true)
+                            return
+                        }
+                    }
+                }
+            })
+            
+        }
+        
     }
 }
 
