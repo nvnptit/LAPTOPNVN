@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailSanPhamViewController" customModule="LAPTOPNVN" customModuleProvider="target">
             <connections>
                 <outlet property="btnAddCart" destination="CJ6-Ui-1j1" id="ISh-l2-Nxe"/>
+                <outlet property="btnBuyNow" destination="XSW-nu-qEG" id="59t-a2-cHa"/>
                 <outlet property="imageLSP" destination="l8g-5o-gmo" id="Tjg-AA-W6A"/>
                 <outlet property="tableView" destination="Axz-CF-Mdw" id="oJ7-GJ-yJA"/>
                 <outlet property="tfCPU" destination="Qo8-Az-wD2" id="9Ve-gZ-Xdc"/>
@@ -171,6 +172,22 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSW-nu-qEG">
+                    <rect key="frame" x="122.5" y="698" width="169" height="54"/>
+                    <color key="backgroundColor" red="0.043137254899999998" green="0.80784313730000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="bK5-qK-KrC"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="54" id="gxZ-yX-Lih"/>
+                        <constraint firstAttribute="width" constant="169" id="syQ-Ch-nXS"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Mua ngay">
+                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="tapBuyNow:forEvent:" destination="-1" eventType="touchUpInside" id="w6M-VO-hwu"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -184,8 +201,10 @@
                 <constraint firstItem="dUe-8K-ovL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="39" id="8tI-qf-9Sm"/>
                 <constraint firstItem="Uve-MY-L7o" firstAttribute="top" secondItem="l8g-5o-gmo" secondAttribute="bottom" constant="5" id="9GR-lE-oU8"/>
                 <constraint firstItem="UtV-yb-4WD" firstAttribute="leading" secondItem="TPi-WS-Dpl" secondAttribute="trailing" constant="58" id="Adj-aT-wUx"/>
+                <constraint firstItem="CJ6-Ui-1j1" firstAttribute="top" secondItem="XSW-nu-qEG" secondAttribute="bottom" constant="26" id="F0I-zV-C68"/>
                 <constraint firstItem="xjv-Qr-kVm" firstAttribute="top" secondItem="Qo8-Az-wD2" secondAttribute="bottom" constant="5" id="F4v-2X-RUW"/>
                 <constraint firstItem="dht-me-cZh" firstAttribute="top" secondItem="Lyp-zU-VAm" secondAttribute="bottom" constant="10" id="KOd-Zk-Wl2"/>
+                <constraint firstItem="XSW-nu-qEG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="KRK-s9-5zx"/>
                 <constraint firstItem="K7v-3j-ajp" firstAttribute="top" secondItem="Lyp-zU-VAm" secondAttribute="bottom" constant="17" id="Ki3-DZ-cGs"/>
                 <constraint firstItem="rnC-aJ-vfv" firstAttribute="top" secondItem="Uve-MY-L7o" secondAttribute="bottom" constant="5" id="M6Z-Wk-fQt"/>
                 <constraint firstItem="Zvd-Vj-wEJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="39" id="NEg-0J-zwB"/>

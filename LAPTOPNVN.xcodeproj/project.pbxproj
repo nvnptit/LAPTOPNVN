@@ -961,6 +961,7 @@
 		79475E4A28824739005911E3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				7953E7FA28F98CF1000BF741 /* Maps */,
 				79ABC17028A0B65900A235E6 /* Shipper */,
 				799B9167289D8CEE001F6B5F /* Client */,
 				799B9162289D8B2D001F6B5F /* ManagerAdmin */,
@@ -1023,7 +1024,6 @@
 		79475E9F28824DC6005911E3 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				7953E7FA28F98CF1000BF741 /* Maps */,
 				79475EA028824DD2005911E3 /* AccountViewController.swift */,
 				79475EA128824DD2005911E3 /* AccountViewController.xib */,
 			);

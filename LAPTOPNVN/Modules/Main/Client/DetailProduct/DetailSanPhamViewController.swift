@@ -13,6 +13,8 @@ class DetailSanPhamViewController: UIViewController{
     var loaiSp: LoaiSanPhamKM?
     var order: HistoryOrder?
     
+    @IBOutlet weak var btnBuyNow: UIButton!
+    
     @IBOutlet weak var imageLSP: UIImageView!
     
     @IBOutlet weak var tfCPU: UILabel!
@@ -44,6 +46,7 @@ class DetailSanPhamViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         changeCorner(btnAddCart)
+        changeCorner(btnBuyNow)
         if !listComment.isEmpty{
             var point = 0
             for comment in listComment {
@@ -68,8 +71,10 @@ class DetailSanPhamViewController: UIViewController{
         if let loaiSp = loaiSp, let sl = loaiSp.soluong {
             if (sl>0){
                 btnAddCart.isEnabled = true
+                btnBuyNow.isEnabled = true
             }else {
                 btnAddCart.isEnabled = false
+                btnBuyNow.isEnabled = false
             }
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -116,11 +121,26 @@ class DetailSanPhamViewController: UIViewController{
                 tfOS.text = loaiSp.os
                 tfDescription.text =  loaiSp.mota
                 btnAddCart.isHidden = true
+                btnBuyNow.isHidden = true
                 self.title = loaiSp.tenlsp
             }
         }
     }
     
+    @IBAction func tapBuyNow(_ sender: Any, forEvent event: UIEvent) {
+            let cmnd = UserService.shared.cmnd
+            if (cmnd != ""){
+                if let loaiSp = loaiSp {
+                    UserService.shared.addOrder2(with: loaiSp)
+                    let loginVC = CartViewController()
+                    self.navigationController?.pushViewController(loginVC, animated: true)
+                }
+            }
+            else {
+                let loginVC = LoginViewController()
+                self.navigationController?.pushViewController(loginVC, animated: true)
+            }
+    }
     @IBAction func tapAddCart(_ sender: UIButton) {
         let cmnd = UserService.shared.cmnd
         if (cmnd != ""){
@@ -180,6 +200,7 @@ extension DetailSanPhamViewController{
 //                    print("VALUE: \(value)| DATA: \(data)")
                     if (value == data){
                         self.btnAddCart.isEnabled = false
+                        self.btnBuyNow.isEnabled = false
                     }
                 }
             }

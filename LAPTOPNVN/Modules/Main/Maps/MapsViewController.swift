@@ -17,6 +17,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     var address = ""
     var totalz = -1  // Check tổng tiền
     var isPay = false // Check thanh toán
+    var idDH = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -35,9 +36,9 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                     if success {
                         guard let co = coordinate else {return}
                         if isPaid == true {
-                            self.mapThis (destinationCord: co,address: "\(id)",total: 0)
+                            self.mapThis (destinationCord: co,address: "\(id)\n \(address)",total: 0)
                         }else {
-                                self.mapThis (destinationCord: co,address: "\(id)",total: total)
+                                self.mapThis (destinationCord: co,address: "\(id)\n \(address)",total: total)
                         }
                     } else {
                         print("error sth went wrong")
@@ -51,9 +52,9 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
             if success {
                 guard let co = coordinate else {return}
                 if self.isPay == true {
-                    self.mapThis (destinationCord: co,address: "",total: 0)
+                    self.mapThis (destinationCord: co,address: "\(self.idDH)\n \(self.address)",total: 0)
                 }else {
-                    self.mapThis (destinationCord: co,address: "",total: self.totalz)
+                    self.mapThis (destinationCord: co,address: "\(self.idDH)\n \(self.address)",total: self.totalz)
                 }
             } else {
                 print("error sth went wrong")
@@ -94,10 +95,12 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
                 let annotation2 = MKPointAnnotation()
                 annotation2.coordinate = destinationCord
                 if (address != ""){
-                    annotation2.title = "Vị trí giao đơn hàng \(address)"
+                    print("AAA: \(address)")
+                    annotation2.title = "Đơn hàng \(address)"
                     annotation2.subtitle = "Số tiền cần thu: \(CurrencyVN.toVND(total))"
                 }else {
-                    annotation2.title = "Vị trí nơi giao hàng"
+                    print("BBB: \(address)")
+                    annotation2.title = "Đơn hàng \(address) "
                     annotation2.subtitle = "Số tiền cần thu: \(CurrencyVN.toVND(total))"
                 }
                 self.mapView.addAnnotation(annotation2)

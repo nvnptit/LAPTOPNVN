@@ -135,6 +135,9 @@ class DetailOrderViewController: UIViewController {
     @IBAction func tapMap(_ sender: UIButton, forEvent event: UIEvent) {
             let vc = MapsViewController()
         vc.address = order?.diachi ?? ""
+        if let idG = order?.idgiohang{
+            vc.idDH = "\(idG)"
+        }
         vc.totalz = order?.tonggiatri ?? 0
         vc.isPay = order?.thanhtoan ?? false
             self.navigationController?.pushViewController(vc, animated: true)
