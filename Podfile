@@ -16,6 +16,7 @@ target 'LAPTOPNVN' do
 	pod 'MessageKit'
   #pod 'Braintree'
 	pod 'Charts'
+
   
   #pod 'GoogleMLKit/TextRecognition'
 

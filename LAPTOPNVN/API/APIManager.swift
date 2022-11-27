@@ -72,6 +72,7 @@ enum APIManager {
     case getNVDuyet
     case getNVGiao
     
+    case getAllStatusOrder
     case addGioHang1
     case getGioHang
     case updateGioHang
@@ -212,6 +213,9 @@ extension APIManager {
             case .getNVGiao:
                 path = "/nhan-vien/NV-Giaohang"
                 
+            case .getAllStatusOrder:
+                path = "/gio-hang/allStatusDH"
+                
             case .getDoanhThu:
                 path = "/gio-hang/doanh-thu"
             case .uploadAvatar:
@@ -268,7 +272,8 @@ extension APIManager {
                     .getSLSeri, .getPhieuNhap,
                     .getDotGG, .getMaSoDGG, .getDetailSale, .getRate, .getRateBySeri, .getListRate,
                     .getProvince, .getWard, .getDistrict,
-                    .getHistoryOrderCMND, .findImageText
+                    .getHistoryOrderCMND, .findImageText,
+                    .getAllStatusOrder
                 :
                 return .get
             case .login, .register, .resetPass, .addUserKH, .uploadAvatar,

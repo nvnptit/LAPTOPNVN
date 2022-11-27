@@ -13,10 +13,19 @@ struct APIService {
     //    static let baseUrl: String = "https://apiz.1passwordvn.tech"
 //        static let baseUrl: String = "https://dotnetaz.bsite.net"
         static let baseUrl: String = "http://dotnet.voz.ee"
-//    static let baseUrl: String = "http://192.168.1.13"
+//    static let baseUrl: String = "http://192.168.1.33"
 //        static let baseUrl: String = "http://192.168.2.19"
     //    static let baseUrl: String = "http://172.20.10.8"
     
+    public static func fetchAllStatusOrder(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[DataPieResponse]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[DataPieResponse]>.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
     
     //Get Order By CMND
     //get -> fetch

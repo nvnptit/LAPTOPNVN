@@ -1,71 +1,91 @@
 //
-//  StatisticViewController.swift
+//  BarChartViewController.swift
 //  LAPTOPNVN
 //
-//  Created by Nhat on 06/08/2022.
+//  Created by Nhat on 26/11/2022.
 //
 
 import UIKit
-import NVActivityIndicatorView
+import Charts
 
-class StatisticViewController: UIViewController {
-    
-    @IBOutlet weak var scrollView: UIScrollView!
+class BarChartViewController: UIViewController {
     
     @IBOutlet weak var tfFrom: UITextField!
     @IBOutlet weak var tfTo: UITextField!
+    @IBOutlet weak var barChartView: BarChartView!
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var tongDoanhThu: UILabel!
-    let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
     
     var sum: Int = 0
-    
     let datePicker1 = UIDatePicker()
     let datePicker2 = UIDatePicker()
-    
     var data: [DoanhThuResponse] = []
     var allDates: [String] = []
-    private func setupAnimation() {
-        loading.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(loading)
-        NSLayoutConstraint.activate([
-            loading.widthAnchor.constraint(equalToConstant: 20),
-            loading.heightAnchor.constraint(equalToConstant: 20),
-            loading.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loading.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 15)
-        ])
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Thống kê doanh thu"
-        setupAnimation()
+        barChartView.noDataText = "Bạn cần chọn khung thời gian cần để hiển thị biểu đồ"
         
         if #available(iOS 13.4, *) {
             createDatePicker()
         } else {
             // Fallback on earlier versions
         }
+    }
+    
+    func setupChart(){
+        barChartView.noDataText = "You need to provide data for the chart."
+        barChartView.animate(yAxisDuration: 3.0)
+        barChartView.pinchZoomEnabled = false
+        barChartView.drawBarShadowEnabled = false
+        barChartView.drawBordersEnabled = false
+        barChartView.doubleTapToZoomEnabled = false
+        barChartView.drawGridBackgroundEnabled = true
+//        barChartView.chartDescription.text = "NVN"
         
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(UINib(nibName: "StatTableViewCell", bundle: nil), forCellReuseIdentifier: "StatTableViewCell")
         
+        // Setup X axis
+        let xAxis = barChartView.xAxis
+        xAxis.labelPosition = .bottom
+        xAxis.drawAxisLineEnabled = true
+        xAxis.drawGridLinesEnabled = false
+        xAxis.granularityEnabled = false
+        xAxis.labelRotationAngle = 90
+        xAxis.valueFormatter = IndexAxisValueFormatter(values:  data.map { "\($0.thang!)/\($0.nam!)" })
+        xAxis.axisLineColor = .chartLineColour
+        xAxis.labelTextColor = .chartLineColour
+
+        // Setup left axis
+        let leftAxis = barChartView.leftAxis
+        leftAxis.drawTopYLabelEntryEnabled = true
+        leftAxis.drawAxisLineEnabled = true
+        leftAxis.drawGridLinesEnabled = true
+        leftAxis.granularityEnabled = false
+        leftAxis.granularity = 1
+        leftAxis.axisLineColor = .chartLineColour
+        leftAxis.labelTextColor = .chartLineColour
+//        leftAxis.setLabelCount(5, force: false)
+//        leftAxis.axisMinimum = 0.0
+//        leftAxis.axisMaximum = 2.5
+
+        // Remove right axis
+        let rightAxis = barChartView.rightAxis
+        rightAxis.enabled = false
     }
-    
-    
-    override func viewDidAppear(_ animated: Bool = false) {
-//        loadDataDoanhThu()
+    func setChart(dataPoints: [String], values: [Double]) {
+        var dataEntries: [BarChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = BarChartDataEntry(x: Double(i), y: Double(values[i]))
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Bar Chart View")
+        let chartData = BarChartData(dataSet: chartDataSet)
+        barChartView.data = chartData
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
-    }
-    
+}
+extension BarChartViewController{
     func loadDataDoanhThu(){
-        loading.startAnimating()
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
         let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
         
@@ -93,26 +113,34 @@ class StatisticViewController: UIViewController {
                             data1 = data1.map {  $0.thang == i.thang && $0.nam == i.nam ? i : $0}
                         }
                         self.data = data1
+                        print("AAA\n")
+                        print(self.data)
+                        print("\nAAA")
+                        var dataChart: [String] = []
+                        var valueChart: [Double] = []
+                        for item in data1{
+                            dataChart.append("\(String(describing: item.thang)) / \(String(describing: item.nam))")
+                            valueChart.append(Float64(item.doanhthu ?? 0))
+                        }
+                        print(dataChart)
+                        print(valueChart)
+                        self.setupChart()
+                        self.setChart(dataPoints: dataChart, values: valueChart.map { Double($0) })
                     }
-                    self.tongDoanhThu.text = CurrencyVN.toVND(self.sum)
+                   // TONG DOANH THU: CurrencyVN.toVND(self.sum)
                 } else {
                     print("ERROR: \(base.success)")
                 }
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.tableView.reloadData()
-                    self.loading.stopAnimating()
-                }
             })
+            
+            
         }
         
     }
     
-    
 }
 
-
-extension StatisticViewController{
+extension BarChartViewController{
     //MARK: - Setup keyboard, user
     private func setupKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
@@ -126,53 +154,18 @@ extension StatisticViewController{
         guard let userInfo = notification.userInfo else { return }
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 70
-        scrollView.contentInset = contentInset
+//        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+//        contentInset.bottom = keyboardFrame.size.height + 70
+//        scrollView.contentInset = contentInset
     }
     @objc func keyboardWillHide(notification:NSNotification) {
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        scrollView.contentInset = contentInset
+//        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+//        scrollView.contentInset = contentInset
     }
     //MARK: - End Setup keyboard
 }
 
-// History
-
-extension StatisticViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "StatTableViewCell", for: indexPath) as! StatTableViewCell
-        
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 8
-        
-        let item = data[indexPath.item]
-        cell.date.text = "\(item.thang!)-\(item.nam!)"
-        cell.money.text = "\(CurrencyVN.toVND(item.doanhthu!))"
-        cell.selectionStyle = .none
-        return cell
-    }
-}
-
-
-extension StatisticViewController{
+extension BarChartViewController{
     //MARK: - Datepicker
     private func createToolbar(_ datePickerView: UIDatePicker) -> UIToolbar {
         let toolbar = UIToolbar()
@@ -230,7 +223,7 @@ extension StatisticViewController{
 
 
 
-extension StatisticViewController{
+extension BarChartViewController{
     func getMonthAndYearBetween(from start: String, to end: String) -> [String] {
         let format = DateFormatter()
         format.dateFormat = "yyyy-MM-dd"
@@ -257,4 +250,15 @@ extension StatisticViewController{
         }
         return allDates
     }
+}
+
+
+
+extension UIColor {
+    static let chartBarColour = #colorLiteral(red: 1, green: 0.831372549, blue: 0.3764705882, alpha: 1)
+    static let chartLineColour = #colorLiteral(red: 0.1764705882, green: 0.2509803922, blue: 0.3490196078, alpha: 1)
+    static let chartReplacementColour = #colorLiteral(red: 0.9176470588, green: 0.3294117647, blue: 0.3333333333, alpha: 1)
+    static let chartAverageColour = #colorLiteral(red: 0.9176470588, green: 0.3294117647, blue: 0.3333333333, alpha: 1)
+    static let chartBarValueColour = #colorLiteral(red: 0.9411764706, green: 0.4823529412, blue: 0.2470588235, alpha: 1)
+    static let chartHightlightColour = #colorLiteral(red: 0.9411764706, green: 0.4823529412, blue: 0.2470588235, alpha: 1)
 }

@@ -367,6 +367,11 @@
 		79BFB0DA2915765C0030B192 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BFB0D92915765C0030B192 /* Message.swift */; };
 		79BFB0DD29157A980030B192 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BFB0DB29157A980030B192 /* MessageCell.swift */; };
 		79BFB0DE29157A980030B192 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BFB0DC29157A980030B192 /* MessageCell.xib */; };
+		79C3934429320894009A8E3B /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C3934229320894009A8E3B /* PieChartViewController.swift */; };
+		79C3934529320894009A8E3B /* PieChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C3934329320894009A8E3B /* PieChartViewController.xib */; };
+		79C39348293208D5009A8E3B /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C39346293208D5009A8E3B /* BarChartViewController.swift */; };
+		79C39349293208D5009A8E3B /* BarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C39347293208D5009A8E3B /* BarChartViewController.xib */; };
+		79C3934B29320A22009A8E3B /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C3934A29320A22009A8E3B /* CommonData.swift */; };
 		79C43FF2289DFD2F008EA789 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C43FF0289DFD2F008EA789 /* OrderViewController.swift */; };
 		79C43FF3289DFD2F008EA789 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C43FF0289DFD2F008EA789 /* OrderViewController.swift */; };
 		79C43FF4289DFD2F008EA789 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C43FF0289DFD2F008EA789 /* OrderViewController.swift */; };
@@ -404,6 +409,7 @@
 		79ECC22928850C460002E81D /* BannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */; };
 		79ECC22A28850C460002E81D /* BannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */; };
 		79ECC22B28850C460002E81D /* BannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */; };
+		79F2B65629334894008B6942 /* DataPieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F2B65529334894008B6942 /* DataPieResponse.swift */; };
 		79F33D8028831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F33D7E28831F0600F7BB4C /* HomeHeaderReusableView.swift */; };
 		79F33D8128831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F33D7E28831F0600F7BB4C /* HomeHeaderReusableView.swift */; };
 		79F33D8228831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F33D7E28831F0600F7BB4C /* HomeHeaderReusableView.swift */; };
@@ -612,6 +618,11 @@
 		79BFB0D92915765C0030B192 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		79BFB0DB29157A980030B192 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		79BFB0DC29157A980030B192 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		79C3934229320894009A8E3B /* PieChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
+		79C3934329320894009A8E3B /* PieChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartViewController.xib; sourceTree = "<group>"; };
+		79C39346293208D5009A8E3B /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
+		79C39347293208D5009A8E3B /* BarChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarChartViewController.xib; sourceTree = "<group>"; };
+		79C3934A29320A22009A8E3B /* CommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
 		79C43FF0289DFD2F008EA789 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		79C43FF1289DFD2F008EA789 /* OrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderViewController.xib; sourceTree = "<group>"; };
 		79CF9BCA288AFB5800709A26 /* GioHang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GioHang.swift; sourceTree = "<group>"; };
@@ -625,6 +636,7 @@
 		79DA1DF128FA97DC00F0520F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		79ECC22428850C460002E81D /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerCollectionViewCell.xib; sourceTree = "<group>"; };
+		79F2B65529334894008B6942 /* DataPieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPieResponse.swift; sourceTree = "<group>"; };
 		79F33D7E28831F0600F7BB4C /* HomeHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderReusableView.swift; sourceTree = "<group>"; };
 		79F33D7F28831F0600F7BB4C /* HomeHeaderReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHeaderReusableView.xib; sourceTree = "<group>"; };
 		79F33D86288324B800F7BB4C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -1249,6 +1261,7 @@
 		799B9162289D8B2D001F6B5F /* ManagerAdmin */ = {
 			isa = PBXGroup;
 			children = (
+				79C3934129320873009A8E3B /* Charts */,
 				79D99EB628E74C9F00954A12 /* Sale */,
 				7986293D28A81F7000FC08AE /* Product */,
 				7986292A28A7F35200FC08AE /* Category */,
@@ -1471,6 +1484,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		79C3934129320873009A8E3B /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				79F2B65329334863008B6942 /* Bar */,
+				79F2B65229334858008B6942 /* Pie */,
+				79C3934A29320A22009A8E3B /* CommonData.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		79C43FEF289DFD10008EA789 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
@@ -1545,6 +1568,33 @@
 				79ECC22528850C460002E81D /* BannerCollectionViewCell.xib */,
 			);
 			path = Banner;
+			sourceTree = "<group>";
+		};
+		79F2B65229334858008B6942 /* Pie */ = {
+			isa = PBXGroup;
+			children = (
+				79F2B65429334885008B6942 /* Data */,
+				79C3934229320894009A8E3B /* PieChartViewController.swift */,
+				79C3934329320894009A8E3B /* PieChartViewController.xib */,
+			);
+			path = Pie;
+			sourceTree = "<group>";
+		};
+		79F2B65329334863008B6942 /* Bar */ = {
+			isa = PBXGroup;
+			children = (
+				79C39346293208D5009A8E3B /* BarChartViewController.swift */,
+				79C39347293208D5009A8E3B /* BarChartViewController.xib */,
+			);
+			path = Bar;
+			sourceTree = "<group>";
+		};
+		79F2B65429334885008B6942 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				79F2B65529334894008B6942 /* DataPieResponse.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		DDFE274AB4C75A8DD08E14FE /* Pods */ = {
@@ -1730,6 +1780,7 @@
 				7986293228A8189000FC08AE /* CategoryViewController.xib in Resources */,
 				797767DE28EB3E7D008643A7 /* CommentTableViewCell.xib in Resources */,
 				79475E5528824822005911E3 /* LoginViewController.xib in Resources */,
+				79C39349293208D5009A8E3B /* BarChartViewController.xib in Resources */,
 				79A0363E28E826D9002532FD /* DetailSaleViewController.xib in Resources */,
 				7986294528A81FC500FC08AE /* ProductTableViewCell.xib in Resources */,
 				791BB941289EE0CF002B5871 /* DetailBrandViewController.xib in Resources */,
@@ -1744,6 +1795,7 @@
 				799547F928A8B597002760A7 /* SanPhamViewController.xib in Resources */,
 				79A5440D288D70C300179574 /* SearchViewController.xib in Resources */,
 				796B61D528EF1B9500E44B95 /* TestMapsViewController.xib in Resources */,
+				79C3934529320894009A8E3B /* PieChartViewController.xib in Resources */,
 				79475E8A28824D7E005911E3 /* HomeViewController.xib in Resources */,
 				79D8CD362892ECAF00984EF3 /* PayPalViewController.xib in Resources */,
 				793FC37F290BB48300F1D95D /* TestAddressViewController.xib in Resources */,
@@ -1980,6 +2032,7 @@
 				7986294A28A8210100FC08AE /* DetailCategoryViewController.swift in Sources */,
 				7901D3D228B8D730007D2EE5 /* Encrypt.swift in Sources */,
 				79475E142882438D005911E3 /* AppDelegate.swift in Sources */,
+				79F2B65629334894008B6942 /* DataPieResponse.swift in Sources */,
 				79C43FF2289DFD2F008EA789 /* OrderViewController.swift in Sources */,
 				796DF2B02892850500F34C82 /* Response.swift in Sources */,
 				79BFB0DA2915765C0030B192 /* Message.swift in Sources */,
@@ -1999,6 +2052,7 @@
 				79475E162882438D005911E3 /* SceneDelegate.swift in Sources */,
 				791DE89728EB4926007C2D22 /* ForgotPasswordViewController.swift in Sources */,
 				7996271F2896133E00B6EDF9 /* HistoryModel.swift in Sources */,
+				79C3934B29320A22009A8E3B /* CommonData.swift in Sources */,
 				7929A4DF28A7ABD70080FE45 /* TaiKhoan.swift in Sources */,
 				79CF9BCB288AFB5800709A26 /* GioHang.swift in Sources */,
 				792DDAA728901785000ACAFC /* Search.swift in Sources */,
@@ -2011,6 +2065,7 @@
 				79BF62232891C3650007FE0D /* DatHang.swift in Sources */,
 				799B9166289D8B52001F6B5F /* ModelNV.swift in Sources */,
 				79D99ED828E7589400954A12 /* SaleViewController.swift in Sources */,
+				79C39348293208D5009A8E3B /* BarChartViewController.swift in Sources */,
 				791BB935289EC165002B5871 /* BrandViewController.swift in Sources */,
 				79BF621C2891BAB80007FE0D /* ItemCartTableViewCell.swift in Sources */,
 				79F33D8028831F0600F7BB4C /* HomeHeaderReusableView.swift in Sources */,
@@ -2060,6 +2115,7 @@
 				79F33D972883254600F7BB4C /* APIResponse.swift in Sources */,
 				79176F96288392D400CDA10E /* SanPhamCollectionViewCell.swift in Sources */,
 				79475EAE2882B7E1005911E3 /* LoaiSanPham.swift in Sources */,
+				79C3934429320894009A8E3B /* PieChartViewController.swift in Sources */,
 				79D99EE028E758BF00954A12 /* SaleTableViewCell.swift in Sources */,
 				79F33D9B28832F3C00F7BB4C /* LoginModel.swift in Sources */,
 				79DA1DF228FA97DC00F0520F /* Color.swift in Sources */,
