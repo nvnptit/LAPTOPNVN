@@ -92,7 +92,6 @@ class InformationViewController: UIViewController {
         } else {
             // Fallback on earlier versions
         }
-        
         loadInfo()
         self.dataSend()
         self.braintreeClient = BTAPIClient(authorization: "sandbox_9qswqysc_7hsb2swzq3w35xrj")
@@ -126,6 +125,7 @@ class InformationViewController: UIViewController {
             return false
         }
         self.address = "\(houseNumber), \(ward), \(district), \(province)"
+        
         if (name.isEmpty || phone.isEmpty || email.isEmpty || address.isEmpty || datePlan.isEmpty ||
             province.isEmpty || district.isEmpty || ward.isEmpty || houseNumber.isEmpty
         ) {
@@ -355,6 +355,7 @@ extension InformationViewController{
         view.endEditing(true)
     }
 }
+
 extension InformationViewController{
     //DropDown
     
@@ -432,6 +433,7 @@ extension InformationViewController{
         
     }
 }
+
 extension InformationViewController{
 //    
 //    //MARK: - Setup Drop

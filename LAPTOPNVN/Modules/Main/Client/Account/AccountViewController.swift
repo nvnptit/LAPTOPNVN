@@ -11,6 +11,43 @@ import DropDown
 
 class AccountViewController: UIViewController {
     
+    
+    //MARK: - Start params Address
+    
+    @IBOutlet weak var dropProvince: UIView!
+    @IBOutlet weak var lbProvince: UILabel!
+    
+    @IBOutlet weak var dropDistrict: UIView!
+    @IBOutlet weak var lbDistrict: UILabel!
+    
+    @IBOutlet weak var dropWard: UIView!
+    @IBOutlet weak var lbWard: UILabel!
+    
+    @IBOutlet weak var tfHouseNumber: UITextField!
+    
+    var listProvince: [ProvinceElement] = []
+    var listDistrict: [DistrictElement] = []
+    var listWard: [WardElement] = []
+    
+    var provinceDrop = DropDown()
+    var districtDrop = DropDown()
+    var wardDrop = DropDown()
+    
+    var provinceValues: [String] = []
+    var districtValues: [String] = []
+    var wardValues: [String] = []
+    
+    @IBOutlet weak var lb8: UILabel!
+    @IBOutlet weak var lb9: UILabel!
+    @IBOutlet weak var lb10: UILabel!
+    @IBOutlet weak var lb11: UILabel!
+    
+    
+    
+    //MARK: - End params Address
+    
+    
+    
     @IBOutlet weak var chatBot: UIButton!
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -85,6 +122,19 @@ class AccountViewController: UIViewController {
         changeCorner(btnThayDoi)
         changeCorner(btnDangXuat)
         
+        
+        //MARK: - Start Adrress
+        setupDropDown()
+        setupProvince()
+        setupDistrict()
+        setupWard()
+        loadDataProvince()
+        lbProvince.text = "Thành phố Hồ Chí Minh"
+//        dropProvince.isUserInteractionEnabled = false
+//        loadDataDistrict(code: 79)
+        //MARK: - End Adrress
+        
+        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
         viewAccount.addGestureRecognizer(gesture)
         
@@ -122,6 +172,7 @@ class AccountViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool = false) {
         self.navigationController?.isNavigationBarHidden = true
         loadDataHistory()
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -207,11 +258,20 @@ class AccountViewController: UIViewController {
         tfBirthday.isHidden  = sh
         tfEmail.isHidden  = sh
         tfPhone.isHidden  = sh
-        tfAddress.isHidden  = sh
         tfCMND.isHidden = sh
         segment.isHidden = sh
         
         chatBot.isHidden = sh
+        
+        // address
+        tfHouseNumber.isHidden = sh  // tfAddress.isHidden  = sh
+        lb8.isHidden = sh
+        lb9.isHidden = sh
+        lb10.isHidden = sh
+        lb11.isHidden = sh
+        dropProvince.isHidden = sh
+        dropDistrict.isHidden = sh
+        dropWard.isHidden = sh
     }
     func loadData(){
         guard let info =  UserService.shared.infoProfile else {return}
@@ -229,7 +289,19 @@ class AccountViewController: UIViewController {
         tfBirthday.text  = date
         tfEmail.text  = info.email
         tfPhone.text  = info.sdt
-        tfAddress.text  = info.diachi
+        
+        // XU LY TFADDRESS
+        if let dc =  info.diachi {
+            var s1 = dc.trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: ",")
+            lbProvince.text = s1[s1.count - 1]
+            s1.remove(at: s1.count-1)
+            lbDistrict.text = s1[s1.count - 1]
+            s1.remove(at: s1.count-1)
+            lbWard.text = s1[s1.count - 1]
+            s1.remove(at: s1.count-1)
+            tfHouseNumber.text = s1.joined(separator: ",")
+        }
+//        tfAddress.text  = info.diachi
         tfCMND.text = info.cmnd
     }
     
@@ -247,10 +319,37 @@ class AccountViewController: UIViewController {
     }
     
     func checkFill() -> Bool{
+            guard
+                  let province = lbProvince.text,
+                  let district = lbDistrict.text,
+                  let ward = lbWard.text,
+                  let houseNumber = tfHouseNumber.text
+            else {
+                let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+                return false
+            }
+        if (houseNumber == "" || province == "" || district == "" || ward == ""){
+                let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+                return false
+        }
+        let address = "\(houseNumber), \(ward), \(district), \(province)"
+        
+        
+        
         
         let emailE = chuanHoa(tfEmail.text)
         let nameE = chuanHoa(tfName.text)
-        let addressE = chuanHoa(tfAddress.text)
+        
+        // XU LY TFADDRESS
+        let addressE = chuanHoa(address)
         let dayE = chuanHoa(tfBirthday.text)
         let phoneE = chuanHoa(tfPhone.text)
         
@@ -295,13 +394,22 @@ class AccountViewController: UIViewController {
             tfBirthday.backgroundColor = .none
             tfEmail.backgroundColor = .none
             tfPhone.backgroundColor = .none
-            tfAddress.backgroundColor = .none
             
+            // XU LY TFADDRESS
+            tfHouseNumber.isEnabled = true
+            tfHouseNumber.backgroundColor = .none
+            dropProvince.backgroundColor = .none
+            dropDistrict.backgroundColor = .none
+            dropWard.backgroundColor = .none
+            dropProvince.isUserInteractionEnabled = true
+            dropDistrict.isUserInteractionEnabled = true
+            dropWard.isUserInteractionEnabled = true
+
             tfName.isEnabled = true
             tfBirthday.isEnabled = true
             tfEmail.isEnabled = true
             tfPhone.isEnabled = true
-            tfAddress.isEnabled = true
+            
             
             btnThayDoi.setTitle("LƯU THAY ĐỔI", for: .normal)
         }
@@ -312,16 +420,38 @@ class AccountViewController: UIViewController {
                 tfBirthday.backgroundColor = .lightGray
                 tfEmail.backgroundColor = .lightGray
                 tfPhone.backgroundColor = .lightGray
-                tfAddress.backgroundColor = .lightGray
+                
+                //TFAdress
+                tfHouseNumber.backgroundColor = .lightGray
+                
+                dropProvince.backgroundColor = .lightGray
+                dropDistrict.backgroundColor = .lightGray
+                dropWard.backgroundColor = .lightGray
+                
+                dropProvince.isUserInteractionEnabled = false
+                dropDistrict.isUserInteractionEnabled = false
+                dropWard.isUserInteractionEnabled = false
+                tfHouseNumber.isEnabled = false
                 
                 tfName.isEnabled = false
                 tfBirthday.isEnabled = false
                 tfEmail.isEnabled = false
                 tfPhone.isEnabled = false
-                tfAddress.isEnabled = false
                 let emailE = chuanHoa(tfEmail.text)
                 let nameE = chuanHoa(tfName.text)
-                let addressE = chuanHoa(tfAddress.text)
+                
+                
+                        guard
+                            let province = self.lbProvince.text,
+                            let district = self.lbDistrict.text,
+                            let ward = self.lbWard.text,
+                            let houseNumber = self.tfHouseNumber.text
+                else { return}
+                    let address = "\(houseNumber), \(ward), \(district), \(province)"
+                    
+                
+                
+                let addressE = chuanHoa(address)
                 let dayE = chuanHoa(tfBirthday.text)
                 
                 let dateSql = Date().convertDateViewToSQL(dayE)
@@ -329,7 +459,9 @@ class AccountViewController: UIViewController {
                 
                 tfEmail.text = emailE
                 tfName.text = nameE
-                tfAddress.text = addressE
+                
+                tfHouseNumber.text = houseNumber
+                
                 tfBirthday.text = dayE
                 tfPhone.text = phoneE
                 
@@ -485,7 +617,22 @@ extension AccountViewController {
             if base.success == true {
                 let emailE = self.chuanHoa(self.tfEmail.text)
                 let nameE = self.chuanHoa(self.tfName.text)
-                let addressE = self.chuanHoa(self.tfAddress.text)
+                
+                        guard
+                            let province = self.lbProvince.text,
+                            let district = self.lbDistrict.text,
+                            let ward = self.lbWard.text,
+                            let houseNumber = self.tfHouseNumber.text
+                else { return}
+                    let address = "\(houseNumber), \(ward), \(district), \(province)"
+                    
+                    
+                
+                
+                let addressE = self.chuanHoa(address)
+                
+                
+                
                 let dayE = self.chuanHoa(self.tfBirthday.text)
                 let phoneE = self.chuanHoa(self.tfPhone.text)
                 let model = LoginResponse(cmnd: self.tfCMND.text, email: emailE, ten: nameE, diachi: addressE, ngaysinh: dayE, sdt: phoneE, tendangnhap: UserService.shared.infoProfile?.tendangnhap)
@@ -587,4 +734,169 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 
+extension AccountViewController {
+    func  loadDataProvince(){
+        APIService.getProvince({
+            data, error in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+                return
+            }
+            guard let provinces = data else {return}
+            self.listProvince = provinces
+            for i in provinces {
+                self.provinceValues.append(i.name ?? "")
+            }
+            self.setupProvince()
+            
+            // Load combobox follow address db
+            let code1 = self.listProvince.filter({$0.name == self.lbProvince.text?.trimmingCharacters(in: .whitespacesAndNewlines)})
+            if (code1.count>0){
+                if let code1 = code1[0].code {
+                    self.loadDataDistrict(code: code1)
+                }
+            }
+        })
+    }
+    func  loadDataDistrict(code: Int){
+        APIService.getDistricts(with: code, {
+            data, error in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+                return
+            }
+            guard let districts = data?.districts else {return}
+            self.listDistrict = districts
+            for i in districts {
+                self.districtValues.append(i.name ?? "")
+            }
+            self.setupDistrict()
+            
+            // Load combobox follow address db
+            let code1 = self.listDistrict.filter({$0.name == self.lbDistrict.text?.trimmingCharacters(in: .whitespacesAndNewlines)})
+            if (code1.count>0){
+                if let code1 = code1[0].code {
+                    self.loadDataWard(code: code1)
+                }
+            }
+            
+        })
+    }
+    func  loadDataWard(code: Int){
+        listWard.removeAll()
+        APIService.getWards(with: code, {
+            data, error in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                    self.dismiss(animated: true)
+                }))
+                self.present(alert, animated: true)
+                return
+            }
+            guard let wards = data?.wards else {return}
+            self.listWard = wards
+            for i in wards {
+                self.wardValues.append(i.name ?? "")
+            }
+            self.setupWard()
+        })
+    }
+}
 
+
+extension AccountViewController{
+//
+//    //MARK: - Setup Drop
+//    private func setupDropDown() {
+//        DropDown.appearance().textColor = UIColor.black
+//        DropDown.appearance().selectedTextColor = UIColor.black
+//        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 15)
+//        DropDown.appearance().backgroundColor = UIColor.white
+//        DropDown.appearance().selectionBackgroundColor = UIColor.cyan
+//        DropDown.appearance().cornerRadius = 8
+//    }
+//
+    //MARK: - Setup Province Drop
+    private func setupProvince() {
+        provinceDrop.anchorView = dropProvince
+        provinceDrop.dataSource = provinceValues
+        provinceDrop.bottomOffset = CGPoint(x: 0, y:(provinceDrop.anchorView?.plainView.bounds.height)! + 5)
+        provinceDrop.direction = .bottom
+        provinceDrop.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.lbProvince.text = item
+            guard let code = listProvince.filter({ $0.name == item })[0].code else {return}
+            self.lbDistrict.text = ""
+            self.lbWard.text = ""
+            self.districtValues.removeAll()
+            self.wardValues.removeAll()
+            setupWard()
+            loadDataDistrict(code: code)
+        }
+        
+        let gestureClock = UITapGestureRecognizer(target: self, action: #selector(didTapProvince))
+        dropProvince.addGestureRecognizer(gestureClock)
+        dropProvince.layer.borderWidth = 1
+        dropProvince.layer.borderColor = UIColor.lightGray.cgColor
+        dropProvince.layer.cornerRadius = 5
+        
+    }
+    @objc func didTapProvince() {
+        provinceDrop.show()
+    }
+    
+    //MARK: - Setup District Drop
+    private func setupDistrict() {
+        districtDrop.anchorView = dropDistrict
+        districtDrop.dataSource = districtValues
+        districtDrop.bottomOffset = CGPoint(x: 0, y:(districtDrop.anchorView?.plainView.bounds.height)! + 5)
+        districtDrop.direction = .bottom
+        districtDrop.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.lbDistrict.text = item
+            guard let code = listDistrict.filter({ $0.name == item })[0].code else {return}
+            self.lbWard.text = ""
+            self.wardValues.removeAll()
+            loadDataWard(code: code)
+        }
+        
+        let gestureClock = UITapGestureRecognizer(target: self, action: #selector(didTapDistrict))
+        dropDistrict.addGestureRecognizer(gestureClock)
+        dropDistrict.layer.borderWidth = 1
+        dropDistrict.layer.borderColor = UIColor.lightGray.cgColor
+        dropDistrict.layer.cornerRadius = 5
+        
+    }
+    @objc func didTapDistrict() {
+        districtDrop.show()
+    }
+    //MARK: - Setup Ward Drop
+    private func setupWard() {
+        wardDrop.anchorView = dropWard
+        wardDrop.dataSource = wardValues
+        wardDrop.bottomOffset = CGPoint(x: 0, y:(districtDrop.anchorView?.plainView.bounds.height)! + 5)
+        wardDrop.direction = .bottom
+        wardDrop.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.lbWard.text = item
+//            guard let code = listWard.filter({ $0.name == item })[0].code else {return}
+//            loadDataWard(code: code)
+        }
+        
+        let gestureClock = UITapGestureRecognizer(target: self, action: #selector(didTapWard))
+        dropWard.addGestureRecognizer(gestureClock)
+        dropWard.layer.borderWidth = 1
+        dropWard.layer.borderColor = UIColor.lightGray.cgColor
+        dropWard.layer.cornerRadius = 5
+        
+    }
+    @objc func didTapWard() {
+        wardDrop.show()
+    }
+}

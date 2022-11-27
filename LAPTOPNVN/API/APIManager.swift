@@ -238,7 +238,7 @@ extension APIManager {
                 path = "/binh-luan/SANPHAM?maLSP=\(maLSP)"
             case .getProvince:
                 do {
-                    path = "https://provinces.open-api.vn/api/p"
+                    path = "https://provinces.open-api.vn/api/p?depth=2"
                     return path
                 }
             case .getDistrict(let code):
