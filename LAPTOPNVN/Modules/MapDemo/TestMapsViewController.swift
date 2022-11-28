@@ -31,7 +31,7 @@ class TestMapsViewController: UIViewController, CLLocationManagerDelegate, MKMap
         
         guard let addr = self.textFieldForAddress.text else {return}
         print("UC:    \(addr.unaccent())")
-        LocationManager.shared.forwardGeocoding(address: addr.unaccent(), completion: {
+        LocationManager.shared.forwardGeocoding(address: addr, completion: {
             success,coordinate in
             if success {
                 guard let lat = coordinate?.latitude,

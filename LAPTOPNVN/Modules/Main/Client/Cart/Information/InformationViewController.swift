@@ -139,7 +139,7 @@ class InformationViewController: UIViewController {
             self.present(alert, animated: true)
             return false
         }
-        self.address = "\(houseNumber), \(ward), \(district), \(province)"
+        self.address = "\(houseNumber),\(ward),\(district),\(province)"
         
         if (name.isEmpty || phone.isEmpty || email.isEmpty || address.isEmpty || datePlan.isEmpty ||
             province.isEmpty || district.isEmpty || ward.isEmpty || houseNumber.isEmpty

@@ -82,9 +82,7 @@ extension UILabel {
 extension String {
     
     func unaccent() -> String {
-        
         return self.folding(options: .diacriticInsensitive, locale: .current)
-        
     }
     func replaceCharacters(characters: String, toSeparator: String) -> String {
         let characterSet = CharacterSet(charactersIn: characters)
