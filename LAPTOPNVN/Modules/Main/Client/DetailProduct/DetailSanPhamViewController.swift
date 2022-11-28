@@ -43,6 +43,25 @@ class DetailSanPhamViewController: UIViewController{
         btn.layer.cornerRadius = 8
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.checkSLTon()
+        }
+        if let loaiSp = loaiSp, let sl = loaiSp.soluong {
+            if (sl>0){
+                btnAddCart.isEnabled = true
+                btnBuyNow.isEnabled = true
+                btnBuyNow.setTitle("Mua ngay", for: .normal)
+                btnAddCart.isHidden = false
+            }else {
+                btnAddCart.isEnabled = false
+                btnBuyNow.isEnabled = false
+                
+                btnBuyNow.setTitle("Đã hết hàng", for: .normal)
+                btnAddCart.isHidden = true
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         changeCorner(btnAddCart)

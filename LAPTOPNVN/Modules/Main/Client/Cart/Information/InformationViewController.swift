@@ -72,8 +72,7 @@ class InformationViewController: UIViewController {
         setupDistrict()
         setupWard()
 //        loadDataProvince()
-        lbProvince.text = "Thành phố Hồ Chí Minh"
-        dropProvince.isUserInteractionEnabled = false
+        //Mac dinh: TPHCM
         loadDataDistrict(code: 79)
         //MARK: - End Adrress
         btnThanhToan.layer.borderColor = UIColor.lightGray.cgColor
@@ -104,7 +103,23 @@ class InformationViewController: UIViewController {
         name.text = user.ten
         phone.text = user.sdt
         email.text = user.email
-        address = user.diachi ?? ""
+        if let addr = user.diachi
+        {
+            var s1 = addr.trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: ",")
+            lbProvince.text = s1[s1.count - 1]
+            if (lbProvince.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "Thành phố Hồ Chí Minh"){
+                s1.remove(at: s1.count-1)
+                lbDistrict.text = s1[s1.count - 1]
+                s1.remove(at: s1.count-1)
+                lbWard.text = s1[s1.count - 1]
+                s1.remove(at: s1.count-1)
+                tfHouseNumber.text = s1.joined(separator: ",")
+            }else {
+                        lbProvince.text = "Thành phố Hồ Chí Minh"
+                        dropProvince.isUserInteractionEnabled = false
+            }
+        }
+//        address = user.diachi ?? ""
     }
     func checkFill() -> Bool{
         guard let name = name.text,

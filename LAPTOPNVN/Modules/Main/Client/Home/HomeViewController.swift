@@ -129,10 +129,6 @@ class HomeViewController: UIViewController {
 //                    self.homeCollectionView.reloadData()
                 }
             })
-//            DispatchQueue.main.async { [weak self] in
-//                guard let self = self else { return }
-//                self.homeCollectionView.reloadData()
-//            }
         }
     }
     
@@ -227,8 +223,8 @@ class HomeViewController: UIViewController {
             subitems: [item]
         )
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 16
-        section.contentInsets.top = 16
+        section.interGroupSpacing = 12 // khoảng cách giữa laptop
+        section.contentInsets.top = 8  // top laptop
         section.orthogonalScrollingBehavior = .continuous
         return section
     }
@@ -247,14 +243,14 @@ class HomeViewController: UIViewController {
             ),
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
+        section.interGroupSpacing = 8
         section.orthogonalScrollingBehavior = .continuous
         return section
     }
     private var bannerSection: NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: .init(
-                widthDimension: .absolute(370),
+                widthDimension: .absolute(375),
                 heightDimension: .absolute(200)
             )
         )
@@ -266,6 +262,7 @@ class HomeViewController: UIViewController {
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets.leading = 10
+        section.contentInsets.top = -15 //top banner
         section.orthogonalScrollingBehavior = .groupPaging
         section.interGroupSpacing = 0
         return section

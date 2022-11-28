@@ -129,9 +129,9 @@ class AccountViewController: UIViewController {
         setupDistrict()
         setupWard()
         loadDataProvince()
-        lbProvince.text = "Thành phố Hồ Chí Minh"
-//        dropProvince.isUserInteractionEnabled = false
-//        loadDataDistrict(code: 79)
+        //        lbProvince.text = "Thành phố Hồ Chí Minh"
+        //        dropProvince.isUserInteractionEnabled = false
+        //        loadDataDistrict(code: 79)
         //MARK: - End Adrress
         
         
@@ -301,7 +301,7 @@ class AccountViewController: UIViewController {
             s1.remove(at: s1.count-1)
             tfHouseNumber.text = s1.joined(separator: ",")
         }
-//        tfAddress.text  = info.diachi
+        //        tfAddress.text  = info.diachi
         tfCMND.text = info.cmnd
     }
     
@@ -319,26 +319,26 @@ class AccountViewController: UIViewController {
     }
     
     func checkFill() -> Bool{
-            guard
-                  let province = lbProvince.text,
-                  let district = lbDistrict.text,
-                  let ward = lbWard.text,
-                  let houseNumber = tfHouseNumber.text
-            else {
-                let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                    self.dismiss(animated: true)
-                }))
-                self.present(alert, animated: true)
-                return false
-            }
+        guard
+            let province = lbProvince.text,
+            let district = lbDistrict.text,
+            let ward = lbWard.text,
+            let houseNumber = tfHouseNumber.text
+        else {
+            let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
+        }
         if (houseNumber == "" || province == "" || district == "" || ward == ""){
-                let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
-                    self.dismiss(animated: true)
-                }))
-                self.present(alert, animated: true)
-                return false
+            let alert = UIAlertController(title: "Bạn cần điền đầy đủ thông tin", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true)
+            return false
         }
         let address = "\(houseNumber), \(ward), \(district), \(province)"
         
@@ -404,7 +404,7 @@ class AccountViewController: UIViewController {
             dropProvince.isUserInteractionEnabled = true
             dropDistrict.isUserInteractionEnabled = true
             dropWard.isUserInteractionEnabled = true
-
+            
             tfName.isEnabled = true
             tfBirthday.isEnabled = true
             tfEmail.isEnabled = true
@@ -441,14 +441,14 @@ class AccountViewController: UIViewController {
                 let nameE = chuanHoa(tfName.text)
                 
                 
-                        guard
-                            let province = self.lbProvince.text,
-                            let district = self.lbDistrict.text,
-                            let ward = self.lbWard.text,
-                            let houseNumber = self.tfHouseNumber.text
+                guard
+                    let province = self.lbProvince.text,
+                    let district = self.lbDistrict.text,
+                    let ward = self.lbWard.text,
+                    let houseNumber = self.tfHouseNumber.text
                 else { return}
-                    let address = "\(houseNumber), \(ward), \(district), \(province)"
-                    
+                let address = "\(houseNumber), \(ward), \(district), \(province)"
+                
                 
                 
                 let addressE = chuanHoa(address)
@@ -618,15 +618,15 @@ extension AccountViewController {
                 let emailE = self.chuanHoa(self.tfEmail.text)
                 let nameE = self.chuanHoa(self.tfName.text)
                 
-                        guard
-                            let province = self.lbProvince.text,
-                            let district = self.lbDistrict.text,
-                            let ward = self.lbWard.text,
-                            let houseNumber = self.tfHouseNumber.text
+                guard
+                    let province = self.lbProvince.text,
+                    let district = self.lbDistrict.text,
+                    let ward = self.lbWard.text,
+                    let houseNumber = self.tfHouseNumber.text
                 else { return}
-                    let address = "\(houseNumber), \(ward), \(district), \(province)"
-                    
-                    
+                let address = "\(houseNumber), \(ward), \(district), \(province)"
+                
+                
                 
                 
                 let addressE = self.chuanHoa(address)
@@ -654,12 +654,12 @@ extension AccountViewController {
 extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
+        //        return 1
         return dataHistory.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return dataHistory.count
+        //        return dataHistory.count
         return 1
     }
     
@@ -689,7 +689,7 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         cell.clipsToBounds = false
         
         
-//        let item = dataHistory[indexPath.item]
+        //        let item = dataHistory[indexPath.item]
         let item = dataHistory[indexPath.section]
         let dateReceive = item.ngaynhan ?? ""
         if let ngaylapgiohang = item.ngaylapgiohang,
@@ -723,9 +723,9 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let item = dataHistory[indexPath.item]
+        //        let item = dataHistory[indexPath.item]
         let item = dataHistory[indexPath.section]
-//        guard let cell = tableView.cellForRow(at: indexPath) as? HistoryOrderTableViewCell else { return }
+        //        guard let cell = tableView.cellForRow(at: indexPath) as? HistoryOrderTableViewCell else { return }
         let vc = DetailHistoryViewController()
         vc.id = item.idgiohang
         vc.order = item
@@ -814,17 +814,17 @@ extension AccountViewController {
 
 
 extension AccountViewController{
-//
-//    //MARK: - Setup Drop
-//    private func setupDropDown() {
-//        DropDown.appearance().textColor = UIColor.black
-//        DropDown.appearance().selectedTextColor = UIColor.black
-//        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 15)
-//        DropDown.appearance().backgroundColor = UIColor.white
-//        DropDown.appearance().selectionBackgroundColor = UIColor.cyan
-//        DropDown.appearance().cornerRadius = 8
-//    }
-//
+    //
+    //    //MARK: - Setup Drop
+    //    private func setupDropDown() {
+    //        DropDown.appearance().textColor = UIColor.black
+    //        DropDown.appearance().selectedTextColor = UIColor.black
+    //        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 15)
+    //        DropDown.appearance().backgroundColor = UIColor.white
+    //        DropDown.appearance().selectionBackgroundColor = UIColor.cyan
+    //        DropDown.appearance().cornerRadius = 8
+    //    }
+    //
     //MARK: - Setup Province Drop
     private func setupProvince() {
         provinceDrop.anchorView = dropProvince
@@ -885,8 +885,8 @@ extension AccountViewController{
         wardDrop.direction = .bottom
         wardDrop.selectionAction = { [unowned self] (index: Int, item: String) in
             self.lbWard.text = item
-//            guard let code = listWard.filter({ $0.name == item })[0].code else {return}
-//            loadDataWard(code: code)
+            //            guard let code = listWard.filter({ $0.name == item })[0].code else {return}
+            //            loadDataWard(code: code)
         }
         
         let gestureClock = UITapGestureRecognizer(target: self, action: #selector(didTapWard))
