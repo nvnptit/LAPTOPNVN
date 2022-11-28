@@ -108,6 +108,15 @@ class StatisticViewController: UIViewController {
         
     }
     
+    @IBAction func tapPieChart(_ sender: UIButton, forEvent event: UIEvent) {
+            let vc = PieChartViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func tapBarChart(_ sender: UIButton, forEvent event: UIEvent) {
+        let vc = BarChartViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }
 
