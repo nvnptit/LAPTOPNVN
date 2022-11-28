@@ -184,6 +184,7 @@ class AccountViewController: UIViewController {
         let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
         
         let params = HistoryModel(status: self.maStatus, cmnd: UserService.shared.cmnd, dateFrom: from, dateTo: to).convertToDictionary()
+        
         DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self = self , self.cmnd != "" else { return }
             
@@ -692,17 +693,17 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         //        let item = dataHistory[indexPath.item]
         let item = dataHistory[indexPath.section]
         let dateReceive = item.ngaynhan ?? ""
-        if let ngaylapgiohang = item.ngaylapgiohang,
+        if let ngaylapdonhang = item.ngaylapdonhang,
            let tentrangthai = item.tentrangthai,
            let nguoinhan = item.nguoinhan,
            let diachi = item.diachi,
            let sdt = item.sdt,
            let datePlan = item.ngaydukien,
-           let idGH = item.idgiohang,
+           let idGH = item.iddonhang,
            let method = item.phuongthuc
             
         {
-            cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss")
+            cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapdonhang, format: "dd-MM-yyyy HH:mm:ss")
             cell.status.text = tentrangthai
             cell.status.textColor = .orange
             cell.receiver.text = nguoinhan
@@ -727,7 +728,7 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         let item = dataHistory[indexPath.section]
         //        guard let cell = tableView.cellForRow(at: indexPath) as? HistoryOrderTableViewCell else { return }
         let vc = DetailHistoryViewController()
-        vc.id = item.idgiohang
+        vc.id = item.iddonhang
         vc.order = item
         self.navigationController?.pushViewController(vc, animated: true)
     }

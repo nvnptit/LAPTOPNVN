@@ -74,7 +74,7 @@ class DetailOrderViewController: UIViewController {
         }else { lbMap.isHidden = true}
         
         if let order = order {
-            self.title = "Giỏ hàng \(order.idgiohang!)"
+            self.title = "Giỏ hàng \(order.iddonhang!)"
         }
         if (order?.tentrangthai == "Chờ duyệt"){
             if let name = UserService.shared.infoNV?.ten,
@@ -108,10 +108,10 @@ class DetailOrderViewController: UIViewController {
         }
         if let order = order {
             method.text = order.phuongthuc
-            maDH.text = "\(order.idgiohang!)"
+            maDH.text = "\(order.iddonhang!)"
             nguoiNhan.text = order.nguoinhan
             sdt.text = order.sdt
-            ngayLapDon.text = Date().convertDateTimeSQLToView(date: order.ngaylapgiohang!, format: "dd-MM-yyyy HH:MM:ss")
+            ngayLapDon.text = Date().convertDateTimeSQLToView(date: order.ngaylapdonhang!, format: "dd-MM-yyyy HH:MM:ss")
             datePlan.text = Date().convertDateTimeSQLToView(date: order.ngaydukien!, format: "dd-MM-yyyy")
             diaChi.text = order.diachi
             trangThai.text = order.tentrangthai
@@ -135,7 +135,7 @@ class DetailOrderViewController: UIViewController {
     @IBAction func tapMap(_ sender: UIButton, forEvent event: UIEvent) {
             let vc = MapsViewController()
         vc.address = order?.diachi ?? ""
-        if let idG = order?.idgiohang{
+        if let idG = order?.iddonhang{
             vc.idDH = "\(idG)"
         }
         vc.totalz = order?.tonggiatri ?? 0
@@ -164,7 +164,7 @@ class DetailOrderViewController: UIViewController {
             }
             print("Duyệt")
             guard let datePlan = self.datePlan.text else {return}
-            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: Date().convertDateViewToSQL(datePlan), tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
+            let params = GioHangEdit(iddonhang: order?.iddonhang, ngaylapdonhang: order?.ngaylapdonhang,ngaydukien: Date().convertDateViewToSQL(datePlan), tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
             self.updateGH(params: params)
 
             
@@ -174,7 +174,7 @@ class DetailOrderViewController: UIViewController {
             let alert = UIAlertController(title: "Xác nhận đã giao hàng?", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ [self] _ in
                 self.dismiss(animated: true)
-                let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: nil, tonggiatri: order?.tonggiatri, matrangthai: 2, manvgiao: maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: self.order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: true).convertToDictionary()
+                let params = GioHangEdit(iddonhang: order?.iddonhang, ngaylapdonhang: order?.ngaylapdonhang,ngaydukien: nil, tonggiatri: order?.tonggiatri, matrangthai: 2, manvgiao: maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: self.order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: true).convertToDictionary()
                 self.updateShipper(params: params)
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ _ in
@@ -197,7 +197,7 @@ class DetailOrderViewController: UIViewController {
                 return
             }
             
-            let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: Date().convertDateViewToSQL(datePlan), tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
+            let params = GioHangEdit(iddonhang: order?.iddonhang, ngaylapdonhang: order?.ngaylapdonhang,ngaydukien: Date().convertDateViewToSQL(datePlan), tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: self.maNVG, manvduyet: nil, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
             print(params)
             self.updateGH(params: params)
             
@@ -213,7 +213,7 @@ class DetailOrderViewController: UIViewController {
             }))
             alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
                 self.dismiss(animated: true)
-                let params = GioHangEdit(idgiohang: order.idgiohang, ngaylapgiohang: order.ngaylapgiohang,ngaydukien: order.ngaydukien, tonggiatri: order.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order.nguoinhan, diachi: order.diachi, sdt: order.sdt, email: order.email,phuongthuc: order.phuongthuc,thanhtoan: order.thanhtoan).convertToDictionary()
+                let params = GioHangEdit(iddonhang: order.iddonhang, ngaylapdonhang: order.ngaylapdonhang,ngaydukien: order.ngaydukien, tonggiatri: order.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order.nguoinhan, diachi: order.diachi, sdt: order.sdt, email: order.email,phuongthuc: order.phuongthuc,thanhtoan: order.thanhtoan).convertToDictionary()
                 self.updateGH(params: params)
             }))
             self.present(alert, animated: true)
@@ -236,7 +236,7 @@ class DetailOrderViewController: UIViewController {
             let alert = UIAlertController(title: "Bạn có chắc cập nhật ngày giao dự kiến mới?", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ [self] _ in
                 self.dismiss(animated: true)
-                let params = GioHangEdit(idgiohang: order?.idgiohang, ngaylapgiohang: order?.ngaylapgiohang,ngaydukien: newDatePlan, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: self.order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: true).convertToDictionary()
+                let params = GioHangEdit(iddonhang: order?.iddonhang, ngaylapdonhang: order?.ngaylapdonhang,ngaydukien: newDatePlan, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: self.order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: true).convertToDictionary()
                 self.updateShipper(params: params)
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ _ in
@@ -250,7 +250,7 @@ class DetailOrderViewController: UIViewController {
     @IBAction func tapDetail(_ sender: UIButton, forEvent event: UIEvent) {
         let vc = DetailHistoryViewController()
         if let order = order {
-            vc.id = order.idgiohang
+            vc.id = order.iddonhang
             vc.order = order
             vc.isRate = false
         }

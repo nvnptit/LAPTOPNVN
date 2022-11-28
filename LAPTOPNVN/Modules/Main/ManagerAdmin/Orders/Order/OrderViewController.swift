@@ -259,7 +259,7 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
         
         let item = dataHistory[indexPath.section]
         let dateReceive = item.ngaynhan ?? ""
-        if let ngaylapgiohang = item.ngaylapgiohang,
+        if let ngaylapdonhang = item.ngaylapdonhang,
            //            let tonggiatri = item.tonggiatri,
            let tentrangthai = item.tentrangthai,
            //            let nvgiao = item.nvgiao,
@@ -268,10 +268,10 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
            let diachi = item.diachi,
            let sdt = item.sdt,
            let datePlan = item.ngaydukien,
-           let idGH = item.idgiohang,
+           let idGH = item.iddonhang,
            let method = item.phuongthuc
         {
-            cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss")
+            cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapdonhang, format: "dd-MM-yyyy HH:mm:ss")
             cell.status.text = tentrangthai
             cell.status.textColor = .orange
             cell.receiver.text = nguoinhan

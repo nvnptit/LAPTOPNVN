@@ -8,8 +8,8 @@
 import Foundation
 struct HistoryOrder : Decodable{
     
-    let idgiohang: Int?
-    let ngaylapgiohang: String?
+    let iddonhang: Int?
+    let ngaylapdonhang: String?
     let ngaydukien: String?
     let tonggiatri: Int?
     let tentrangthai: String?
@@ -35,9 +35,8 @@ struct HistoryOrder : Decodable{
 }
 
 struct HistoryOrder1 : Decodable{
-    
-    let idgiohang: Int?
-    let ngaylapgiohang: String?
+    let iddonhang: Int?
+    let ngaylapdonhang: String?
     let ngaydukien: String?
     let tonggiatri: Int?
     let tentrangthai: String?
@@ -66,12 +65,12 @@ struct HistoryOrder1Detail : Decodable{
     let giaban: Int?
 }
 struct ModelDetailHistory: Encodable {
-    let idGioHang: Int?
+    let iddonhang: Int?
 }
 
 struct HistoryOrderSorted : Decodable{
-    let idgiohang: Int?
-    let ngaylapgiohang: String?
+    let iddonhang: Int?
+    let ngaylapdonhang: String?
     let ngaydukien: String?
     let tonggiatri: Int?
     let tentrangthai: String?
@@ -88,8 +87,8 @@ struct HistoryOrderSorted : Decodable{
     let km: Float?
 }
 struct HistoryOrderCMND: Decodable{
-        let idgiohang: Int?
-        let ngaylapgiohang, ngaydukien: String?
+        let iddonhang: Int?
+        let ngaylapdonhang, ngaydukien: String?
         let tonggiatri, matrangthai: Int?
         let cmnd: String?
         let manvgiao: String?

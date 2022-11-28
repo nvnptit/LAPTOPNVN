@@ -11,10 +11,15 @@ import JXReviewController
 
 class DetailHistoryViewController: UIViewController {
     
+    var counts: [String : Int] = [:]
+    var checks: [String : Bool] = [:]
+    
     @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var shipper: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var dataHistory: [HistoryOrder1Detail] = []
+    var dataHuy: [HistoryOrder1Detail] = []
+    
     var id: Int?
     var order: HistoryOrder1?
     let loading = NVActivityIndicatorView(frame: .zero, type: .lineSpinFadeLoader, color: .black, padding: 0)
@@ -22,10 +27,11 @@ class DetailHistoryViewController: UIViewController {
     var comment: String?
     var isRate = true
     
-    override func viewDidAppear(_ animated: Bool = false) {
-        loadData()
-    }
+//    override func viewDidAppear(_ animated: Bool = false) {
+//        loadData()
+//    }
     override func viewWillDisappear(_ animated: Bool) {
+        loadData()
         self.navigationController?.isNavigationBarHidden = false
     }
     private func callNumber(phoneNumber: String) {
@@ -75,25 +81,41 @@ class DetailHistoryViewController: UIViewController {
     }
     
     func loadData(){
+        
         loading.startAnimating()
         DispatchQueue.init(label: "DetailHistoryVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self = self else { return }
-            let params = ModelDetailHistory(idGioHang: self.id).convertToDictionary()
+            let params = ModelDetailHistory(iddonhang: self.id).convertToDictionary()
             
             APIService.getDetailHistoryOrder1(with: .getDetailHistory, params: params, headers: nil, completion: { [weak self] base, error in
                 guard let self = self, let base = base else { return }
                 if base.success == true {
                     if let data = base.data {
                         self.dataHistory = data
+                        
+                        // Dem so luong
+                        for item in self.dataHistory {
+                            self.counts[item.tenlsp ?? ""] =  (self.counts[item.tenlsp ?? ""] ?? 0) + 1
+                            self.checks[item.tenlsp ?? ""] = false
+                        }
                     }
                 } else {
                     fatalError()
                 }
+                // Lay data Cancel load table
+                for item in self.dataHistory  {
+                    if (self.checks[item.tenlsp ?? ""] == false ){
+                        self.dataHuy.append(item)
+                        self.checks[item.tenlsp ?? ""] = true
+                    }
+                }
+                
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.tableView.reloadData()
                     self.loading.stopAnimating()
                 }
+                print("SIZE: \(self.dataHuy.count)")
             })
         }
     }
@@ -107,7 +129,13 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataHistory.count
+        if (order?.tentrangthai == "Đã huỷ"){
+            print("HUỶ \(dataHuy.count)")
+            return dataHuy.count
+        }else {
+            return dataHistory.count  // default
+        }
+        
     }
     
     
@@ -119,7 +147,27 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderDetailTableViewCell", for: indexPath) as! OrderDetailTableViewCell
-        let item = dataHistory[indexPath.item]
+        
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        
+        var item :  HistoryOrder1Detail
+        if (order?.tentrangthai == "Đã huỷ"){
+            item = dataHuy[indexPath.item]
+            cell.lbSeri.isHidden = true
+            cell.serial.isHidden = true
+            cell.slHuy.isHidden = false
+            if let dem = counts[item.tenlsp ?? ""]{
+                cell.slHuy.text = "Số lượng: \(dem)"
+            }
+//            print("Số lượng: \(counts[item.tenlsp ?? ""])")
+        }else {
+            item = dataHistory[indexPath.item]  // default
+        }
+        
+        //        let item = dataHistory[indexPath.item]
+        
         
         if let serial = item.serial,
            let  tensp = item.tenlsp,
@@ -148,13 +196,6 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
         }
         cell.selectionStyle = .none
         
-        let gestureRate : UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tapRate(tapGesture:)))
-        gestureRate.delegate = self
-        gestureRate.numberOfTapsRequired = 1
-        cell.viewRate.isUserInteractionEnabled = true
-        cell.viewRate.tag = indexPath.row
-        cell.viewRate.addGestureRecognizer(gestureRate)
-        
         if let stt = order?.tentrangthai{
             if (stt == "Đã giao hàng") && (UserService.shared.maNV == ""){
                 cell.viewRate.isHidden = false
@@ -163,6 +204,14 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
             }
             
         }
+        
+        let gestureRate : UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tapRate(tapGesture:)))
+        gestureRate.delegate = self
+        gestureRate.numberOfTapsRequired = 1
+        cell.viewRate.isUserInteractionEnabled = true
+        cell.viewRate.tag = indexPath.row
+        cell.viewRate.addGestureRecognizer(gestureRate)
+        
         return cell
     }
     
@@ -220,7 +269,7 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
         }))
         alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
             self.dismiss(animated: true)
-            let params = GioHangEdit(idgiohang: order.idgiohang, ngaylapgiohang: order.ngaylapgiohang,ngaydukien: order.ngaydukien, tonggiatri: order.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order.nguoinhan, diachi: order.diachi, sdt: order.sdt, email: order.email,phuongthuc: order.phuongthuc,thanhtoan: order.thanhtoan).convertToDictionary()
+            let params = GioHangEdit(iddonhang: order.iddonhang, ngaylapdonhang: order.ngaylapdonhang,ngaydukien: order.ngaydukien, tonggiatri: order.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order.nguoinhan, diachi: order.diachi, sdt: order.sdt, email: order.email,phuongthuc: order.phuongthuc,thanhtoan: order.thanhtoan).convertToDictionary()
             self.updateGH(params: params)
         }))
         self.present(alert, animated: true)

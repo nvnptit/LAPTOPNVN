@@ -30,7 +30,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     }
     func loadFulLMap(){
         for item in dataHistory {
-            guard let address = item.diachi, let id = item.idgiohang, let total = item.tonggiatri , let isPaid = item.thanhtoan else {return }
+            guard let address = item.diachi, let id = item.iddonhang, let total = item.tonggiatri , let isPaid = item.thanhtoan else {return }
             LocationManager.shared.forwardGeocoding(address: address.lowercased(), completion: {
                     success,coordinate in
                     if success {

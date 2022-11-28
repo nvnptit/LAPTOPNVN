@@ -40,7 +40,7 @@ class OrderShipViewController: UIViewController {
     
     func addDataSorted(item: HistoryOrder1?, km: Float){
         guard let item = item else {return}
-        dataSorted.append(HistoryOrderSorted(idgiohang: item.idgiohang, ngaylapgiohang: item.ngaylapgiohang, ngaydukien: item.ngaydukien, tonggiatri: item.tonggiatri, tentrangthai: item.tentrangthai, nvgiao: item.nvgiao, sdtnvg: item.sdtnvg, nvduyet: item.nvduyet, nguoinhan: item.nguoinhan, diachi: item.diachi, sdt: item.sdt, email: item.email, ngaynhan: item.ngaynhan, phuongthuc: item.phuongthuc, thanhtoan: item.thanhtoan, km: km))
+        dataSorted.append(HistoryOrderSorted(iddonhang: item.iddonhang, ngaylapdonhang: item.ngaylapdonhang, ngaydukien: item.ngaydukien, tonggiatri: item.tonggiatri, tentrangthai: item.tentrangthai, nvgiao: item.nvgiao, sdtnvg: item.sdtnvg, nvduyet: item.nvduyet, nguoinhan: item.nguoinhan, diachi: item.diachi, sdt: item.sdt, email: item.email, ngaynhan: item.ngaynhan, phuongthuc: item.phuongthuc, thanhtoan: item.thanhtoan, km: km))
         dataSorted.sort{
             ($0.km ?? 0 ) < ($1.km ?? 0)
         }
@@ -359,17 +359,17 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
 //        let item = dataSorted[indexPath.item]
         let item = dataSorted[indexPath.section]
         let dateReceive = item.ngaynhan ?? ""
-        if let ngaylapgiohang = item.ngaylapgiohang,
+        if let ngaylapdonhang = item.ngaylapdonhang,
            let tentrangthai = item.tentrangthai,
            let nguoinhan = item.nguoinhan,
            let diachi = item.diachi,
            let sdt = item.sdt,
            let datePlan = item.ngaydukien,
-           let idGH = item.idgiohang,
+           let idGH = item.iddonhang,
            let method = item.phuongthuc
             
         {
-            cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss")
+            cell.date.text = Date().convertDateTimeSQLToView(date: ngaylapdonhang, format: "dd-MM-yyyy HH:mm:ss")
             cell.status.text = tentrangthai
             cell.status.textColor = .orange
             cell.receiver.text = nguoinhan

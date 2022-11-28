@@ -12,8 +12,8 @@ struct GioHangRequest : Encodable{
 }
 
 struct GioHang : Decodable{
-    let idgiohang: Int?
-    let ngaylapgiohang: String?
+    let iddonhang: Int?
+    let ngaylapdonhang: String?
     let ngaydukien: String?
     let tonggiatri: Int?
     let matrangthai: Int?
@@ -27,8 +27,8 @@ struct GioHang : Decodable{
 }
 
 struct GioHangEdit : Encodable{
-    let idgiohang: Int?
-    let ngaylapgiohang: String?
+    let iddonhang: Int?
+    let ngaylapdonhang: String?
     let ngaydukien: String?
     let tonggiatri: Int?
     let matrangthai: Int?
@@ -58,7 +58,7 @@ struct GioHangEdit : Encodable{
 //    let isgood: Bool?
 //    let giamoi: Int?
 //    let serial: String?
-//    let idgiohang: Int?
+//    let iddonhang: Int?
 //}
 
 struct GioHangData: Decodable {
@@ -70,12 +70,12 @@ struct GioHangData: Decodable {
     let isnew, isgood: Bool?
     let giamoi, ptgg, giagiam: Int?
     let serial: String?
-    let idgiohang: Int?
+    let iddonhang: Int?
 }
 
 struct GioHangModel : Encodable{
-        let idgiohang: Int?
-        let ngaylapgiohang: String?
+        let iddonhang: Int?
+        let ngaylapdonhang: String?
         let ngaydukien: String?
         let tonggiatri: Int?
         let matrangthai: Int?
@@ -97,13 +97,13 @@ struct GioHangResponse : Decodable{
 }
 
 struct GioHangDel : Encodable{
-    let idGioHang: Int?
+    let iddonhang: Int?
 }
 
 // MARK: - ModelAddGH
 struct ModelAddGH: Encodable {
-    let idgiohang: Int?
-    let ngaylapgiohang, ngaydukien: String?
+    let iddonhang: Int?
+    let ngaylapdonhang, ngaydukien: String?
     let tonggiatri, matrangthai: Int?
     let cmnd, manvgiao, manvduyet, nguoinhan: String?
     let diachi, sdt, email, malsp: String?

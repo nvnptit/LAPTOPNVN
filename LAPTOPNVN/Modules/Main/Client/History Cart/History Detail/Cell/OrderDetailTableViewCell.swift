@@ -9,7 +9,8 @@ import UIKit
 
 class OrderDetailTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var lbGia: UILabel!
+    @IBOutlet weak var lbSeri: UILabel!
+    @IBOutlet weak var slHuy: UILabel!
     @IBOutlet weak var gia: UILabel!
     @IBOutlet weak var card: UILabel!
     @IBOutlet weak var os: UILabel!

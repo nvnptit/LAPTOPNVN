@@ -43,7 +43,7 @@ struct LoaiSanPhamKM : Decodable{
     let ptgg: Int?
     let giagiam: Int?
 //      let serial: String?
-//      let idgiohang: Int?
+//      let iddonhang: Int?
 }
 
 
@@ -69,5 +69,5 @@ struct LoaiSanPhamKM1 : Encodable{
     let ptgg: Int?
     let giagiam: Int? 
 //      let serial: String?
-//      let idgiohang: Int?
+//      let iddonhang: Int?
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -128,6 +128,12 @@
                             <constraint firstAttribute="trailing" secondItem="L5V-qX-ToO" secondAttribute="trailing" id="szo-m6-XyU"/>
                         </constraints>
                     </view>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Số lượng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQV-QM-AK4">
+                        <rect key="frame" x="100" y="166" width="67" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="p8w-KD-zMu" firstAttribute="top" secondItem="MvC-pl-Gb7" secondAttribute="bottom" constant="2" id="0fp-hf-Tsf"/>
@@ -155,8 +161,10 @@
                     <constraint firstItem="pgd-2t-0SX" firstAttribute="leading" secondItem="X9C-QL-0U6" secondAttribute="trailing" id="egr-Di-Jpm"/>
                     <constraint firstItem="MH6-FJ-tOD" firstAttribute="leading" secondItem="X9C-QL-0U6" secondAttribute="trailing" id="eiZ-rA-pSO"/>
                     <constraint firstItem="ItB-w5-2sA" firstAttribute="leading" secondItem="dtF-r4-J4G" secondAttribute="trailing" constant="2" id="ent-ec-6dz"/>
+                    <constraint firstItem="GQV-QM-AK4" firstAttribute="top" secondItem="54p-Ct-xoE" secondAttribute="bottom" constant="2" id="hSh-Dd-d2w"/>
                     <constraint firstItem="WQN-Ke-UWN" firstAttribute="leading" secondItem="pgd-2t-0SX" secondAttribute="trailing" constant="10" id="jIk-pb-cET"/>
                     <constraint firstItem="dqz-JB-fLe" firstAttribute="leading" secondItem="X9C-QL-0U6" secondAttribute="trailing" id="k8A-jp-SQ8"/>
+                    <constraint firstItem="GQV-QM-AK4" firstAttribute="leading" secondItem="X9C-QL-0U6" secondAttribute="trailing" id="m4p-t4-7MH"/>
                     <constraint firstItem="WQN-Ke-UWN" firstAttribute="top" secondItem="MH6-FJ-tOD" secondAttribute="bottom" constant="2" id="mQO-KH-GLy"/>
                     <constraint firstItem="Jw0-Yt-T32" firstAttribute="top" secondItem="p8w-KD-zMu" secondAttribute="bottom" constant="2" id="nQO-iQ-hew"/>
                     <constraint firstItem="Jw0-Yt-T32" firstAttribute="leading" secondItem="MH6-FJ-tOD" secondAttribute="trailing" constant="2" id="or0-cy-c5V"/>
@@ -172,10 +180,12 @@
                 <outlet property="cpu" destination="p8w-KD-zMu" id="8Q8-Cp-niT"/>
                 <outlet property="disk" destination="Jw0-Yt-T32" id="Wmq-XM-QKO"/>
                 <outlet property="gia" destination="54p-Ct-xoE" id="R3O-yc-hWk"/>
+                <outlet property="lbSeri" destination="dqz-JB-fLe" id="gt6-dQ-Yr4"/>
                 <outlet property="os" destination="ItB-w5-2sA" id="7oA-6p-jZc"/>
                 <outlet property="picture" destination="X9C-QL-0U6" id="GTg-Cp-Ety"/>
                 <outlet property="ram" destination="WQN-Ke-UWN" id="R48-RQ-T3x"/>
                 <outlet property="serial" destination="MvC-pl-Gb7" id="o4S-BT-ciC"/>
+                <outlet property="slHuy" destination="GQV-QM-AK4" id="DtW-sS-0M7"/>
                 <outlet property="tensp" destination="Lvl-cv-L1t" id="6kf-sR-Z8w"/>
                 <outlet property="viewRate" destination="4u8-P6-0Wc" id="EOP-bg-M6D"/>
             </connections>

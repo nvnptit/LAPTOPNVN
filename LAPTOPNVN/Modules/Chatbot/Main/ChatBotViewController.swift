@@ -654,7 +654,7 @@ extension ChatBotViewController: BotResponseDelegate{
     }
     
     func detailHistoryCart(idGH: Int) {
-        let a = dataHistory.filter({$0.idgiohang == idGH})
+        let a = dataHistory.filter({$0.iddonhang == idGH})
         print(dataHistory)
         if a.capacity > 0 {
             self.loadDetailOrder(idGH: idGH)
@@ -698,8 +698,8 @@ extension ChatBotViewController{
                         // self.dataHistory = data
                         var result = ""
                         for item in data {
-                            if let idgiohang = item.idgiohang,
-                               let ngaylapgiohang = item.ngaylapgiohang,
+                            if let iddonhang = item.iddonhang,
+                               let ngaylapdonhang = item.ngaylapdonhang,
                                let nguoinhan = item.nguoinhan,
                                let diachi = item.diachi,
                                let sdt = item.sdt,
@@ -710,8 +710,8 @@ extension ChatBotViewController{
                                let tinhtrangdh = item.tentrangthai
                             {
                                 result = result + """
-                            Mã đơn hàng: \(idgiohang)
-                            Ngày lập: \( Date().convertDateTimeSQLToView(date: ngaylapgiohang, format: "dd-MM-yyyy HH:mm:ss"))
+                            Mã đơn hàng: \(iddonhang)
+                            Ngày lập: \( Date().convertDateTimeSQLToView(date: ngaylapdonhang, format: "dd-MM-yyyy HH:mm:ss"))
                             Ngày nhận dự kiến: \( Date().convertDateTimeSQLToView(date: ngaydukien, format: "dd-MM-yyyy"))
                             Tổng giá trị: \(CurrencyVN.toVND(tonggiatri))
                             Người nhận: \(nguoinhan)
@@ -746,7 +746,7 @@ extension ChatBotViewController{
         print(idGH)
         DispatchQueue.init(label: "DetailOrder", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self = self else { return }
-            let params = ModelDetailHistory(idGioHang: idGH).convertToDictionary()
+            let params = ModelDetailHistory(iddonhang: idGH).convertToDictionary()
             
             APIService.getDetailHistoryOrder1(with: .getDetailHistory, params: params, headers: nil, completion: { [weak self] base, error in
                 guard let self = self, let base = base else { return }
