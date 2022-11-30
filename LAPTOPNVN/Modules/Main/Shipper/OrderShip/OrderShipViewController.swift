@@ -42,7 +42,7 @@ class OrderShipViewController: UIViewController {
         guard let item = item else {return}
         dataSorted.append(HistoryOrderSorted(iddonhang: item.iddonhang, ngaylapdonhang: item.ngaylapdonhang, ngaydukien: item.ngaydukien, tonggiatri: item.tonggiatri, tentrangthai: item.tentrangthai, nvgiao: item.nvgiao, sdtnvg: item.sdtnvg, nvduyet: item.nvduyet, nguoinhan: item.nguoinhan, diachi: item.diachi, sdt: item.sdt, email: item.email, ngaynhan: item.ngaynhan, phuongthuc: item.phuongthuc, thanhtoan: item.thanhtoan, km: km))
         dataSorted.sort{
-            ($0.km ?? 0 ) < ($1.km ?? 0)
+            ($0.km ?? 0 ) > ($1.km ?? 0)
         }
         dataSorted.sort{
             let dateFormat = "dd-MM-yyyy"
@@ -133,7 +133,6 @@ class OrderShipViewController: UIViewController {
     }
     
     func loadDataHistory(){
-        
         self.dataSorted.removeAll()
         loading.startAnimating()
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
