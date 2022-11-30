@@ -203,7 +203,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYb-TX-zcG">
-                                    <rect key="frame" x="137.66666666666666" y="524" width="119.99999999999997" height="34"/>
+                                    <rect key="frame" x="135" y="524" width="120" height="34"/>
                                     <color key="backgroundColor" red="0.8556547619" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="42" id="1k3-II-lbY"/>
@@ -282,7 +282,7 @@
                                 <constraint firstItem="Qx2-Yx-YLx" firstAttribute="top" secondItem="04Y-7a-cKq" secondAttribute="bottom" constant="11" id="BBQ-cR-3tR"/>
                                 <constraint firstItem="Vve-gf-cf5" firstAttribute="top" secondItem="ipA-B1-hCO" secondAttribute="bottom" constant="17.5" id="FAX-Ps-uc8"/>
                                 <constraint firstItem="vS5-Yh-eiQ" firstAttribute="top" secondItem="hHy-jt-Knw" secondAttribute="bottom" constant="17" id="Gpn-Ft-SMm"/>
-                                <constraint firstItem="qYb-TX-zcG" firstAttribute="centerX" secondItem="EOC-It-qyF" secondAttribute="centerX" constant="10.166666666666657" id="Hze-5g-Ndz"/>
+                                <constraint firstItem="qYb-TX-zcG" firstAttribute="centerX" secondItem="EOC-It-qyF" secondAttribute="centerX" constant="7.5" id="Hze-5g-Ndz"/>
                                 <constraint firstItem="ipA-B1-hCO" firstAttribute="leading" secondItem="EOC-It-qyF" secondAttribute="leading" constant="30" id="JXR-ck-jty"/>
                                 <constraint firstItem="O0c-8p-yhf" firstAttribute="leading" secondItem="EOC-It-qyF" secondAttribute="leading" constant="30" id="KHA-Pu-6sI"/>
                                 <constraint firstItem="9Ge-cE-tmo" firstAttribute="top" secondItem="Yud-fK-w3Q" secondAttribute="bottom" constant="4" id="Khe-5s-S2G"/>

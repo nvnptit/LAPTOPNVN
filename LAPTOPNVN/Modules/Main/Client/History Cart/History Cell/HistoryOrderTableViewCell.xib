@@ -103,7 +103,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Người nhận:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqt-Je-YOI">
-                        <rect key="frame" x="170.5" y="73" width="92" height="21"/>
+                        <rect key="frame" x="155.5" y="73" width="92" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="dGb-fb-al4"/>
                         </constraints>
@@ -203,7 +203,7 @@
                 <constraints>
                     <constraint firstItem="pQa-Ju-V5B" firstAttribute="top" secondItem="rpn-fq-pE4" secondAttribute="bottom" constant="23" id="1jA-xd-HP3"/>
                     <constraint firstItem="eTO-mE-sXW" firstAttribute="top" secondItem="pQa-Ju-V5B" secondAttribute="bottom" constant="3" id="4cT-aH-JyB"/>
-                    <constraint firstItem="Yqt-Je-YOI" firstAttribute="leading" secondItem="eTO-mE-sXW" secondAttribute="trailing" constant="20" id="7dB-t5-mbW"/>
+                    <constraint firstItem="Yqt-Je-YOI" firstAttribute="leading" secondItem="eTO-mE-sXW" secondAttribute="trailing" constant="5" id="7dB-t5-mbW"/>
                     <constraint firstItem="5VA-HH-gj4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="8lD-Iq-XNG"/>
                     <constraint firstItem="glC-Mh-kVm" firstAttribute="leading" secondItem="UQx-3P-SgZ" secondAttribute="trailing" constant="5" id="ABT-2l-wj2"/>
                     <constraint firstItem="00c-no-M3h" firstAttribute="top" secondItem="l5W-4P-Bis" secondAttribute="bottom" constant="4.5" id="AFa-zR-3iP"/>

@@ -9,6 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var viewUI: UIView!
     @IBOutlet weak var username: UITextFieldX!
     
     @IBOutlet weak var password: UITextFieldX!
@@ -17,6 +18,11 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewUI.layer.cornerRadius = 8
+        viewUI.layer.borderColor = UIColor.systemGray.cgColor
+        viewUI.layer.borderWidth = 2
+        
         setupKeyboard()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
         view.addGestureRecognizer(gesture)

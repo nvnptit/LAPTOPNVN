@@ -127,6 +127,11 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate, UIGest
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCartTableViewCell", for: indexPath) as! ItemCartTableViewCell
         guard let item = data[indexPath.item].data else {return cell}
         //let serial = item.serial,
+        
+        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        
         if let ten = item.tenlsp,  let price = item.giamoi, let newPrice = item.giagiam , let anhlsp = item.anhlsp, let gg = item.ptgg{
             
 //            cell.imageLSP.loadFrom(URLAddress: APIService.baseUrl+anhlsp)
