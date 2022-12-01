@@ -37,11 +37,7 @@
 ## II.Demo
 
 ### Khách hàng
-<style>
-img {
-  border: 5px solid #555;
-}
-</style>
+<table><tr><td>
 <img width="360" alt="1" src="https://user-images.githubusercontent.com/87685010/204961604-86d154a2-3642-4eab-bf6d-46a880e368f8.png">
 <img width="360" alt="2" src="https://user-images.githubusercontent.com/87685010/204961697-945d0d6b-b0dd-447c-95a3-a2ce7888f51c.png">
 <img width="360" alt="3" src="https://user-images.githubusercontent.com/87685010/204961764-9d454c74-3219-4e21-b7a1-0a8292eed961.png">
@@ -51,6 +47,7 @@ img {
 <img width="360" alt="7" src="https://user-images.githubusercontent.com/87685010/204962283-e4db3645-6b7b-42c5-9b2a-bdd60ba4eb67.png">
 <img width="360" alt="8" src="https://user-images.githubusercontent.com/87685010/204962336-c0e3154f-69a9-49a6-a3ad-0203b6a1966b.png">
 <img width="360" alt="9" src="https://user-images.githubusercontent.com/87685010/204962395-5356b355-51ec-400b-b030-dd5573f0b169.png">
+</td></tr></table>
 
 ## Nhân viên giao hàng
 
