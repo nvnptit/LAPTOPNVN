@@ -1,4 +1,3 @@
-# LAPTOPNVN
 ## Thực Hiện:
 - **Nguyễn Văn Nhất** 
 
