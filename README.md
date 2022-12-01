@@ -1,20 +1,15 @@
 # LAPTOPNVN
-Build a mobile application to sell laptops
-
 ### Thực Hiện:
 - **Nguyễn Văn Nhất** 
 
-- Language: Swift 5
-- Backend: ASP.NET CORE
-- Database: MS SQL
 
-- Cài đặt App gồm:
-# Chức năng chung: 
-  ● Đăng ký, đăng nhập, đăng xuất
-  ● Quên mật khẩu
-  ● Xem thông tin cá nhân, thay đổi thông tin cá nhân, xem lịch sử đơn hàng
-  ● Tìm kiếm
-# Admin:
+### Nội Dung
+#### I. Yêu cầu
+## Chức năng chung: 
+**Đăng ký, đăng nhập, đăng xuất, khôi phục mật khẩu**
+**Xem thông tin cá nhân, thay đổi thông tin cá nhân, xem lịch sử đơn hàng**
+**Tìm kiếm**
+## Admin:
   ● Quản lý: hãng, loại sản phẩm, nhân viên, sản phẩm, đợt giảm giá 
   ● Duyệt/Huỷ đơn hàng, Thống kê doanh thu
 # Khách hàng: 
