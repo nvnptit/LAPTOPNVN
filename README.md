@@ -10,7 +10,7 @@
 - **Xem thông tin cá nhân, thay đổi thông tin cá nhân, xem lịch sử đơn hàng**
 - **Tìm kiếm**
 #### Admin:
-- **Quản lý hãng, loại sản phẩm, nhân viên, sản phẩm, đợt giảm giá **
+- **Quản lý: hãng, loại sản phẩm, nhân viên, sản phẩm, đợt giảm giá**
 - **Duyệt/Huỷ đơn hàng, Thống kê doanh thu**
 #### Khách hàng: 
 - **Tra cứu sản phẩm theo nhiều tiêu chí**
@@ -28,7 +28,7 @@
 # Nhân viên giao hàng:
 - **Xem đơn hàng cần giao/đã giao**
 - **Xác nhận giao hàng, thời gian dự kiến giao**
-- **Google Map/Apple Map chỉ đường cho nhân viên giao hàng**x
+- **Google Map/Apple Map chỉ đường cho nhân viên giao hàng**
 - **Định tuyến khi giao các đơn hàng**
 - **Nhắn tin/gọi điện thông báo với khách hàng**
 
