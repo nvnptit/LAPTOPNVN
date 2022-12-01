@@ -50,13 +50,15 @@
 </kbd>
 
 ## Nhân viên giao hàng
-
+<kbd>
 <img width="360" alt="10" src="https://user-images.githubusercontent.com/87685010/204962517-46602269-a987-4ac5-be95-9211b92427a9.png">
 <img width="360" alt="11" src="https://user-images.githubusercontent.com/87685010/204962544-27ea6360-acdc-498e-96fc-12ce28de83a0.png">
 <img width="360" alt="12" src="https://user-images.githubusercontent.com/87685010/204962581-7038aa16-8487-4d23-b6eb-d92ee36e8f87.png">
 <img width="360" alt="13" src="https://user-images.githubusercontent.com/87685010/204962722-14727d51-32a0-4f1e-8951-f1fcb90ca6be.png">
+</kbd>
 
 # Quản lý (ADMIN)
+<kbd>
 <img width="360" alt="14" src="https://user-images.githubusercontent.com/87685010/204962823-d81d9fee-b72e-49ff-b84b-8ae835604d1b.png">
 <img width="360" alt="15" src="https://user-images.githubusercontent.com/87685010/204962842-501c3a46-6b01-4066-b548-98c885b04928.png">
 <img width="360" alt="16" src="https://user-images.githubusercontent.com/87685010/204962884-cad7cecc-ae58-4d26-88f1-64c6d381443a.png">
@@ -66,3 +68,4 @@
 <img width="360" alt="20" src="https://user-images.githubusercontent.com/87685010/204962975-58758da8-1a8d-4036-b839-462df4bc8705.png">
 <img width="360" alt="21" src="https://user-images.githubusercontent.com/87685010/204962996-e7a4db18-edf0-472f-ac6d-eb8721f9d736.png">
 <img width="360" alt="22" src="https://user-images.githubusercontent.com/87685010/204963047-849eec28-b46d-4972-b626-977872d430a3.png">
+</kbd>
