@@ -38,7 +38,7 @@
 
 ### Khách hàng
 
-<img width="360" alt="1" src="https://user-images.githubusercontent.com/87685010/166307454-3c7ef51b-0665-44d3-96b8-82efcd1a92fc.png">
+<img width="360" alt="1" src="https://user-images.githubusercontent.com/87685010/204961604-86d154a2-3642-4eab-bf6d-46a880e368f8.png">
 <img width="360" alt="2" src="https://user-images.githubusercontent.com/87685010/204961697-945d0d6b-b0dd-447c-95a3-a2ce7888f51c.png">
 <img width="360" alt="3" src="https://user-images.githubusercontent.com/87685010/204961764-9d454c74-3219-4e21-b7a1-0a8292eed961.png">
 <img width="360" alt="4" src="https://user-images.githubusercontent.com/87685010/204961892-6615109b-433e-4eec-a450-7a9fd5201fa0.png">
