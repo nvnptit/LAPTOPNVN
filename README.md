@@ -12,6 +12,7 @@
 ### Admin:
 - **Quản lý: hãng, loại sản phẩm, nhân viên, sản phẩm, đợt giảm giá**
 - **Duyệt/Huỷ đơn hàng, Thống kê doanh thu**
+- **Biểu đồ doanh thu, đơn hàng**
 ### Khách hàng: 
 - **Tra cứu sản phẩm theo nhiều tiêu chí**
     - Tìm kiếm thông qua tên, hãng, giá tiền
