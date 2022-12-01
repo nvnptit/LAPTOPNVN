@@ -37,8 +37,12 @@
 ## II.Demo
 
 ### Khách hàng
-
-<img style="border:1px solid #000000" width="360"  alt="1" src="https://user-images.githubusercontent.com/87685010/204961604-86d154a2-3642-4eab-bf6d-46a880e368f8.png">
+<style>
+img {
+  border: 5px solid #555;
+}
+</style>
+<img width="360" alt="1" src="https://user-images.githubusercontent.com/87685010/204961604-86d154a2-3642-4eab-bf6d-46a880e368f8.png">
 <img width="360" alt="2" src="https://user-images.githubusercontent.com/87685010/204961697-945d0d6b-b0dd-447c-95a3-a2ce7888f51c.png">
 <img width="360" alt="3" src="https://user-images.githubusercontent.com/87685010/204961764-9d454c74-3219-4e21-b7a1-0a8292eed961.png">
 <img width="360" alt="4" src="https://user-images.githubusercontent.com/87685010/204961892-6615109b-433e-4eec-a450-7a9fd5201fa0.png">
