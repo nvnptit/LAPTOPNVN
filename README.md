@@ -10,7 +10,7 @@
 - **Xem thông tin cá nhân, thay đổi thông tin cá nhân, xem lịch sử đơn hàng**
 - **Tìm kiếm**
 #### Admin:
-- **Quản lý: hãng, loại sản phẩm, nhân viên, sản phẩm, đợt giảm giá **
+- **Quản lý hãng, loại sản phẩm, nhân viên, sản phẩm, đợt giảm giá **
 - **Duyệt/Huỷ đơn hàng, Thống kê doanh thu**
 #### Khách hàng: 
 - **Tra cứu sản phẩm theo nhiều tiêu chí**
