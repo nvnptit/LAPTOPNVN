@@ -6,9 +6,9 @@
 ### Nội Dung
 #### I. Yêu cầu
 ## Chức năng chung: 
-**Đăng ký, đăng nhập, đăng xuất, khôi phục mật khẩu**
-**Xem thông tin cá nhân, thay đổi thông tin cá nhân, xem lịch sử đơn hàng**
-**Tìm kiếm**
+- **Đăng ký, đăng nhập, đăng xuất, khôi phục mật khẩu**
+- **Xem thông tin cá nhân, thay đổi thông tin cá nhân, xem lịch sử đơn hàng**
+- **Tìm kiếm**
 ## Admin:
   ● Quản lý: hãng, loại sản phẩm, nhân viên, sản phẩm, đợt giảm giá 
   ● Duyệt/Huỷ đơn hàng, Thống kê doanh thu
