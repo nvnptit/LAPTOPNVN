@@ -11,6 +11,7 @@ import NVActivityIndicatorView
 
 class DetailOrderViewController: UIViewController {
     
+    @IBOutlet weak var btnHuyShipper: UIButton!
     @IBOutlet weak var datePlan: UITextField!
     @IBOutlet weak var lbMap: UIButton!
     @IBOutlet weak var maDH: UILabel!
@@ -90,8 +91,10 @@ class DetailOrderViewController: UIViewController {
             getDataNVGiao()
             btnHuy.isHidden = true
             btnDuyet.setTitle("Lưu thay đổi", for: .normal)
-                btnDuyet.isEnabled = false
+            btnDuyet.isEnabled = false
+            btnHuyShipper.isHidden = true
         }else if (order?.tentrangthai == "Đang giao hàng" && KEY == "SHIPPER") {
+            btnHuyShipper.isHidden = false
 //            btnHuy.isHidden = true
             btnDuyet.setTitle("Xác nhận đã giao hàng", for: .normal)
             // Cap nhat thoi gian nhan du kien
@@ -247,6 +250,19 @@ class DetailOrderViewController: UIViewController {
         }
     }
     
+    @IBAction func tapHuyShipper(_ sender: UIButton, forEvent event: UIEvent) {
+            guard let order = self.order else {return}
+            let alert = UIAlertController(title: "Bạn có chắc huỷ đơn hàng này?", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler:{ _ in
+                self.dismiss(animated: true)
+            }))
+            alert.addAction(UIAlertAction(title: "Đồng ý", style: .default, handler:{ _ in
+                self.dismiss(animated: true)
+                let params = GioHangEdit(iddonhang: order.iddonhang, ngaylapdonhang: order.ngaylapdonhang,ngaydukien: order.ngaydukien, tonggiatri: order.tonggiatri, matrangthai: 3, manvgiao: nil, manvduyet: nil, nguoinhan: order.nguoinhan, diachi: order.diachi, sdt: order.sdt, email: order.email,phuongthuc: order.phuongthuc,thanhtoan: order.thanhtoan).convertToDictionary()
+                self.updateGH(params: params)
+            }))
+            self.present(alert, animated: true)
+    }
     @IBAction func tapDetail(_ sender: UIButton, forEvent event: UIEvent) {
         let vc = DetailHistoryViewController()
         if let order = order {
