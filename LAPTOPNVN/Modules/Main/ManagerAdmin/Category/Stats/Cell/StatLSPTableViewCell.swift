@@ -10,7 +10,6 @@ import UIKit
 class StatLSPTableViewCell: UITableViewCell {
 
     @IBOutlet weak var name: UILabel!
-    
     @IBOutlet weak var sln: UILabel!
     @IBOutlet weak var slb: UILabel!
     @IBOutlet weak var slt: UILabel!
