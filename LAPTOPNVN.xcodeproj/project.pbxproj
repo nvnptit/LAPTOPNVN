@@ -181,6 +181,8 @@
 		7953E80028F98D05000BF741 /* MapsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7953E7FC28F98D05000BF741 /* MapsViewController.xib */; };
 		7953E80128F98D05000BF741 /* MapsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7953E7FC28F98D05000BF741 /* MapsViewController.xib */; };
 		7953E80228F98D05000BF741 /* MapsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7953E7FC28F98D05000BF741 /* MapsViewController.xib */; };
+		7956C2BC293A0753008F6466 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7956C2BA293A0753008F6466 /* StatsViewController.swift */; };
+		7956C2BD293A0753008F6466 /* StatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7956C2BB293A0753008F6466 /* StatsViewController.xib */; };
 		795858472918FDA900E50214 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795858462918FDA900E50214 /* Tag.swift */; };
 		795CAF6F28867BC0008458F0 /* DetailSanPhamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795CAF6D28867BC0008458F0 /* DetailSanPhamViewController.swift */; };
 		795CAF7028867BC0008458F0 /* DetailSanPhamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795CAF6D28867BC0008458F0 /* DetailSanPhamViewController.swift */; };
@@ -246,8 +248,6 @@
 		7986295528A8238600FC08AE /* DetailProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7986295128A8238600FC08AE /* DetailProductViewController.xib */; };
 		7986295628A8238600FC08AE /* DetailProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7986295128A8238600FC08AE /* DetailProductViewController.xib */; };
 		7986295728A8238600FC08AE /* DetailProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7986295128A8238600FC08AE /* DetailProductViewController.xib */; };
-		799008492939F6DA0081B7DA /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799008472939F6DA0081B7DA /* StatsViewController.swift */; };
-		7990084A2939F6DA0081B7DA /* StatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799008482939F6DA0081B7DA /* StatsViewController.xib */; };
 		7990084E2939F9730081B7DA /* StatLSPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990084C2939F9730081B7DA /* StatLSPTableViewCell.swift */; };
 		7990084F2939F9730081B7DA /* StatLSPTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7990084D2939F9730081B7DA /* StatLSPTableViewCell.xib */; };
 		79929767288EF91100642885 /* ListLaptopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79929765288EF91100642885 /* ListLaptopViewController.swift */; };
@@ -548,6 +548,8 @@
 		7949889028FA4EAA00E5B65D /* MapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit.swift; sourceTree = "<group>"; };
 		7953E7FB28F98D05000BF741 /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		7953E7FC28F98D05000BF741 /* MapsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapsViewController.xib; sourceTree = "<group>"; };
+		7956C2BA293A0753008F6466 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		7956C2BB293A0753008F6466 /* StatsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsViewController.xib; sourceTree = "<group>"; };
 		795858462918FDA900E50214 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		795CAF6D28867BC0008458F0 /* DetailSanPhamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSanPhamViewController.swift; sourceTree = "<group>"; };
 		795CAF6E28867BC0008458F0 /* DetailSanPhamViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSanPhamViewController.xib; sourceTree = "<group>"; };
@@ -577,8 +579,6 @@
 		7986294928A8210100FC08AE /* DetailCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCategoryViewController.xib; sourceTree = "<group>"; };
 		7986295028A8238600FC08AE /* DetailProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewController.swift; sourceTree = "<group>"; };
 		7986295128A8238600FC08AE /* DetailProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailProductViewController.xib; sourceTree = "<group>"; };
-		799008472939F6DA0081B7DA /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
-		799008482939F6DA0081B7DA /* StatsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsViewController.xib; sourceTree = "<group>"; };
 		7990084C2939F9730081B7DA /* StatLSPTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatLSPTableViewCell.swift; sourceTree = "<group>"; };
 		7990084D2939F9730081B7DA /* StatLSPTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatLSPTableViewCell.xib; sourceTree = "<group>"; };
 		79929765288EF91100642885 /* ListLaptopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLaptopViewController.swift; sourceTree = "<group>"; };
@@ -1243,8 +1243,8 @@
 			isa = PBXGroup;
 			children = (
 				7990084B2939F7BF0081B7DA /* Cell */,
-				799008472939F6DA0081B7DA /* StatsViewController.swift */,
-				799008482939F6DA0081B7DA /* StatsViewController.xib */,
+				7956C2BA293A0753008F6466 /* StatsViewController.swift */,
+				7956C2BB293A0753008F6466 /* StatsViewController.xib */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -1779,6 +1779,7 @@
 				79B3296628914345000E4197 /* NoLoginViewController.xib in Resources */,
 				7986295528A8238600FC08AE /* DetailProductViewController.xib in Resources */,
 				7935B41628E7D579004AE3AD /* SaleDetailViewController.xib in Resources */,
+				7956C2BD293A0753008F6466 /* StatsViewController.xib in Resources */,
 				791DE89A28EB4926007C2D22 /* ForgotPasswordViewController.xib in Resources */,
 				79A729B4290851E600AD5A3D /* GoogleService-Info.plist in Resources */,
 				79ECC22928850C460002E81D /* BannerCollectionViewCell.xib in Resources */,
@@ -1791,7 +1792,6 @@
 				7990084F2939F9730081B7DA /* StatLSPTableViewCell.xib in Resources */,
 				79475E202882438E005911E3 /* LaunchScreen.storyboard in Resources */,
 				79A0364728E829A9002532FD /* DetailSaleTableViewCell.xib in Resources */,
-				7990084A2939F6DA0081B7DA /* StatsViewController.xib in Resources */,
 				79176FA2288392EC00CDA10E /* HangCollectionViewCell.xib in Resources */,
 				79F33D8328831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
 				792A293228B1EEC30075AD18 /* OrderDetailTableViewCell.xib in Resources */,
@@ -2072,6 +2072,7 @@
 				79475E63288249BD005911E3 /* JSONDecoder.swift in Sources */,
 				79B3296328914345000E4197 /* NoLoginViewController.swift in Sources */,
 				7949889128FA4EAA00E5B65D /* MapKit.swift in Sources */,
+				7956C2BC293A0753008F6466 /* StatsViewController.swift in Sources */,
 				79475E5228824822005911E3 /* LoginViewController.swift in Sources */,
 				79475E6B28824A93005911E3 /* Encodable.swift in Sources */,
 				79A0364428E829A9002532FD /* DetailSaleTableViewCell.swift in Sources */,
@@ -2080,7 +2081,6 @@
 				793FC37E290BB48300F1D95D /* TestAddressViewController.swift in Sources */,
 				793FC37B290BB42100F1D95D /* Ward.swift in Sources */,
 				79475E162882438D005911E3 /* SceneDelegate.swift in Sources */,
-				799008492939F6DA0081B7DA /* StatsViewController.swift in Sources */,
 				791DE89728EB4926007C2D22 /* ForgotPasswordViewController.swift in Sources */,
 				7996271F2896133E00B6EDF9 /* HistoryModel.swift in Sources */,
 				79C3934B29320A22009A8E3B /* CommonData.swift in Sources */,
