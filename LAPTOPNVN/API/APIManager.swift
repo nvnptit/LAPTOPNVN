@@ -73,6 +73,9 @@ enum APIManager {
     case getNVGiao
     
     case getAllStatusOrder
+    case getAllStatusOrderByDate
+    case importExportLSP
+    
     case addGioHang1
     case getGioHang
     case updateGioHang
@@ -215,6 +218,10 @@ extension APIManager {
                 
             case .getAllStatusOrder:
                 path = "/gio-hang/allStatusDH"
+            case .getAllStatusOrderByDate:
+                path = "/gio-hang/allStatusDHByDate"
+            case .importExportLSP:
+                path = "/gio-hang/importExportLSP"
                 
             case .getDoanhThu:
                 path = "/gio-hang/doanh-thu"
@@ -273,7 +280,7 @@ extension APIManager {
                     .getDotGG, .getMaSoDGG, .getDetailSale, .getRate, .getRateBySeri, .getListRate,
                     .getProvince, .getWard, .getDistrict,
                     .getHistoryOrderCMND, .findImageText,
-                    .getAllStatusOrder
+                    .getAllStatusOrder, .getAllStatusOrderByDate, .importExportLSP
                 :
                 return .get
             case .login, .register, .resetPass, .addUserKH, .uploadAvatar,

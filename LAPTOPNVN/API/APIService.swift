@@ -18,6 +18,16 @@ struct APIService {
 //        static let baseUrl: String = "http://192.168.2.19"
     //    static let baseUrl: String = "http://172.20.10.8"
     
+    public static func fetchDataImportExportLSP(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[DataImportExport]>?, String?) -> ()) {
+        APIController.request(ResponseBase<[DataImportExport]>.self, manager, params: params, headers: headers) { error, data in
+            if let data = data {
+                completion(data, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+
     public static func fetchAllStatusOrder(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[DataPieResponse]>?, String?) -> ()) {
         APIController.request(ResponseBase<[DataPieResponse]>.self, manager, params: params, headers: headers) { error, data in
             if let data = data {

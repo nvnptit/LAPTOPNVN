@@ -137,8 +137,12 @@ class OrderShipViewController: UIViewController {
         loading.startAnimating()
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
         let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
+        var to1: String?
+        if (to != nil){
+            to1 = to! + " 23:59:59"
+        }
         guard let maNV = UserService.shared.infoNV?.manv else {return}
-        let params = ShipperModel(manv: maNV, dateFrom: from, dateTo: to, status: self.maStatus).convertToDictionary()
+        let params = ShipperModel(manv: maNV, dateFrom: from, dateTo: to1, status: self.maStatus).convertToDictionary()
         print(params)
         DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             APIService.getOrderShipper(with: .getOrderShipper, params: params, headers: nil, completion: {
@@ -333,7 +337,7 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 235
+        return 255
     }
     // Space devide row
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

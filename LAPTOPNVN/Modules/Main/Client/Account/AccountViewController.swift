@@ -182,9 +182,12 @@ class AccountViewController: UIViewController {
         loading.startAnimating()
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
         let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
-        
-        let params = HistoryModel(status: self.maStatus, cmnd: UserService.shared.cmnd, dateFrom: from, dateTo: to).convertToDictionary()
-        
+        var to1: String?
+        if (to != nil){
+            to1 = to! + " 23:59:59"
+        }
+        let params = HistoryModel(status: self.maStatus, cmnd: UserService.shared.cmnd, dateFrom: from, dateTo: to1).convertToDictionary()
+        print(params)
         DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self = self , self.cmnd != "" else { return }
             
@@ -666,7 +669,7 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 235
+        return 255
     }
     func tableView(_ tableView: UITableView, widthForRowAt indexPath: IndexPath) -> CGFloat {
         return 497

@@ -75,9 +75,11 @@ class OrderViewController: UIViewController {
         loading.startAnimating()
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
         let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
-        
-        
-        let params = HistoryModel(status: self.maStatus, cmnd: nil, dateFrom: from, dateTo: to).convertToDictionary()
+        var to1: String?
+        if (to != nil){
+            to1 = to! + " 23:59:59"
+        }
+        let params = HistoryModel(status: self.maStatus, cmnd: nil, dateFrom: from, dateTo: to1).convertToDictionary()
         print(params)
         DispatchQueue.init(label: "CartVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             APIService.getHistoryOrder1(with: .getHistoryOrder, params: params, headers: nil, completion: {
@@ -236,7 +238,7 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 235
+        return 255
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -10,6 +10,8 @@ import NVActivityIndicatorView
 
 class CategoryViewController: UIViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var btnStats: UIButton!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,6 +20,22 @@ class CategoryViewController: UIViewController {
     
     var dataLSP : [LoaiSanPhamKM] = []
     var dataHang : [HangSX] = []
+    
+    private func getDataSearch(){
+        print("SEARCHNAME: \(searchBar.text)")
+        let params = SearchModel(tenLSP: searchBar.text, priceMin: nil, priceMax: nil, maHang: nil).convertToDictionary()
+        APIService.searchLoaiSanPham(with: .searchLSP, params: params, headers: nil, completion: {
+            [weak self] base, error in
+            guard let self = self, let base = base else { return }
+            if base.success == true , let data = base.data{
+                self.dataLSP = data
+            }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.tableView.reloadData()
+            }
+        })
+    }
     
     func loadDataHang(){
         DispatchQueue.main.async {
@@ -33,6 +51,9 @@ class CategoryViewController: UIViewController {
     var isAdded: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self
+        
         loadDataLSP()
         loadDataHang()
         if (isAdded){
@@ -79,6 +100,10 @@ class CategoryViewController: UIViewController {
         ])
     }
     
+    @IBAction func tapStat(_ sender: UIButton, forEvent event: UIEvent) {
+        let vc = StatsViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     @IBAction func tapThemMoi(_ sender: UIButton, forEvent event: UIEvent) {
         let vc = DetailCategoryViewController() 
         var data: [String] = []
@@ -178,5 +203,18 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
         vc.hangValues = data
         vc.dataHang = dataHang
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension CategoryViewController: UISearchBarDelegate{
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        getDataSearch()
+    }
+}
+
+extension CategoryViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        getDataSearch()
     }
 }

@@ -246,6 +246,10 @@
 		7986295528A8238600FC08AE /* DetailProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7986295128A8238600FC08AE /* DetailProductViewController.xib */; };
 		7986295628A8238600FC08AE /* DetailProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7986295128A8238600FC08AE /* DetailProductViewController.xib */; };
 		7986295728A8238600FC08AE /* DetailProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7986295128A8238600FC08AE /* DetailProductViewController.xib */; };
+		799008492939F6DA0081B7DA /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799008472939F6DA0081B7DA /* StatsViewController.swift */; };
+		7990084A2939F6DA0081B7DA /* StatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799008482939F6DA0081B7DA /* StatsViewController.xib */; };
+		7990084E2939F9730081B7DA /* StatLSPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990084C2939F9730081B7DA /* StatLSPTableViewCell.swift */; };
+		7990084F2939F9730081B7DA /* StatLSPTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7990084D2939F9730081B7DA /* StatLSPTableViewCell.xib */; };
 		79929767288EF91100642885 /* ListLaptopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79929765288EF91100642885 /* ListLaptopViewController.swift */; };
 		79929768288EF91100642885 /* ListLaptopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79929765288EF91100642885 /* ListLaptopViewController.swift */; };
 		79929769288EF91100642885 /* ListLaptopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79929765288EF91100642885 /* ListLaptopViewController.swift */; };
@@ -573,6 +577,10 @@
 		7986294928A8210100FC08AE /* DetailCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCategoryViewController.xib; sourceTree = "<group>"; };
 		7986295028A8238600FC08AE /* DetailProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewController.swift; sourceTree = "<group>"; };
 		7986295128A8238600FC08AE /* DetailProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailProductViewController.xib; sourceTree = "<group>"; };
+		799008472939F6DA0081B7DA /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		799008482939F6DA0081B7DA /* StatsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsViewController.xib; sourceTree = "<group>"; };
+		7990084C2939F9730081B7DA /* StatLSPTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatLSPTableViewCell.swift; sourceTree = "<group>"; };
+		7990084D2939F9730081B7DA /* StatLSPTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatLSPTableViewCell.xib; sourceTree = "<group>"; };
 		79929765288EF91100642885 /* ListLaptopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLaptopViewController.swift; sourceTree = "<group>"; };
 		79929766288EF91100642885 /* ListLaptopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListLaptopViewController.xib; sourceTree = "<group>"; };
 		799547F428A8B597002760A7 /* SanPhamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanPhamViewController.swift; sourceTree = "<group>"; };
@@ -1175,6 +1183,7 @@
 		7986292A28A7F35200FC08AE /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				799008462939F6C50081B7DA /* Stats */,
 				7986292C28A7F36200FC08AE /* Detail */,
 				7986292B28A7F35D00FC08AE /* Cell */,
 				7986292D28A8189000FC08AE /* CategoryViewController.swift */,
@@ -1228,6 +1237,25 @@
 				7986295128A8238600FC08AE /* DetailProductViewController.xib */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		799008462939F6C50081B7DA /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				7990084B2939F7BF0081B7DA /* Cell */,
+				799008472939F6DA0081B7DA /* StatsViewController.swift */,
+				799008482939F6DA0081B7DA /* StatsViewController.xib */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		7990084B2939F7BF0081B7DA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7990084C2939F9730081B7DA /* StatLSPTableViewCell.swift */,
+				7990084D2939F9730081B7DA /* StatLSPTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		79929764288EF8EA00642885 /* List */ = {
@@ -1760,8 +1788,10 @@
 				792EE2582923826E003C6EE8 /* TextInImageViewController.xib in Resources */,
 				7953E80028F98D05000BF741 /* MapsViewController.xib in Resources */,
 				791BB914289E0F2A002B5871 /* DetailOrderViewController.xib in Resources */,
+				7990084F2939F9730081B7DA /* StatLSPTableViewCell.xib in Resources */,
 				79475E202882438E005911E3 /* LaunchScreen.storyboard in Resources */,
 				79A0364728E829A9002532FD /* DetailSaleTableViewCell.xib in Resources */,
+				7990084A2939F6DA0081B7DA /* StatsViewController.xib in Resources */,
 				79176FA2288392EC00CDA10E /* HangCollectionViewCell.xib in Resources */,
 				79F33D8328831F0600F7BB4C /* HomeHeaderReusableView.xib in Resources */,
 				792A293228B1EEC30075AD18 /* OrderDetailTableViewCell.xib in Resources */,
@@ -2050,6 +2080,7 @@
 				793FC37E290BB48300F1D95D /* TestAddressViewController.swift in Sources */,
 				793FC37B290BB42100F1D95D /* Ward.swift in Sources */,
 				79475E162882438D005911E3 /* SceneDelegate.swift in Sources */,
+				799008492939F6DA0081B7DA /* StatsViewController.swift in Sources */,
 				791DE89728EB4926007C2D22 /* ForgotPasswordViewController.swift in Sources */,
 				7996271F2896133E00B6EDF9 /* HistoryModel.swift in Sources */,
 				79C3934B29320A22009A8E3B /* CommonData.swift in Sources */,
@@ -2120,6 +2151,7 @@
 				79F33D9B28832F3C00F7BB4C /* LoginModel.swift in Sources */,
 				79DA1DF228FA97DC00F0520F /* Color.swift in Sources */,
 				799E5097291518D7007A173E /* BotResponse.swift in Sources */,
+				7990084E2939F9730081B7DA /* StatLSPTableViewCell.swift in Sources */,
 				797767D728EB399E008643A7 /* JStarRatingView.swift in Sources */,
 				79475E9928824DBD005911E3 /* CartViewController.swift in Sources */,
 				79475E5F2882498E005911E3 /* UIImageView+UIImage.swift in Sources */,

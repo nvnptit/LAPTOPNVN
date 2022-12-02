@@ -68,9 +68,12 @@ class StatisticViewController: UIViewController {
         loading.startAnimating()
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
         let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
-        
+        var to1: String?
+        if (to != nil){
+            to1 = to! + " 23:59:59"
+        }
         var data1: [DoanhThuResponse] = []
-        let params = DoanhThuModel(dateFrom: from, dateTo: to).convertToDictionary()
+        let params = DoanhThuModel(dateFrom: from, dateTo: to1).convertToDictionary()
         
         DispatchQueue.init(label: "DoanhThuVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             APIService.getDoanhThu(with: .getDoanhThu, params: params, headers: nil, completion:
@@ -248,14 +251,16 @@ extension StatisticViewController{
             let endDate = format.date(from: end) else {
                 return []
         }
-
+        
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents(Set([.month]), from: startDate, to: endDate)
 
         var allDates: [String] = []
         let dateRangeFormatter = DateFormatter()
         dateRangeFormatter.dateFormat = "MM-yyyy"
-
+        
+        guard startDate < endDate else { return allDates }
+    
         for i in 0 ... components.month! {
             guard let date = calendar.date(byAdding: .month, value: i, to: startDate) else {
             continue
@@ -266,4 +271,5 @@ extension StatisticViewController{
         }
         return allDates
     }
+        
 }

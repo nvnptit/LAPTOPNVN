@@ -30,6 +30,9 @@ class BarChartViewController: UIViewController {
         } else {
             // Fallback on earlier versions
         }
+        tfFrom.text = Date().toDate(format: "dd-MM-yyyy")
+        tfTo.text = Date().toDate(format: "dd-MM-yyyy")
+        loadDataDoanhThu()
     }
     
     func setupChart(){
@@ -48,8 +51,9 @@ class BarChartViewController: UIViewController {
         xAxis.labelPosition = .bottom
         xAxis.drawAxisLineEnabled = true
         xAxis.drawGridLinesEnabled = false
-        xAxis.granularityEnabled = false
+        xAxis.granularityEnabled = true
         xAxis.labelRotationAngle = 90
+        print("NVN: \(data.count)")
         xAxis.valueFormatter = IndexAxisValueFormatter(values:  data.map { "\($0.thang!)/\($0.nam!)" })
         xAxis.axisLineColor = .chartLineColour
         xAxis.labelTextColor = .chartLineColour
@@ -59,8 +63,8 @@ class BarChartViewController: UIViewController {
         leftAxis.drawTopYLabelEntryEnabled = true
         leftAxis.drawAxisLineEnabled = true
         leftAxis.drawGridLinesEnabled = true
-        leftAxis.granularityEnabled = false
-        leftAxis.granularity = 1
+        leftAxis.granularityEnabled = true
+//        leftAxis.granularity = 0
         leftAxis.axisLineColor = .chartLineColour
         leftAxis.labelTextColor = .chartLineColour
 //        leftAxis.setLabelCount(5, force: false)
@@ -88,18 +92,23 @@ extension BarChartViewController{
     func loadDataDoanhThu(){
         let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
         let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
-        
+        var to1: String?
+        if (to != nil){
+            to1 = to! + " 23:59:59"
+        }
         var data1: [DoanhThuResponse] = []
-        let params = DoanhThuModel(dateFrom: from, dateTo: to).convertToDictionary()
-        
+        let params = DoanhThuModel(dateFrom: from, dateTo: to1 ).convertToDictionary()
+        print(params)
         DispatchQueue.init(label: "DoanhThuVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             APIService.getDoanhThu(with: .getDoanhThu, params: params, headers: nil, completion:
                  {  base, error in
+                print(base)
                 guard let self = self, let base = base else { return }
                 if base.success == true {
                     if let dateStart = from , let dateEnd = to {
                         self.allDates = self.getMonthAndYearBetween(from: dateStart, to: dateEnd)
                     }
+                    print("allDates: \(self.allDates)")
                     for i in self.allDates {
                         data1.append(DoanhThuResponse(thang: Int(i.prefix(2)), nam: Int(i.suffix(4)) , doanhthu: 0))                    }
                     
@@ -111,6 +120,7 @@ extension BarChartViewController{
                                 self.sum = self.sum + money
                             }
                             data1 = data1.map {  $0.thang == i.thang && $0.nam == i.nam ? i : $0}
+                            print("DATA__1: \(data1)")
                         }
                         self.data = data1
                         print("AAA\n")
@@ -232,7 +242,6 @@ extension BarChartViewController{
             let endDate = format.date(from: end) else {
                 return []
         }
-
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents(Set([.month]), from: startDate, to: endDate)
 
@@ -240,19 +249,18 @@ extension BarChartViewController{
         let dateRangeFormatter = DateFormatter()
         dateRangeFormatter.dateFormat = "MM-yyyy"
 
+        
+        print("COMONENT: \(components)")
         for i in 0 ... components.month! {
             guard let date = calendar.date(byAdding: .month, value: i, to: startDate) else {
             continue
             }
-
             let formattedDate = dateRangeFormatter.string(from: date)
             allDates += [formattedDate]
         }
         return allDates
     }
 }
-
-
 
 extension UIColor {
     static let chartBarColour = #colorLiteral(red: 1, green: 0.831372549, blue: 0.3764705882, alpha: 1)

@@ -261,7 +261,7 @@
                 <outlet property="receiver" destination="Yqt-Je-YOI" id="FzN-Bt-bqK"/>
                 <outlet property="status" destination="uiM-H8-Y5X" id="ATq-od-dxo"/>
             </connections>
-            <point key="canvasLocation" x="262.31884057971018" y="114.84375"/>
+            <point key="canvasLocation" x="261.59420289855075" y="114.84375"/>
         </tableViewCell>
     </objects>
     <resources>

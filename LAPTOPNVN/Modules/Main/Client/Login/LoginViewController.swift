@@ -18,10 +18,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewUI.layer.cornerRadius = 8
-        viewUI.layer.borderColor = UIColor.systemGray.cgColor
-        viewUI.layer.borderWidth = 2
+//        viewUI.layer.cornerRadius = 8
+//        viewUI.layer.borderColor = UIColor.systemGray.cgColor
+//        viewUI.layer.borderWidth = 2
         
         setupKeyboard()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
@@ -90,8 +89,6 @@ class LoginViewController: UIViewController {
             }
         })
     }
-    
-    
     
     @IBAction func didTapRegister(_ sender: UIButton, forEvent event: UIEvent) {
         let vc = RegisterViewController()
