@@ -41,21 +41,10 @@ class OrderShipViewController: UIViewController {
     func addDataSorted(item: HistoryOrder1?, km: Float){
         guard let item = item else {return}
         dataSorted.append(HistoryOrderSorted(iddonhang: item.iddonhang, ngaylapdonhang: item.ngaylapdonhang, ngaydukien: item.ngaydukien, tonggiatri: item.tonggiatri, tentrangthai: item.tentrangthai, nvgiao: item.nvgiao, sdtnvg: item.sdtnvg, nvduyet: item.nvduyet, nguoinhan: item.nguoinhan, diachi: item.diachi, sdt: item.sdt, email: item.email, ngaynhan: item.ngaynhan, phuongthuc: item.phuongthuc, thanhtoan: item.thanhtoan, km: km))
-        dataSorted.sort{
-            ($0.km ?? 0 ) > ($1.km ?? 0)
-        }
-        dataSorted.sort{
-            let dateFormat = "dd-MM-yyyy"
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = dateFormat
-            let currentDate = Date()
-            let current = "\(currentDate)".prefix(10)
-            let curr = dateFormatter.date(from: Date().convertDateSQLToView(String(current)))
-            let startDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $0.ngaydukien!, format: "dd-MM-yyyy"))
-            let endDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $1.ngaydukien!, format: "dd-MM-yyyy"))
-            
-            return (startDate == curr) || (endDate == curr)  || (startDate! < endDate!)
-        }
+//        dataSorted.sort{
+//            return ($0.km ?? 0 ) < ($1.km ?? 0)  // tăng dần theo số km
+////            return ($0.km ?? 0 ) > ($1.km ?? 0)  // giảm dần theo số km
+//        }
         dataSorted.sort{
             let dateFormat = "dd-MM-yyyy"
             let dateFormatter = DateFormatter()
@@ -65,10 +54,21 @@ class OrderShipViewController: UIViewController {
             let curr = dateFormatter.date(from: Date().convertDateSQLToView(String(current)))
             let startDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $0.ngaydukien!, format: "dd-MM-yyyy"))
             let endDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $1.ngaydukien!, format: "dd-MM-yyyy"))
-            return
-            (startDate == curr) && (endDate == startDate)  && ($0.km ?? 0 ) < ($1.km ?? 0)
+
+            return ( (startDate == curr) || (endDate == curr) ) && ($0.km ?? 0 ) < ($1.km ?? 0)  || (startDate! < endDate!)
         }
-        
+//        dataSorted.sort{
+//            let dateFormat = "dd-MM-yyyy"
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = dateFormat
+//            let currentDate = Date()
+//            let current = "\(currentDate)".prefix(10)
+//            let curr = dateFormatter.date(from: Date().convertDateSQLToView(String(current)))
+//            let startDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $0.ngaydukien!, format: "dd-MM-yyyy"))
+//            let endDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $1.ngaydukien!, format: "dd-MM-yyyy"))
+//            return (startDate == curr) && (endDate == startDate)  && ($0.km ?? 0 ) < ($1.km ?? 0)
+//        }
+//
     }
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false
