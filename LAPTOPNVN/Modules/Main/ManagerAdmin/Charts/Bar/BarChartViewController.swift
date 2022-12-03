@@ -77,9 +77,9 @@ class BarChartViewController: UIViewController {
         
         xAxis.drawAxisLineEnabled = true
         xAxis.drawGridLinesEnabled = false
-        xAxis.labelRotationAngle = 70
+//        xAxis.labelRotationAngle = 90
         
-        xAxis.valueFormatter = IndexAxisValueFormatter(values:  data.map { "\($0.thang!)/\($0.nam!)" })
+        xAxis.valueFormatter = IndexAxisValueFormatter(values:  data.map { "\($0.thang!)" })
         xAxis.axisLineColor = .chartLineColour
         xAxis.labelTextColor = .chartLineColour
 
@@ -158,7 +158,8 @@ extension BarChartViewController{
                         var dataChart: [String] = []
                         var valueChart: [Double] = []
                         for item in data1{
-                            dataChart.append("\(String(describing: item.thang)) / \(String(describing: item.nam))")
+//                            dataChart.append("\(String(describing: item.thang)) / \(String(describing: item.nam))")
+                            dataChart.append("\(String(describing: item.thang))")
                             valueChart.append(Float64(item.doanhthu ?? 0))
                         }
                         print(dataChart)
