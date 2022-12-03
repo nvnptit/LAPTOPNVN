@@ -10,7 +10,8 @@ import Alamofire
 
 
 struct APIService {
-        static let baseUrl: String = ""
+//        static let baseUrl: String = "http://dotnet.voz.ee"
+        static let baseUrl: String = "http://192.168.211.70"
     
     public static func fetchDataImportExportLSP(with manager: APIManager,  params: [String: Any]?,  headers: HTTPHeaders?, completion: @escaping(ResponseBase<[DataImportExport]>?, String?) -> ()) {
         APIController.request(ResponseBase<[DataImportExport]>.self, manager, params: params, headers: headers) { error, data in

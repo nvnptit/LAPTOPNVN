@@ -84,7 +84,8 @@ class StatisticViewController: UIViewController {
                         self.allDates = self.getMonthAndYearBetween(from: dateStart, to: dateEnd)
                     }
                     for i in self.allDates {
-                        data1.append(DoanhThuResponse(thang: Int(i.prefix(2)), nam: Int(i.suffix(4)) , doanhthu: 0))                    }
+                        data1.append(DoanhThuResponse(thang: Int(i.prefix(2)), nam: Int(i.suffix(4)) , doanhthu: 0))
+                    }
                     
                     if let data = base.data {
                       self.data = data
@@ -240,6 +241,15 @@ extension StatisticViewController{
     }
 }
 
+extension Date {
+    func startOfMonth(dat: Date) -> Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: dat)))!
+    }
+    
+    func endOfMonth(dat: Date) -> Date {
+        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth(dat: dat))!
+    }
+}
 
 
 extension StatisticViewController{
@@ -252,8 +262,13 @@ extension StatisticViewController{
                 return []
         }
         
+//        let startOfMonth = startDate.beginning(of: .month)
+//        let endOfMonth = endDate.end(of: .month)
+        let startOfMonth = Date().startOfMonth(dat:startDate)
+        let endOfMonth =  Date().endOfMonth(dat:endDate)
+        
         let calendar = Calendar(identifier: .gregorian)
-        let components = calendar.dateComponents(Set([.month]), from: startDate, to: endDate)
+        let components = calendar.dateComponents(Set([.month]), from: startOfMonth, to: endOfMonth)
 
         var allDates: [String] = []
         let dateRangeFormatter = DateFormatter()

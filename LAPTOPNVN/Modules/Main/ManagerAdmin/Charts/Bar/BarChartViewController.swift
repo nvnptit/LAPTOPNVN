@@ -88,7 +88,7 @@ class BarChartViewController: UIViewController {
         let leftAxisFormatter = NumberFormatter()
         leftAxisFormatter.minimumFractionDigits = 0
         leftAxisFormatter.maximumFractionDigits = 1
-        leftAxisFormatter.numberStyle = .currency
+        leftAxisFormatter.numberStyle = .currencyAccounting
         leftAxisFormatter.negativeSuffix = " VND"
         leftAxisFormatter.positiveSuffix = " VND"
         
@@ -98,11 +98,12 @@ class BarChartViewController: UIViewController {
         leftAxis.drawTopYLabelEntryEnabled = true
         leftAxis.drawAxisLineEnabled = true
         leftAxis.drawGridLinesEnabled = true
-        leftAxis.granularityEnabled = true
+//        leftAxis.granularityEnabled = true
+        leftAxis.granularity = 1
         leftAxis.axisLineColor = .chartLineColour
         leftAxis.labelTextColor = .chartLineColour
-        leftAxis.axisMinimum = 0
-//        leftAxis.axisMaximum = 2.5
+//        leftAxis.axisMinimum = 0
+//        leftAxis.axisMaximum = 1
 
         // Remove right axis
         let rightAxis = barChartView.rightAxis
