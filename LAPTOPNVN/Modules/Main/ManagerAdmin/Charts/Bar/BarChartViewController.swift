@@ -33,6 +33,7 @@ class BarChartViewController: UIViewController {
         barChartView.noDataText = "Bạn cần chọn khung thời gian cần để hiển thị biểu đồ"
         lbYear.text = Date().toDate(format: "yyyy")
         getDataYears()
+        dropYear.selectRows(at: [yearValues.endIndex - 1] )
         loadDataDoanhThu()
     }
     
@@ -244,7 +245,7 @@ extension BarChartViewController{
     
     private func getDataYears(){
        let currentYear = Date().toDate(format: "yyyy")
-        for item in 1970...Int(currentYear)! {
+        for item in 2010...Int(currentYear)! {
             yearValues.append("\(item)")
         }
         self.setupYear()
