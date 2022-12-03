@@ -639,7 +639,7 @@ extension AccountViewController {
                 
                 let dayE = self.chuanHoa(self.tfBirthday.text)
                 let phoneE = self.chuanHoa(self.tfPhone.text)
-                let model = LoginResponse(cmnd: self.tfCMND.text, email: emailE, ten: nameE, diachi: addressE, ngaysinh: dayE, sdt: phoneE, tendangnhap: UserService.shared.infoProfile?.tendangnhap)
+                let model = LoginResponse(cmnd: self.tfCMND.text, email: emailE, ten: nameE, diachi: addressE, ngaysinh: Date().convertDateViewToSQL(dayE), sdt: phoneE, tendangnhap: UserService.shared.infoProfile?.tendangnhap)
                 UserService.shared.setInfo(with: model)
                 let alert = UIAlertController(title: "Cập nhật thông tin thành công", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
