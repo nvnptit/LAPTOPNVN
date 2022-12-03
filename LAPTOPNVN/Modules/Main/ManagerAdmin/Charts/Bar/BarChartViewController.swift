@@ -31,6 +31,7 @@ class BarChartViewController: UIViewController {
         super.viewDidLoad()
         setupDropDown()
         barChartView.noDataText = "Bạn cần chọn khung thời gian cần để hiển thị biểu đồ"
+        barChartView.maxVisibleCount = 20
         lbYear.text = Date().toDate(format: "yyyy")
         getDataYears()
         dropYear.selectRows(at: [yearValues.endIndex - 1] )
@@ -48,6 +49,16 @@ class BarChartViewController: UIViewController {
     
     func setupChart(){
         barChartView.noDataText = "You need to provide data for the chart."
+        
+        let marker = XYMarkerView(color: UIColor(white: 180/250, alpha: 1),
+                                  font: .systemFont(ofSize: 12),
+                                  textColor: .white,
+                                  insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8),
+                                  xAxisValueFormatter: barChartView.xAxis.valueFormatter!)
+        marker.chartView = barChartView
+        marker.minimumSize = CGSize(width: 80, height: 40)
+        barChartView.marker = marker
+        
         barChartView.animate(yAxisDuration: 3.0)
         barChartView.pinchZoomEnabled = false
         barChartView.drawBarShadowEnabled = false
@@ -60,26 +71,37 @@ class BarChartViewController: UIViewController {
         // Setup X axis
         let xAxis = barChartView.xAxis
         xAxis.labelPosition = .bottom
+        xAxis.labelFont = .systemFont(ofSize: 10)
+        xAxis.labelCount = 12
+        xAxis.granularity = 1
+        
         xAxis.drawAxisLineEnabled = true
         xAxis.drawGridLinesEnabled = false
-        xAxis.granularityEnabled = true
-        xAxis.labelRotationAngle = 90
-        print("NVN: \(data.count)")
+        xAxis.labelRotationAngle = 70
+        
         xAxis.valueFormatter = IndexAxisValueFormatter(values:  data.map { "\($0.thang!)/\($0.nam!)" })
         xAxis.axisLineColor = .chartLineColour
         xAxis.labelTextColor = .chartLineColour
 
         // Setup left axis
+        
+        let leftAxisFormatter = NumberFormatter()
+        leftAxisFormatter.minimumFractionDigits = 0
+        leftAxisFormatter.maximumFractionDigits = 1
+        leftAxisFormatter.numberStyle = .currency
+        leftAxisFormatter.negativeSuffix = " VND"
+        leftAxisFormatter.positiveSuffix = " VND"
+        
         let leftAxis = barChartView.leftAxis
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: leftAxisFormatter)
+        
         leftAxis.drawTopYLabelEntryEnabled = true
         leftAxis.drawAxisLineEnabled = true
         leftAxis.drawGridLinesEnabled = true
         leftAxis.granularityEnabled = true
-//        leftAxis.granularity = 0
         leftAxis.axisLineColor = .chartLineColour
         leftAxis.labelTextColor = .chartLineColour
-//        leftAxis.setLabelCount(5, force: false)
-//        leftAxis.axisMinimum = 0.0
+        leftAxis.axisMinimum = 0
 //        leftAxis.axisMaximum = 2.5
 
         // Remove right axis
@@ -94,7 +116,7 @@ class BarChartViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Bar Chart View")
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Biểu đồ doanh thu các tháng trong năm")
         let chartData = BarChartData(dataSet: chartDataSet)
         barChartView.data = chartData
     }
@@ -104,7 +126,7 @@ extension BarChartViewController{
         self.lbTitle.text = "BIỂU ĐỒ DOANH THU NĂM \(self.lbYear.text!)"
         let from =  self.lbYear.text! + "-01-01"
         let to = self.lbYear.text! + "-12-31"
-        var to1 = to + " 23:59:59"
+        let to1 = to + " 23:59:59"
         
         var data1: [DoanhThuResponse] = []
         let params = DoanhThuModel(dateFrom: from, dateTo: to1 ).convertToDictionary()
@@ -199,7 +221,6 @@ extension BarChartViewController{
         let dateRangeFormatter = DateFormatter()
         dateRangeFormatter.dateFormat = "MM-yyyy"
         
-        print("COMONENT: \(components)")
         for i in 0 ... components.month! {
             guard let date = calendar.date(byAdding: .month, value: i, to: startDate) else {
             continue
@@ -251,4 +272,4 @@ extension BarChartViewController{
         self.setupYear()
         print("YEARVALUÉ:\n \(yearValues)")
     }
-}
+}       
