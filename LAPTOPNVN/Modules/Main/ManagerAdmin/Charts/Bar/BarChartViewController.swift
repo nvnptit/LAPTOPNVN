@@ -7,32 +7,42 @@
 
 import UIKit
 import Charts
+import DropDown
 
 class BarChartViewController: UIViewController {
     
-    @IBOutlet weak var tfFrom: UITextField!
-    @IBOutlet weak var tfTo: UITextField!
+    
+    @IBOutlet weak var lbTitle: UILabel!
+    @IBOutlet weak var dropDownYear: UIView!
+    @IBOutlet weak var lbYear: UILabel!
+    var yearValues: [String] = []
+    var dropYear = DropDown()
+    
+    var year: String = ""
+    
     @IBOutlet weak var barChartView: BarChartView!
     
     
     var sum: Int = 0
-    let datePicker1 = UIDatePicker()
-    let datePicker2 = UIDatePicker()
     var data: [DoanhThuResponse] = []
     var allDates: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDropDown()
         barChartView.noDataText = "Bạn cần chọn khung thời gian cần để hiển thị biểu đồ"
-        
-        if #available(iOS 13.4, *) {
-            createDatePicker()
-        } else {
-            // Fallback on earlier versions
-        }
-        tfFrom.text = Date().toDate(format: "dd-MM-yyyy")
-        tfTo.text = Date().toDate(format: "dd-MM-yyyy")
+        lbYear.text = Date().toDate(format: "yyyy")
+        getDataYears()
         loadDataDoanhThu()
+    }
+    
+    private func setupDropDown() {
+        DropDown.appearance().textColor = UIColor.black
+        DropDown.appearance().selectedTextColor = UIColor.black
+        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 15)
+        DropDown.appearance().backgroundColor = UIColor.white
+        DropDown.appearance().selectionBackgroundColor = UIColor.cyan
+        DropDown.appearance().cornerRadius = 8
     }
     
     func setupChart(){
@@ -90,24 +100,20 @@ class BarChartViewController: UIViewController {
 }
 extension BarChartViewController{
     func loadDataDoanhThu(){
-        let from = tfFrom.text == "" ? nil : Date().convertDateViewToSQL(tfFrom.text!)
-        let to = self.tfTo.text == "" ? nil : Date().convertDateViewToSQL(tfTo.text!)
-        var to1: String?
-        if (to != nil){
-            to1 = to! + " 23:59:59"
-        }
+        self.lbTitle.text = "BIỂU ĐỒ DOANH THU NĂM \(self.lbYear.text!)"
+        let from =  self.lbYear.text! + "-01-01"
+        let to = self.lbYear.text! + "-12-31"
+        var to1 = to + " 23:59:59"
+        
         var data1: [DoanhThuResponse] = []
         let params = DoanhThuModel(dateFrom: from, dateTo: to1 ).convertToDictionary()
         print(params)
         DispatchQueue.init(label: "DoanhThuVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             APIService.getDoanhThu(with: .getDoanhThu, params: params, headers: nil, completion:
                  {  base, error in
-                print(base)
                 guard let self = self, let base = base else { return }
                 if base.success == true {
-                    if let dateStart = from , let dateEnd = to {
-                        self.allDates = self.getMonthAndYearBetween(from: dateStart, to: dateEnd)
-                    }
+                    self.allDates = self.getMonthAndYearBetween(from: from, to: to)
                     print("allDates: \(self.allDates)")
                     for i in self.allDates {
                         data1.append(DoanhThuResponse(thang: Int(i.prefix(2)), nam: Int(i.suffix(4)) , doanhthu: 0))                    }
@@ -175,63 +181,6 @@ extension BarChartViewController{
     //MARK: - End Setup keyboard
 }
 
-extension BarChartViewController{
-    //MARK: - Datepicker
-    private func createToolbar(_ datePickerView: UIDatePicker) -> UIToolbar {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapOnView))
-        switch (datePickerView){
-            case datePicker1:
-                let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donedatePicker1))
-                let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-                toolbar.setItems([cancelButton,flexButton,doneButton], animated: true)
-            case datePicker2:
-                let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donedatePicker2))
-                let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-                toolbar.setItems([cancelButton,flexButton,doneButton], animated: true)
-            default: break
-                
-        }
-        
-        return toolbar
-    }
-    @available(iOS 13.4, *)
-    private func createDatePicker() {
-        datePicker1.preferredDatePickerStyle = .wheels
-        datePicker2.preferredDatePickerStyle = .wheels
-        
-        if #available(iOS 14, *) {
-            datePicker1.preferredDatePickerStyle = .inline
-            datePicker2.preferredDatePickerStyle = .inline
-        }
-        
-        datePicker1.datePickerMode = .date
-        tfFrom.inputView = datePicker1
-        tfFrom.inputAccessoryView = createToolbar(datePicker1)
-        
-        datePicker2.datePickerMode = .date
-        tfTo.inputView = datePicker2
-        tfTo.inputAccessoryView = createToolbar(datePicker2)
-    }
-    
-    @objc func donedatePicker1() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
-        tfFrom.text =  dateFormatter.string(from: datePicker1.date)
-        view.endEditing(true)
-        loadDataDoanhThu()
-    }
-    @objc func donedatePicker2() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
-        tfTo.text =  dateFormatter.string(from: datePicker2.date)
-        view.endEditing(true)
-        loadDataDoanhThu()
-    }
-}
-
-
 
 extension BarChartViewController{
     func getMonthAndYearBetween(from start: String, to end: String) -> [String] {
@@ -248,7 +197,6 @@ extension BarChartViewController{
         var allDates: [String] = []
         let dateRangeFormatter = DateFormatter()
         dateRangeFormatter.dateFormat = "MM-yyyy"
-
         
         print("COMONENT: \(components)")
         for i in 0 ... components.month! {
@@ -269,4 +217,37 @@ extension UIColor {
     static let chartAverageColour = #colorLiteral(red: 0.9176470588, green: 0.3294117647, blue: 0.3333333333, alpha: 1)
     static let chartBarValueColour = #colorLiteral(red: 0.9411764706, green: 0.4823529412, blue: 0.2470588235, alpha: 1)
     static let chartHightlightColour = #colorLiteral(red: 0.9411764706, green: 0.4823529412, blue: 0.2470588235, alpha: 1)
+}
+
+extension BarChartViewController{
+    private func setupYear() {
+        dropYear.anchorView = dropDownYear
+        dropYear.dataSource = yearValues
+        dropYear.bottomOffset = CGPoint(x: 0, y:(dropYear.anchorView?.plainView.bounds.height)! + 5)
+        dropYear.direction = .bottom
+        dropYear.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.year = item
+            lbYear.text = item
+            loadDataDoanhThu()
+        }
+        
+        let gestureClock = UITapGestureRecognizer(target: self, action: #selector(didYear))
+        dropDownYear.addGestureRecognizer(gestureClock)
+        dropDownYear.layer.borderWidth = 1
+        dropDownYear.layer.borderColor = UIColor.lightGray.cgColor
+        
+    }
+    
+    @objc func didYear() {
+        dropYear.show()
+    }
+    
+    private func getDataYears(){
+       let currentYear = Date().toDate(format: "yyyy")
+        for item in 1970...Int(currentYear)! {
+            yearValues.append("\(item)")
+        }
+        self.setupYear()
+        print("YEARVALUÉ:\n \(yearValues)")
+    }
 }

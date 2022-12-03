@@ -344,6 +344,7 @@
 		79AAC9B228A77D2A00CD2E23 /* Quyen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AAC9B128A77D2A00CD2E23 /* Quyen.swift */; };
 		79AAC9B328A77D2A00CD2E23 /* Quyen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AAC9B128A77D2A00CD2E23 /* Quyen.swift */; };
 		79AAC9B428A77D2A00CD2E23 /* Quyen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AAC9B128A77D2A00CD2E23 /* Quyen.swift */; };
+		79AD39ED293AF2D100B59118 /* MonthYearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD39EC293AF2D100B59118 /* MonthYearPicker.swift */; };
 		79B3296328914345000E4197 /* NoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3296128914345000E4197 /* NoLoginViewController.swift */; };
 		79B3296428914345000E4197 /* NoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3296128914345000E4197 /* NoLoginViewController.swift */; };
 		79B3296528914345000E4197 /* NoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3296128914345000E4197 /* NoLoginViewController.swift */; };
@@ -615,6 +616,7 @@
 		79AAC9A628A74ABA00CD2E23 /* DetailEmployeeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailEmployeeViewController.xib; sourceTree = "<group>"; };
 		79AAC9AD28A7704D00CD2E23 /* MaSo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaSo.swift; sourceTree = "<group>"; };
 		79AAC9B128A77D2A00CD2E23 /* Quyen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quyen.swift; sourceTree = "<group>"; };
+		79AD39EC293AF2D100B59118 /* MonthYearPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPicker.swift; sourceTree = "<group>"; };
 		79B3296128914345000E4197 /* NoLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLoginViewController.swift; sourceTree = "<group>"; };
 		79B3296228914345000E4197 /* NoLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoLoginViewController.xib; sourceTree = "<group>"; };
 		79B3296A2891A5C4000E4197 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
@@ -1442,6 +1444,14 @@
 			path = OrderShip;
 			sourceTree = "<group>";
 		};
+		79AD39EB293AF2C900B59118 /* MonthYear */ = {
+			isa = PBXGroup;
+			children = (
+				79AD39EC293AF2D100B59118 /* MonthYearPicker.swift */,
+			);
+			path = MonthYear;
+			sourceTree = "<group>";
+		};
 		79B329602891432A000E4197 /* NoLogin */ = {
 			isa = PBXGroup;
 			children = (
@@ -1611,6 +1621,7 @@
 		79F2B65329334863008B6942 /* Bar */ = {
 			isa = PBXGroup;
 			children = (
+				79AD39EB293AF2C900B59118 /* MonthYear */,
 				79C39346293208D5009A8E3B /* BarChartViewController.swift */,
 				79C39347293208D5009A8E3B /* BarChartViewController.xib */,
 			);
@@ -2117,6 +2128,7 @@
 				793FC379290BB2CB00F1D95D /* District.swift in Sources */,
 				799E50932914EC55007A173E /* ChatBot.swift in Sources */,
 				796DF2B428928A3000F34C82 /* User.swift in Sources */,
+				79AD39ED293AF2D100B59118 /* MonthYearPicker.swift in Sources */,
 				79AAC98D28A73C9300CD2E23 /* EmployeeViewController.swift in Sources */,
 				796DF2A92892703500F34C82 /* RegisterViewController.swift in Sources */,
 				792A293128B1EEC30075AD18 /* OrderDetailTableViewCell.swift in Sources */,
