@@ -8,8 +8,12 @@
 import UIKit
 import DropDown
 import NVActivityIndicatorView
+import MessageUI
 
-class DetailOrderViewController: UIViewController {
+class DetailOrderViewController: UIViewController, MFMessageComposeViewControllerDelegate {
+    
+    @IBOutlet weak var btnMess: UIButton!
+    @IBOutlet weak var btnPhone: UIButton!
     
     @IBOutlet weak var btnHuyShipper: UIButton!
     @IBOutlet weak var datePlan: UITextField!
@@ -103,6 +107,46 @@ class DetailOrderViewController: UIViewController {
             btnDuyet.isHidden = true
             btnHuy.isHidden = true
         }
+        
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(tapFunctionCallNumber))
+        btnPhone.isUserInteractionEnabled = true
+        btnPhone.addGestureRecognizer(tap1)
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(sendNewIMessage))
+        btnMess.isUserInteractionEnabled = true
+        btnMess.addGestureRecognizer(tap2)
+        
+    }
+    
+    @IBAction func tapFunctionCallNumber(sender: UITapGestureRecognizer) {
+        guard let phone = sdt.text else {return}
+        guard let url = URL(string: "telprompt://\(phone)"),
+                      UIApplication.shared.canOpenURL(url) else {
+                    return
+                }
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func sendNewIMessage(_ sender: UITapGestureRecognizer) {
+        guard let phone = sdt.text else {return}
+        let messageVC = MFMessageComposeViewController()
+        messageVC.body = "Xin chào tôi là Shipper";
+        messageVC.recipients = ["\(phone)"]
+        messageVC.messageComposeDelegate = self
+        self.present(messageVC, animated: true, completion: nil)
+    }
+
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        switch (result) {
+        case .cancelled:
+            print("Message was cancelled")
+        case .failed:
+            print("Message failed")
+        case .sent:
+            print("Message was sent")
+        default:
+            return
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     func loadData(){

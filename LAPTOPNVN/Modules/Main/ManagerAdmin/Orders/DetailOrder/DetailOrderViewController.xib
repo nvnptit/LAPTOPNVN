@@ -13,6 +13,8 @@
                 <outlet property="btnDuyet" destination="AyL-3e-RZx" id="W1e-VW-cVl"/>
                 <outlet property="btnHuy" destination="Mg8-e9-juq" id="zKa-9i-bHf"/>
                 <outlet property="btnHuyShipper" destination="Imm-Tc-O3z" id="zhG-3G-J2F"/>
+                <outlet property="btnMess" destination="oDm-EB-QFj" id="QgA-aZ-Pyg"/>
+                <outlet property="btnPhone" destination="g7e-dS-kTI" id="mTO-Tj-GGI"/>
                 <outlet property="datePlan" destination="v3d-xA-Xwl" id="aKN-f6-sAm"/>
                 <outlet property="diaChi" destination="9uR-lE-vvM" id="1Oe-Pj-hKC"/>
                 <outlet property="dropDownNVDuyet" destination="hdE-EB-VKE" id="gg0-fX-TgY"/>
@@ -133,8 +135,8 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Người nhận:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfe-b7-eBp">
-                                    <rect key="frame" x="163.5" y="109" width="92" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Người nhận hàng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfe-b7-eBp">
+                                    <rect key="frame" x="163.5" y="109" width="130" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -305,6 +307,29 @@
                                         <action selector="tapHuyShipper:forEvent:" destination="-1" eventType="touchUpInside" id="76W-XI-T8s"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7e-dS-kTI">
+                                    <rect key="frame" x="321.5" y="135" width="37" height="25"/>
+                                    <color key="backgroundColor" red="0.16078431369999999" green="0.78133606909999997" blue="0.19693207739999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="APr-XR-l5X"/>
+                                        <constraint firstAttribute="width" constant="37" id="iao-Ka-JkH"/>
+                                    </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="phone.circle" catalog="system"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDm-EB-QFj">
+                                    <rect key="frame" x="274" y="135" width="34" height="25"/>
+                                    <color key="backgroundColor" red="0.16078431369999999" green="0.78133606909999997" blue="0.19693207739999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="5GP-y7-0jo"/>
+                                        <constraint firstAttribute="width" constant="34" id="oW3-pV-IRq"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="message" catalog="system"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
@@ -313,6 +338,7 @@
                                 <constraint firstItem="t1J-nr-nlF" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="31" id="1jT-dt-Z6u"/>
                                 <constraint firstAttribute="trailing" secondItem="9uR-lE-vvM" secondAttribute="trailing" constant="26" id="3bK-Ly-OaQ"/>
                                 <constraint firstItem="15a-19-EVn" firstAttribute="top" secondItem="T1e-as-ufn" secondAttribute="bottom" constant="8" id="6JX-jk-uHh"/>
+                                <constraint firstItem="g7e-dS-kTI" firstAttribute="top" secondItem="rfe-b7-eBp" secondAttribute="bottom" constant="5" id="6oQ-Tl-zV9"/>
                                 <constraint firstItem="LLS-3m-fOS" firstAttribute="top" secondItem="WaG-LW-CPj" secondAttribute="top" constant="40" id="7OQ-HM-hup"/>
                                 <constraint firstItem="a8z-Ag-sNi" firstAttribute="top" secondItem="WaG-LW-CPj" secondAttribute="top" constant="80" id="7n3-wo-LVh"/>
                                 <constraint firstItem="Btb-UY-b1i" firstAttribute="top" secondItem="9uR-lE-vvM" secondAttribute="bottom" constant="9" id="82C-9d-niw"/>
@@ -320,10 +346,12 @@
                                 <constraint firstItem="VgH-Z3-f44" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="29" id="C11-lD-XzC"/>
                                 <constraint firstAttribute="trailing" secondItem="2kK-O1-BHl" secondAttribute="trailing" constant="26" id="DS7-Hx-ZSh"/>
                                 <constraint firstItem="Btb-UY-b1i" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="27" id="Ddk-4T-OwC"/>
+                                <constraint firstItem="g7e-dS-kTI" firstAttribute="leading" secondItem="oDm-EB-QFj" secondAttribute="trailing" constant="13.5" id="Esn-gK-bDR"/>
                                 <constraint firstItem="dTu-5d-G3g" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="29" id="ID9-3L-PrX"/>
                                 <constraint firstItem="ro0-mE-L8U" firstAttribute="leading" secondItem="Btb-UY-b1i" secondAttribute="trailing" constant="10" id="Jpd-1J-Len"/>
                                 <constraint firstItem="Imm-Tc-O3z" firstAttribute="centerX" secondItem="WaG-LW-CPj" secondAttribute="centerX" id="Kao-Dq-PJf"/>
                                 <constraint firstItem="VgH-Z3-f44" firstAttribute="top" secondItem="15a-19-EVn" secondAttribute="bottom" constant="11" id="Kkp-ci-vqh"/>
+                                <constraint firstItem="oDm-EB-QFj" firstAttribute="leading" secondItem="0V1-3h-RfD" secondAttribute="trailing" constant="6" id="L6x-Cg-FY7"/>
                                 <constraint firstItem="9uR-lE-vvM" firstAttribute="top" secondItem="VgH-Z3-f44" secondAttribute="bottom" constant="5" id="Nbj-YF-Dyy"/>
                                 <constraint firstItem="ro0-mE-L8U" firstAttribute="top" secondItem="9uR-lE-vvM" secondAttribute="bottom" constant="9" id="OIY-pG-XHc"/>
                                 <constraint firstItem="ASb-8D-143" firstAttribute="top" secondItem="WaG-LW-CPj" secondAttribute="top" constant="29" id="OSE-je-gR1"/>
@@ -352,6 +380,7 @@
                                 <constraint firstItem="a8z-Ag-sNi" firstAttribute="leading" secondItem="WpH-Jg-QTK" secondAttribute="trailing" constant="27.5" id="qzP-7G-R8e"/>
                                 <constraint firstItem="0V1-3h-RfD" firstAttribute="leading" secondItem="pOm-AM-uor" secondAttribute="trailing" constant="28" id="rDP-zS-pcb"/>
                                 <constraint firstItem="2kK-O1-BHl" firstAttribute="top" secondItem="WaG-LW-CPj" secondAttribute="top" constant="3" id="sHe-QH-awf"/>
+                                <constraint firstItem="oDm-EB-QFj" firstAttribute="top" secondItem="rfe-b7-eBp" secondAttribute="bottom" constant="5" id="sUN-6G-k8f"/>
                                 <constraint firstItem="3ee-dn-pmT" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="27" id="tnV-jd-BRz"/>
                                 <constraint firstItem="9uR-lE-vvM" firstAttribute="leading" secondItem="WaG-LW-CPj" secondAttribute="leading" constant="29" id="tvD-1Q-TUs"/>
                                 <constraint firstItem="t1J-nr-nlF" firstAttribute="top" secondItem="WaG-LW-CPj" secondAttribute="top" constant="20" id="u5e-hk-qGZ"/>
@@ -389,6 +418,8 @@
         </view>
     </objects>
     <resources>
+        <image name="message" catalog="system" width="128" height="116"/>
+        <image name="phone.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
