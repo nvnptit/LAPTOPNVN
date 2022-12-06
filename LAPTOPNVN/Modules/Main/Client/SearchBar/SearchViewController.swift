@@ -178,7 +178,7 @@ class SearchViewController: UIViewController, SFSpeechRecognizerDelegate, UINavi
             
             if error != nil || isFinal { // || self.time == 0
                 print("KẾT THÚC")
-                
+                self.searchBar.placeholder = "Type here..."
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
                 self.recognitionRequest = nil
@@ -206,7 +206,7 @@ class SearchViewController: UIViewController, SFSpeechRecognizerDelegate, UINavi
             print("audioEngine couldn't start because of an error.")
         }
         
-        self.searchBar.text = "Tôi đang lắng nghe..."
+        self.searchBar.placeholder = "Tôi đang lắng nghe..."
     }
     func startRecordingUS() {
         
@@ -247,6 +247,7 @@ class SearchViewController: UIViewController, SFSpeechRecognizerDelegate, UINavi
             
             if error != nil || isFinal { // || self.time == 0
                 print("KẾT THÚC")
+                self.searchBar.placeholder = "Typing here..."
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
                 self.recognitionRequest = nil
@@ -275,7 +276,7 @@ class SearchViewController: UIViewController, SFSpeechRecognizerDelegate, UINavi
             print("audioEngine couldn't start because of an error.")
         }
         
-        self.searchBar.text = "Listening..."
+        self.searchBar.placeholder = "Listening..."
     }
     
     @IBAction func tapLangVi(_ sender: UIButton, forEvent event: UIEvent) {

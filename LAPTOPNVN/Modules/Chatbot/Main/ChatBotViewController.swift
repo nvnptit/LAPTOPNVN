@@ -170,7 +170,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             
             if error != nil || isFinal { // || self.time == 0
                 print("KẾT THÚC")
-                
+                self.messageTextfield.placeholder = "Nhập tại đây..."
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
                 self.recognitionRequest = nil
@@ -198,7 +198,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             print("audioEngine couldn't start because of an error.")
         }
         
-        self.messageTextfield.text = "Mời nói, Tôi đang lắng nghe..."
+        self.messageTextfield.placeholder = "Mời nói, Tôi đang lắng nghe..."
     }
     func startRecordingUS() {
         
@@ -239,6 +239,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             
             if error != nil || isFinal { // || self.time == 0
                 print("KẾT THÚC")
+                self.messageTextfield.placeholder = "Type here..."
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
                 self.recognitionRequest = nil
@@ -267,7 +268,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
             print("audioEngine couldn't start because of an error.")
         }
         
-        self.messageTextfield.text = "Listening..."
+        self.messageTextfield.placeholder = "Listening..."
     }
     
     
