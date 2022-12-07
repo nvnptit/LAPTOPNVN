@@ -480,7 +480,7 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch homeData[indexPath.section] {
-            case .banner(img: let img):
+            case .banner(img: _):
                 break 
             case .newItems(let loaispWrap):
                 switch loaispWrap {

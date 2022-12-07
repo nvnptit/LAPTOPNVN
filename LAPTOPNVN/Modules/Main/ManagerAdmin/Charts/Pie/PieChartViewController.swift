@@ -107,7 +107,7 @@ extension PieChartViewController{
                 if base.success == true {
                     self.dataPie = base.data ?? []
                     var  sum = 0
-                    let statusValues: [String] = ["Chờ duyệt","Đang giao hàng","Đã giao hàng","Đã huỷ"]
+//                    let statusValues: [String] = ["Chờ duyệt","Đang giao hàng","Đã giao hàng","Đã huỷ"]
                         for it in self.dataPie {
                             switch (it.tentrangthai){
                                 case "Chờ duyệt":
@@ -222,7 +222,7 @@ extension PieChartViewController{
         //        scrollView.contentInset = contentInset
     }
     @objc func keyboardWillHide(notification:NSNotification) {
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+//        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         //        scrollView.contentInset = contentInset
     }
     //MARK: - End Setup keyboard

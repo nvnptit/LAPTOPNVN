@@ -22,7 +22,7 @@ class CategoryViewController: UIViewController {
     var dataHang : [HangSX] = []
     
     private func getDataSearch(){
-        print("SEARCHNAME: \(searchBar.text)")
+        print("SEARCHNAME: \(searchBar.text ?? "")")
         let params = SearchModel(tenLSP: searchBar.text, priceMin: nil, priceMax: nil, maHang: nil).convertToDictionary()
         APIService.searchLoaiSanPham(with: .searchLSP, params: params, headers: nil, completion: {
             [weak self] base, error in

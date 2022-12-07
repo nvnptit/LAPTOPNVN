@@ -72,7 +72,7 @@ extension ForgotPasswordViewController{
         //        scrollView.contentInset = contentInset
     }
     @objc func keyboardWillHide(notification:NSNotification) {
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+//        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         //        scrollView.contentInset = contentInset
     }
     //MARK: - End Setup keyboard

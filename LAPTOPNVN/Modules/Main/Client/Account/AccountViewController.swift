@@ -288,7 +288,7 @@ class AccountViewController: UIViewController {
         
         dateFormatter.dateFormat = "dd-MM-yyyy"
         let date = dateFormatter.string(from: dateFromString!)
-        let date1 = Date().convertDateSQLToView(String(day!))
+//        let date1 = Date().convertDateSQLToView(String(day!))
         
         tfBirthday.text  = date
         tfEmail.text  = info.email

@@ -100,7 +100,7 @@ class StatisticViewController: UIViewController {
                     }
                     self.tongDoanhThu.text = CurrencyVN.toVND(self.sum)
                 } else {
-                    print("ERROR: \(base.success)")
+                    print("ERROR: load data doanh thu")
                 }
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }

@@ -170,7 +170,7 @@ extension BarChartViewController{
                     }
                    // TONG DOANH THU: CurrencyVN.toVND(self.sum)
                 } else {
-                    print("ERROR: \(base.success)")
+                    print("ERROR: loaddatadoanhthu")
                 }
             })
             

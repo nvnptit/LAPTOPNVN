@@ -498,7 +498,7 @@ extension SearchViewController {
     }
     
     private func getDataSearch(){
-        print("SEARCHNAME: \(searchBar.text)")
+//        print("SEARCHNAME: \(searchBar.text)")
         let min = tfGiaMin.text?.count == 0 ? nil : Int(tfGiaMin.text!)
         let max = tfGiaMax.text?.count == 0 ? nil : Int(tfGiaMax.text!)
         let params = SearchModel(tenLSP: searchBar.text, priceMin: min, priceMax: max, maHang: self.maHang).convertToDictionary()
@@ -537,7 +537,7 @@ extension SearchViewController{
         //        scrollView.contentInset = contentInset
     }
     @objc func keyboardWillHide(notification:NSNotification) {
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+//        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         //        scrollView.contentInset = contentInset
     }
     //MARK: - End Setup keyboard

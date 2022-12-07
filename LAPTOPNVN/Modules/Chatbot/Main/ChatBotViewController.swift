@@ -758,7 +758,7 @@ extension ChatBotViewController{
                             if let tenlsp = item.tenlsp,
                                let cardscreen = item.cardscreen,
                                let cpu = item.cpu,
-                               let giaban = item.giaban,
+//                               let giaban = item.giaban,
                                let harddrive = item.harddrive,
                                let mota = item.mota,
                                let os = item.os,

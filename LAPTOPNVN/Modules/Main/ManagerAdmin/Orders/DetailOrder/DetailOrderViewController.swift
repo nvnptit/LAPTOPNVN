@@ -322,8 +322,8 @@ class DetailOrderViewController: UIViewController, MFMessageComposeViewControlle
 extension DetailOrderViewController {
     func updateGH(params: [String : Any]?){
         APIService.updateGioHang(with: .updateGioHangAdmin, params: params, headers: nil, completion: { base, error in
-            print("OKKKS")
-            print(base)
+            print("updateGH")
+//            print(base)
             guard let base = base else { return }
             if base.success == true {
                 let alert = UIAlertController(title: "Cập nhật thông tin đơn hàng thành công!", message: "", preferredStyle: .alert)

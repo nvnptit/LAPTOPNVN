@@ -270,10 +270,10 @@ class InformationViewController: UIViewController {
                     if let tokenizedPayPalAccount = tokenizedPayPalAccount {
                         print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
                         // Access additional information
-                        let emailPP = tokenizedPayPalAccount.email
-                        let firstNamePP = tokenizedPayPalAccount.firstName
-                        let lastNamePP = tokenizedPayPalAccount.lastName
-                        let phonePP = tokenizedPayPalAccount.phone
+//                        let emailPP = tokenizedPayPalAccount.email
+//                        let firstNamePP = tokenizedPayPalAccount.firstName
+//                        let lastNamePP = tokenizedPayPalAccount.lastName
+//                        let phonePP = tokenizedPayPalAccount.phone
                         self.addOrderDatabase(sum: sum,method: "PAYPAL")
                     } else if let error = error {
                         // Handle error here...
@@ -436,7 +436,7 @@ extension InformationViewController{
             guard let base = base else { return }
             if base.success == true {
                 self.tyGiaUSD = base.data?.first
-                print("\nTỷ giá hiện tại:\(self.tyGiaUSD)")
+                print("\nTỷ giá hiện tại:\(String(describing: self.tyGiaUSD))")
             } else {
                 let alert = UIAlertController(title:"Lỗi get tỷ giá", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in

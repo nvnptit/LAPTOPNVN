@@ -98,8 +98,8 @@ extension SaleViewController: UITableViewDataSource, UITableViewDelegate {
         if  let maDotGG = item.madotgg,
             let dateStart = item.ngaybatdau,
             let dateEnd = item.ngayketthuc,
-            let describe = item.mota,
-            let maNV = item.manv
+            let describe = item.mota
+//            ,let maNV = item.manv
         {
             cell.maDotGG.text = maDotGG
             cell.dateStart.text = Date().convertDateTimeSQLToView(date: dateStart, format: "dd-MM-yyyy HH:mm:ss")
@@ -118,7 +118,7 @@ extension SaleViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let item = data[indexPath.item]
-        guard let cell = tableView.cellForRow(at: indexPath) as? SaleTableViewCell else { return nil}
+//        guard let cell = tableView.cellForRow(at: indexPath) as? SaleTableViewCell else { return nil}
         let delete = UIContextualAction(style: .normal, title: "Xoá") { (action, view, completionHandler) in
             print("Delete: \(indexPath.row + 1)")
             

@@ -151,7 +151,7 @@ extension DetailSaleViewController{
         //        scrollView.contentInset = contentInset
     }
     @objc func keyboardWillHide(notification:NSNotification) {
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+//        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         //        scrollView.contentInset = contentInset
     }
     //MARK: - End Setup keyboard
@@ -266,7 +266,7 @@ extension DetailSaleViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let item = dataDetail[indexPath.item]
-        guard let cell = tableView.cellForRow(at: indexPath) as? DetailSaleTableViewCell else { return nil}
+//        guard let cell = tableView.cellForRow(at: indexPath) as? DetailSaleTableViewCell else { return nil}
         let delete = UIContextualAction(style: .normal, title: "Xoá") { (action, view, completionHandler) in
             print("Delete: \(indexPath.row + 1)")
             
