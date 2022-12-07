@@ -69,6 +69,15 @@ class DetailSaleViewController: UIViewController {
                 self.present(alert, animated: true)
                 return false
         }
+        guard let pt = Int(percent) else {return false}
+            if (pt < 0 || pt > 100){
+                let alert = UIAlertController(title:"Phần trăm giảm giá không hợp lệ!", message: "Phần trăm phải trong khoảng 0 - 100", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                        self.dismiss(animated: true)
+                    }))
+                    self.present(alert, animated: true)
+                return false
+            }
         return true
     }
 }
@@ -148,24 +157,22 @@ extension DetailSaleViewController{
     //MARK: - End Setup keyboard
     func reloadData(){
         loading.startAnimating()
-        DispatchQueue.init(label: "DetailSaleVC", qos: .utility).asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let self = self, let ma = self.maDot.text else { return }
-            APIService.getCTGG(with: ma, { base, error in
-                guard let base = base else {
-                    return
+        guard let ma = self.maDot.text else { return }
+        APIService.getCTGG(with: ma, { base, error in
+            guard let base = base else {
+                return
+            }
+            if (base.success == true ){
+                if let dataz = base.data {
+                    self.dataDetail = dataz
                 }
-                if (base.success == true ){
-                    if let dataz = base.data {
-                        self.dataDetail = dataz
-                    }
-                }
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.tableView.reloadData()
-                    self.loading.stopAnimating()
-                }
-            })
-        }
+            }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.tableView.reloadData()
+                self.loading.stopAnimating()
+            }
+        })
     }
 }
 
@@ -221,7 +228,19 @@ extension DetailSaleViewController: UITableViewDataSource, UITableViewDelegate {
                         }))
                         self.present(alert, animated: true)
                     return
+                } else {
+                    guard let newVal = Int(t[0].text!) else {return}
+                    print("NEWVAL: \(newVal)")
+                    if (newVal < 0 || newVal > 100){
+                        let alert = UIAlertController(title:"Phần trăm giảm giá không hợp lệ!", message: "Phần trăm phải trong khoảng 0 - 100", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                                self.dismiss(animated: true)
+                            }))
+                            self.present(alert, animated: true)
+                        return
+                    }
                 }
+               
             }
                     self.dismiss(animated: true)
                 guard let value = alert.textFields, value.count > 0 else {  return }
