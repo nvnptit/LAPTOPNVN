@@ -44,7 +44,7 @@ class DetailHistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Chi tiết giỏ hàng"
+        self.title = "Chi tiết đơn hàng"
         if  order?.tentrangthai == "Chờ duyệt"{
             btnCancel.isHidden = false
         }else {  btnCancel.isHidden = true}

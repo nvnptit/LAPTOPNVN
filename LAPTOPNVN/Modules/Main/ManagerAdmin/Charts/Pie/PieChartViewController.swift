@@ -31,6 +31,7 @@ class PieChartViewController: UIViewController {
     var dataPie: [DataPieResponse] = []
     override func viewDidLoad() {
       super.viewDidLoad()
+        self.title = "Biểu đồ trạng thái đơn hàng"
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.tfFrom.text = Date().toDate(format: "dd-MM-yyyy")

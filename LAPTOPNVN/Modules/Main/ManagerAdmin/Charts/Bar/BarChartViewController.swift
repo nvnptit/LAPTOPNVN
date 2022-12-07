@@ -29,6 +29,7 @@ class BarChartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Biểu đồ doanh thu theo năm"
         setupDropDown()
         barChartView.noDataText = "Bạn cần chọn khung thời gian cần để hiển thị biểu đồ"
         barChartView.maxVisibleCount = 20
