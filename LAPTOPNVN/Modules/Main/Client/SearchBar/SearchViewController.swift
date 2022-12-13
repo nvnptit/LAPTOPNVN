@@ -70,19 +70,19 @@ class SearchViewController: UIViewController, SFSpeechRecognizerDelegate, UINavi
         self.langVi.isUserInteractionEnabled = false
         self.langEn.isUserInteractionEnabled = false
         
+        self.searchBar.text = ""
         if audioEngine.isRunning {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
             self.mic.isEnabled = false
-            self.mic.setTitle("", for: .normal)
-        } else {
-            if (isVN == true){
-                self.startRecordingVN()
-                self.mic.setTitle("Stop Recording", for: .normal)
-            }else {
-                self.startRecordingUS()
-                self.mic.setTitle("Stop Recording", for: .normal)
-            }
+            self.mic.tintColor = .systemBlue
+        }else {
+            self.mic.tintColor = .black
+                if (isVN == true){
+                    self.startRecordingVN()
+                }else {
+                    self.startRecordingUS()
+                }
         }
     }
     
@@ -178,7 +178,7 @@ class SearchViewController: UIViewController, SFSpeechRecognizerDelegate, UINavi
             
             if error != nil || isFinal { // || self.time == 0
                 print("KẾT THÚC")
-                self.searchBar.placeholder = "Type here..."
+                self.searchBar.placeholder = "Nhập tại đây..."
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
                 self.recognitionRequest = nil
@@ -247,7 +247,7 @@ class SearchViewController: UIViewController, SFSpeechRecognizerDelegate, UINavi
             
             if error != nil || isFinal { // || self.time == 0
                 print("KẾT THÚC")
-                self.searchBar.placeholder = "Typing here..."
+                self.searchBar.placeholder = "Type here..."
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
                 self.recognitionRequest = nil

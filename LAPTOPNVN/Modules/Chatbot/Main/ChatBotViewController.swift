@@ -62,19 +62,19 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         self.langVi.isUserInteractionEnabled = false
         self.langEn.isUserInteractionEnabled = false
         
+        self.messageTextfield.text = ""
         if audioEngine.isRunning {
             self.audioEngine.stop()
             self.recognitionRequest?.endAudio()
             self.mic.isEnabled = false
-            self.mic.setTitle("", for: .normal)
-        } else {
-            if (isVN == true){
-                self.startRecordingVN()
-                self.mic.setTitle("Stop Recording", for: .normal)
-            }else {
-                self.startRecordingUS()
-                self.mic.setTitle("Stop Recording", for: .normal)
-            }
+            self.mic.tintColor = .systemBlue
+        }else {
+            self.mic.tintColor = .black
+                if (isVN == true){
+                    self.startRecordingVN()
+                }else {
+                    self.startRecordingUS()
+                }
         }
     }
     
