@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,16 +24,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="190" height="350"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D0H-Je-YIb">
-                                <rect key="frame" x="0.0" y="0.0" width="190" height="265"/>
+                                <rect key="frame" x="0.0" y="0.0" width="190" height="250"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Name Product" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSK-6z-RjA">
-                                <rect key="frame" x="46.5" y="271" width="97" height="17.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Name Product" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSK-6z-RjA">
+                                <rect key="frame" x="5" y="256" width="180" height="17.5"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="15"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="dlf-Ue-d0j">
-                                <rect key="frame" x="70" y="293.5" width="50" height="106"/>
+                                <rect key="frame" x="70" y="278.5" width="50" height="106"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R52-4X-Yfg" userLabel="OldPrice">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -51,14 +51,16 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="D0H-Je-YIb" secondAttribute="bottom" constant="85" id="4cR-Fx-yeG"/>
+                            <constraint firstAttribute="bottom" secondItem="D0H-Je-YIb" secondAttribute="bottom" constant="100" id="4cR-Fx-yeG"/>
                             <constraint firstItem="OSK-6z-RjA" firstAttribute="centerX" secondItem="OqM-3k-Yua" secondAttribute="centerX" id="9Bs-TV-Q1K"/>
                             <constraint firstItem="D0H-Je-YIb" firstAttribute="top" secondItem="OqM-3k-Yua" secondAttribute="top" id="9Ue-7M-Tqj"/>
+                            <constraint firstAttribute="trailing" secondItem="OSK-6z-RjA" secondAttribute="trailing" constant="5" id="Ain-Kr-kSU"/>
                             <constraint firstItem="dlf-Ue-d0j" firstAttribute="top" secondItem="OSK-6z-RjA" secondAttribute="bottom" constant="5" id="Ly5-k0-Ad8"/>
                             <constraint firstItem="dlf-Ue-d0j" firstAttribute="centerX" secondItem="OqM-3k-Yua" secondAttribute="centerX" id="NrM-51-cLn"/>
                             <constraint firstItem="OSK-6z-RjA" firstAttribute="top" secondItem="D0H-Je-YIb" secondAttribute="bottom" constant="6" id="PoM-14-76E"/>
                             <constraint firstAttribute="trailing" secondItem="D0H-Je-YIb" secondAttribute="trailing" id="T8k-tI-flF"/>
                             <constraint firstItem="D0H-Je-YIb" firstAttribute="leading" secondItem="OqM-3k-Yua" secondAttribute="leading" id="lfd-eP-6sy"/>
+                            <constraint firstItem="OSK-6z-RjA" firstAttribute="leading" secondItem="OqM-3k-Yua" secondAttribute="leading" constant="5" id="wh9-Iw-jeN"/>
                         </constraints>
                     </view>
                 </subviews>
