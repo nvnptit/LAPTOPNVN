@@ -368,7 +368,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
                 t1 = true
                 return
             }
-            if (t1 == false && (mess.contains("huỷ thao tác") || mess.contains("cancel order"))){
+            if (t1 == false && (mess.contains("hủy thao tác") || mess.contains("cancel order"))){
                 checkOrder = false
                 t1 = true
                 replyText(message: "Đã ngừng đặt hàng")
@@ -455,13 +455,13 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         dataIntent.append(
             Intent(tag: "cart", patterns: ["giỏ hàng","my cart"], responses:  0))
         dataIntent.append(
-            Intent(tag: "order", patterns: ["Chờ","chờ duyệt"], responses:  1))
+            Intent(tag: "order", patterns: ["chờ","chờ duyệt"], responses:  1))
         dataIntent.append(
             Intent(tag: "pending", patterns: ["đã duyệt","đang giao","sắp giao"], responses:  2))
         dataIntent.append(
-            Intent(tag: "ship", patterns: ["Đã giao","hoàn tất","Đã nhận"], responses:  3))
+            Intent(tag: "ship", patterns: ["đã giao","hoàn tất","đã nhận"], responses:  3))
         dataIntent.append(
-            Intent(tag: "cancel", patterns: ["Đã huỷ","bị huỷ"], responses:  4))
+            Intent(tag: "cancel", patterns: ["đã hủy","bị hủy","đã huỷ","bị huỷ"], responses:  4))
         dataIntent.append(
             Intent(tag: "welcome", patterns: ["xin chào","hello"], responses:  5))
         dataIntent.append(
@@ -469,7 +469,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
         dataIntent.append(
             Intent(tag: "detailOrder", patterns: ["chi tiết đơn hàng","detail order"], responses:  7))
         dataIntent.append(
-            Intent(tag: "manufacturer", patterns: ["Máy tính dell","dell","asus","acer","hp","msi","lenovo"], responses:  8))
+            Intent(tag: "manufacturer", patterns: ["máy tính dell","dell","asus","acer","hp","msi","lenovo"], responses:  8))
         dataIntent.append(
             Intent(tag: "pay", patterns: ["thanh toán","pay"], responses:  9))
         
