@@ -332,7 +332,7 @@ class ChatBotViewController: UIViewController, UITableViewDelegate {
     @IBAction func sendPressed(_ sender: UIButton) {
         self.audioEngine.stop()
         self.recognitionRequest = nil
-        self.mic.setTitle("", for: .normal)
+        self.mic.tintColor = .systemBlue
         self.recognitionTask?.cancel()
         self.recognitionTask = nil
         self.mic.isEnabled = true
