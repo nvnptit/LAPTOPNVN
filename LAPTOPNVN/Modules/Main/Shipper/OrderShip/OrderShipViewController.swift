@@ -42,14 +42,22 @@ class OrderShipViewController: UIViewController {
         guard let item = item else {return}
         dataSorted.append(HistoryOrderSorted(iddonhang: item.iddonhang, ngaylapdonhang: item.ngaylapdonhang, ngaydukien: item.ngaydukien, tonggiatri: item.tonggiatri, tentrangthai: item.tentrangthai, nvgiao: item.nvgiao, sdtnvg: item.sdtnvg, nvduyet: item.nvduyet, nguoinhan: item.nguoinhan, diachi: item.diachi, sdt: item.sdt, email: item.email, ngaynhan: item.ngaynhan, phuongthuc: item.phuongthuc, thanhtoan: item.thanhtoan, km: km))
         
-        dataSorted.sort{
-            return ($0.km ?? 0 ) < ($1.km ?? 0)  // tăng dần theo số km
-//            return ($0.km ?? 0 ) > ($1.km ?? 0)  // giảm dần theo số km
+        
+        dataSorted.sort { lhs, rhs in
+            if lhs.ngaydukien == rhs.ngaydukien {
+                return (lhs.km ?? 0) < (rhs.km ?? 0)
+            }
+          return lhs.ngaydukien! < rhs.ngaydukien!
         }
-  
-        dataSorted.sort{
-            return ($0.ngaydukien! < $1.ngaydukien!) 
-        }
+        
+//        dataSorted.sort{
+//            return ($0.km ?? 0 ) < ($1.km ?? 0)  // tăng dần theo số km
+////            return ($0.km ?? 0 ) > ($1.km ?? 0)  // giảm dần theo số km
+//        }
+//
+//        dataSorted.sort{
+//            return ($0.ngaydukien! < $1.ngaydukien!)  // tăng dần theo ngày dự kiến
+//        }
         
         
         DispatchQueue.main.async { [weak self] in
