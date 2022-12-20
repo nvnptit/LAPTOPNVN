@@ -726,7 +726,7 @@ extension ChatBotViewController{
                             }
                         }
                         
-                        let newMessage = Message(sender: "BOT", body: "        Thông tin đơn hàng đang giao      \n       -------------------------------\n"+result)
+                        let newMessage = Message(sender: "BOT", body: "        Thông tin đơn hàng       \n       -------------------------------\n"+result)
                         self.messages.append(newMessage)
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
