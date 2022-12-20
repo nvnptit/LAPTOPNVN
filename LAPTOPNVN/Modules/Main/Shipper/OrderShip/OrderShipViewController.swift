@@ -41,34 +41,23 @@ class OrderShipViewController: UIViewController {
     func addDataSorted(item: HistoryOrder1?, km: Float){
         guard let item = item else {return}
         dataSorted.append(HistoryOrderSorted(iddonhang: item.iddonhang, ngaylapdonhang: item.ngaylapdonhang, ngaydukien: item.ngaydukien, tonggiatri: item.tonggiatri, tentrangthai: item.tentrangthai, nvgiao: item.nvgiao, sdtnvg: item.sdtnvg, nvduyet: item.nvduyet, nguoinhan: item.nguoinhan, diachi: item.diachi, sdt: item.sdt, email: item.email, ngaynhan: item.ngaynhan, phuongthuc: item.phuongthuc, thanhtoan: item.thanhtoan, km: km))
-//        dataSorted.sort{
-//            return ($0.km ?? 0 ) < ($1.km ?? 0)  // tăng dần theo số km
-////            return ($0.km ?? 0 ) > ($1.km ?? 0)  // giảm dần theo số km
-//        }
+        
         dataSorted.sort{
-            let dateFormat = "dd-MM-yyyy"
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = dateFormat
-            let currentDate = Date()
-            let current = "\(currentDate)".prefix(10)
-            let curr = dateFormatter.date(from: Date().convertDateSQLToView(String(current)))
-            let startDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $0.ngaydukien!, format: "dd-MM-yyyy"))
-            let endDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $1.ngaydukien!, format: "dd-MM-yyyy"))
-
-            return ( (startDate == curr) || (endDate == curr) ) && ($0.km ?? 0 ) < ($1.km ?? 0)  || (startDate! < endDate!)
+            return ($0.km ?? 0 ) < ($1.km ?? 0)  // tăng dần theo số km
+//            return ($0.km ?? 0 ) > ($1.km ?? 0)  // giảm dần theo số km
         }
-//        dataSorted.sort{
-//            let dateFormat = "dd-MM-yyyy"
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = dateFormat
-//            let currentDate = Date()
-//            let current = "\(currentDate)".prefix(10)
-//            let curr = dateFormatter.date(from: Date().convertDateSQLToView(String(current)))
-//            let startDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $0.ngaydukien!, format: "dd-MM-yyyy"))
-//            let endDate = dateFormatter.date(from: Date().convertDateTimeSQLToView(date: $1.ngaydukien!, format: "dd-MM-yyyy"))
-//            return (startDate == curr) && (endDate == startDate)  && ($0.km ?? 0 ) < ($1.km ?? 0)
-//        }
-//
+  
+        dataSorted.sort{
+            return ($0.ngaydukien! < $1.ngaydukien!) 
+        }
+        
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.tableView.reloadData()
+            self.loading.stopAnimating()
+        }
+        
     }
     private func setupAnimation() {
         loading.translatesAutoresizingMaskIntoConstraints = false
@@ -174,11 +163,6 @@ class OrderShipViewController: UIViewController {
                                     } else {
                                         self.addDataSorted(item: it, km: -1)
                                         print("error sth went wrong")
-                                    }
-                                    DispatchQueue.main.async { [weak self] in
-                                        guard let self = self else { return }
-                                        self.tableView.reloadData()
-                                        self.loading.stopAnimating()
                                     }
                                 })
                             }
@@ -308,14 +292,8 @@ extension OrderShipViewController{
         guard let userInfo = notification.userInfo else { return }
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-        
-        //        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        //        contentInset.bottom = keyboardFrame.size.height + 70
-        //        scrollView.contentInset = contentInset
     }
     @objc func keyboardWillHide(notification:NSNotification) {
-//        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        //        scrollView.contentInset = contentInset
     }
     //MARK: - End Setup keyboard
 }
@@ -405,31 +383,6 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
             }else {
                 cell.distance.text =  String(format: "%.0fm", distance)
             }
-            
-            // Hien thi khoang cach
-            //            LocationManager.shared.forwardGeocoding(address: diachi.lowercased(), completion: {
-            //                success,coordinate in
-            //                if success {
-            //                    guard let lat = coordinate?.latitude,
-            //                          let long = coordinate?.longitude else {return}
-            //                         // Do sth with your coordinates
-            //
-            //                    let mySourceLocation = CLLocation(latitude: LocationManager.shared.lat, longitude: LocationManager.shared.long)
-            //                    let myDestinationLocation = CLLocation(latitude: lat, longitude: long)
-            //                    let distance = mySourceLocation.distance(from: myDestinationLocation)
-            //                    if (distance/1000>1){
-            //                        cell.distance.text = String(format: "%.01f km", distance/1000)
-            //                    }
-            //                    else {
-            //
-            //                        cell.distance.text = String(format: "%.0f m", distance)
-            //                    }
-            ////                    //render
-            ////                    self.mapThis (destinationCord: coordinate!)
-            //                     } else {
-            //                         print("error sth went wrong")
-            //                     }
-            //            })
         }
         cell.selectionStyle = .none
         return cell

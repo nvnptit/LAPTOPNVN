@@ -208,7 +208,7 @@ class InformationViewController: UIViewController {
         print(self.list)
         print("\n -------END LIST ORDER ADD DB------\n ")
         
-        let params = ModelAddGH(iddonhang: nil, ngaylapdonhang: nil, ngaydukien: dayPlan, tonggiatri: sum, matrangthai: 0, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email, malsp: nil, dslsp: self.list,ngaynhan: nil,phuongthuc: method, thanhtoan: isPay).convertToDictionary()
+        let params = ModelAddGH(iddonhang: nil, ngaylapdonhang: Date().toDate(format: "yyyy-MM-dd'T'HH:mm:ss"), ngaydukien: dayPlan, tonggiatri: sum, matrangthai: 0, cmnd: cmnd, manvgiao: nil, manvduyet: nil, nguoinhan: name, diachi: address, sdt: phone, email: email, malsp: nil, dslsp: self.list,ngaynhan: nil,phuongthuc: method, thanhtoan: isPay).convertToDictionary()
        print(params)
         APIService.addGioHang1(with: .addGioHang1, params: params, headers: nil, completion:   { base, error in
             guard let base = base else { return }
