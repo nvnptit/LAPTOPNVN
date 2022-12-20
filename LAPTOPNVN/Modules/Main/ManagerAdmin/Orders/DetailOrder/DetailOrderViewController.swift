@@ -95,7 +95,7 @@ class DetailOrderViewController: UIViewController, MFMessageComposeViewControlle
             getDataNVGiao()
             btnHuy.isHidden = true
             btnDuyet.setTitle("Lưu thay đổi", for: .normal)
-            btnDuyet.isEnabled = false
+//            btnDuyet.isEnabled = false
             btnHuyShipper.isHidden = true
         }else if (order?.tentrangthai == "Đang giao hàng" && KEY == "SHIPPER") {
             btnHuyShipper.isHidden = false
@@ -509,12 +509,12 @@ extension DetailOrderViewController{
         datePlan.text =  dateFormatter.string(from: datePicker1.date)
         guard var date1 = order?.ngaydukien else {return}
         date1 = Date().convertDateTimeSQLToView(date: date1, format: "dd-MM-yyyy")
-        let date2 = self.datePlan.text
-            if (date2 != date1 ){
-                btnDuyet.isEnabled = true
-            }else {
-                btnDuyet.isEnabled = false
-            }
+//        let date2 = self.datePlan.text
+//            if (date2 != date1 ){
+//                btnDuyet.isEnabled = true
+//            }else {
+//                btnDuyet.isEnabled = false
+//            }
         
         view.endEditing(true)
     }
