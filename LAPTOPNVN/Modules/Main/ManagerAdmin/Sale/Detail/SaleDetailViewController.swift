@@ -93,7 +93,20 @@ class SaleDetailViewController: UIViewController {
     @IBAction func tapSaleEvent(_ sender: UIButton, forEvent event: UIEvent) {
         if checkFill(){
             if (btnSaleEvent.currentTitle == "THÊM MỚI"){
+                
                 guard let dateStart = dateStart.text, let dateEnd = dateEnd.text else {return}
+                
+                let currentDate = Date()
+                let current = "\(currentDate)".prefix(10)
+                if (!Date().checkDatePlan(start: dateStart, end: Date().convertDateSQLToView(String(current))) ){
+                    let alert = UIAlertController(title: "Ngày bắt đầu cần lớn hơn ngày hiện tại", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ _ in
+                        self.dismiss(animated: true)
+                    }))
+                    self.present(alert, animated: true)
+                    return
+                }
+                
                 let params = SaleModel(madotgg: id.text, ngaybatdau: Date().convertDateViewToSQL(dateStart), ngayketthuc: Date().convertDateViewToSQL(dateEnd), mota: describe.text, manv: UserService.shared.maNV).convertToDictionary()
                 APIService.postRequest(with: .postDotGG, params: params, headers: nil, completion: {base, error in
                     guard let base = base else { return }

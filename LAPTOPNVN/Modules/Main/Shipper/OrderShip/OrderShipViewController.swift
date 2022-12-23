@@ -397,10 +397,11 @@ extension OrderShipViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let item = dataHistory[indexPath.item]
-        let item = dataHistory[indexPath.section]
+        let item = dataSorted[indexPath.section]
+        let item1 = HistoryOrder1(iddonhang: item.iddonhang, ngaylapdonhang: item.ngaylapdonhang, ngaydukien: item.ngaydukien, tonggiatri: item.tonggiatri, tentrangthai: item.tentrangthai, nvgiao: item.nvgiao, sdtnvg: item.sdtnvg, nvduyet: item.nvduyet, nguoinhan: item.nguoinhan, diachi: item.diachi, sdt: item.sdt, email: item.email, ngaynhan: item.ngaynhan, phuongthuc: item.phuongthuc, thanhtoan: item.thanhtoan)
         let detailOrderViewController = DetailOrderViewController()
         detailOrderViewController.KEY = "SHIPPER"
-        detailOrderViewController.order = item
+        detailOrderViewController.order = item1
         self.navigationController?.pushViewController(detailOrderViewController, animated: true)
     }
 }
