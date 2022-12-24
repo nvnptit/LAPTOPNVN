@@ -125,10 +125,7 @@ class DetailHistoryViewController: UIViewController {
 extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegate , UIGestureRecognizerDelegate{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 1
         if (order?.tentrangthai == "Đã huỷ"){
             print("HUỶ \(dataHuy.count)")
             return dataHuy.count
@@ -136,6 +133,25 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
             return dataHistory.count  // default
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if (order?.tentrangthai == "Đã huỷ"){
+//            print("HUỶ \(dataHuy.count)")
+//            return dataHuy.count
+//        }else {
+//            return dataHistory.count  // default
+//        }
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 2
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
     }
     
     
@@ -154,7 +170,8 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
         
         var item :  HistoryOrder1Detail
         if (order?.tentrangthai == "Đã huỷ"){
-            item = dataHuy[indexPath.item]
+//            item = dataHuy[indexPath.item]
+            item = dataHuy[indexPath.section]
             cell.lbSeri.isHidden = true
             cell.serial.isHidden = true
             cell.slHuy.isHidden = false
@@ -163,10 +180,10 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
             }
 //            print("Số lượng: \(counts[item.tenlsp ?? ""])")
         }else {
-            item = dataHistory[indexPath.item]  // default
+//            item = dataHistory[indexPath.item]  // default
+            item = dataHistory[indexPath.section]  // default
         }
         
-        //        let item = dataHistory[indexPath.item]
         
         
         if let serial = item.serial,
@@ -218,7 +235,8 @@ extension DetailHistoryViewController: UITableViewDataSource, UITableViewDelegat
     @objc func tapRate(tapGesture:UITapGestureRecognizer){
         print("Rate")
         let indexPath = IndexPath(row: tapGesture.view!.tag, section: 0)
-        let item = dataHistory[indexPath.item]
+//        let item = dataHistory[indexPath.item]
+        let item = dataHistory[indexPath.section]
         self.currentSerial = item.serial
         getComment(seri: self.currentSerial!)
     }
