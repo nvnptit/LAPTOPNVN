@@ -31,6 +31,7 @@ class MapsViewController: UIViewController, MKMapViewDelegate {
     func loadFulLMap(){
         for item in dataHistory {
             guard let address = item.diachi, let id = item.iddonhang, let total = item.tonggiatri , let isPaid = item.thanhtoan else {return }
+            print("TONGGIATRI: \(total)|\(isPaid)")
             LocationManager.shared.forwardGeocoding(address: address.lowercased(), completion: {
                     success,coordinate in
                     if success {

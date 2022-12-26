@@ -283,7 +283,7 @@ class DetailOrderViewController: UIViewController, MFMessageComposeViewControlle
             let alert = UIAlertController(title: "Bạn có chắc cập nhật ngày giao dự kiến mới?", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ [self] _ in
                 self.dismiss(animated: true)
-                let params = GioHangEdit(iddonhang: order?.iddonhang, ngaylapdonhang: order?.ngaylapdonhang,ngaydukien: newDatePlan, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: self.order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: true).convertToDictionary()
+                let params = GioHangEdit(iddonhang: order?.iddonhang, ngaylapdonhang: order?.ngaylapdonhang,ngaydukien: newDatePlan, tonggiatri: order?.tonggiatri, matrangthai: 1, manvgiao: maNVG, manvduyet: self.maNVD, nguoinhan: order?.nguoinhan, diachi: order?.diachi, sdt: self.order?.sdt, email: order?.email,phuongthuc: order?.phuongthuc,thanhtoan: order?.thanhtoan).convertToDictionary()
                 self.updateShipper(params: params)
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ _ in

@@ -63,12 +63,12 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewReg.backgroundColor = UIColor.white
-        viewReg.layer.borderColor = UIColor.black.cgColor
-        viewReg.layer.borderWidth = 1
-        viewReg.layer.cornerRadius = 10
-        viewReg.clipsToBounds = false
-        
+//        viewReg.backgroundColor = UIColor.white
+//        viewReg.layer.borderColor = UIColor.black.cgColor
+//        viewReg.layer.borderWidth = 1
+//        viewReg.layer.cornerRadius = 10
+//        viewReg.clipsToBounds = false
+//        
         
         btnRegister.layer.borderColor = UIColor.lightGray.cgColor
         btnRegister.layer.borderWidth = 1
